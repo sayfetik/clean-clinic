@@ -1,0 +1,6 @@
+@import '../../styles/_vars';
+@import '../../styles/_mixins';
+
+.link {
+  @include link;
+}

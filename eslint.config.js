@@ -1,9 +1,9 @@
 // eslint.config.js
-import eslintPluginImport from 'eslint-plugin-import';
-import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
-import eslintPluginTypescript from '@typescript-eslint/eslint-plugin';
-import eslintPluginPrettier from 'eslint-plugin-prettier';
-import typescriptParser from '@typescript-eslint/parser';
+import eslintPluginImport from 'eslint-plugin-import'
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
+import eslintPluginTypescript from '@typescript-eslint/eslint-plugin'
+import eslintPluginPrettier from 'eslint-plugin-prettier'
+import typescriptParser from '@typescript-eslint/parser'
 
 export default [
   {
@@ -46,4 +46,4 @@ export default [
       'no-console': ['error', { allow: ['info', 'error', 'warn'] }],
     },
   },
-];
+]

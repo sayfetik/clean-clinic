@@ -1,16 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { getAboutRoute, getInfusionCatalogRoute, getInfusionRoute, getMainRoute, infusionRouteParams } from './lib/routes'
+import { Header } from './components'
+import * as routes from './lib/routes'
 import { Main, About, Infusion, InfusionCatalog } from './pages'
-import './App.css'
+import './styles/global.scss'
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path={getMainRoute()} element={<Main />} />
-        <Route path={getAboutRoute()} element={<About />} />
-        <Route path={getInfusionRoute(infusionRouteParams)} element={<Infusion />} />
-        <Route path={getInfusionCatalogRoute()} element={<InfusionCatalog />} />
+        <Route path={routes.getMainRoute()} element={<Main />} />
+        <Route path={routes.getAboutRoute()} element={<About />} />
+        <Route path={routes.getInfusionCatalogRoute()} element={<InfusionCatalog />} />
+        <Route path={routes.getInfusionRoute(routes.infusionRouteParams)} element={<Infusion />} />
       </Routes>
     </BrowserRouter>
   )
