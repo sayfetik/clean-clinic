@@ -1,4 +1,6 @@
 export { default as Main } from './Main/Main'
 export { default as About } from './About/About'
 export { default as Infusion } from './Infusion/Infusion'
+export { default as Contacts } from './Contacts/Contacts'
+export { default as Services } from './Services/Services'
 export { default as InfusionCatalog } from './InfusionCatalog/InfusionCatalog'

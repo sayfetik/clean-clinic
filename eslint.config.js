@@ -39,7 +39,7 @@ export default [
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
       '@typescript-eslint/ban-types': 'off',
-      '@typescript-eslint/consistent-type-assertions': 'off',
+      '@typescript-eslint/consistent-type-assertions': 'on',
       'jsx-a11y/anchor-is-valid': 'off',
       curly: ['error', 'all'],
       'no-irregular-whitespace': ['error', { skipTemplates: true, skipStrings: true }],

@@ -1,0 +1,11 @@
+@use '../../../styles/_vars' as *;
+@use '../../../styles/_mixins' as *;
+
+.pageLink {
+  @include link;
+  @include h4;
+}
+
+.activeLink {
+  color: $blue;
+}

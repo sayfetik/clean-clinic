@@ -1,0 +1,9 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.socialMediaIcons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+}

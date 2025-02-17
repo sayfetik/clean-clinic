@@ -1,28 +1,88 @@
 @use './_vars' as *;
 @use '../../node_modules/include-media/dist/_include-media';
 
-@mixin link($color: $blue, $hoverColor: $black) {
+@mixin link($color: $black, $hoverColor: $blue) {
   color: $color;
-  transition: color 200ms ease;
+  transition: $smoothColor;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 
   &:hover,
   &:active {
     color: $hoverColor;
-    transition: none;
   }
 }
 
+@mixin page {
+  background-color: $defaultBackgroundColor;
+
+}
+
 @mixin h1 {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: bold;
 }
 
-@mixin h2 {
-  font-size: 24px;
+@mixin h1_main {
+  @include h1;
+  color: $blue;
+}
+
+@mixin h1_add {
+  @include h1;
+  color: $black;
+}
+
+@mixin h2($color: $black) {
+  font-size: 27px;
   font-weight: bold;
+  color: $color;
+}
+
+@mixin h2_main {
+  @include h2;
+  color: $blue;
+}
+
+@mixin h2_add {
+  @include h2;
+  color: $black;
+}
+
+@mixin h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@mixin h3_main {
+  @include h3;
+  color: $blue;
+}
+
+@mixin h3_add {
+  @include h3;
+  color: $black;
+}
+
+@mixin h3_light {
+  @include h3;
+  font-weight: 400;
+  color: $blue;
+}
+
+@mixin h4 {
+  font-size: 14px;
+}
+
+@mixin h4_main {
+  @include h4;
+  color: $blue;
+}
+
+@mixin h4_add {
+  @include h4;
+  color: $black;
 }

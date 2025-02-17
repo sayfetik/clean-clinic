@@ -1,7 +1,27 @@
 @use '../../styles/_vars';
 @use '../../styles/_mixins' as *;
 
-.title {
-  @include h1;
-  margin-bottom: 2px;
+.page {
+  z-index: 100;
+  background-image: url('../../assets/water.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 200px;
+}
+
+.h1_main {
+  @include h1_main;
+  margin-bottom: 20px;
+}
+
+.mainSlide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.h3_light {
+  @include h3_light;
+  font-size: 22px;
 }

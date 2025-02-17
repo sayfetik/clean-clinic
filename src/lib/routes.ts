@@ -9,3 +9,5 @@ export const getMainRoute = () => '/'
 export const getAboutRoute = () => '/about'
 export const getInfusionRoute = ({ infusionId }: InfusionRouteParamsType) => `/infusion/${infusionId}`
 export const getInfusionCatalogRoute = () => `/infusions`
+export const getServicesRoute = () => `/services`
+export const getContactsRoute = () => `/contacts`
