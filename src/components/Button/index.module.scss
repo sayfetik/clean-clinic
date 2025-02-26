@@ -1,0 +1,16 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.bigButton {
+  @include button;
+  padding: 10px 25px;
+  font-size: 17px;
+  font-weight: 550;
+}
+
+.smallButton {
+  @include button;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 550;
+}

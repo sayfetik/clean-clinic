@@ -9,9 +9,9 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: typescriptParser, // Используем парсер для TypeScript
+      parser: typescriptParser,
       parserOptions: {
-        project: './tsconfig.app.json', // Путь к вашему tsconfig.json
+        project: './tsconfig.json',
         ecmaVersion: 2020,
         sourceType: 'module',
       },
@@ -39,7 +39,7 @@ export default [
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
       '@typescript-eslint/ban-types': 'off',
-      '@typescript-eslint/consistent-type-assertions': 'on',
+      '@typescript-eslint/consistent-type-assertions': 2,
       'jsx-a11y/anchor-is-valid': 'off',
       curly: ['error', 'all'],
       'no-irregular-whitespace': ['error', { skipTemplates: true, skipStrings: true }],

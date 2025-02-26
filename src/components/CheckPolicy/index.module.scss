@@ -1,0 +1,18 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.text {
+  font-size: 13px;
+  color: $black;
+  line-height: 16px;
+}
+
+.root {
+  --checkbox-size-xxs: 14px;
+
+  &[data-size='xxs'] {
+    .input {
+      width: 13px;
+    }
+  }
+}

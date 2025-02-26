@@ -1,0 +1,28 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  color: $blue;
+}
+
+.input {
+  height: 85px;
+}
+
+.description {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.label {
+  margin-bottom: 7px;
+}

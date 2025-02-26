@@ -1,0 +1,18 @@
+.slick-arrow {
+    width: 40px;
+    opacity: 1;
+    z-index: 1; /* Убедитесь, что стрелки не перекрываются */
+  }
+
+.slick-prev:before, .slick-next:before {
+    font-size: 25px;
+    line-height: 1;
+    opacity: 1;
+    color: #84bcff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-slide {
+  height: 450px;
+}

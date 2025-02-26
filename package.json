@@ -1,7 +1,7 @@
 {
   "name": "webapp",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,13 +15,26 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@mantine/core": "^7.17.0",
+    "@mantine/form": "^7.17.0",
+    "@mantine/hooks": "^7.17.0",
+    "@pbe/react-yandex-maps": "^1.2.5",
+    "@tabler/icons-react": "^3.30.0",
+    "@types/react-slick": "^0.23.13",
+    "clsx": "^2.1.1",
     "include-media": "^2.0.0",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-id-swiper": "^4.0.0",
+    "react-jss": "^10.10.0",
     "react-router-dom": "^7.1.5",
+    "react-slick": "^0.30.3",
+    "react-yandex-maps": "^4.6.0",
     "reset-css": "^5.0.2",
-    "sass": "^1.84.0"
+    "sass": "^1.84.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.2.4"
   },
   "devDependencies": {
     "@types/react": "^19.0.8",

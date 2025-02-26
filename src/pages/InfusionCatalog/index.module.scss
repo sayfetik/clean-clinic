@@ -1,6 +1,10 @@
-@use '../../styles/_vars';
+@use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
 .link {
   @include link;
+}
+
+.root {
+  @include page;
 }

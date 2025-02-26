@@ -1,0 +1,80 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+// Адаптация под разные экраны ?????
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: auto;
+  gap: 10px;
+}
+
+.infusionRoot {
+  background-color: $white;
+  border-radius: 20px;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  @include shadow;
+  gap: 20px;
+
+  &:hover,
+  &:active {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Увеличенная тень */
+    .about {
+      opacity: 1;
+    }
+
+    .name {
+      color: $blue;
+    }
+  }
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  color: $blue;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.name {
+  font-weight: 550;
+  color: $black;
+  transition: $smoothColor;
+}
+
+.costAndButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  text-align: center;
+}
+
+.cost {
+  color: $blue;
+  font-weight: 500;
+}
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: 50px;
+  margin-bottom: 50px;
+}

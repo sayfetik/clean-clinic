@@ -1,0 +1,21 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.card {
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  box-shadow: 3px 5px 10px #c5daff;
+  background-color: $white;
+}
+
+.text {
+  line-height: 15px;
+  letter-spacing: 1px;
+}

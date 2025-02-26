@@ -1,0 +1,19 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/mixins' as *;
+
+.root {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.row {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.answer {
+  @include answer;
+  margin: 10px 0 35px 0;
+}

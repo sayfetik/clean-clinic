@@ -1,2 +1,118 @@
-@use '../../styles/_vars';
+@use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: 20px;
+  @include page;
+  height: 530px;
+  margin: 20px 0 50px 0;
+}
+
+.maps,
+.contacts,
+.form {
+  border-radius: 15px;
+}
+
+.contacts,
+.form {
+  padding: 40px;
+}
+
+.form {
+  background-color: $lightBlue;
+}
+
+.contacts {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 20px;
+}
+
+.contactsTitle {
+  color: $blue;
+  font-weight: 500;
+}
+
+.contactsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bottom {
+  background-color: white;
+  @include page;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 80px;
+}
+
+.menuTitle {
+  margin-bottom: 20px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 20px;
+}
+
+.subscribeText {
+  color: $black;
+  font-weight: 400;
+}
+
+.logo {
+  width: 170px;
+  display: block;
+  margin-top: -35px;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  font-weight: 500;
+  color: $blue;
+  font-size: 15px;
+  margin-top: 17px;
+}
+
+.end {
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+.endText {
+  font-size: 14px;
+}

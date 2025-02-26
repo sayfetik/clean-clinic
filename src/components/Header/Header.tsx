@@ -1,26 +1,41 @@
-import css from './index.module.scss'
-import NavLink from './NavLink/NavLink'
+import { Menu } from '@mantine/core'
 import { Link } from 'react-router-dom'
+import { SocialMediaIcons, NavLink } from '../../components'
+import { headerData } from '../../lib/data'
 import * as routes from '../../lib/routes'
-import SocialMediaIcons from '../SocialMediaIcons/SocialMediaIcons'
-import * as data from '../../lib/data'
+import css from './index.module.scss'
 
-const Header = () => {
-  return (
-    <div className={css.header}>
-      <img src='https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png' alt="Clean Clinic" className={css.logo} />
-      <div className={css.links}>
-        <NavLink text="Главная" to={routes.getMainRoute()} />
-        <NavLink text="Услуги" to={routes.getServicesRoute()} />
-        <NavLink text="О клинике" to={routes.getAboutRoute()} />
-        <NavLink text="Контакты" to={routes.getContactsRoute()} />
-        <Link to={data.locationLink} className={css.location}>{data.location}</Link>
-        <p className={css.hours}>{data.workHours}</p>
-        <div className={css.link}>{data.phoneNumber}</div>
-      </div>
-      <SocialMediaIcons />
+const Header = () => (
+  <div className={css.header}>
+    <img src="https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png" alt="Clean Clinic" className={css.logo} />
+    <div className={css.links}>
+      <NavLink text="Главная" to={routes.getMainRoute()} />
+
+      <Menu trigger="click-hover" offset={20}>
+        <Menu.Target>
+          <h4>Услуги</h4>
+        </Menu.Target>
+
+        <Menu.Dropdown>
+          <Menu.Item component="a" href={routes.getInfusionCatalogRoute()}>
+            Капельницы
+          </Menu.Item>
+          <Menu.Item component="a" href="https://mantine.dev">
+            Массажи
+          </Menu.Item>
+        </Menu.Dropdown>
+      </Menu>
+
+      <NavLink text="О клинике" to={routes.getAboutRoute()} />
+      <NavLink text="Контакты" to={routes.getContactsRoute()} />
+      <Link to={headerData.locationLink} className={css.location}>
+        {headerData.location}
+      </Link>
+      <div className={css.hours}>{headerData.workHours}</div>
+      <div className={css.link}>{headerData.phoneNumber}</div>
     </div>
-  )
-}
+    <SocialMediaIcons />
+  </div>
+)
 
 export default Header

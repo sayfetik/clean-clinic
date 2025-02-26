@@ -12,13 +12,14 @@
 
   &:hover,
   &:active {
+    opacity: 0.9;
     color: $hoverColor;
   }
 }
 
 @mixin page {
+  padding: 0 180px;
   background-color: $defaultBackgroundColor;
-
 }
 
 @mixin h1 {
@@ -37,7 +38,7 @@
 }
 
 @mixin h2($color: $black) {
-  font-size: 27px;
+  font-size: 29px;
   font-weight: bold;
   color: $color;
 }
@@ -54,7 +55,7 @@
 
 @mixin h3 {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 550;
 }
 
 @mixin h3_main {
@@ -74,7 +75,8 @@
 }
 
 @mixin h4 {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 @mixin h4_main {
@@ -85,4 +87,33 @@
 @mixin h4_add {
   @include h4;
   color: $black;
+}
+
+@mixin text {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 23px;
+  color: $grey;
+}
+
+@mixin button {
+  color: $white;
+  background-color: $blue;
+  letter-spacing: 0.5px;
+  border-radius: 10px;
+  border: none;
+}
+
+@mixin answer {
+  @include h4;
+  font-size: 18px;
+  color: $blue;
+  margin: 0 0 15px 0;
+}
+
+@mixin shadow {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
