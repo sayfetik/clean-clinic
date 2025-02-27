@@ -11,7 +11,7 @@ const Header = () => (
     <div className={css.links}>
       <NavLink text="Главная" to={routes.getMainRoute()} />
 
-      <Menu trigger="click-hover" offset={20}>
+      <Menu trigger="click-hover" offset={20} openDelay={100}>
         <Menu.Target>
           <h4>Услуги</h4>
         </Menu.Target>
@@ -20,8 +20,17 @@ const Header = () => (
           <Menu.Item component="a" href={routes.getInfusionCatalogRoute()}>
             Капельницы
           </Menu.Item>
+          <Menu.Item component="a" href={routes.getInfusionCatalogRoute()}>
+            Криокапсула
+          </Menu.Item>
           <Menu.Item component="a" href="https://mantine.dev">
-            Массажи
+            Массаж
+          </Menu.Item>
+          <Menu.Item component="a" href="https://mantine.dev">
+            Плазмолифтинг
+          </Menu.Item>
+          <Menu.Item component="a" href="https://mantine.dev">
+            Солярий с Collaten лампами
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>

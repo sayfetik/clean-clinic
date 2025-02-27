@@ -1,10 +1,12 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
-.link {
-  @include link;
-}
-
 .root {
   @include page;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 }

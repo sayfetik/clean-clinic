@@ -81,7 +81,6 @@ button:disabled {
 input:-webkit-autofill {
   background-color: transparent !important;
   box-shadow: 0 0 0 1000px white inset !important;
-  box-shadow: 0 0 0 1000px white inset !important;
 }
 
 input:-moz-autofill {
@@ -92,4 +91,30 @@ input:-moz-autofill {
 input:-ms-autofill {
   background-color: transparent !important;
   box-shadow: 0 0 0 1000px white inset !important;
+}
+
+.infusion-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.infusion-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+
+.infusion-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.infusion-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.3s ease-in,
+    transform 0.3s ease-in;
 }

@@ -5,3 +5,5 @@ export type StepType = { number: string; title: string; text: string }
 export type FeedbackType = { name: string; rate: number; text: string }
 export type ContactInfoType = { img: string; title: string; text: string }
 export type FormInputType = { label: string; placeholder: string }
+export type InfusionsType = { [key: string]: InfusionType[] }
+export type ChosenOption = { chosenId: number; setChosenId: React.Dispatch<React.SetStateAction<number>> }

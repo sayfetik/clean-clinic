@@ -1,0 +1,32 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.option {
+  border: 1px solid $blue;
+  border-radius: 10px;
+  padding: 0 15px;
+  background-color: $white;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $lightBlue;
+  }
+}
+
+.chosenOption {
+  border: 1px solid $blue;
+  border-radius: 10px;
+  padding: 0 15px;
+  background-color: $normalBlue;
+  color: $white;
+}
+
+.optionText {
+  color: $blue;
+  font-weight: 500;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+}

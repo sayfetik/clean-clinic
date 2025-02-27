@@ -1,18 +1,24 @@
-import { Link } from 'react-router-dom'
-import { GradientText } from '../../components'
-import { mainInfusions } from '../../lib/data'
-import { getInfusionRoute } from '../../lib/routes'
+import { useState } from 'react'
+import { UpAnimation } from '../../animations'
+import { Filters, GradientText, Infusions } from '../../components'
+import { filters, infusions } from '../../lib/data'
 import css from './index.module.scss'
 
 const InfusionCatalog = () => {
+  const [chosenId, setChosenId] = useState(0)
+
   return (
-    <div className={css.root}>
-      {mainInfusions.map((infusion) => (
-        <Link key={infusion.id} className={css.link} to={getInfusionRoute({ infusionId: String(infusion.id) })}>
-          {infusion.name}
-        </Link>
-      ))}
-    </div>
+    <>
+      <GradientText text="Капельницы" />
+      <div className={css.root}>
+        <UpAnimation>
+          <div className={css.filters}>
+            <Filters filters={filters} chosenOption={{ chosenId, setChosenId }} />
+          </div>
+        </UpAnimation>
+          <Infusions items={infusions[filters[chosenId]]} />
+      </div>
+    </>
   )
 }
 

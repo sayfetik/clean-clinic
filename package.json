@@ -19,17 +19,20 @@
     "@mantine/form": "^7.17.0",
     "@mantine/hooks": "^7.17.0",
     "@pbe/react-yandex-maps": "^1.2.5",
+    "@react-spring/web": "^9.7.5",
     "@tabler/icons-react": "^3.30.0",
     "@types/react-slick": "^0.23.13",
     "clsx": "^2.1.1",
     "include-media": "^2.0.0",
     "next": "^15.1.7",
     "react": "^19.0.0",
+    "react-bits": "^1.0.5",
     "react-dom": "^19.0.0",
     "react-id-swiper": "^4.0.0",
     "react-jss": "^10.10.0",
     "react-router-dom": "^7.1.5",
     "react-slick": "^0.30.3",
+    "react-spring": "9.7.5",
     "react-yandex-maps": "^4.6.0",
     "reset-css": "^5.0.2",
     "sass": "^1.84.0",
@@ -39,6 +42,7 @@
   "devDependencies": {
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "@types/react-transition-group": "^4.4.12",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "@typescript-eslint/parser": "^8.24.0",
     "@vitejs/plugin-react": "^4.3.4",
@@ -54,7 +58,7 @@
     "stylelint": "^16.14.1",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
-    "typescript": "~5.7.2",
+    "typescript": "~5.7.3",
     "vite": "^6.1.0"
   }
 }

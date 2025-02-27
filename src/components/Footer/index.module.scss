@@ -57,7 +57,7 @@
 }
 
 .bottom {
-  background-color: white;
+  background-color: white !important;
   @include page;
   padding-top: 60px;
   padding-bottom: 60px;

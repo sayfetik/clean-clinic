@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import linkIcon from '/assets/link.png'
+import Animation from '../../animations/Animation'
 import { Button } from '../../components'
 import { getInfusionRoute } from '../../lib/routes'
 import { InfusionType } from '../../lib/types'
@@ -27,12 +29,31 @@ const Infusion: React.FC<InfusionType> = ({ id, name, description, cost, img }) 
   </div>
 )
 
-const Infusions: React.FC<{ items: InfusionType[] }> = ({ items }) => (
-  <div className={css.root}>
-    {items.map((item, index) => (
-      <Infusion key={index} {...item} />
-    ))}
-  </div>
-)
+const Infusions: React.FC<{ items: InfusionType[] }> = ({ items }) => {
+  const [animationKey, setAnimationKey] = useState(0)
+  useEffect(() => {
+    setAnimationKey((prevKey) => prevKey + 1)
+  }, [items])
+
+  return (
+    <div className={css.root}>
+      {items.map((item, index) => (
+        <Animation
+          key={`${animationKey}-${index}`}
+          distance={40}
+          direction="vertical"
+          config={{ tension: 50, friction: 25 }}
+          initialOpacity={0}
+          animateOpacity={false}
+          scale={1}
+          threshold={0.1}
+          delay={90 * index}
+        >
+          <Infusion key={index} {...item} />
+        </Animation>
+      ))}
+    </div>
+  )
+}
 
 export default Infusions
