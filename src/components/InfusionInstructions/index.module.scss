@@ -8,9 +8,10 @@
 
 .row {
   text-align: left;
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: auto;
+  gap: 25px;
 }
 
 .answer {

@@ -40,14 +40,14 @@ const Infusions: React.FC<{ items: InfusionType[] }> = ({ items }) => {
       {items.map((item, index) => (
         <Animation
           key={`${animationKey}-${index}`}
-          distance={40}
+          distance={50}
           direction="vertical"
-          config={{ tension: 50, friction: 25 }}
+          config={{ tension: 95, friction: 20 }}
           initialOpacity={0}
           animateOpacity={false}
           scale={1}
-          threshold={0.1}
-          delay={90 * index}
+          threshold={0}
+          delay={70 * index}
         >
           <Infusion key={index} {...item} />
         </Animation>

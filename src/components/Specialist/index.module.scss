@@ -1,0 +1,17 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.photo {
+  width: 100px;
+  border-radius: 20px;
+}
+
+.info {
+  text-align: left;
+}

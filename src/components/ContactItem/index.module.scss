@@ -1,0 +1,32 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.item {
+  display: flex;
+  gap: 20px;
+
+  &:hover {
+    .text, .title {
+      color: $blue;
+    }
+  }
+}
+
+.text, .title {
+  transition: $smoothColor;
+}
+
+.title {
+  font-weight: 500;
+  color: $black;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.text {
+  line-height: 22px;
+}

@@ -1,7 +1,6 @@
 import infusionsImage from '/assets/infusions.svg'
-import patientImage from '/assets/patient.png'
-import { Button, WhiteCard, InfusionInstructions, Advantage, Infusions, Feedback } from '../../components'
-import { clinicAdvantages, mainInfusions, whiteCards } from '../../lib/data'
+import { Button, WhiteCard, InfusionInstructions, Infusions, Feedback, AboutSection } from '../../components'
+import { mainInfusions, whiteCards } from '../../lib/data'
 import css from './index.module.scss'
 
 const Main = () => (
@@ -18,28 +17,7 @@ const Main = () => (
     </div>
 
     <div className={css.page}>
-      <div className={css.aboutClinicContainer}>
-        <img src={patientImage} width="450" />
-        <div className={css.textAboutClinic}>
-          <h3 className={css.cleanClinic}>Clean Clinic</h3>
-          <h2 className={css.weWork}>Мы работаем ради Вашего здоровья</h2>
-          <p>
-            Концепция клиники — сделать доступными как можно большему количеству людей научные возможности по улучшению
-            качества и продления активной жизни.
-          </p>
-        </div>
-      </div>
-
-      <div className={css.math}>
-        <h2 className="blue">3832</h2> <h3>специалистов = </h3>
-        <h2 className="blue">38750</h2> <h3>счастливых пациентов</h3>
-      </div>
-
-      <div className={css.advantages}>
-        {clinicAdvantages.map((advantage, index) => (
-          <Advantage key={index} {...advantage} />
-        ))}
-      </div>
+      <AboutSection />
 
       <div className={css.whyInfusions}>
         <h2>Почему выбирают IV-терапию?</h2>

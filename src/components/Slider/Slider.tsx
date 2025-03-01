@@ -7,12 +7,12 @@ type ImageSliderProps = {
   images: string[]
 }
 
-const AutoSlider: React.FC<ImageSliderProps> = ({ images }) => {
+const Slider: React.FC<ImageSliderProps> = ({ images }) => {
   return (
     <Swiper
       className="sample-slider"
       loop={true}
-      speed={2000}
+      speed={3000}
       slidesPerView={3}
       autoplay={{
         delay: 0,
@@ -24,11 +24,11 @@ const AutoSlider: React.FC<ImageSliderProps> = ({ images }) => {
     >
       {images.map((src, index) => (
         <SwiperSlide key={index}>
-          <img src={src} alt={`Slide ${index + 1}`} />
+          <img src={src} alt="" width={350} />
         </SwiperSlide>
       ))}
     </Swiper>
   )
 }
 
-export default AutoSlider
+export default Slider

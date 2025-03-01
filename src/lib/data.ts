@@ -1,3 +1,4 @@
+import { socialMedia, getLocationRoute } from './routes'
 import * as types from './types'
 
 // ХЕДЕР
@@ -5,9 +6,7 @@ export const headerData = {
   location: `г. Оренбург, ул. Ульянова, 69`,
   workHours: 'пн-пт 8-20 сб, вс 9-15',
   phoneNumber: '8 995 275-75-75',
-  locationLink:
-    'https://yandex.ru/maps/org/klin_klinik/136753931896/?ll=55.136984%2C51.778158&mode=search&sll=55.136984%2C51.778158&sspn=0.022058%2C0.009916&text=clean%20clinic%20оренбург&z=16',
-}
+  locationLink: getLocationRoute()}
 
 // ГЛАВНАЯ
 
@@ -180,7 +179,7 @@ export const infusions: types.InfusionsType = {
       img: '/assets/liver.jpeg',
     },
   ],
-  'Похудение': [
+  Похудение: [
     {
       id: 1,
       name: 'Похудение',
@@ -230,8 +229,8 @@ export const infusions: types.InfusionsType = {
       img: '/assets/liver.jpeg',
     },
   ],
-  'Омоложение': [
-  {
+  Омоложение: [
+    {
       id: 1,
       name: 'Омоложение',
       description:
@@ -387,9 +386,9 @@ export const filters = ['Все капельницы', 'Похудение', 'О
 // ФУТЕР
 
 export const contactsInfo: types.ContactInfoType[] = [
-  { img: '/assets/addressIcon.png', title: 'Адрес', text: 'г. Оренбург, ул. Ульянова, д. 69, 1 этаж' },
-  { img: '/assets/phoneIcon.png', title: 'Телефон', text: '8 995 275-75-75' },
-  { img: '/assets/emailIcon.png', title: 'Почта', text: 'mail@cleanoren.ru' },
+  { img: '/assets/addressIcon.png', title: 'Адрес', text: 'г. Оренбург, ул. Ульянова, д. 69, 1 этаж', link: getLocationRoute() },
+  { img: '/assets/phoneIcon.png', title: 'Телефон', text: '8 995 275-75-75', link: socialMedia.phone },
+  { img: '/assets/emailIcon.png', title: 'Почта', text: 'mail@cleanoren.ru', link: socialMedia.email },
 ]
 
 export const formInputs: types.FormInputType[] = [
@@ -397,3 +396,37 @@ export const formInputs: types.FormInputType[] = [
   { label: 'Телефон *', placeholder: 'Введите телефон' },
   { label: 'Вопрос', placeholder: 'Введите вопрос' },
 ]
+
+// КОНТАКТЫ
+export const feedbackInputs: types.FormInputType[] = [
+  { label: 'Имя *', placeholder: 'Введите имя' },
+  { label: 'Фамилия *', placeholder: 'Введите фамилию' },
+  { label: 'Телефон', placeholder: 'Введите телефон' },
+  { label: 'Алиас', placeholder: 'Введите телеграм алиас' },
+  { label: 'Отзыв', placeholder: 'Введите отзыв' },
+]
+
+export const specialists: types.SpecialistType[] = [
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+  { img: '/assets/specialist.png', name: 'Фамилия Имя Отчество', profession: 'Специальность', experience: '2-5 года' },
+]
+
+
+export const galleryImages: string[] = [
+  '/assets/photo1.png',
+  '/assets/photo2.png',
+  '/assets/photo3.png',
+  '/assets/photo4.png',
+  '/assets/photo5.png',
+]
+
+// Лицензия
+export const license: string[] = ['/assets/license1.png', '/assets/license2.png']

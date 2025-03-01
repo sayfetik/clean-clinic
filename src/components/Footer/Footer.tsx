@@ -2,37 +2,23 @@ import { TextInput } from '@mantine/core'
 import { IconAt } from '@tabler/icons-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { SocialMediaIcons, YandexMap, NavLink, CheckPolicy, Button } from '../../components'
+import { SocialMediaIcons, YandexMap, NavLink, CheckPolicy, Button, ContactItem } from '../../components'
 import { contactsInfo } from '../../lib/data'
 import * as routes from '../../lib/routes'
-import { ContactInfoType } from '../../lib/types'
 import Form from '../Form/Form'
 import css from './index.module.scss'
-
-const ContactItem: React.FC<ContactInfoType> = ({ img, title, text }) => {
-  const iconSize = 40
-
-  return (
-    <div className={css.contactItem}>
-      <img src={img} width={iconSize - 5} height={iconSize} />
-      <div className={css.contactsInfo}>
-        <h3 className={css.contactsTitle}>{title}</h3>
-        <p>{text}</p>
-      </div>
-    </div>
-  )
-}
 
 const Footer = () => {
   const icon = <IconAt size={16} />
   const [checked, setChecked] = useState(false)
+  const [alias, setAlias] = useState('')
 
   return (
     <div className={css.footer}>
       <div className={css.root}>
         <div className={css.contacts}>
           <div className={css.mainSection}>
-            <h2>Контакты</h2>
+            <h2 className='blue'>Контакты</h2>
             {contactsInfo.map((section, index) => (
               <ContactItem key={index} {...section} />
             ))}
@@ -66,7 +52,14 @@ const Footer = () => {
             <h3>Акции и предложения</h3>
             <p className={css.subscribeText}>Подписывайтесь на наш телеграм-канал</p>
           </div>
-          <TextInput radius="md" leftSectionPointerEvents="none" leftSection={icon} placeholder="Введите алиас" />
+          <TextInput
+            radius="md"
+            leftSectionPointerEvents="none"
+            leftSection={icon}
+            placeholder="Введите алиас"
+            value={alias}
+            onChange={(event) => setAlias(event.currentTarget.value)}
+          />
           <CheckPolicy {...{ checked, setChecked }} />
           <Button size="small" text="Подписаться" />
         </div>

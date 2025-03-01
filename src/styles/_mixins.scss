@@ -102,7 +102,9 @@
   letter-spacing: 0.5px;
   border-radius: 10px;
   border: none;
-  transition: background-color 0.2s ease-in-out, $smoothColor;
+  transition:
+    background-color 0.2s ease-in-out,
+    $smoothColor;
 
   &:hover {
     background-color: $normalBlue;
@@ -122,4 +124,9 @@
   transition:
     box-shadow 0.3s ease-in-out,
     transform 0.3s ease-in-out;
+}
+
+@mixin about_headline {
+  color: $blue;
+  margin: 50px 0 25px 0;
 }

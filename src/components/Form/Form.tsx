@@ -77,6 +77,7 @@ const Form = () => {
           label={formInputs[2].label}
           autosize
           minRows={2}
+          maxRows={2}
         />
       </div>
       <CheckPolicy {...{ checked, setChecked }} />

@@ -8,3 +8,40 @@
 .root {
   @include page;
 }
+
+.infusionTitle {
+  margin: 50px 0 15px 0;
+}
+
+.specialistsSection {
+  text-align: center;
+}
+
+.specialistsTitle,
+.excursionTitle,
+.galleryTitle,
+.licenseTitle {
+  @include about_headline;
+}
+
+.specialists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 50px;
+}
+
+.excursion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.license {
+  margin-bottom: 90px;
+}
+
+.licenseImages {
+  display: flex;
+  gap: 20px;
+}

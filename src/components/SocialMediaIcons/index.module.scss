@@ -3,7 +3,11 @@
 
 .socialMediaIcons {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 20px;
+}
+
+.icon {
+  cursor: pointer;
 }

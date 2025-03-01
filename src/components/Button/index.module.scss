@@ -1,6 +1,10 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
+.bigButton, .smallButton {
+  width: fit-content;
+}
+
 .bigButton {
   @include button;
   padding: 10px 25px;

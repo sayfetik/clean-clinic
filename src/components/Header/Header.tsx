@@ -2,10 +2,13 @@ import { Menu } from '@mantine/core'
 import { Link } from 'react-router-dom'
 import { SocialMediaIcons, NavLink } from '../../components'
 import { headerData } from '../../lib/data'
+import { socialMedia } from '../../lib/routes'
 import * as routes from '../../lib/routes'
 import css from './index.module.scss'
 
-const Header = () => (
+const Header = () => { 
+
+  return (
   <div className={css.header}>
     <img src="https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png" alt="Clean Clinic" className={css.logo} />
     <div className={css.links}>
@@ -41,10 +44,11 @@ const Header = () => (
         {headerData.location}
       </Link>
       <div className={css.hours}>{headerData.workHours}</div>
-      <div className={css.link}>{headerData.phoneNumber}</div>
+      <Link to={socialMedia['phone']} className={css.location}>{headerData.phoneNumber}</Link>
     </div>
     <SocialMediaIcons />
   </div>
-)
+  )
+}
 
 export default Header
