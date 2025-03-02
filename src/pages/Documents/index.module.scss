@@ -1,0 +1,10 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.root {
+  @include page;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}

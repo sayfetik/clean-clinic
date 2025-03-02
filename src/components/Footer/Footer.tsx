@@ -71,7 +71,7 @@ const Footer = () => {
           />
           <div>
             <p>ООО "Гармония"</p>
-            <p>ИНН/КПП - 5610249037/561001001</p>
+            <Link to={routes.getLicenseRoute()}><p>ИНН/КПП - 5610249037/561001001</p></Link>
             <p>
               Лицензия:{' '}
               <Link to="/license" target="_blank">
@@ -79,17 +79,17 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <Link className={css.link} to="/license" target="_blank">
+          <Link className={css.link} to="/privacyPolicy" target="_blank">
             Политика конфидециальности
           </Link>
-          <Link className={css.link} to="/license" target="_blank">
+          <Link className={css.link} to="/documents">
             Документы
           </Link>
         </div>
       </div>
 
       <div className={css.end}>
-        <p className={css.endText}>© 2011-2025 • Капельницы в Оренбурге, инфузионная терапия.</p>
+        <p className={css.endText}>© 2011-2025 • Капельницы в Оренбурге, инфузионная терапия</p>
       </div>
     </div>
   )

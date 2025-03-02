@@ -1,0 +1,15 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.root {
+  @include page;
+  margin-bottom: 60px;
+
+  p {
+    color: $black;
+  }
+
+  h3 {
+    margin: 20px 0 8px 0;
+  }
+}
