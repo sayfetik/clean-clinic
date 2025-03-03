@@ -3,7 +3,7 @@ import { IconAt } from '@tabler/icons-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SocialMediaIcons, YandexMap, NavLink, CheckPolicy, Button, ContactItem } from '../../components'
-import { contactsInfo } from '../../lib/data'
+import { footer, contacts } from '../../lib/data'
 import * as routes from '../../lib/routes'
 import Form from '../Form/Form'
 import css from './index.module.scss'
@@ -19,7 +19,7 @@ const Footer = () => {
         <div className={css.contacts}>
           <div className={css.mainSection}>
             <h2 className='blue'>Контакты</h2>
-            {contactsInfo.map((section, index) => (
+            {contacts.contactsInfo.map((section, index) => (
               <ContactItem key={index} {...section} />
             ))}
           </div>
@@ -49,8 +49,8 @@ const Footer = () => {
 
         <div className={css.subscribe}>
           <div>
-            <h3>Акции и предложения</h3>
-            <p className={css.subscribeText}>Подписывайтесь на наш телеграм-канал</p>
+            <h3>{footer.promotionsAndOffersTitle}</h3>
+            <p className={css.subscribeText}>{footer.promotionsAndOffersText}</p>
           </div>
           <TextInput
             radius="md"
@@ -61,7 +61,7 @@ const Footer = () => {
             onChange={(event) => setAlias(event.currentTarget.value)}
           />
           <CheckPolicy {...{ checked, setChecked }} />
-          <Button size="small" text="Подписаться" />
+          <Button size="small" text="Подписаться" form={false} />
         </div>
         <div className={css.companyInfo}>
           <img
@@ -71,11 +71,11 @@ const Footer = () => {
           />
           <div>
             <p>ООО "Гармония"</p>
-            <Link to={routes.getLicenseRoute()}><p>ИНН/КПП - 5610249037/561001001</p></Link>
+            <Link to={routes.getLicenseRoute()}><p>{footer.inn}</p></Link>
             <p>
               Лицензия:{' '}
               <Link to="/license" target="_blank">
-                Л041-01022-56/01056435;
+                {footer.licenseNo}
               </Link>
             </p>
           </div>
@@ -89,7 +89,7 @@ const Footer = () => {
       </div>
 
       <div className={css.end}>
-        <p className={css.endText}>© 2011-2025 • Капельницы в Оренбурге, инфузионная терапия</p>
+        <p className={css.endText}>{footer.bootomSection}</p>
       </div>
     </div>
   )

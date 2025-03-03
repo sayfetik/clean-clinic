@@ -5,3 +5,10 @@
   @include page;
   margin-bottom: 60px;
 }
+
+.tabContent {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

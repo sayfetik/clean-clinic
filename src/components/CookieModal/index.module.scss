@@ -1,0 +1,27 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.link {
+  @include link;
+  color: $blue;
+}
+
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $white;
+  padding: 9px 20px;
+  z-index: 100;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  width: fit-content;
+  margin-bottom: 20px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.317);
+  transition:
+    box-shadow 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}

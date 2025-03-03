@@ -1,7 +1,7 @@
 import React from 'react'
 import 'swiper/swiper-bundle.css'
 import Slider from 'react-slick'
-import { feedbacks } from '../../lib/data'
+import { main } from '../../lib/data'
 import { FeedbackType } from '../../lib/types'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -53,7 +53,7 @@ const Feedback = () => {
     <div className={css.root}>
       <h2 className={css.title}>Отзывы</h2>
       <Slider {...settings}>
-        {feedbacks.map((review, index) => (
+        {main.feedback.map((review, index) => (
           <div key={index} className={css.reviewBox}>
             <FeedbackCard {...review} />
           </div>

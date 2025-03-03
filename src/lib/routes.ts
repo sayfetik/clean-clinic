@@ -13,6 +13,7 @@ export const getContactsRoute = () => `/contacts`
 export const getPolicyRoute = () => `/privacyPolicy`
 export const getLicenseRoute = () => `/license`
 export const getDocumentsRoute = () => `/documents`
+export const getAdminRoute = () => `/admin`
 export const getLocationRoute = () => 'https://yandex.ru/maps/org/klin_klinik/136753931896/?ll=55.136984%2C51.778158&mode=search&sll=55.136984%2C51.778158&sspn=0.022058%2C0.009916&text=clean%20clinic%20оренбург&z=16'
 
 export const socialMedia: Record<string, string> = {

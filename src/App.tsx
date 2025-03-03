@@ -1,11 +1,11 @@
 import { MantineProvider, Checkbox, createTheme } from '@mantine/core'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Header, Footer } from './components'
+import { Header, Footer, CookieModal, Telegram } from './components'
 import checkboxClasses from './components/CheckPolicy/index.module.scss'
 import ScrollResetProvider from './lib/ScrollResetProvider'
 import TextFormatProvider from './lib/TextFormatProvider'
 import * as routes from './lib/routes'
-import { Main, About, Infusion, InfusionCatalog, Contacts, License, PrivacyPolicy, Documents } from './pages'
+import { Main, About, Infusion, InfusionCatalog, Contacts, License, PrivacyPolicy, Documents, Admin } from './pages'
 import '@mantine/core/styles.css'
 import './styles/global.scss'
 
@@ -22,6 +22,8 @@ const App = () => {
       <TextFormatProvider>
         <BrowserRouter>
           <Header />
+          <CookieModal />
+          <Telegram />
           <ScrollResetProvider>
             <Routes>
               <Route path={routes.getMainRoute()} element={<Main />} />
@@ -32,6 +34,7 @@ const App = () => {
               <Route path={routes.getLicenseRoute()} element={<License />} />
               <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />
               <Route path={routes.getDocumentsRoute()} element={<Documents />} />
+              <Route path={routes.getAdminRoute()} element={<Admin />} />
             </Routes>
           </ScrollResetProvider>
           <Footer />

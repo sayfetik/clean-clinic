@@ -1,15 +1,21 @@
 import infusionsImage from '/assets/infusions.svg'
 import { Button, WhiteCard, InfusionInstructions, Infusions, Feedback, AboutSection } from '../../components'
-import { mainInfusions, whiteCards } from '../../lib/data'
+import { main } from '../../lib/data'
 import css from './index.module.scss'
+import { useEffect } from 'react'
 
-const Main = () => (
+const Main = () => {
+  useEffect(()=>{
+// const main = получить с бека страницу
+ // получить картинку infusionsImage
+  }, [])
+  return (
   <div className={css.mainPage}>
     <div className={css.water}>
       <div className={css.mainSlide}>
         <div>
-          <h1 className="blue">Клиника инфузионной терапии Clean Clinic в Оренбурге</h1>
-          <div className={css.titleAdditional}>Капельницы для красоты и здоровья</div>
+          <h1 className="blue">{main.title}</h1>
+          <div className={css.titleAdditional}>{main.subtitle}</div>
           <Button />
         </div>
         <img src={infusionsImage} width="550" />
@@ -20,15 +26,11 @@ const Main = () => (
       <AboutSection />
 
       <div className={css.whyInfusions}>
-        <h2>Почему выбирают IV-терапию?</h2>
-        <div className={css.answer}>Подарить себе красоту и легкость</div>
-        <p className={css.text}>
-          <span className={css.bold}>Капельная или инфузионная терапия</span> — метод лечения, основанный на прямом
-          введении в кровоток различных коктейлей медикаментов, витаминов и микроэлементов, с целью быстрого достижения
-          лучших показателей для вашего здоровья.
-        </p>
+        <h2>{main.whyInfusions.title}</h2>
+        <div className={css.answer}>{main.whyInfusions.answer}</div>
+        <p className={css.text}>{main.whyInfusions.text}</p>
         <div className={css.row}>
-          {whiteCards.map((whiteCard, index) => (
+          {main.whiteCards.map((whiteCard, index) => (
             <WhiteCard key={index} {...whiteCard} />
           ))}
         </div>
@@ -40,13 +42,9 @@ const Main = () => (
       </div>
 
       <div className={css.infusions}>
-        <h2>Наши курсы капельниц</h2>
-        <p className={css.infusionsDescription}>
-          Все препараты, входящие в состав капельниц, имеют регистрационные удостоверения и разрешены к использованию на
-          территории РФ. Перед назначением курса капельниц, мы подготавливаем индивидуальную программу на основе
-          результатов ваших анализов.
-        </p>
-        <Infusions items={mainInfusions} />
+        <h2>{main.infusions.title}</h2>
+        <p className={css.infusionsDescription}>{main.infusions.text}</p>
+        <Infusions items={main.infusions.infusions} />
         <Button text="Записаться к терапевту" />
       </div>
     </div>
@@ -54,7 +52,7 @@ const Main = () => (
     <div className={css.water}>
       <Feedback />
     </div>
-  </div>
-)
+  </div>)
+}
 
 export default Main

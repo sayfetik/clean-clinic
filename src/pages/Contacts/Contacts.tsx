@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { useState, useMemo } from 'react'
 import StarRatings from 'react-star-ratings'
 import { ContactItem, SocialMediaIcons, CheckPolicy, Button } from '../../components'
-import { contactsInfo, feedbackInputs } from '../../lib/data'
+import { contacts, feedbackInputs } from '../../lib/data'
 import css from './index.module.scss'
 
 const Contacts = () => {
@@ -74,10 +74,10 @@ const Contacts = () => {
   return (
     <div className={css.root}>
       <div className={css.contacts}>
-        <h2>Контакты</h2>
-        <p>Свяжитесь с нами любым способом</p>
+        <h2>{contacts.title}</h2>
+        <p>{contacts.text}</p>
         <div className={css.contactsInfo}>
-          {contactsInfo.map((section, index) => (
+          {contacts.contactsInfo.map((section, index) => (
             <ContactItem key={index} {...section} />
           ))}
           <SocialMediaIcons iconWidth={35} />
@@ -86,8 +86,8 @@ const Contacts = () => {
 
       <div className={css.feedbackForm}>
         <div>
-          <h2 className="blue">Оставьте отзыв</h2>
-          <p>Помогите нам стать лучше!</p>
+          <h2 className="blue">{contacts.feedbackFormTitle}</h2>
+          <p>{contacts.feedbackFormText}</p>
         </div>
 
         <div className={css.row}>

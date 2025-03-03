@@ -1,22 +1,23 @@
 import { useState } from 'react'
 import { UpAnimation } from '../../animations'
 import { Filters, GradientText, Infusions } from '../../components'
-import { filters, infusions } from '../../lib/data'
+import { infusionCatalog } from '../../lib/data'
 import css from './index.module.scss'
 
 const InfusionCatalog = () => {
   const [chosenId, setChosenId] = useState(0)
+  const filterKey = infusionCatalog.filters[chosenId] as keyof typeof infusionCatalog.infusions;
 
   return (
     <>
-      <GradientText text="Капельницы" />
+      <GradientText text={infusionCatalog.title} />
       <div className={css.root}>
         <UpAnimation>
           <div className={css.filters}>
-            <Filters filters={filters} chosenOption={{ chosenId, setChosenId }} />
+            <Filters filters={infusionCatalog.filters} chosenOption={{ chosenId, setChosenId }} />
           </div>
         </UpAnimation>
-          <Infusions items={infusions[filters[chosenId]]} />
+        <Infusions items={infusionCatalog.infusions[filterKey]} />
       </div>
     </>
   )

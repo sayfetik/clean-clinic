@@ -1,13 +1,13 @@
-import { infusionInsructions } from '../../lib/data'
+import { main } from '../../lib/data'
 import Step from './Step/Step'
 import css from './index.module.scss'
 
 const InfusionInstructions = () => (
   <div className={css.root}>
-    <h2>Как пройти курс капельниц?</h2>
-    <div className={css.answer}>Всё очень просто!</div>
+    <h2>{main.infusionInstructions.title}</h2>
+    <div className={css.answer}>{main.infusionInstructions.answer}</div>
     <div className={css.row}>
-      {infusionInsructions.map((step, index) => (
+      {main.infusionInstructions.steps.map((step, index) => (
         <Step key={index} {...step} />
       ))}
     </div>
