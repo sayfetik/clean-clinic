@@ -1,7 +1,8 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
-.bigButton, .smallButton {
+.bigButton,
+.smallButton {
   width: fit-content;
 }
 
@@ -48,4 +49,10 @@
 
 .margin {
   margin: 15px;
+}
+
+.light {
+  background-color: $lightBlue;
+  color: $blue;
+  border: 1px solid $blue;
 }

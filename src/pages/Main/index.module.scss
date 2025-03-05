@@ -7,30 +7,7 @@
 }
 
 .water {
-  position: relative;
-  padding: 0 180px 5px 180px;
-  background-image: url('/assets/water.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.water:before,
-.water:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 100px;
-}
-
-.water:before {
-  top: 0;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, $defaultBackgroundColor 100%);
-}
-
-.water:after {
-  bottom: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, $defaultBackgroundColor 100%);
+  @include water;
 }
 
 .mainSlide {

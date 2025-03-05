@@ -1,0 +1,21 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.water {
+  @include water;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.text {
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}

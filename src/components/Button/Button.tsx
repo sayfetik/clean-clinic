@@ -4,7 +4,9 @@ import { useField } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
 import clsx from 'clsx';
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formInputs } from '../../lib/data';
+import { getSuccessRoute } from '../../lib/routes';
 import CheckPolicy from '../CheckPolicy/CheckPolicy';
 import css from './index.module.scss';
 
@@ -13,7 +15,7 @@ type ButtonProps = {
   size?: 'big' | 'small';
   isDisabled?: boolean;
   onClick?: () => void;
-  form?: boolean;
+  light?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -21,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'big', 
   isDisabled = false, 
   onClick,
-  form = true,
+  light = false
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -60,7 +62,6 @@ const Button: React.FC<ButtonProps> = ({
     return !checked || !!name.error || !!phone.error || !name.getValue().trim() || !phone.getValue().trim();
   }, [checked, name.error, phone.error, name.getValue(), phone.getValue()]);
 
-  // Сброс значений полей при закрытии модальной формы
   const resetFields = () => {
     name.setValue('');
     phone.setValue('+7');
@@ -68,12 +69,14 @@ const Button: React.FC<ButtonProps> = ({
     setChecked(false);
   };
 
+  const navigate = useNavigate()
+
   return (
     <>
       <button 
         disabled={isDisabled} 
-        className={size === 'big' ? css.bigButton : css.smallButton} 
-        onClick={form ? open : onClick} // Вызываем переданную функцию при клике
+        className={`${size === 'big' ? css.bigButton : css.smallButton} ${light && css.light}`} 
+        onClick={onClick ? onClick : open}
       >
         {text}
       </button>
@@ -117,7 +120,7 @@ const Button: React.FC<ButtonProps> = ({
             <div className={css.margin}></div>
             <CheckPolicy {...{ checked, setChecked }} />
             <div className={css.margin}></div>
-            <Button size="small" isDisabled={disabled} form={false} />
+            <Button size="small" isDisabled={disabled} onClick={()=>navigate(getSuccessRoute())} />
           </div>
         </div>
       </Modal>
