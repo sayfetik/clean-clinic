@@ -3,13 +3,13 @@ import { infusionCatalog, InfusionPage } from '../../../lib/data'
 import { InfusionType } from '../../../lib/types'
 import css from './index.module.scss'
 
-const BulletPoints: React.FC<string[]> = (bullets) => (
-  <div>
-    {bullets.map((bullet, index))=>(
-      <TextInput value={bullet} key={index} />
-    )}
-  </div>
-)
+// const BulletPoints: React.FC<{ bullets: string[] }> = ({ bullets }) => (
+//   <div>
+//     {bullets.map((bullet, index) => (
+//       <TextInput value={bullet} key={index} />
+//     ))}
+//   </div>
+// );
 
 const InfusionSection: React.FC<InfusionType> = (infusion) => (
   <div className={css.infusion}>
