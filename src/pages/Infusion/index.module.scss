@@ -3,4 +3,94 @@
 
 .root {
   @include page;
+  display: flex;
+}
+
+.name {
+  font-size: 30px;
+}
+
+.upperSection {
+  padding: 130px 180px 30px 180px;
+  background: linear-gradient(to bottom, #ccdfff 0%, #fbfbfb 100%);
+  z-index: 100;
+}
+
+.upperSetionContent {
+  display: flex;
+  align-items: center;
+}
+
+.upperSetionText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image {
+  margin-right: 50px;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upperInfo {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.sideBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.bulletList {
+  list-style: disc;
+}
+
+.description {
+  width: 70%;
+  padding-right: 30px;
+  margin-right: 30px;
+  border-right: 1px solid $black;
+}
+
+.greenArrowList,
+.redArrowList,
+.blueArrowList {
+  list-style: none;
+}
+
+.greenArrowList li {
+  padding-left: 24px;
+  background: url('/assets/greenArrow.png') left center no-repeat;
+  background-size: 13px;
+}
+
+.blueArrowList li {
+  padding-left: 24px;
+  background: url('/assets/blueArrow.png') left center no-repeat;
+  background-size: 13px;
+}
+
+.redArrowList li {
+  padding-left: 24px;
+  background: url('/assets/redArrow.png') left 4px no-repeat;
+  background-size: 13px;
+}
+
+.infusionInstructions {
+  @include page;
+  margin: 70px 0;
 }

@@ -157,3 +157,10 @@
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, $defaultBackgroundColor 100%);
   }
 }
+
+@mixin tabContent {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

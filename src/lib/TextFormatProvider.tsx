@@ -10,7 +10,7 @@ tp.enableRule('ru/dash/main')
 tp.enableRule('ru/punctuation/hellip')
 
 const formatTextNodes = (element: HTMLElement) => {
-  element.querySelectorAll('h1, h2, h3, h4, h5, h6, p').forEach((el) => {
+  element.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li').forEach((el) => {
     if (el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
       const formattedText = tp.execute(el.textContent || '')
       if (formattedText !== el.textContent) {

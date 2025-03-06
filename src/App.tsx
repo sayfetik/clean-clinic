@@ -1,11 +1,23 @@
 import { MantineProvider, Checkbox, createTheme } from '@mantine/core'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
-import { Header, Footer, CookieModal, Telegram } from './components'
+import { Header, Footer, CookieModal, Telegram, HeaderAdmin } from './components'
 import checkboxClasses from './components/CheckPolicy/index.module.scss'
 import ScrollResetProvider from './lib/ScrollResetProvider'
 import TextFormatProvider from './lib/TextFormatProvider'
 import * as routes from './lib/routes'
-import { Main, About, Infusion, InfusionCatalog, Contacts, License, PrivacyPolicy, Documents, Admin, Success } from './pages'
+import {
+  Main,
+  About,
+  Infusion,
+  InfusionCatalog,
+  Contacts,
+  License,
+  PrivacyPolicy,
+  Documents,
+  Admin,
+  Success,
+  Error,
+} from './pages'
 import '@mantine/core/styles.css'
 import './styles/global.scss'
 
@@ -13,6 +25,17 @@ const theme = createTheme({
   cursorType: 'pointer',
   components: {
     Checkbox: Checkbox.extend({ classNames: checkboxClasses }),
+    TextInput: {
+      defaultProps: { radius: 'md' },
+      classNames: { label: 'label' },
+    },
+    Textarea: {
+      defaultProps: { radius: 'md', autosize: true, maxRows: 15, minRows: 2 },
+      classNames: { label: 'label' },
+    },
+    MultiSelect: {
+      defaultProps: { radius: 'md' },
+    },
   },
 })
 
@@ -20,9 +43,9 @@ const Layout = () => {
   const location = useLocation()
   return (
     <>
-      <Header />
+      {location.pathname !== routes.getAdminRoute() ? <Header /> : <HeaderAdmin />}
       <CookieModal />
-      <Telegram />
+      {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>
           <Route path={routes.getMainRoute()} element={<Main />} />
@@ -35,9 +58,12 @@ const Layout = () => {
           <Route path={routes.getDocumentsRoute()} element={<Documents />} />
           <Route path={routes.getAdminRoute()} element={<Admin />} />
           <Route path={routes.getSuccessRoute()} element={<Success />} />
+          <Route path={routes.getErrorRoute()} element={<Error />} />
         </Routes>
       </ScrollResetProvider>
-      {location.pathname !== routes.getSuccessRoute() && <Footer />}
+      {location.pathname !== routes.getSuccessRoute() &&
+        location.pathname !== routes.getErrorRoute() &&
+        location.pathname !== routes.getAdminRoute() && <Footer />}
     </>
   )
 }

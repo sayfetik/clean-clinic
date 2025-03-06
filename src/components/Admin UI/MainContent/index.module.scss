@@ -1,0 +1,14 @@
+@use '../../../styles/_vars' as *;
+@use '../../../styles/_mixins' as *;
+
+.tabContent {
+  @include tabContent;
+}
+
+.fullWidth {
+  margin-top: 10px;
+}
+
+.text {
+  margin-top: 20px;
+}

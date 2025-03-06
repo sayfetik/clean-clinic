@@ -18,7 +18,7 @@ const Footer = () => {
       <div className={css.root}>
         <div className={css.contacts}>
           <div className={css.mainSection}>
-            <h2 className='blue'>Контакты</h2>
+            <h2 className="blue">Контакты</h2>
             {contacts.contactsInfo.map((section, index) => (
               <ContactItem key={index} {...section} />
             ))}
@@ -61,7 +61,7 @@ const Footer = () => {
             onChange={(event) => setAlias(event.currentTarget.value)}
           />
           <CheckPolicy {...{ checked, setChecked }} />
-          <Button size="small" text="Подписаться" form={false} />
+          <Button size="small" text="Подписаться" /* onClick={ функция подписки на рассылку} */ />
         </div>
         <div className={css.companyInfo}>
           <img
@@ -71,7 +71,9 @@ const Footer = () => {
           />
           <div>
             <p>ООО "Гармония"</p>
-            <Link to={routes.getLicenseRoute()}><p>{footer.inn}</p></Link>
+            <Link to={routes.getLicenseRoute()}>
+              <p>{footer.inn}</p>
+            </Link>
             <p>
               Лицензия:{' '}
               <Link to="/license" target="_blank">

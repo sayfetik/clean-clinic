@@ -18,3 +18,9 @@
   border: 1px solid rgb(187, 187, 187);
   border-radius: 10px;
 }
+
+.media {
+  border: none;
+  border-radius: 15px;
+  @include shadow;
+}

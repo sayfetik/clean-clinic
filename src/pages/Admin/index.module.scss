@@ -1,14 +1,11 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
+.page {
+  padding-bottom: 60px;
+}
+
 .root {
   @include page;
   margin-bottom: 60px;
-}
-
-.tabContent {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }

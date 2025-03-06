@@ -22,9 +22,9 @@ const MediaEditor: React.FC<MediaEditorProps> = ({ initialSrc, onFileChange }) =
   return (
     <div className={css.root}>
       {media.src.endsWith('.mp4') ? (
-        <video src={media.src} controls />
+        <video className={css.media} src={media.src} controls />
       ) : (
-        <img src={media.src} alt="Media" width={150} />
+        <img className={css.media} src={media.src} alt="Media" width={150} />
       )}
       <input
         type="file"

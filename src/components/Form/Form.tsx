@@ -1,6 +1,5 @@
 import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
-import clsx from 'clsx'
 import { useState, useMemo } from 'react'
 import { formInputs } from '../../lib/data'
 import Button from '../Button/Button'
@@ -51,7 +50,6 @@ const Form = () => {
       </div>
       <div className={css.inputs}>
         <TextInput
-          classNames={{ label: clsx(css.label) }}
           className={css.input}
           {...name.getInputProps()}
           onBlur={() => name.validate()}
@@ -60,7 +58,6 @@ const Form = () => {
           placeholder={formInputs[0].placeholder}
         />
         <TextInput
-          classNames={{ label: clsx(css.label) }}
           className={css.input}
           {...phone.getInputProps()}
           onBlur={() => phone.validate()}
@@ -69,7 +66,6 @@ const Form = () => {
           placeholder={formInputs[1].placeholder}
         />
         <Textarea
-          classNames={{ label: clsx(css.label) }}
           {...question.getInputProps()}
           className={css.input}
           radius="md"
