@@ -30,7 +30,7 @@ const theme = createTheme({
       classNames: { label: 'label' },
     },
     Textarea: {
-      defaultProps: { radius: 'md', autosize: true, maxRows: 15, minRows: 2 },
+      defaultProps: { radius: 'md', autosize: true, maxRows: 15, minRows: 1 },
       classNames: { label: 'label' },
     },
     MultiSelect: {

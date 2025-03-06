@@ -1,0 +1,32 @@
+@use '../../../styles/_vars' as *;
+@use '../../../styles/_mixins' as *;
+
+.tabContent {
+  @include tabContent;
+}
+
+.label {
+  margin-top: 20px;
+}
+
+.specialists {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.specialist {
+  display: flex;
+}
+
+.specText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.deleteButton {
+  margin-top: 10px;
+}

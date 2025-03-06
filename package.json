@@ -41,6 +41,7 @@
     "sass": "^1.84.0",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.4",
+    "tabler-icons-react": "^1.56.0",
     "typograf": "^7.4.1"
   },
   "devDependencies": {

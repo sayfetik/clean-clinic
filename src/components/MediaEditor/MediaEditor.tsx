@@ -4,9 +4,10 @@ import css from './index.module.scss'
 type MediaEditorProps = {
   initialSrc: string
   onFileChange: (file: File) => void
+  size?: number
 }
 
-const MediaEditor: React.FC<MediaEditorProps> = ({ initialSrc, onFileChange }) => {
+const MediaEditor: React.FC<MediaEditorProps> = ({ initialSrc, onFileChange, size = 150 }) => {
   const [media, setMedia] = useState<{ src: string; file: File | null }>({ src: initialSrc, file: null })
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -24,7 +25,7 @@ const MediaEditor: React.FC<MediaEditorProps> = ({ initialSrc, onFileChange }) =
       {media.src.endsWith('.mp4') ? (
         <video className={css.media} src={media.src} controls />
       ) : (
-        <img className={css.media} src={media.src} alt="Media" width={150} />
+        <img className={css.media} src={media.src} alt="Media" width={size} />
       )}
       <input
         type="file"

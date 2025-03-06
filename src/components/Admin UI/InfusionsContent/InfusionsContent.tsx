@@ -1,24 +1,21 @@
 import { Textarea, TextInput } from '@mantine/core'
 import { infusionCatalog, InfusionPage } from '../../../lib/data'
 import { InfusionType } from '../../../lib/types'
+import BulletPoints from './BulletPoints'
 import css from './index.module.scss'
 
-// const BulletPoints: React.FC<{ bullets: string[] }> = ({ bullets }) => (
-//   <div>
-//     {bullets.map((bullet, index) => (
-//       <TextInput value={bullet} key={index} />
-//     ))}
-//   </div>
-// );
-
 const InfusionSection: React.FC<InfusionType> = (infusion) => (
+  // добавить изменения картинки!!
   <div className={css.infusion}>
     <div className="row">
       <TextInput label="Название:" value={infusion.name} />
       <TextInput label="Стоимость:" value={infusion.cost} />
     </div>
     <Textarea label="Краткое описание:" value={infusion.description} />
-    <Textarea label="Описание:" value={InfusionPage.description} />
+    <BulletPoints label="Описание:" bullets={InfusionPage.description} />
+    <BulletPoints label="Результаты:" bullets={InfusionPage.results} />
+    <BulletPoints label="Показания:" bullets={InfusionPage.indications} />
+    <BulletPoints label="Противопоказания:" bullets={InfusionPage.contraindications} />
   </div>
 )
 

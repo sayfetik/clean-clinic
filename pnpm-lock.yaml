@@ -86,6 +86,9 @@ importers:
       swiper:
         specifier: ^11.2.4
         version: 11.2.4
+      tabler-icons-react:
+        specifier: ^1.56.0
+        version: 1.56.0(react@19.0.0)
       typograf:
         specifier: ^7.4.1
         version: 7.4.1
@@ -4351,6 +4354,11 @@ packages:
   table@6.9.0:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
+
+  tabler-icons-react@1.56.0:
+    resolution: {integrity: sha512-FOme3w6PJIWDpeXqQ4xjArQqdxzrr9xNy7PSSgWpRzOUQ71RyZ7jt6WThsfyLBz5os78TPJRA8f/0NLjnKcx9A==}
+    peerDependencies:
+      react: '>= 16.8.0'
 
   terser@5.39.0:
     resolution: {integrity: sha512-LBAhFyLho16harJoWMg/nZsQYgTrg5jXOn2nCYjRUcZZEdE3qa2zb8QEDRUGVZBW4rlazf2fxkg8tztybTaqWw==}
@@ -9567,6 +9575,10 @@ snapshots:
       slice-ansi: 4.0.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
+
+  tabler-icons-react@1.56.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   terser@5.39.0:
     dependencies:

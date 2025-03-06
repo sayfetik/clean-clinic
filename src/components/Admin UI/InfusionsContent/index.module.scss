@@ -6,9 +6,9 @@
 }
 
 .infusion {
-  border: 1px solid rgb(169, 169, 169);
+  border: 1px solid rgb(220, 220, 220);
   background-color: $white;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 20px 25px;
   @include shadow;
   display: flex;
@@ -16,3 +16,26 @@
   gap: 10px;
   margin-top: 10px;
 }
+
+.bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.bulletItem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.bulletLabel {
+    font-size: 15px;
+}
+
+.bulletItem textarea {
+    flex: 1;
+    width: 100%;
+  }

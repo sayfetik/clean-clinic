@@ -574,3 +574,11 @@ export const InfusionPage = {
     'Онкологические заболевания',
   ],
 }
+
+export const ErrorPage = {
+  title: 'Ошибка', text: 'Что-то пошло не так...'
+}
+
+export const SuccessPage = {
+  title: 'Запись успешно создана', text: 'С вами свяжутся в течение дня'
+}
