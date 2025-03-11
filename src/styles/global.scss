@@ -132,6 +132,7 @@ li {
 .row {
   display: flex;
   gap: 20px;
+  width: 100%;
 }
 
 .grid {
@@ -146,4 +147,8 @@ li {
 
 .label {
   margin-bottom: 7px;
+}
+
+div {
+  width: 100%;
 }

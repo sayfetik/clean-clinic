@@ -63,7 +63,7 @@ const MainContent = () => {
         {data.whiteCards.map((card, index) => (
           <div key={index}>
             <TextInput value={card.title} />
-            <Textarea className={css.fullWidth} value={card.text} />
+            <Textarea className={css.fullWidth} defaultValue={card.text} />
           </div>
         ))}
       </div>

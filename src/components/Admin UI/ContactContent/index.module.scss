@@ -1,0 +1,13 @@
+@use '../../../styles/_vars' as *;
+@use '../../../styles/_mixins' as *;
+
+.tabContent {
+  @include tabContent;
+}
+
+.contactsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}

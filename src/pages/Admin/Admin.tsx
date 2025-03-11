@@ -1,5 +1,5 @@
 import { Tabs } from '@mantine/core'
-import { AboutContent, ErrorContent, ExcursionContent, GradientText, InfusionsContent, MainContent, SuccessContent } from '../../components'
+import { AboutContent, ContactContent, ErrorContent, ExcursionContent, GradientText, InfusionsContent, MainContent, SuccessContent } from '../../components'
 import css from './index.module.scss'
 
 const Admin = () => {
@@ -28,7 +28,7 @@ const Admin = () => {
             <InfusionsContent />
           </Tabs.Panel>
           <Tabs.Panel value="about"><AboutContent /></Tabs.Panel>
-          <Tabs.Panel value="contacts">Settings tab content</Tabs.Panel>
+          <Tabs.Panel value="contacts"><ContactContent/></Tabs.Panel>
           <Tabs.Panel value="error"><ErrorContent /></Tabs.Panel>
           <Tabs.Panel value="success"><SuccessContent /></Tabs.Panel>
         </Tabs>

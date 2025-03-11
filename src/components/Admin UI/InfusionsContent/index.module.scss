@@ -9,33 +9,92 @@
   border: 1px solid rgb(220, 220, 220);
   background-color: $white;
   border-radius: 10px;
-  padding: 20px 25px;
+  padding: 15px 20px;
   @include shadow;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.arrow,
+.open {
+  margin: 0 0 0 10px;
+}
+
+.arrow {
+  transition: transform 0.5s ease;
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 0;
+  transition:
+    max-height 0.5s ease-in-out,
+    opacity 0.5s ease-in-out,
+    margin 0.5s ease-in-out;
+  opacity: 0;
+
+  &.show {
+    max-height: 3000px;
+    opacity: 1;
+    margin-top: 20px;
+  }
+}
+
+.bullets {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
-}
-
-.bullets {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
-    width: 100%;
+  width: 100%;
 }
 
 .bulletItem {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .bulletLabel {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .bulletItem textarea {
-    flex: 1;
-    width: 100%;
-  }
+  flex: 1;
+  width: 100%;
+}
+
+.squareButton {
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 10px;
+}
+
+.upperSection {
+  display: flex;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}

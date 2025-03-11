@@ -6,7 +6,8 @@ import css from './index.module.scss'
 
 const InfusionCatalog = () => {
   const [chosenId, setChosenId] = useState(0)
-  const filterKey = Object.keys(infusionCatalog)[chosenId] as keyof typeof infusionCatalog.infusions;
+  const filterKeys = Object.keys(infusionCatalog.infusions);
+  const filterKey = filterKeys[chosenId] || filterKeys[0];
 
   return (
     <>
@@ -14,10 +15,10 @@ const InfusionCatalog = () => {
       <div className={css.root}>
         <UpAnimation>
           <div className={css.filters}>
-            <Filters filters={Object.keys(infusionCatalog)} chosenOption={{ chosenId, setChosenId }} />
+            <Filters filters={filterKeys} chosenOption={{ chosenId, setChosenId }} />
           </div>
         </UpAnimation>
-        <Infusions items={infusionCatalog.infusions[filterKey]} />
+        <Infusions items={infusionCatalog.infusions[filterKey] || []} />
       </div>
     </>
   )

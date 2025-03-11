@@ -32,7 +32,7 @@ const Infusion = () => {
                 </div>
               </div>
 
-              <Button size="small" />
+              <Button />
             </div>
           </UpAnimation>
         </div>

@@ -41,7 +41,7 @@ const BulletPoints: React.FC<{ label: string; bullets: string[] }> = ({ label, b
       <h4 className={css.bulletLabel}>{label}</h4>
       {bullets.map((bullet, index) => (
         <div key={index} className={css.bulletItem}>
-          <Button variant="subtle" color="red" onClick={() => handleRemove(index)}>
+          <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.squareButton}>
             <IconX size={16} />
           </Button>
           <Textarea

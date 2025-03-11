@@ -1,7 +1,6 @@
-import { MantineProvider, Checkbox, createTheme } from '@mantine/core'
+import { MantineProvider } from '@mantine/core'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { Header, Footer, CookieModal, Telegram, HeaderAdmin } from './components'
-import checkboxClasses from './components/CheckPolicy/index.module.scss'
 import ScrollResetProvider from './lib/ScrollResetProvider'
 import TextFormatProvider from './lib/TextFormatProvider'
 import * as routes from './lib/routes'
@@ -20,24 +19,9 @@ import {
 } from './pages'
 import '@mantine/core/styles.css'
 import './styles/global.scss'
+import * as themes from './styles/themes'
 
-const theme = createTheme({
-  cursorType: 'pointer',
-  components: {
-    Checkbox: Checkbox.extend({ classNames: checkboxClasses }),
-    TextInput: {
-      defaultProps: { radius: 'md' },
-      classNames: { label: 'label' },
-    },
-    Textarea: {
-      defaultProps: { radius: 'md', autosize: true, maxRows: 15, minRows: 1 },
-      classNames: { label: 'label' },
-    },
-    MultiSelect: {
-      defaultProps: { radius: 'md' },
-    },
-  },
-})
+const theme = themes.mantine
 
 const Layout = () => {
   const location = useLocation()
