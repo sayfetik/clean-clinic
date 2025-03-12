@@ -1,13 +1,4 @@
-import { socialMedia, getLocationRoute } from './routes'
 import * as types from './types'
-
-// ендпоинты для изменения и получения инфы хедера, пока так:
-export const headerData = {
-  location: `г. Оренбург, ул. Ульянова, 69`,
-  workHours: 'пн-пт 8-20 сб, вс 9-15',
-  phoneNumber: '8 995 275-75-75',
-  locationLink: getLocationRoute(),
-}
 
 // ендпоинт для получения и изменения главных капельниц
 export const mainInfusions = [
@@ -22,7 +13,7 @@ export const mainInfusions = [
 
 // ендпоинт для получения картинки по id капельницы
 
-export const mainImage = '/assets/infusions.svg'
+export const mainImage = '/assets/mainInfusions.png'
 export const patientImage = '/assets/patient.png'
 // ендпоинты для изменения и получения главной страницы, пока так:
 export const main = {
@@ -40,9 +31,13 @@ export const main = {
     { title: 'Опыт', text: 'Врачи-терапевты с практикой более 20 лет' },
     { title: 'Подход', text: 'Индивидуальные курсы капельниц для каждого' },
   ],
+  form: {
+    title: 'Начни свой путь прямо сейчас!',
+    text: 'Перезвоним и ответим на вопросы',
+  },
   whyInfusions: {
-    title: 'Почему выбирают IV-терапию?',
-    answer: 'Подарить себе красоту и легкость',
+    title: 'IV-терапия',
+    answer: 'Подарите себе красоту и легкость',
     text: 'Капельная или инфузионная терапия — метод лечения, основанный на прямом введении в кровоток различных коктейлей медикаментов, витаминов и микроэлементов, с целью быстрого достижения лучших показателей для вашего здоровья.',
   },
   whiteCards: [
@@ -64,6 +59,16 @@ export const main = {
       title: 'Нет побочных явлений',
       text: 'При внутривенном введении препарата все необходимые вещества попадают в кровоток',
     },
+  ],
+  problemImage: '/assets/doctors.png',
+  problemTitle: 'Вы забудете о проблемах',
+  problems: [
+    {title: 'Lorem ipsum dolor', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'},
+    {title: 'Lorem ipsum dolor', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'},
+    {title: 'Lorem ipsum dolor', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'},
+    {title: 'Lorem ipsum dolor', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'},
+    {title: 'Lorem ipsum dolor', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'},
+    {title: 'Lorem ipsum dolor', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'},
   ],
   infusionInstructions: {
     title: 'Как пройти курс капельниц?',
@@ -167,9 +172,25 @@ export const main = {
 // ендпоинты для изменения и получения страницы капельниц, пока так:
 export const infusionCatalog: {
   title: string
+  img: string
   infusions: Record<string, types.InfusionType[]>
+  whatItIsTitle: string
+  whatItIsText: string
+  advantagesTitle: string
+  advantagesText: string[]
 } = {
-  title: 'Капельницы',
+  title: 'IV-терапия',
+  img: '/assets/infusionFerrum.png',
+  whatItIsTitle: 'Что такое IV-терапия?',
+  whatItIsText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu nulla.',
+  advantagesTitle: 'Преимущества',
+  advantagesText: [
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+    'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+    'laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor i',
+    'voluptate velit esse cillum dolore eu nulla. ostrud exercitation ullamco laboris',
+    'ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit'
+  ],
   infusions: {
     'Все капельницы': [
       {
@@ -519,24 +540,34 @@ export const contacts = {
   text: 'Свяжитесь с нами любым способом',
   feedbackFormTitle: 'Оставьте отзыв',
   feedbackFormText: 'Помогите нам стать лучше!',
+  workHours: 'пн-пт 8-20 сб, вс 9-15',
   contactsInfo: [
     {
       img: '/assets/addressIcon.png',
       title: 'Адрес',
       text: 'г. Оренбург, ул. Ульянова, д. 69, 1 этаж',
-      link: getLocationRoute(),
     },
-    { img: '/assets/phoneIcon.png', title: 'Телефон', text: '8 995 275-75-75', link: socialMedia.phone },
-    { img: '/assets/emailIcon.png', title: 'Почта', text: 'mail@cleanoren.ru', link: socialMedia.email },
+    { img: '/assets/phoneIcon.png', title: 'Телефон', text: '8 995 275-75-75' },
+    { img: '/assets/emailIcon.png', title: 'Почта', text: 'mail@cleanoren.ru' },
   ],
+  socialMediaLinks:  {
+    telegram: 'https://t.me/+XhpoFM-voaA4Y2Yy',
+    email: 'mailto:welcome@clean-clinic.ru',
+    vkontakte: 'https://vk.com/franchiseclean_clinic',
+    whatsup: 'https://api.whatsapp.com/send/?phone=79777865133&text&type=phone_number&app_absent=0',
+    phone: 'tel:+79952757575',
+    location: 'https://yandex.ru/maps/org/klin_klinik/136753931896/?ll=55.136984%2C51.778158&mode=search&sll=55.136984%2C51.778158&sspn=0.022058%2C0.009916&text=clean%20clinic%20оренбург&z=16'
+  }
 }
 
 export const footer = {
   promotionsAndOffersTitle: 'Акции и предложения',
-  promotionsAndOffersText: 'Подписывайтесь на наш телеграм-канал',
+  promotionsAndOffersText: 'Узнавайте первыми в нашем телеграм-канале',
+  ooo: 'ООО "Гармония"',
   licenseNo: 'Л041-01022-56/01056435;',
-  inn: '',
+  inn: 'ИНН/КПП - 5610249037/561001001',
   bootomSection: '© 2011-2025 • Капельницы в Оренбурге, инфузионная терапия',
+  telegramChanellLink: ''
 }
 
 export const formInputs: types.FormInputType[] = [
@@ -559,6 +590,7 @@ export const InfusionPage = {
   cost: 4500,
   img: '/assets/infusion.png',
   duration: '1ч 30 мин',
+  smallDescription: 'Тормозит процессы старения организма, снижает количество морщин и предотвращает появление новых. Насыщение и улучшение качества кожи, стимуляция регенерации.',
   description: [
     'Тормозит процессы старения организма, снижает количество морщин и предотвращает появление новых. Насыщение и улучшение качества кожи, стимуляция регенерации.',
     'Капельница «Золушка»  оказывает общий омолаживающий эффект на организм. Прежде всего, такая процедура помогает сохранить и восстановить эластичность кожи, устранить нежелательную пигментацию и постакне (патологические изменения на коже после угревой сыпи).',

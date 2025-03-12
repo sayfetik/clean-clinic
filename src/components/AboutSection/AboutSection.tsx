@@ -6,11 +6,11 @@ import css from './index.module.scss'
 const AboutSection = () => (
   <>
     <div className={css.aboutClinicContainer}>
-      <img src={patientImage} width="450" />
+      <img src={patientImage} width="50%" />
       <div className={css.textAboutClinic}>
         <h3 className={css.cleanClinic}>Clean Clinic</h3>
         <h2 className={css.weWork}>{main.weWork.title}</h2>
-        <p>{main.weWork.text}</p>
+        <h3 className={css.text}>{main.weWork.text}</h3>
       </div>
     </div>
 
@@ -20,6 +20,7 @@ const AboutSection = () => (
     </div>
 
     <div className={css.advantages}>
+      <div className={css.line}></div>
       {main.advantages.map((advantage, index) => (
         <Advantage key={index} {...advantage} />
       ))}

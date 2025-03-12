@@ -4,12 +4,7 @@ import css from './index.module.scss'
 
 const Telegram = () => {
   return (
-    <a
-      href="https://telegram.me/cleanoren"
-      className={css.root}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a href="https://telegram.me/cleanoren" className={css.root} target="_blank" rel="noopener noreferrer">
       <Tooltip
         arrowOffset={5}
         arrowSize={10}

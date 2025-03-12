@@ -164,3 +164,7 @@
   flex-direction: column;
   gap: 15px;
 }
+
+@mixin blueShadow {
+  box-shadow: 0 3px 10px #cee0ff;
+}

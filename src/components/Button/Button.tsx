@@ -119,7 +119,7 @@ const Button: React.FC<ButtonProps> = ({
             
             <div className={css.margin}></div>
             <CheckPolicy {...{ checked, setChecked }} />
-            <div className={css.margin}></div>
+            <div className='margin'></div>
             <Button size="small" isDisabled={disabled} onClick={()=>navigate(getSuccessRoute())} />
           </div>
         </div>

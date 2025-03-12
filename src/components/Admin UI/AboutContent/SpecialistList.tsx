@@ -53,7 +53,7 @@ export const SpecialistList = () => {
           <div key={index} className={css.specialistItem}>
             <Specialist specialist={specialist} />
             <Button className={css.deleteButton} onClick={() => deleteSpecialist(index)}>
-              Удалить
+              Удалить специалиста
             </Button>
           </div>
         ))}
@@ -62,6 +62,7 @@ export const SpecialistList = () => {
       <div className={css.addSpecialist}>
         {isAdding ? (
           <div className={css.form} onBlur={handleBlur}>
+
             <TextInput
               ref={nameRef}
               label="Имя"

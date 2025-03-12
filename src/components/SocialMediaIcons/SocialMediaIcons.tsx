@@ -3,7 +3,8 @@ import telegram from '/assets/telegram.png'
 import vk from '/assets/vk.png'
 import whatsup from '/assets/whatsup.png'
 import css from './index.module.scss'
-import { openOnBlankPage, socialMedia } from '../../lib/routes'
+import { openOnBlankPage } from '../../lib/routes'
+import { contacts } from '../../lib/data'
 
 type SocialMediaIconsProps = {
   iconWidth?: number
@@ -11,7 +12,7 @@ type SocialMediaIconsProps = {
 }
 
 const SocialMediaIcons: React.FC<SocialMediaIconsProps> = ({ iconWidth = 28, containerWidth = 'fit-content' }) => {
-  const handleIconClick = (platform: 'telegram' | 'email' | 'vkontakte' | 'whatsup') => openOnBlankPage(socialMedia[platform])
+  const handleIconClick = (platform: 'telegram' | 'email' | 'vkontakte' | 'whatsup') => openOnBlankPage(contacts.socialMediaLinks[platform])
   
   return (
     <div className={css.socialMediaIcons} style={{ width: containerWidth }}>

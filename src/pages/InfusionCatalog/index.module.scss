@@ -5,8 +5,55 @@
   @include page;
 }
 
+.upperSection {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin: 0 0 50px 0;
+}
+
 .filters {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin: 20px 0 40px 0;
+}
+
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.aboutTitle {
+  margin-bottom: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.howToChoose {
+  background: linear-gradient(to right, $normalBlue 0%, #fbfbfb 100%);
+  border-radius: 15px;
+  @include blueShadow;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 60px 50px 20px;
+  margin-bottom: 60px;
+}
+
+.title {
+  line-height: 40px;
+  color: $blue;
+  text-align: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

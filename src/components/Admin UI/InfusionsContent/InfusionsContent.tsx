@@ -22,14 +22,14 @@ const InfusionSection: React.FC<InfusionType> = (infusion) => {
         <img src={arrow} width={20} className={`${css.arrow} ${open ? css.open : ""}`}/>
       </div>
       <div className={`${css.content} ${open ? css.show : ""}`}>
-        <div /*className={css.upperSection}*/>
+        <div className={css.upperSection}>
           <MediaEditor initialSrc={infusion.img} onFileChange={fileChange}/>
           <div className={css.mainInfo}>
             <TextInput label="Название:" value={infusion.name} />
             <TextInput label="Стоимость:" value={infusion.cost} />
+            <Textarea label="Краткое описание:" value={InfusionPage.smallDescription} />
           </div>
         </div>
-        <Textarea label="Краткое описание:" value={InfusionPage.description} />
         <BulletPoints label="Описание:" bullets={InfusionPage.description} />
         <BulletPoints label="Результаты:" bullets={InfusionPage.results} />
         <BulletPoints label="Показания:" bullets={InfusionPage.indications} />
@@ -45,6 +45,21 @@ const InfusionsContent = () => {
   return (
     <div className={css.tabContent}>
       <TextInput value={data.title} />
+
+      <div className='margin'/>
+
+      <TextInput value={data.whatItIsTitle} />
+      <Textarea value={data.whatItIsText} />
+
+      <div className='margin'/>
+
+      <TextInput value={data.advantagesTitle} />
+      {data.advantagesText.map((item, index)=>(
+        <TextInput value={item} key={index} />
+      ))}
+
+      <div className='margin'/>
+
       {Object.keys(data.infusions).map((filterKey) => (
         <div>
           <div className='row'>

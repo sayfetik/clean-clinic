@@ -11,13 +11,19 @@
 
 .specialists {
   display: flex;
-  justify-content: space-between;
+  flex-grow: 1;
   gap: 30px;
   flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.specialistItem {
+  width: fit-content;
 }
 
 .specialist {
   display: flex;
+  width: fit-content;
 }
 
 .specText {
@@ -29,4 +35,10 @@
 
 .deleteButton {
   margin-top: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

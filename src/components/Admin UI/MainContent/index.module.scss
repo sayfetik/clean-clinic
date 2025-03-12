@@ -12,3 +12,9 @@
 .text {
   margin-top: 20px;
 }
+
+.problems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}

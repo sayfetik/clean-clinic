@@ -12,7 +12,7 @@ const Specialist: React.FC<SpecialistProps> = ({ specialist }) => {
 
   return (
     <div className={css.specialist}>
-      <MediaEditor initialSrc={img} onFileChange={handleEditImage} size={100} />
+      <MediaEditor initialSrc={img} onFileChange={handleEditImage} size={125} />
       <div className={css.specText}>
         <TextInput value={name} onChange={() => {}} />
         <TextInput value={profession} onChange={() => {}} />

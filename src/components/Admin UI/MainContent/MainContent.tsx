@@ -55,6 +55,11 @@ const MainContent = () => {
 
       <div className="margin"></div>
 
+      <TextInput value={main.form.title} />
+      <TextInput value={main.form.text} />
+
+      <div className="margin"></div>
+
       <TextInput value={data.whyInfusions.title} />
       <TextInput value={data.whyInfusions.answer} />
       <Textarea value={data.whyInfusions.text} />
@@ -66,6 +71,21 @@ const MainContent = () => {
             <Textarea className={css.fullWidth} defaultValue={card.text} />
           </div>
         ))}
+      </div>
+
+      <div className="margin"></div>
+
+      <TextInput value={main.problemTitle} />
+      <div className="row">
+        <MediaEditor initialSrc={main.problemImage} onFileChange={fileChange} />
+        <div className={css.problems}>
+          {main.problems.map((problem, index) => (
+            <div key={index}>
+              <TextInput value={problem.title} />
+              <Textarea className={css.fullWidth} defaultValue={problem.text} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="margin"></div>

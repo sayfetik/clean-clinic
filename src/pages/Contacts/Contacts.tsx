@@ -78,7 +78,7 @@ const Contacts = () => {
         <p>{contacts.text}</p>
         <div className={css.contactsInfo}>
           {contacts.contactsInfo.map((section, index) => (
-            <ContactItem key={index} {...section} />
+            <ContactItem key={index} info={section} />
           ))}
           <SocialMediaIcons iconWidth={35} />
         </div>

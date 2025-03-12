@@ -15,6 +15,12 @@
   margin-bottom: 18px;
 }
 
+.text {
+  color: $grey;
+  font-weight: 300;
+  line-height: 33px;
+}
+
 .aboutClinicContainer {
   display: flex;
   align-items: center;
@@ -37,12 +43,17 @@
 
 .advantages {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
   gap: 30px;
-  flex-grow: 1;
-  padding: 35px;
+}
+
+.line {
+  position: absolute;
+  z-index: 0;
+  height: 30px;
+  max-width: 100%;
+  left: 0;
   background-color: $white;
-  border-radius: 15px;
-  border: 0.5px solid $blue;
+  border: 1px solid $blue;
 }

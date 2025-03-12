@@ -1,12 +1,13 @@
 import { Menu } from '@mantine/core'
 import { Link } from 'react-router-dom'
 import { SocialMediaIcons, NavLink } from '../../components'
-import { headerData } from '../../lib/data'
-import { socialMedia } from '../../lib/routes'
+import { contacts } from '../../lib/data'
 import * as routes from '../../lib/routes'
 import css from './index.module.scss'
 
-const Header = () => { 
+const Header = () => {
+  const address = contacts.contactsInfo.find(item => item.title === 'Адрес')?.text ?? '';
+  const phone = contacts.contactsInfo.find(item => item.title === 'Телефон')?.text ?? '';
 
   return (
   <div className={css.header}>
@@ -40,11 +41,11 @@ const Header = () => {
 
       <NavLink text="О клинике" to={routes.getAboutRoute()} />
       <NavLink text="Контакты" to={routes.getContactsRoute()} />
-      <Link to={headerData.locationLink} className={css.location}>
-        {headerData.location}
+      <Link to={contacts.socialMediaLinks.location} className={css.location}>
+        {address}
       </Link>
-      <div className={css.hours}>{headerData.workHours}</div>
-      <Link to={socialMedia['phone']} className={css.location}>{headerData.phoneNumber}</Link>
+      <div className={css.hours}>{contacts.workHours}</div>
+      <Link to={contacts.socialMediaLinks['phone']} className={css.location}>{phone}</Link>
     </div>
     <SocialMediaIcons />
   </div>

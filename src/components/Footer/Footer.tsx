@@ -1,17 +1,11 @@
-import { TextInput } from '@mantine/core'
-import { IconAt } from '@tabler/icons-react'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { SocialMediaIcons, YandexMap, NavLink, CheckPolicy, Button, ContactItem } from '../../components'
+import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem } from '../../components'
 import { footer, contacts } from '../../lib/data'
 import * as routes from '../../lib/routes'
 import Form from '../Form/Form'
 import css from './index.module.scss'
 
 const Footer = () => {
-  const icon = <IconAt size={16} />
-  const [checked, setChecked] = useState(false)
-  const [alias, setAlias] = useState('')
 
   return (
     <div className={css.footer}>
@@ -20,7 +14,7 @@ const Footer = () => {
           <div className={css.mainSection}>
             <h2 className="blue">Контакты</h2>
             {contacts.contactsInfo.map((section, index) => (
-              <ContactItem key={index} {...section} />
+              <ContactItem key={index} info={section} />
             ))}
           </div>
           <SocialMediaIcons iconWidth={35} containerWidth="80%" />
@@ -52,15 +46,6 @@ const Footer = () => {
             <h3>{footer.promotionsAndOffersTitle}</h3>
             <p className={css.subscribeText}>{footer.promotionsAndOffersText}</p>
           </div>
-          <TextInput
-            radius="md"
-            leftSectionPointerEvents="none"
-            leftSection={icon}
-            placeholder="Введите алиас"
-            value={alias}
-            onChange={(event) => setAlias(event.currentTarget.value)}
-          />
-          <CheckPolicy {...{ checked, setChecked }} />
           <Button size="small" text="Подписаться" /* onClick={ функция подписки на рассылку} */ />
         </div>
         <div className={css.companyInfo}>
@@ -70,7 +55,7 @@ const Footer = () => {
             className={css.logo}
           />
           <div>
-            <p>ООО "Гармония"</p>
+            <p>{footer.ooo}</p>
             <Link to={routes.getLicenseRoute()}>
               <p>{footer.inn}</p>
             </Link>
