@@ -1,8 +1,11 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
 .drip-slider {
   position: relative;
   width: 100%;
   max-width: 600px;
-  margin: auto;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .drip-item {
@@ -23,14 +27,14 @@
     transform 0.4s ease,
     opacity 0.4s ease;
   cursor: pointer;
-  max-height: 400px;
+  max-height: 430px;
 }
 
 .controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 300px;
   padding: 10px 20px;
 
   .nav-button {
@@ -47,16 +51,17 @@
   }
 
   .view-button {
-    padding: 10px 15px;
-    background: #007bff;
-    color: white;
-    border: none;
+    padding: 8px 15px;
+    color: $blue;
+    font-weight: 600;
+    border: 1px solid $blue;
     border-radius: 8px;
     cursor: pointer;
+    background-color: transparent;
     transition: background 0.3s;
 
     &:hover {
-      background: #0056b3;
+      background: $normalBlue;
     }
   }
 }

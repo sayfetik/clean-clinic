@@ -1,7 +1,7 @@
 // import infusionsImage from '/assets/infusions.svg'
 import { useEffect } from 'react'
 import { Button, WhiteCard, InfusionInstructions, Infusions, Feedback, AboutSection, EnrollForm, Problems, DripSlider } from '../../components'
-import { main, mainImage } from '../../lib/data'
+import { main } from '../../lib/data'
 import css from './index.module.scss'
 
 const Main = () => {
@@ -18,12 +18,12 @@ const Main = () => {
           <div className={css.titleAdditional}>{main.subtitle}</div>
           <Button />
         </div>
-        <img src={mainImage} width="580" />
+        <DripSlider />
       </div>
     </div>
 
     <div className={css.page}>
-      <DripSlider />
+      
       <AboutSection />
 
       <EnrollForm />

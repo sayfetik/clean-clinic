@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import 'swiper/css'
 import 'swiper/css/navigation'
+import prevArrow from '/assets/prevArrow.png'
+import nextArrow from '/assets/nextArrow.png'
 import styles from './index.module.scss'
 
 const dripBags = [
@@ -75,13 +77,13 @@ export default function DripSlider() {
       </div>
       <div className={styles.controls}>
         <button onClick={() => handleSlide('next')} className={styles['nav-button']}>
-          ⬅
+          <img src={prevArrow} width={10}/>
         </button>
         <button onClick={handleView} className={styles['view-button']}>
           Смотреть
         </button>
         <button onClick={() => handleSlide('prev')} className={styles['nav-button']}>
-          ➡
+          <img src={nextArrow} width={10}/>
         </button>
       </div>
     </div>
