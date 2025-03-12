@@ -5,6 +5,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import prevArrow from '/assets/prevArrow.png'
 import nextArrow from '/assets/nextArrow.png'
+import { Animation } from '../../animations'
 import styles from './index.module.scss'
 
 const dripBags = [
@@ -13,7 +14,7 @@ const dripBags = [
   { id: 'cinderella', name: 'Золушка', image: '/assets/cinderella.png' },
   { id: 'liver-support', name: 'Поддержка Печени', image: '/assets/liver.png' },
   { id: 'anti-stress', name: 'Антистресс', image: '/assets/antistress.png' },
-  { id: 'energy-boost', name: 'Энергетический Буст', image: '/assets/ferrum.png' }, // Новая капельница
+  { id: 'energy-boost', name: 'Энергетический Буст', image: '/assets/ferrum.png' },
 ]
 
 export default function DripSlider() {
@@ -25,21 +26,19 @@ export default function DripSlider() {
   const handleSlide = (direction: 'next' | 'prev') => {
     setItems((prevItems) => {
       if (direction === 'next') {
-        // Make the items shift by one to the left
         return [...prevItems.slice(1), prevItems[0]]
       } else {
-        // Make the items shift by one to the right
         return [prevItems[prevItems.length - 1], ...prevItems.slice(0, -1)]
       }
     })
   }
 
-  // Изменяем масштабы и смещения, добавляем 6 капельницу
-  const scales = [0.6, 0.8, 1, 0.8, 0.6, 0.6] // Для 6 капельницы
-  const xOffsets = [80, 50, 0, -50, -80, 0] // Центр для 6 капельницы
-  const yOffsets = [20, 10, 0, 10, 20, 0] // Центр для 6 капельницы
+  const scales = [0.6, 0.8, 1, 0.8, 0.6, 0.6]
+  const xOffsets = [80, 50, 0, -50, -80, 0]
+  const yOffsets = [20, 10, 0, 10, 20, 0]
 
   return (
+    <Animation>
     <div className={styles['drip-slider']}>
       <div className={styles['drip-container']}>
         {items.map((drip, index) => {
@@ -56,7 +55,7 @@ export default function DripSlider() {
               className={styles['drip-item']}
               style={{
                 zIndex,
-                transform: `translateX(${xOffset}%) translateY(${yOffset}%) scale(${scale})`,
+                transform: `translateX(${xOffset}%) translateY(${yOffset}%) scale(${scale}))`,
               }}
               initial={{ opacity: 0.8 }}
               animate={{
@@ -87,5 +86,6 @@ export default function DripSlider() {
         </button>
       </div>
     </div>
+    </Animation>
   )
 }

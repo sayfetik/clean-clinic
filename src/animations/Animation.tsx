@@ -16,11 +16,11 @@ type AnimatedContentProps = {
 
 const AnimatedContent: React.FC<AnimatedContentProps> = ({
   children,
-  distance = 100,
+  distance = 120,
   direction = 'vertical',
   reverse = false,
-  config = { tension: 50, friction: 25 },
-  initialOpacity = 0,
+  config = { tension: 80, friction: 25 },
+  initialOpacity = 0.5,
   animateOpacity = true,
   scale = 1,
   threshold = 0.1,

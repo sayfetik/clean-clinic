@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { UpAnimation, Card } from '../../animations'
+import { FadeAnimation, Card } from '../../animations'
 import { Filters, GradientText, Infusions, Problems } from '../../components'
 import { infusionCatalog } from '../../lib/data'
 import css from './index.module.scss'
@@ -13,22 +13,23 @@ const InfusionCatalog = () => {
     <>
       <GradientText text={infusionCatalog.title} />
       <div className={css.root}>
-        <UpAnimation>
           <div className={css.upperSection}>
-            <div className={css.aboutText}>
-              <div>
-                <h2 className={css.aboutTitle}>{infusionCatalog.whatItIsTitle}</h2>
-                <p className='black'>{infusionCatalog.whatItIsText}</p>
-              </div>
-              <div>
-                <h3 className={css.aboutTitle}>{infusionCatalog.advantagesTitle}</h3>
-                <ul>
-                  {infusionCatalog.advantagesText.map((bullet,index)=>(
-                    <li key={index}>{bullet}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              <FadeAnimation>
+                <div className={css.aboutText}>
+                    <div>
+                      <h2 className={css.aboutTitle}>{infusionCatalog.whatItIsTitle}</h2>
+                      <p className='black'>{infusionCatalog.whatItIsText}</p>
+                    </div>
+                    <div>
+                      <h3 className={css.aboutTitle}>{infusionCatalog.advantagesTitle}</h3>
+                      <ul>
+                        {infusionCatalog.advantagesText.map((bullet,index)=>(
+                          <li key={index}>{bullet}</li>
+                        ))}
+                      </ul>
+                  </div>
+                </div>
+              </FadeAnimation>
             <img src={infusionCatalog.img} width='30%'/>
           </div>
 
@@ -38,16 +39,9 @@ const InfusionCatalog = () => {
           <div className={css.filters}>
             <Filters filters={filterKeys} chosenOption={{ chosenId, setChosenId }} />
           </div>
-        </UpAnimation>
         <Infusions items={infusionCatalog.infusions[filterKey] || []} />
 
-        <Card
-          captionText="Kendrick Lamar - GNX"
-          rotateAmplitude={3}
-          scaleOnHover={1.005}
-          showMobileWarning={false}
-        >
-
+        <Card>
           <div className={css.howToChoose}>
             <h2 className={css.title}>Какой курс капельниц выбрать?</h2>
             <div className={css.text}>

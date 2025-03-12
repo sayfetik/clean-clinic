@@ -541,6 +541,7 @@ export const contacts = {
   feedbackFormTitle: 'Оставьте отзыв',
   feedbackFormText: 'Помогите нам стать лучше!',
   workHours: 'пн-пт 8-20 сб, вс 9-15',
+  smallAddress: 'г. Оренбург, ул. Ульянова, д. 69',
   contactsInfo: [
     {
       img: '/assets/addressIcon.png',

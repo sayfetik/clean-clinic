@@ -1,3 +1,4 @@
+import UpList from '../../animations/UpList'
 import { main } from '../../lib/data'
 import css from './index.module.scss'
 
@@ -8,10 +9,12 @@ const Problems = () => (
       <img src={main.problemImage} width="30%" className={css.image} />
       <div className={css.problems}>
         {main.problems.map((problem, index) => (
-          <div key={index} className={css.problem}>
-            <h3>{problem.title}</h3>
-            <p>{problem.text}</p>
-          </div>
+          <UpList>
+            <div key={index} className={css.problem}>
+              <h3>{problem.title}</h3>
+              <p>{problem.text}</p>
+            </div>
+          </UpList>
         ))}
       </div>
     </div>

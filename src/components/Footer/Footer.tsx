@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { UpListAnimation } from '../../animations'
 import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem } from '../../components'
 import { footer, contacts } from '../../lib/data'
 import * as routes from '../../lib/routes'
@@ -9,10 +10,14 @@ const Footer = () => {
 
   return (
     <div className={css.footer}>
+        <UpListAnimation>
       <div className={css.root}>
         <div className={css.contacts}>
           <div className={css.mainSection}>
-            <h2 className="blue">Контакты</h2>
+            <div>
+              <h2>Контакты</h2>
+              <h3 className={css.alias}>@cleanclinic</h3>
+            </div>
             {contacts.contactsInfo.map((section, index) => (
               <ContactItem key={index} info={section} />
             ))}
@@ -28,6 +33,7 @@ const Footer = () => {
           <Form />
         </div>
       </div>
+        </UpListAnimation>
 
       <div className={css.bottom}>
         <div>

@@ -12,7 +12,7 @@ const UpList: React.FC<AnimatedListProps> = ({ children }) => {
         child ? (
           <Animation
             key={`animation-${index}`}
-            distance={50}
+            distance={60}
             direction="vertical"
             config={{ tension: 50, friction: 25 }}
             initialOpacity={0}

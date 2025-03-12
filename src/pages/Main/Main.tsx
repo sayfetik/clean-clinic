@@ -1,5 +1,7 @@
 // import infusionsImage from '/assets/infusions.svg'
 import { useEffect } from 'react'
+import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
+import UpList from '../../animations/UpList'
 import { Button, WhiteCard, InfusionInstructions, Infusions, Feedback, AboutSection, EnrollForm, Problems, DripSlider } from '../../components'
 import { main } from '../../lib/data'
 import css from './index.module.scss'
@@ -13,11 +15,11 @@ const Main = () => {
   <div className={css.mainPage}>
     <div className={css.water}>
       <div className={css.mainSlide}>
-        <div>
+        <Animation>
           <h1 className="blue">{main.title}</h1>
           <div className={css.titleAdditional}>{main.subtitle}</div>
           <Button />
-        </div>
+        </Animation>
         <DripSlider />
       </div>
     </div>
@@ -26,25 +28,29 @@ const Main = () => {
       
       <AboutSection />
 
-      <EnrollForm />
+      <UpAnimation><EnrollForm /></UpAnimation>
 
       <div className={css.whyInfusions}>
-        <h2>{main.whyInfusions.title}</h2>
-        <div className={css.answer}>{main.whyInfusions.answer}</div>
-        <p className={css.text}>{main.whyInfusions.text}</p>
+        <UpList>
+          <h2>{main.whyInfusions.title}</h2>
+          <div className={css.answer}>{main.whyInfusions.answer}</div>
+          <p className={css.text}>{main.whyInfusions.text}</p>
+        </UpList>
         <div className={css.row}>
           {main.whiteCards.map((whiteCard, index) => (
-            <WhiteCard key={index} {...whiteCard} />
+            <Card><WhiteCard key={index} {...whiteCard} /></Card>
           ))}
         </div>
       </div>
 
       <Problems />
 
-      <div className={css.instructions}>
-        <InfusionInstructions />
-        <Button />
-      </div>
+      <FadeAnimation>
+        <div className={css.instructions}>
+          <InfusionInstructions />
+          <Button />
+        </div>
+      </FadeAnimation>
 
       <div className={css.infusions}>
         <h2>{main.infusions.title}</h2>

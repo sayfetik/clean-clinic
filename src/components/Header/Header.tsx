@@ -6,7 +6,6 @@ import * as routes from '../../lib/routes'
 import css from './index.module.scss'
 
 const Header = () => {
-  const address = contacts.contactsInfo.find(item => item.title === 'Адрес')?.text ?? '';
   const phone = contacts.contactsInfo.find(item => item.title === 'Телефон')?.text ?? '';
 
   return (
@@ -42,7 +41,7 @@ const Header = () => {
       <NavLink text="О клинике" to={routes.getAboutRoute()} />
       <NavLink text="Контакты" to={routes.getContactsRoute()} />
       <Link to={contacts.socialMediaLinks.location} className={css.location}>
-        {address}
+        {contacts.smallAddress}
       </Link>
       <div className={css.hours}>{contacts.workHours}</div>
       <Link to={contacts.socialMediaLinks['phone']} className={css.location}>{phone}</Link>

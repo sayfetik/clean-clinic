@@ -31,6 +31,9 @@ const Feedback = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
+    cssEase: 'linear',
+    swipe: false,
+    touchMove: false,
     centerPadding: '30px',
   }
   // const settings = {
@@ -55,7 +58,7 @@ const Feedback = () => {
       <Slider {...settings}>
         {main.feedback.map((review, index) => (
           <div key={index} className={css.reviewBox}>
-            <FeedbackCard {...review} />
+              <FeedbackCard {...review} />
           </div>
         ))}
       </Slider>
