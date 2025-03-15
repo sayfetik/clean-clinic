@@ -3,7 +3,7 @@
 
 .card {
   border-radius: 15px;
-  padding: 30px;
+  padding: 27px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -13,9 +13,41 @@
   height: 100%;
   box-shadow: 3px 5px 10px #c5daff;
   background-color: $white;
+
+  @include breakpoint("large") {
+    padding: 25px;
+  }
+
+  @include breakpoint("medium") {
+    flex-direction: row;
+    text-align: left;
+    gap: 30px;
+  }
+
+  @include breakpoint("small") {
+    padding: 20px;
+    gap: 20px;
+  }
+}
+
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .text {
-  line-height: 15px;
-  letter-spacing: 1px;
+  @include breakpoint("large") {
+    line-height: 22px;
+    gap: 15px;
+  }
+}
+
+.image {
+  width: 28%;
+
+  @include breakpoint("medium") {
+    width: fit-content;
+    height: 50px;
+  }
 }

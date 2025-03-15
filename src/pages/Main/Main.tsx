@@ -17,7 +17,7 @@ const Main = () => {
       <div className={css.mainSlide}>
         <Animation>
           <h1 className="blue">{main.title}</h1>
-          <div className={css.titleAdditional}>{main.subtitle}</div>
+          <h3 className={css.titleAdditional}>{main.subtitle}</h3>
           <Button />
         </Animation>
         <DripSlider />

@@ -1,15 +1,31 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
+.page {
+  @include page;
+}
+
 .root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
+  grid-template-rows: auto;
   align-items: stretch;
   gap: 20px;
   @include page;
   height: 530px;
   margin: 20px 0 70px 0;
+
+  @include breakpoint("large") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width <= 650px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    height: fit-content;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 .maps,
@@ -18,9 +34,19 @@
   border-radius: 15px;
 }
 
+.maps {
+  @media (width <= 650px) {
+    height: 600px;
+  }
+}
+
 .contacts,
 .form {
   padding: 40px;
+
+  @include breakpoint("medium") {
+    padding: 30px;
+  }
 }
 
 .form {
@@ -32,12 +58,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
 }
 
 .mainSection {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .bottom {
@@ -47,8 +75,32 @@
   padding-bottom: 60px;
   display: grid;
   grid-template-columns: 0.5fr 1.5fr 1fr;
-  grid-auto-rows: 1fr;
   gap: 80px;
+
+  @include breakpoint("xlarge") {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    gap: 40px;
+  }
+
+  @include breakpoint("large") {
+    gap: 20px;
+  }
+
+  @include breakpoint("medium") {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (width <= 600px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.menuSection {
+  @include breakpoint("medium") {
+    display: none;
+  }
 }
 
 .menuTitle {
@@ -68,6 +120,10 @@
   gap: 20px;
 }
 
+.subscribeTitle {
+  margin-bottom: 10px;
+}
+
 .subscribeText {
   color: $black;
   font-weight: 400;
@@ -77,6 +133,19 @@
   width: 170px;
   display: block;
   margin-top: -35px;
+
+  @include breakpoint("xlarge") {
+    width: 150px;
+    margin-top: -25px;
+  }
+
+  @include breakpoint("large") {
+    width: 130px;
+  }
+
+  @include breakpoint("medium") {
+    width: 120px;
+  }
 }
 
 .companyInfo {
@@ -99,6 +168,7 @@
 
 .endText {
   font-size: 14px;
+  text-align: center;
 }
 
 .alias {

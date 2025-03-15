@@ -1,16 +1,40 @@
 import { Menu } from '@mantine/core'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SocialMediaIcons, NavLink } from '../../components'
 import { contacts } from '../../lib/data'
 import * as routes from '../../lib/routes'
 import css from './index.module.scss'
 
+const Logo = () => {
+  const getLogoSrc = () => 
+    window.matchMedia("(max-width: 455px)").matches 
+      ? "/assets/smallLogo.png" 
+      : "https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png";
+
+  const [logoSrc, setLogoSrc] = useState(getLogoSrc());
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 455px)");
+    
+    const updateLogo = (e: { matches: any }) => setLogoSrc(e.matches 
+      ? "/assets/smallLogo.png" 
+      : "https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png"
+    );
+
+    mediaQuery.addEventListener("change", updateLogo);
+    return () => mediaQuery.removeEventListener("change", updateLogo);
+  }, []);
+
+  return <img src={logoSrc} alt="Clean Clinic" className={css.logo} />;
+};
+
 const Header = () => {
   const phone = contacts.contactsInfo.find(item => item.title === 'Телефон')?.text ?? '';
 
   return (
   <div className={css.header}>
-    <img src="https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png" alt="Clean Clinic" className={css.logo} />
+    <Logo />
     <div className={css.links}>
       <NavLink text="Главная" to={routes.getMainRoute()} />
 
@@ -44,9 +68,9 @@ const Header = () => {
         {contacts.smallAddress}
       </Link>
       <div className={css.hours}>{contacts.workHours}</div>
-      <Link to={contacts.socialMediaLinks['phone']} className={css.location}>{phone}</Link>
+      <Link to={contacts.socialMediaLinks['phone']} className={css.phone}>{phone}</Link>
     </div>
-    <SocialMediaIcons />
+    <div className={css.socIcons}><SocialMediaIcons /></div>
   </div>
   )
 }

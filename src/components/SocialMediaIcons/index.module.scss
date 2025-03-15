@@ -6,6 +6,10 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 20px;
+
+  @include breakpoint("xlarge") {
+    gap: 10px;
+  }
 }
 
 .icon {

@@ -4,7 +4,6 @@
 .header {
   display: flex;
   align-items: center;
-  align-self: center;
   justify-content: space-between;
   gap: 50px;
   background-color: $white;
@@ -14,7 +13,7 @@
   border: 1px solid $blue;
   border-radius: 20px;
   padding: 0 20px;
-  height: 60px;
+  height: fit-content;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
@@ -23,23 +22,56 @@
     gap: 10px;
   }
 
-  @media (width <= 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
+  @include breakpoint("xlarge") {
+    width: 98%;
+  }
+
+  @include breakpoint("medium") {
+    border-radius: 15px;
+    padding: 0 10px;
+    gap: 7px;
+  }
+
+  a {
+    @include link;
+  }
+
+  @media (max-width: 455px) {
+    gap: 5px;
   }
 }
 
 .links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-width: 300px;
-  width: 100%;
+  justify-content: space-evenly;
+  margin-left: 10px;
+
+  @include breakpoint("large") {
+    gap: 10px;
+  }
+
+  @include breakpoint("medium") {
+    gap: 7px;
+  }
 }
 
 .logo {
   width: 130px;
+
+  @include breakpoint("medium") {
+    width: 100px;
+  }
+  
+  @media (max-width: 455px) {
+    width: 40px;
+    padding: 7px 0;
+  }
+
+  @media (max-width: 380px) {
+    width: 30px;
+    padding: 7px 0;
+  }
 }
 
 .link {
@@ -55,9 +87,37 @@
   @include link;
   @include h4;
   width: 130px;
+
+  @include breakpoint("large") {
+    display: none;
+  }
+}
+
+.phone {
+  @include link;
+  @include h4;
+  width: 130px;
+
+  @media (width <= 700px) {
+    width: fit-content;
+  }
+
+  @media (width <= 643px) {
+    display: none;
+  }
 }
 
 .hours {
   @include h4;
   width: 90px;
+
+  @include breakpoint("large") {
+    display: none;
+  }
+}
+
+.socIcons {
+  @media (width <= 810px) {
+    display: none;
+  }
 }

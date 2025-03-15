@@ -38,8 +38,8 @@ export default function DripSlider() {
   const yOffsets = [20, 10, 0, 10, 20, 0]
 
   return (
-    <Animation>
     <div className={styles['drip-slider']}>
+    <Animation>
       <div className={styles['drip-container']}>
         {items.map((drip, index) => {
           const zIndex = items.length - Math.abs(2 - index) // Центр - 2 это верхний слой
@@ -74,6 +74,7 @@ export default function DripSlider() {
           )
         })}
       </div>
+      </Animation>
       <div className={styles.controls}>
         <button onClick={() => handleSlide('next')} className={styles['nav-button']}>
           <img src={prevArrow} width={10}/>
@@ -86,6 +87,6 @@ export default function DripSlider() {
         </button>
       </div>
     </div>
-    </Animation>
+    
   )
 }

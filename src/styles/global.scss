@@ -1,4 +1,5 @@
 @use '../../node_modules/reset-css/sass/_reset';
+@use './_mixins' as *;
 @use './_vars' as *;
 
 html,
@@ -40,16 +41,35 @@ a {
 h1 {
   font-size: 36px;
   font-weight: bold;
+
+  @include breakpoint("large") {
+    font-size: 30px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 25px;
+  }
+
+  @include breakpoint("small") {
+    font-size: 20px;
+  }
 }
 
 h2 {
   font-size: 27px;
   font-weight: bold;
+
+  @include breakpoint("large") {
+    font-size: 24px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 20px;
+  }
 }
 
 h3 {
-  font-size: 19px;
-  font-weight: 550;
+  @include h3;
 }
 
 .h3_light {
@@ -58,19 +78,40 @@ h3 {
 }
 
 h4 {
-  font-size: 16px;
-  font-weight: 500;
+  @include h4;
 }
 
 h5 {
   font-size: 14px;
   font-weight: 500;
+
+  @include breakpoint("large") {
+    font-size: 12px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 10px;
+  }
+
+  @include breakpoint("small") {
+    font-size: 8px;
+  }
 }
 
 p {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 28px;
   color: $grey;
+
+  @include breakpoint("large") {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 13px;
+    line-height: 20px;
+  }
 }
 
 button {
@@ -132,7 +173,6 @@ li {
 .row {
   display: flex;
   gap: 20px;
-  width: 100%;
 }
 
 .grid {

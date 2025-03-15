@@ -1,6 +1,36 @@
 @use './_vars' as *;
 @use '../../node_modules/include-media/dist/_include-media';
 
+$breakpoints: (
+  "small": 450px,
+  "medium": 768px,
+  "large": 1024px,
+  "xlarge": 1280px
+);
+
+@mixin breakpoint($size) {
+  $width: map-get($breakpoints, $size);
+  @if $width {
+    @media (max-width: $width) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$size}' не найден!";
+  }
+}
+
+.element {
+  background-color: blue;
+
+  @include breakpoint("medium") {
+    background-color: red;
+  }
+
+  @include breakpoint("large") {
+    background-color: green;
+  }
+}
+
 @mixin link($color: $black, $hoverColor: $blue) {
   color: $color;
   transition: $smoothColor;
@@ -18,8 +48,24 @@
 }
 
 @mixin page {
-  padding: 0 180px;
+  padding: 0 170px;
   background-color: $defaultBackgroundColor;
+  
+  @include breakpoint("xlarge") {
+    padding: 0 90px;
+  }
+
+  @include breakpoint("large") {
+    padding: 0 60px;
+  }
+
+  @media (width <= 870px) {
+    padding: 0 40px;
+  }
+
+  @include breakpoint("small") {
+    padding: 0 30px;
+  }
 }
 
 @mixin h1 {
@@ -54,8 +100,16 @@
 }
 
 @mixin h3 {
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 550;
+
+  @include breakpoint("large") {
+    font-size: 19px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 14px;
+  }
 }
 
 @mixin h3_main {
@@ -77,6 +131,14 @@
 @mixin h4 {
   font-size: 15px;
   font-weight: 500;
+
+  @include breakpoint("large") {
+    font-size: 14px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 13px;
+  }
 }
 
 @mixin h4_main {
@@ -115,10 +177,14 @@
 }
 
 @mixin answer {
-  @include h4;
-  font-size: 18px;
+  @include h3;
+  font-weight: 500;
   color: $blue;
-  margin: 0 0 15px 0;
+  margin: 5px 0 15px 0;
+
+  @include breakpoint("large") {
+    margin: 3px 0 15px 0;
+  }
 }
 
 @mixin shadow {
@@ -135,7 +201,7 @@
 
 @mixin water {
   position: relative;
-  padding: 0 180px 5px 180px;
+  @include page;
   background-image: url('/assets/water.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -146,7 +212,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    height: 100px;
+    height: 80px;
   }
 
   &:before {

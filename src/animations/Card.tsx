@@ -23,7 +23,7 @@ const springValues: SpringOptions = {
 export default function Card({
   children,
   captionText = '',
-  containerHeight = '300px',
+  containerHeight = 'fit-content',
   containerWidth = '100%',
   scaleOnHover = 1.05,
   rotateAmplitude = 7,

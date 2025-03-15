@@ -1,16 +1,49 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { UpListAnimation } from '../../animations'
-import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem } from '../../components'
+import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm } from '../../components'
 import { footer, contacts } from '../../lib/data'
 import * as routes from '../../lib/routes'
 import Form from '../Form/Form'
 import css from './index.module.scss'
 
 const Footer = () => {
+  const [isEnrollForm, setIsEnrollForm] = useState(false);
+
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      if (window.innerWidth <= 1024) {
+        setIsEnrollForm(true);
+      } else {
+        setIsEnrollForm(false);
+      }
+    };
+
+    updateSlidesToShow();
+    window.addEventListener('resize', updateSlidesToShow);
+    return () => window.removeEventListener('resize', updateSlidesToShow);
+  }, []);
+
+  const [isSmallFooter, setIsSmallFooter] = useState(false);
+
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      if (window.innerWidth <= 768) {
+        setIsSmallFooter(true);
+      } else {
+        setIsSmallFooter(false);
+      }
+    };
+
+    updateSlidesToShow();
+    window.addEventListener('resize', updateSlidesToShow);
+    return () => window.removeEventListener('resize', updateSlidesToShow);
+  }, []);
 
   return (
     <div className={css.footer}>
-        <UpListAnimation>
+
+      <UpListAnimation>
       <div className={css.root}>
         <div className={css.contacts}>
           <div className={css.mainSection}>
@@ -29,14 +62,16 @@ const Footer = () => {
           <YandexMap />
         </div>
 
-        <div className={css.form}>
+        {!isEnrollForm && <div className={css.form}>
           <Form />
-        </div>
+        </div>}
       </div>
-        </UpListAnimation>
+      </UpListAnimation>
+
+      {isEnrollForm && <div className={css.page}><EnrollForm /></div>}
 
       <div className={css.bottom}>
-        <div>
+        <div className={css.menuSection}>
           <h3 className={css.menuTitle}>Меню</h3>
           <div className={css.menu}>
             <NavLink text="Главная" to={routes.getMainRoute()} />
@@ -49,11 +84,12 @@ const Footer = () => {
 
         <div className={css.subscribe}>
           <div>
-            <h3>{footer.promotionsAndOffersTitle}</h3>
+            <h3 className={css.subscribeTitle}>{footer.promotionsAndOffersTitle}</h3>
             <p className={css.subscribeText}>{footer.promotionsAndOffersText}</p>
           </div>
           <Button size="small" text="Подписаться" /* onClick={ функция подписки на рассылку} */ />
         </div>
+
         <div className={css.companyInfo}>
           <img
             src="https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png"

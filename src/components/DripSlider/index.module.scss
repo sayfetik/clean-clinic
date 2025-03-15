@@ -9,25 +9,70 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include breakpoint("medium") {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    width: fit-content;
+  }
 }
 
 .drip-container {
   position: relative;
   height: 350px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 60px;
+
+  @media (width <= 1070px) {
+    margin-bottom: 0px;
+  }
+
+  @media (width <= 840px) {
+    height: 300px;
+  }
+
+  @include breakpoint("medium") {
+    height: 250px;
+  }
 }
 
 .drip-item {
   position: absolute;
   transition:
-    transform 0.4s ease,
-    opacity 0.4s ease;
+  transform 0.4s ease,
+  opacity 0.4s ease;
   cursor: pointer;
   max-height: 430px;
+  
+  @include breakpoint("large") {
+    max-height: 430px;
+  }
+
+  @media (width <= 1482px) {
+    max-height: 380px;
+  }
+
+  @media (width <= 1070px) {
+    max-height: 330px;
+  }
+
+  @media (width <= 930px) {
+    max-height: 300px;
+  }
+
+  @media (width <= 840px) {
+    max-height: 270px;
+  }
+
+  @media (width <= 425px) {
+    max-height: 230px;
+  }
+
+  @media (width <= 380px) {
+    max-height: 200px;
+  }
 }
 
 .controls {
@@ -62,6 +107,19 @@
 
     &:hover {
       background: $normalBlue;
+    }
+
+    @include breakpoint("large") {
+      font-size: 16px;
+    }
+  
+    @include breakpoint("medium") {
+      padding: 6px 18px;
+      font-size: 14px;
+    }
+  
+    @media (width <= 500px) {
+      font-size: 12px;
     }
   }
 }

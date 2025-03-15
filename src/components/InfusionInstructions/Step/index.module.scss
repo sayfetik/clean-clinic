@@ -4,8 +4,18 @@
 .root {
   display: flex;
   gap: 20px;
+
+  @include breakpoint("large") {
+    gap: 15px;
+  }
 }
 
-.title {
-  margin-bottom: 15px;
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @include breakpoint("large") {
+    gap: 7px;
+  }
 }

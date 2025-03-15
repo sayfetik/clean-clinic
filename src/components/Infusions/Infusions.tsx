@@ -11,7 +11,7 @@ const length = 15
 
 const Infusion: React.FC<InfusionType> = ({ id, name, description, cost, img }) => (
   <div className={css.infusionRoot}>
-    <img src={img} width={80} />
+    <img src={img} width={85} />
     <Link to={getInfusionRoute({ infusionId: String(id) })}>
       <h3 className={css.name}>{name}</h3>
     </Link>

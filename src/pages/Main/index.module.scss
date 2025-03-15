@@ -4,6 +4,10 @@
 .page {
   @include page;
   margin-top: 40px;
+
+  @include breakpoint("large") {
+    margin-top: 0px;
+  }
 }
 
 .water {
@@ -16,32 +20,70 @@
   justify-content: space-between;
   width: 100%;
   height: 100vh;
+
+  @include breakpoint("medium") {
+    padding-top: 110px;
+    flex-direction: column;
+    text-align: center;
+    height: fit-content;
+  }
+
+  @media (width <= 400px) {
+    padding-top: 90px;
+  }
 }
 
 .titleAdditional {
-  @include h3_light;
+  font-weight: 400;
+  color: $blue;
   margin: 15px 0 40px 0;
+
+  @include breakpoint("medium") {
+    margin-bottom: 20px;
+  }
 }
 
 .text {
   text-align: left;
   color: $black;
   margin-bottom: 10px;
+
+  @include breakpoint("large") {
+    line-height: 22px;
+  }
 }
 
 .whyInfusions {
-  margin: 80px 0;
+  margin: 60px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @include breakpoint("xlarge") {
+    margin: 50px 0;
+  }
+
+  @include breakpoint("large") {
+    margin: 40px 0;
+    gap: 5px;
+  }
+
+  @include breakpoint("medium") {
+    margin: 33px 0;
+  }
 }
 
 .row {
   display: flex;
-  align-items: center;
-  gap: 30px;
-  margin-top: 20px;
+  align-items: stretch;
+  gap: 25px;
+  margin-top: 10px;
+
+  @include breakpoint("medium") {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 .answer {
@@ -69,7 +111,7 @@
 }
 
 .infusionsDescription {
-  margin: 20px 0 35px 0;
+  margin: 15px 0 30px 0;
   text-align: center;
   letter-spacing: 0.5px;
   line-height: 23px;

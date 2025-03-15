@@ -48,7 +48,7 @@ const EnrollForm = () => {
           <h3 className={css.text}>{main.form.text}</h3>
         </div>
         <div className={css.right}>
-          <div className="row">
+          <div className={css.inputs}>
             <TextInput
               className={css.input}
               {...name.getInputProps()}
