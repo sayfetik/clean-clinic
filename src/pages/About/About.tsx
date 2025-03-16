@@ -18,12 +18,13 @@ const About = () => (
 
       <div className={css.specialistsSection}>
         <h2 className={css.specialistsTitle}>Специалисты</h2>
-        <div className={css.specialists}><UpListAnimation>
-          {about.specialists.map((specialist, index) => (
-            <Specialist key={index} {...specialist} /> /* ФОТКИ ПОЛУЧИТЬ С БЕКА */
-          ))}
-          </UpListAnimation>
-        </div>
+        <UpListAnimation>
+          <div className={css.specialists}>
+            {about.specialists.map((specialist, index) => (
+              <Specialist key={index} {...specialist} /> /* ФОТКИ ПОЛУЧИТЬ С БЕКА */
+            ))}
+          </div>
+        </UpListAnimation>
       </div>
 
       <FadeAnimation>
@@ -38,14 +39,7 @@ const About = () => (
         <Slider images={galleryImages} /> {/*ПОЛУЧИТЬ С БЕКА*/}
       </div>
 
-      <div className={css.license}>
-        <h2 className={css.licenseTitle}>Лицензия</h2>
-        <div className={css.licenseImages}>
-          {license.map((license, index) => (
-            <Document image={license} key={index} size="small" /> /*ПОЛУЧИТЬ С БЕКА*/
-          ))}
-        </div>
-      </div>
+      
     </div>
   </div>
 )

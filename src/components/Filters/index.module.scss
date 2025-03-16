@@ -3,8 +3,6 @@
 
 .option {
   border: 1px solid $blue;
-  border-radius: 10px;
-  padding: 0 15px;
   background-color: $white;
   transition: background-color 0.3s ease-in-out;
 
@@ -13,10 +11,17 @@
   }
 }
 
+.option, .chosenOption {
+  padding: 5px 15px;
+  border-radius: 10px;
+  @include breakpoint("medium") {
+    padding: 3px 10px;
+    border-radius: 7px;
+  }
+}
+
 .chosenOption {
   border: 1px solid $blue;
-  border-radius: 10px;
-  padding: 0 15px;
   background-color: $normalBlue;
   color: $white;
 }
@@ -24,10 +29,14 @@
 .optionText {
   color: $blue;
   font-weight: 500;
+  line-height: normal;
 }
 
 .filters {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 7px;
   width: fit-content;
+  height: fit-content;
+  flex-wrap: wrap;
 }

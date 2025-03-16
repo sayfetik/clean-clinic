@@ -42,16 +42,16 @@ h1 {
   font-size: 36px;
   font-weight: bold;
 
+  @include breakpoint("xlarge") {
+    font-size: 32px;
+  }
+
   @include breakpoint("large") {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   @include breakpoint("medium") {
-    font-size: 25px;
-  }
-
-  @include breakpoint("small") {
-    font-size: 20px;
+    font-size: 26px;
   }
 }
 
@@ -60,11 +60,11 @@ h2 {
   font-weight: bold;
 
   @include breakpoint("large") {
-    font-size: 24px;
+    font-size: 23px;
   }
 
   @include breakpoint("medium") {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -92,13 +92,9 @@ h5 {
   @include breakpoint("medium") {
     font-size: 10px;
   }
-
-  @include breakpoint("small") {
-    font-size: 8px;
-  }
 }
 
-p {
+p, li {
   font-size: 17px;
   line-height: 28px;
   color: $grey;
@@ -165,9 +161,18 @@ input:-ms-autofill {
 }
 
 li {
-  font-size: 16px;
+  margin-bottom: 4px;
+  color: $black;
+  width: 100%;
   line-height: 24px;
-  margin-bottom: 5px;
+
+  @include breakpoint("large") {
+    line-height: 22px;
+  }
+
+  @include breakpoint("medium") {
+    line-height: 19px;
+  }
 }
 
 .row {

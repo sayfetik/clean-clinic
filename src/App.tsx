@@ -16,6 +16,11 @@ import {
   Admin,
   Success,
   Error,
+  Massage,
+  Solarium,
+  HomeVisit,
+  Plasmolifting,
+  Cryotherapy,
 } from './pages'
 import '@mantine/core/styles.css'
 import './styles/global.scss'
@@ -36,6 +41,11 @@ const Layout = () => {
           <Route path={routes.getAboutRoute()} element={<About />} />
           <Route path={routes.getContactsRoute()} element={<Contacts />} />
           <Route path={routes.getInfusionCatalogRoute()} element={<InfusionCatalog />} />
+          <Route path={routes.getMassageRoute()} element={<Massage />} />
+          <Route path={routes.getSolariumRoute()} element={<Solarium />} />
+          <Route path={routes.getHomeVisitRoute()} element={<HomeVisit />} />
+          <Route path={routes.getPlasmoliftingRoute()} element={<Plasmolifting />} />
+          <Route path={routes.getCryotherapyRoute()} element={<Cryotherapy />} />
           <Route path={routes.getInfusionRoute(routes.infusionRouteParams)} element={<Infusion />} />
           <Route path={routes.getLicenseRoute()} element={<License />} />
           <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />

@@ -1,8 +1,11 @@
 // import infusionsImage from '/assets/infusions.svg'
 import { useEffect } from 'react'
+import { Helmet } from "react-helmet-async";
 import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
 import UpList from '../../animations/UpList'
+import { Document } from '../../components'
 import { Button, WhiteCard, InfusionInstructions, Infusions, Feedback, AboutSection, EnrollForm, Problems, DripSlider } from '../../components'
+import { license} from '../../lib/data'
 import { main } from '../../lib/data'
 import css from './index.module.scss'
 
@@ -59,6 +62,15 @@ const Main = () => {
         <Button text="Записаться к терапевту" />
       </div>
     </div>
+
+    <div className={css.license}>
+        <h2 className={css.licenseTitle}>Лицензия</h2>
+        <div className={css.licenseImages}>
+          {license.map((license, index) => (
+            <Document image={license} key={index} size="small" /> /*ПОЛУЧИТЬ С БЕКА*/
+          ))}
+        </div>
+      </div>
 
     <div className={css.water}>
       <Feedback />

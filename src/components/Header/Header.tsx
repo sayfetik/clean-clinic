@@ -38,26 +38,29 @@ const Header = () => {
     <div className={css.links}>
       <NavLink text="Главная" to={routes.getMainRoute()} />
 
-      <Menu trigger="click-hover" offset={20} openDelay={100}>
+      <Menu trigger="click-hover" offset={20} openDelay={30}>
         <Menu.Target>
-          <h4>Услуги</h4>
+          <h4 className={css.hoverEffect}>Услуги</h4>
         </Menu.Target>
 
         <Menu.Dropdown>
           <Menu.Item component="a" href={routes.getInfusionCatalogRoute()}>
             Капельницы
           </Menu.Item>
-          <Menu.Item component="a" href={routes.getInfusionCatalogRoute()}>
-            Криокапсула
+          <Menu.Item component="a" href={routes.getMassageRoute()}>
+            Массаж ICOON
           </Menu.Item>
-          <Menu.Item component="a" href="https://mantine.dev">
-            Массаж
+          <Menu.Item component="a" href={routes.getCryotherapyRoute()}>
+            Криотерапия
           </Menu.Item>
-          <Menu.Item component="a" href="https://mantine.dev">
+          <Menu.Item component="a" href={routes.getPlasmoliftingRoute()}>
             Плазмолифтинг
           </Menu.Item>
-          <Menu.Item component="a" href="https://mantine.dev">
-            Солярий с Collaten лампами
+          <Menu.Item component="a" href={routes.getSolariumRoute()}>
+            Солярий
+          </Menu.Item>
+          <Menu.Item component="a" href={routes.getHomeVisitRoute()}>
+            Выезд на дом
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>

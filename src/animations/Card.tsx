@@ -26,7 +26,7 @@ export default function Card({
   containerHeight = 'fit-content',
   containerWidth = '100%',
   scaleOnHover = 1.05,
-  rotateAmplitude = 7,
+  rotateAmplitude = 5,
   showMobileWarning = true,
   showTooltip = false,
 }: TiltedCardProps) {

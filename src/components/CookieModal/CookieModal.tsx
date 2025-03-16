@@ -8,7 +8,7 @@ const CookieModal = () => {
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisited')
-    if (!hasVisited) {
+    if (hasVisited) {
       setIsVisible(true)
       localStorage.setItem('hasVisited', 'true')
     }

@@ -9,6 +9,11 @@ export const getMainRoute = () => '/'
 export const getAboutRoute = () => '/about'
 export const getInfusionRoute = ({ infusionId }: InfusionRouteParamsType) => `/infusion/${infusionId}`
 export const getInfusionCatalogRoute = () => `/infusions`
+export const getCryotherapyRoute = () => `/cryotherapy`
+export const getMassageRoute = () => `/massage`
+export const getHomeVisitRoute = () => `/homevisit`
+export const getSolariumRoute = () => `/solarium`
+export const getPlasmoliftingRoute = () => `/plasmolifting`
 export const getContactsRoute = () => `/contacts`
 export const getPolicyRoute = () => `/privacyPolicy`
 export const getLicenseRoute = () => `/license`

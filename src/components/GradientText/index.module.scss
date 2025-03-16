@@ -1,8 +1,26 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
 .containerStyle {
   display: flex;
   align-items: center;
-  padding: 0 180px;
-  height: 300px;
+  @include page;
+  padding-top: 160px;
+  margin-bottom: 70px;
   background: linear-gradient(to bottom, #ccdfff 0%, #fbfbfb 100%);
-  z-index: 100;
+
+  @include breakpoint("xlarge") {
+    padding-top: 160px;
+  margin-bottom: 70px;
+  }
+
+  @include breakpoint("large") {
+    padding-top: 130px;
+  margin-bottom: 50px;
+  }
+
+  @include breakpoint("medium") {
+    padding-top: 110px;
+  margin-bottom: 40px;
+  }
 }

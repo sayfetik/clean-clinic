@@ -197,6 +197,16 @@ $breakpoints: (
 @mixin about_headline {
   color: $blue;
   margin: 50px 0 25px 0;
+
+  @include breakpoint("large") {
+    margin-top: 35px;
+    margin-bottom: 20px;
+  }
+
+  @include breakpoint("medium") {
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
 }
 
 @mixin water {

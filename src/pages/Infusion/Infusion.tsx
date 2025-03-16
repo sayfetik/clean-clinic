@@ -1,4 +1,5 @@
 // import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { UpAnimation } from '../../animations'
 import { Button, InfusionInstructions } from '../../components'
 import { InfusionPage /*main*/ } from '../../lib/data'
@@ -10,6 +11,25 @@ const Infusion = () => {
   // const { infusionId } = useParams() as InfusionRouteParamsType
   // const infusion = main.infusions.infusions[Number(infusionId) - 1]
 
+  const [width, setWidth] = useState(20);
+  
+    useEffect(() => {
+      const updateSlidesToShow = () => {
+        if (window.innerWidth <= 768) {
+          setWidth(18);
+        } else if (window.innerWidth <= 450) {
+          setWidth(16);
+        } else {
+          setWidth(20);
+        }
+      };
+  
+      updateSlidesToShow();
+      window.addEventListener('resize', updateSlidesToShow);
+      return () => window.removeEventListener('resize', updateSlidesToShow);
+    }, []);
+
+
   const infusion = InfusionPage
   if (!infusion) {
     return <div>Инфузия не найдена</div>
@@ -18,25 +38,26 @@ const Infusion = () => {
   return (
     <div>
       <div className={css.upperSection}>
-        <div className={css.upperSetionContent}>
-          <UpAnimation>
-            <img src={infusion.img} width={120} className={css.image} />
-            <div className={css.upperSetionText}>
-              <h2 className={css.name}>{infusion.name}</h2>
+        <UpAnimation>
+          <div className={css.upperSectionContent}>
+              <img src={infusion.img} className={css.image} />
+              <div className={css.upperSectionText}>
+                <h1 className={css.name}>{infusion.name}</h1>
 
-              <div className={css.upperInfo}>
-                <h3>{infusion.cost} руб.</h3>
-                <div className={css.duration}>
-                  <img src={clock} width={20} />
-                  <h4>{infusion.duration}</h4>
+                <div className={css.upperInfo}>
+                  <h3 className={css.cost}>{infusion.cost} руб.</h3>
+                  <div className={css.durationSection}>
+                    <img src={clock} width={width} />
+                    {infusion.duration}
+                  </div>
                 </div>
-              </div>
 
-              <Button />
-            </div>
-          </UpAnimation>
-        </div>
+                <Button />
+              </div>
+          </div>
+        </UpAnimation>
       </div>
+
       <div className={css.root}>
         <div className={css.description}>
           <ul className={css.bulletList}>

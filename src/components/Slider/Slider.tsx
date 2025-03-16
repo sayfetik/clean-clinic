@@ -24,7 +24,7 @@ const Slider: React.FC<ImageSliderProps> = ({ images }) => {
     >
       {images.map((src, index) => (
         <SwiperSlide key={index}>
-          <img src={src} alt="" width={350} />
+          <img src={src} alt="" width='95%' />
         </SwiperSlide>
       ))}
     </Swiper>

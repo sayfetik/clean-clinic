@@ -44,7 +44,8 @@
 .links {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  width: 100%;
   margin-left: 10px;
 
   @include breakpoint("large") {
@@ -53,6 +54,7 @@
 
   @include breakpoint("medium") {
     gap: 7px;
+    margin-right: 10px;
   }
 }
 
@@ -117,7 +119,15 @@
 }
 
 .socIcons {
+  width: fit-content;
   @media (width <= 810px) {
     display: none;
+  }
+}
+
+.hoverEffect {
+  cursor: pointer;
+  &:hover {
+    color: $blue;
   }
 }

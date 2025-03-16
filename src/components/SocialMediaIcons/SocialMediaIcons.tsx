@@ -5,6 +5,7 @@ import whatsup from '/assets/whatsup.png'
 import css from './index.module.scss'
 import { openOnBlankPage } from '../../lib/routes'
 import { contacts } from '../../lib/data'
+import { useState, useEffect } from 'react'
 
 type SocialMediaIconsProps = {
   iconWidth?: number
@@ -14,32 +15,50 @@ type SocialMediaIconsProps = {
 const SocialMediaIcons: React.FC<SocialMediaIconsProps> = ({ iconWidth = 28, containerWidth = 'fit-content' }) => {
   const handleIconClick = (platform: 'telegram' | 'email' | 'vkontakte' | 'whatsup') => openOnBlankPage(contacts.socialMediaLinks[platform])
   
+  const [width, setWidth] = useState(iconWidth);
+
+  useEffect(() => {
+    const updateSlidesToShow = () => {
+      if (window.innerWidth <= 1280) {
+        setWidth(iconWidth - 5);
+      } else if (window.innerWidth <= 1024) {
+        setWidth(iconWidth - 7);
+      } else if (window.innerWidth <= 768) {
+        setWidth(iconWidth - 10);
+      }
+    };
+
+    updateSlidesToShow();
+    window.addEventListener('resize', updateSlidesToShow);
+    return () => window.removeEventListener('resize', updateSlidesToShow);
+  }, []);
+
   return (
     <div className={css.socialMediaIcons} style={{ width: containerWidth }}>
       <img
         src={telegram}
-        width={iconWidth}
+        width={width}
         alt="telegram"
         className={css.icon}
         onClick={() => handleIconClick('telegram')}
       />
       <img
         src={whatsup}
-        width={iconWidth}
+        width={width}
         alt="whatsup"
         className={css.icon}
         onClick={() => handleIconClick('whatsup')}
       />
       <img
         src={vk}
-        width={iconWidth}
+        width={width}
         alt="vk"
         className={css.icon}
         onClick={() => handleIconClick('vkontakte')}
       />
       <img
         src={email}
-        width={iconWidth}
+        width={width}
         alt="email"
         className={css.icon}
         onClick={() => handleIconClick('email')}

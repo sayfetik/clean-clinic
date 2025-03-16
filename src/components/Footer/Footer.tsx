@@ -24,22 +24,6 @@ const Footer = () => {
     return () => window.removeEventListener('resize', updateSlidesToShow);
   }, []);
 
-  const [isSmallFooter, setIsSmallFooter] = useState(false);
-
-  useEffect(() => {
-    const updateSlidesToShow = () => {
-      if (window.innerWidth <= 768) {
-        setIsSmallFooter(true);
-      } else {
-        setIsSmallFooter(false);
-      }
-    };
-
-    updateSlidesToShow();
-    window.addEventListener('resize', updateSlidesToShow);
-    return () => window.removeEventListener('resize', updateSlidesToShow);
-  }, []);
-
   return (
     <div className={css.footer}>
 
@@ -75,8 +59,15 @@ const Footer = () => {
           <h3 className={css.menuTitle}>Меню</h3>
           <div className={css.menu}>
             <NavLink text="Главная" to={routes.getMainRoute()} />
-            <NavLink text="Капельницы" to={routes.getInfusionCatalogRoute()} />
-            <NavLink text="Массаж" to={routes.getInfusionCatalogRoute()} />
+            <h4>Услуги</h4>
+            <div className={css.servicesMenu}>
+              <NavLink text="Капельницы" to={routes.getInfusionCatalogRoute()} />
+              <NavLink text="Массаж ICOON" to={routes.getMassageRoute()} />
+              <NavLink text="Криотерапия" to={routes.getCryotherapyRoute()} />
+              <NavLink text="Плазмолифтинг" to={routes.getPlasmoliftingRoute()} />
+              <NavLink text="Солярий" to={routes.getSolariumRoute()} />
+              <NavLink text="Выезд на дом" to={routes.getHomeVisitRoute()} />
+            </div>
             <NavLink text="О клинике" to={routes.getAboutRoute()} />
             <NavLink text="Контакты" to={routes.getContactsRoute()} />
           </div>

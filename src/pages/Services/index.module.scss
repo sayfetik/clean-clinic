@@ -10,12 +10,16 @@
   align-items: center;
   gap: 40px;
   margin: 0 0 50px 0;
+
+  @include breakpoint("medium") {
+    margin-bottom: 30px;
+  }
 }
 
 .filters {
   display: flex;
   justify-content: center;
-  margin: 20px 0 40px 0;
+  margin: 20px 0 25px 0;
 }
 
 .aboutText {
@@ -43,18 +47,63 @@
   justify-content: center;
   gap: 30px;
   padding: 50px 60px 50px 20px;
-  margin-top: 40px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+
+  @include breakpoint("large") {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 30px 40px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+
+  @include breakpoint("medium") {
+    padding: 25px 30px;
+    margin-bottom: 30px;
+  }
+
+  @media (width <= 400px) {
+    padding: 20px;
+    margin-bottom: 25px;
+  }
 }
 
 .title {
-  line-height: 40px;
   color: $blue;
   text-align: center;
+  
+  @media (width > 1024px) {
+    line-height: 40px;
+  }
+}
+
+.answer {
+  @include breakpoint("large") {
+    text-align: center;
+  }
 }
 
 .text {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @include breakpoint("large") {
+    gap: 15px;
+  }
+}
+
+.image {
+  max-width: 35%;
+  height: 100%;
+  @media (width <= 950px) {
+    display: none;
+  }
+}
+
+.bulletList {
+  list-style: disc;
+  margin-left: 15px;
 }

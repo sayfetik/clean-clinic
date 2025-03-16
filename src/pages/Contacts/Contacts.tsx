@@ -82,7 +82,7 @@ const Contacts = () => {
             {contacts.contactsInfo.map((section, index) => (
               <ContactItem key={index} info={section} />
             ))}
-            <SocialMediaIcons iconWidth={35} />
+            <SocialMediaIcons iconWidth={35} containerWidth="100%"/>
           </div>
         </div>
       </FadeAnimation>
@@ -156,13 +156,11 @@ const Contacts = () => {
             <Textarea
               classNames={{ label: clsx(css.label) }}
               {...question.getInputProps()}
-              className={css.input}
               radius="md"
               placeholder={feedbackInputs[4].placeholder}
               label={feedbackInputs[4].label}
               autosize
-              minRows={5}
-              maxRows={5}
+              minRows={4}
             />
           </div>
           <CheckPolicy {...{ checked, setChecked }} />

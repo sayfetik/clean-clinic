@@ -107,10 +107,15 @@
   margin-bottom: 20px;
 }
 
-.menu {
+.menu, .servicesMenu {
   display: flex;
   flex-direction: column;
   gap: 13px;
+}
+
+.servicesMenu {
+  margin-left: 15px;
+  gap: 10px;
 }
 
 .subscribe {
