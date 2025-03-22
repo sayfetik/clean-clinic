@@ -117,7 +117,8 @@ const Button: React.FC<ButtonProps> = ({
               maxRows={2}
             />
             
-            <div className={css.margin}></div>
+            <div className={css.bigMargin}></div>
+            
             <CheckPolicy {...{ checked, setChecked }} />
             <div className='margin'></div>
             <Button size="small" isDisabled={disabled} onClick={()=>navigate(getSuccessRoute())} />

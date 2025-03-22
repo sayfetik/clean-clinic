@@ -9,8 +9,8 @@ const Problems = () => (
       <img src={main.problemImage} className={css.image} />
       <div className={css.problems}>
         {main.problems.map((problem, index) => (
-          <UpList>
-            <div key={index} className={css.problem}>
+          <UpList key={index}>
+            <div className={css.problem}>
               <h3>{problem.title}</h3>
               <p className={css.text}>{problem.text}</p>
             </div>

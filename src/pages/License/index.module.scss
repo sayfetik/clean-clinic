@@ -3,7 +3,9 @@
 
 .root {
   @include page;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-auto-rows: auto;
   gap: 30px;
   margin-bottom: 60px;
 }

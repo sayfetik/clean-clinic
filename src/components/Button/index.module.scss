@@ -1,7 +1,6 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
-
 .bigButton {
   @include button;
   padding: 10px 25px;
@@ -9,12 +8,12 @@
   font-weight: 550;
   height: fit-content;
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     font-size: 16px;
     padding: 7px 18px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     padding: 5px 18px;
     font-size: 13px;
   }
@@ -31,11 +30,11 @@
   font-weight: 550;
   height: fit-content;
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     font-size: 13px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     padding: 6px 16px;
     font-size: 12px;
   }
@@ -69,6 +68,10 @@
 }
 
 .margin {
+  margin: 7px;
+}
+
+.bigMargin {
   margin: 15px;
 }
 

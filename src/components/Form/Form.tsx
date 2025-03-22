@@ -48,6 +48,7 @@ const Form = () => {
         <h2 className={css.title}>Онлайн-запись</h2>
         <p className={css.description}>Перезвоним и ответим на все вопросы</p>
       </div>
+      
       <div className={css.inputs}>
         <TextInput
           className={css.input}

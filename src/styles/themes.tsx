@@ -25,5 +25,10 @@ export const mantine = createTheme({
     MultiSelect: {
       defaultProps: { radius: 'md' },
     },
+    Modal: {
+      styles: {
+        root: { zIndex: 100000 },
+      },
+    },
   },
 })

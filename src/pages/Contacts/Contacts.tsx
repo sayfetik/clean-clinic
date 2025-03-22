@@ -3,6 +3,7 @@ import { useField } from '@mantine/form'
 import { IconAt } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useState, useMemo } from 'react'
+import { Helmet } from "react-helmet-async"
 import StarRatings from 'react-star-ratings'
 import { Animation, FadeAnimation } from '../../animations'
 import { ContactItem, SocialMediaIcons, CheckPolicy, Button } from '../../components'
@@ -73,102 +74,110 @@ const Contacts = () => {
   }, [rating, checked, name.error, surname.error, nameValue, surnameValue]);
 
   return (
-    <div className={css.root}>
-      <FadeAnimation>
-        <div className={css.contacts}>
-          <h2>{contacts.title}</h2>
-          <p>{contacts.text}</p>
-          <div className={css.contactsInfo}>
-            {contacts.contactsInfo.map((section, index) => (
-              <ContactItem key={index} info={section} />
-            ))}
-            <SocialMediaIcons iconWidth={35} containerWidth="100%"/>
-          </div>
-        </div>
-      </FadeAnimation>
+    <>
+      <Helmet>
+        <title>Контакты</title>
+        <meta name="description" content="Контакты Clean Clinic" />
+        <meta name="keywords" content="Телефон, социальнаые сети, почта, контакты, Clean Clinic" />
+      </Helmet>
 
-      <Animation>
-        <div className={css.feedbackForm}>
-          <div>
-            <h2 className="blue">{contacts.feedbackFormTitle}</h2>
-            <p>{contacts.feedbackFormText}</p>
+      <div className={css.root}>
+        <FadeAnimation>
+          <div className={css.contacts}>
+            <h2>{contacts.title}</h2>
+            <p>{contacts.text}</p>
+            <div className={css.contactsInfo}>
+              {contacts.contactsInfo.map((section, index) => (
+                <ContactItem key={index} info={section} />
+              ))}
+              <SocialMediaIcons iconWidth={35} containerWidth="100%"/>
+            </div>
           </div>
+        </FadeAnimation>
 
-          <div className={css.row}>
-            <h5>Оцените *</h5>
-            <StarRatings
-              rating={rating}
-              starRatedColor="#0171fc"
-              starHoverColor="#398ff7"
-              changeRating={changeRating}
-              numberOfStars={5}
-              name="rating"
-              starDimension="20px"
-              starSpacing="3px"
-            />
-          </div>
-          
-          <div className={css.inputs}>
+        <Animation>
+          <div className={css.feedbackForm}>
             <div>
-              <TextInput
-                classNames={{ label: clsx(css.label) }}
-                className={css.input}
-                {...name.getInputProps()}
-                onBlur={() => name.validate()}
-                radius="md"
-                label={feedbackInputs[0].label}
-                placeholder={feedbackInputs[0].placeholder}
-              />
-              <TextInput
-                classNames={{ label: clsx(css.label) }}
-                className={css.input}
-                {...surname.getInputProps()}
-                onBlur={() => surname.validate()}
-                radius="md"
-                label={feedbackInputs[1].label}
-                placeholder={feedbackInputs[1].placeholder}
-              />
+              <h2 className="blue">{contacts.feedbackFormTitle}</h2>
+              <p>{contacts.feedbackFormText}</p>
             </div>
 
-            <div>
-              <TextInput
-                radius="md"
-                classNames={{ label: clsx(css.label) }}
-                leftSectionPointerEvents="none"
-                className={css.input}
-                leftSection={icon}
-                placeholder={feedbackInputs[3].placeholder}
-                label={feedbackInputs[3].label}
-                value={alias}
-                onChange={(event) => setAlias(event.currentTarget.value)}
-              />
-              <TextInput
-                classNames={{ label: clsx(css.label) }}
-                className={css.input}
-                {...phone.getInputProps()}
-                onBlur={() => phone.validate()}
-                radius="md"
-                label={feedbackInputs[2].label}
-                placeholder={feedbackInputs[2].placeholder}
+            <div className={css.row}>
+              <h5>Оцените *</h5>
+              <StarRatings
+                rating={rating}
+                starRatedColor="#0171fc"
+                starHoverColor="#398ff7"
+                changeRating={changeRating}
+                numberOfStars={5}
+                name="rating"
+                starDimension="20px"
+                starSpacing="3px"
               />
             </div>
+            
+            <div className={css.inputs}>
+              <div>
+                <TextInput
+                  classNames={{ label: clsx(css.label) }}
+                  className={css.input}
+                  {...name.getInputProps()}
+                  onBlur={() => name.validate()}
+                  radius="md"
+                  label={feedbackInputs[0].label}
+                  placeholder={feedbackInputs[0].placeholder}
+                />
+                <TextInput
+                  classNames={{ label: clsx(css.label) }}
+                  className={css.input}
+                  {...surname.getInputProps()}
+                  onBlur={() => surname.validate()}
+                  radius="md"
+                  label={feedbackInputs[1].label}
+                  placeholder={feedbackInputs[1].placeholder}
+                />
+              </div>
 
-            <Textarea
-              classNames={{ label: clsx(css.label) }}
-              {...question.getInputProps()}
-              radius="md"
-              placeholder={feedbackInputs[4].placeholder}
-              label={feedbackInputs[4].label}
-              autosize
-              minRows={4}
-            />
+              <div>
+                <TextInput
+                  radius="md"
+                  classNames={{ label: clsx(css.label) }}
+                  leftSectionPointerEvents="none"
+                  className={css.input}
+                  leftSection={icon}
+                  placeholder={feedbackInputs[3].placeholder}
+                  label={feedbackInputs[3].label}
+                  value={alias}
+                  onChange={(event) => setAlias(event.currentTarget.value)}
+                />
+                <TextInput
+                  classNames={{ label: clsx(css.label) }}
+                  className={css.input}
+                  {...phone.getInputProps()}
+                  onBlur={() => phone.validate()}
+                  radius="md"
+                  label={feedbackInputs[2].label}
+                  placeholder={feedbackInputs[2].placeholder}
+                />
+              </div>
+
+              <Textarea
+                classNames={{ label: clsx(css.label) }}
+                {...question.getInputProps()}
+                radius="md"
+                placeholder={feedbackInputs[4].placeholder}
+                label={feedbackInputs[4].label}
+                autosize
+                minRows={4}
+              />
+            </div>
+            <CheckPolicy {...{ checked, setChecked }} />
+            <div className={css.margin}></div>
+            <Button size='small' text='Отправить' isDisabled={disabled} />
           </div>
-          <CheckPolicy {...{ checked, setChecked }} />
-          <div className={css.margin}></div>
-          <Button size='small' text='Отправить' isDisabled={disabled} />
-        </div>
-      </Animation>
-    </div>
+        </Animation>
+      </div>
+    </>
   )
 }
 

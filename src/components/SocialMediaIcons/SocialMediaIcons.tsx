@@ -20,7 +20,7 @@ const SocialMediaIcons: React.FC<SocialMediaIconsProps> = ({ iconWidth = 28, con
   useEffect(() => {
     const updateSlidesToShow = () => {
       if (window.innerWidth <= 1280) {
-        setWidth(iconWidth - 5);
+        setWidth(iconWidth - 3);
       } else if (window.innerWidth <= 1024) {
         setWidth(iconWidth - 7);
       } else if (window.innerWidth <= 768) {
