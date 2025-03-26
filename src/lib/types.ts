@@ -1,4 +1,5 @@
-export type InfusionType = { id: number; name: string; description: string; cost: number; img: string }
+export type InfusionType = { id: number; name: string; isDescription?: boolean; description: string; cost: number; img: string }
+export type CardType = { id: number; name: string; bullets?: string[], cost: number; img: string }
 export type AdvantageType = { title: string; text: string }
 export type WhiteCardType = { img: string; title: string; text: string }
 export type StepType = { number: string; title: string; text: string }

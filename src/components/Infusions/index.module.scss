@@ -1,6 +1,10 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
+.img {
+  border-radius: 10px;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -13,6 +17,7 @@
   border-radius: 20px;
   padding: 25px;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -32,16 +37,16 @@
     }
   }
 
-  @include breakpoint("xlarge") {
+  @include breakpoint('xlarge') {
     padding: 20px;
   }
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     padding: 30px;
     gap: 10px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     padding: 25px;
   }
 
@@ -89,8 +94,6 @@
   font-weight: 600;
 }
 
-
-
 .root {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -99,11 +102,11 @@
   gap: 25px;
   margin-bottom: 50px;
 
-  @include breakpoint("xlarge") {
+  @include breakpoint('xlarge') {
     gap: 20px;
   }
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     gap: 25px;
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 40px;
@@ -128,7 +131,9 @@
 .infusionEnterActive {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
 }
 
 .infusionExit {
@@ -139,6 +144,13 @@
 .infusionExitActive {
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.8s ease-in, transform 0.3s ease-in;
+  transition:
+    opacity 0.8s ease-in,
+    transform 0.3s ease-in;
 }
 
+.bullet {
+  margin-bottom: 5px;
+  text-align: center;
+  color: $grey;
+}

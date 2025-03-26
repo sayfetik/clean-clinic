@@ -21,6 +21,7 @@ import {
   HomeVisit,
   Plasmolifting,
   Cryotherapy,
+  Analyzes,
 } from './pages'
 import '@mantine/core/styles.css'
 import './styles/global.scss'
@@ -46,6 +47,7 @@ const Layout = () => {
           <Route path={routes.getHomeVisitRoute()} element={<HomeVisit />} />
           <Route path={routes.getPlasmoliftingRoute()} element={<Plasmolifting />} />
           <Route path={routes.getCryotherapyRoute()} element={<Cryotherapy />} />
+          <Route path={routes.getAnalyzesgRoute()} element={<Analyzes />} />
           <Route path={routes.getInfusionRoute(routes.infusionRouteParams)} element={<Infusion />} />
           <Route path={routes.getLicenseRoute()} element={<License />} />
           <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />

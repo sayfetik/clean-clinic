@@ -65,6 +65,7 @@ const Footer = () => {
               <NavLink text="Массаж ICOON" to={routes.getMassageRoute()} />
               <NavLink text="Криотерапия" to={routes.getCryotherapyRoute()} />
               <NavLink text="Плазмолифтинг" to={routes.getPlasmoliftingRoute()} />
+              <NavLink text="Анализы" to={routes.getAnalyzesgRoute()} />
               <NavLink text="Солярий" to={routes.getSolariumRoute()} />
               <NavLink text="Выезд на дом" to={routes.getHomeVisitRoute()} />
             </div>

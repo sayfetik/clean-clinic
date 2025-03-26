@@ -56,6 +56,9 @@ const Header = () => {
           <Menu.Item component="a" href={routes.getPlasmoliftingRoute()}>
             Плазмолифтинг
           </Menu.Item>
+          <Menu.Item component="a" href={routes.getAnalyzesgRoute()}>
+            Анализы
+          </Menu.Item>
           <Menu.Item component="a" href={routes.getSolariumRoute()}>
             Солярий
           </Menu.Item>

@@ -44,7 +44,7 @@ const InfusionCatalog = () => {
 
           <Problems />
 
-          <h2 className={css.center}>Выберите свою капельницу</h2>
+          <h2 className={css.center}>{data.servicesTitle}</h2>
           <div className={css.filters}>
             <Filters filters={filterKeys} chosenOption={{ chosenId, setChosenId }} />
           </div>
@@ -52,16 +52,10 @@ const InfusionCatalog = () => {
 
           <Card>
             <div className={css.howToChoose}>
-              <h2 className={css.title}>Какой курс капельниц выбрать?</h2>
+              <h2 className={css.title}>{data.howToChooseCard.title}</h2>
               <div className={css.text}>
-                <h4 className={css.answer}>Мы разрабатываем индивидуальные курсы</h4>
-                <p className="black">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in. Lorem ipsum dolor sit
-                  amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud{' '}
-                </p>
+                <h4 className={css.answer}>{data.howToChooseCard.additionalText}</h4>
+                <p className="black">{data.howToChooseCard.text}</p>
               </div>
             </div>
           </Card>

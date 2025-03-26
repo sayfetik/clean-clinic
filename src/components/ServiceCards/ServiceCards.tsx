@@ -1,0 +1,54 @@
+import { useEffect, useState } from 'react'
+import { Button } from '..'
+import Animation from '../../animations/Animation'
+import { CardType } from '../../lib/types'
+import css from '../Infusions/index.module.scss'
+
+const Card: React.FC<CardType> = ({ name, bullets, cost, img }) => (
+  <div className={css.infusionRoot}>
+    <img src={img} width={150} className={css.img} />
+    <h3 className={css.name}>{name}</h3>
+    <ul className={css.bulletList}>
+      {bullets &&
+        bullets.map((bullet, index) => (
+          <li className={css.bullet} key={index}>
+            {bullet}
+          </li>
+        ))}
+    </ul>
+
+    <div className={css.costAndButton}>
+      <h3 className={css.cost}>{cost} руб.</h3>
+      <Button size="small" />
+    </div>
+  </div>
+)
+
+const ServiceCards: React.FC<{ items: CardType[] }> = ({ items }) => {
+  const [animationKey, setAnimationKey] = useState(0)
+  useEffect(() => {
+    setAnimationKey((prevKey) => prevKey + 1)
+  }, [items])
+
+  return (
+    <div className={css.root}>
+      {items.map((item, index) => (
+        <Animation
+          key={`${animationKey}-${index}`}
+          distance={50}
+          direction="vertical"
+          config={{ tension: 95, friction: 20 }}
+          initialOpacity={0}
+          animateOpacity={false}
+          scale={1}
+          threshold={0}
+          delay={70 * index}
+        >
+          <Card key={index} {...item} />
+        </Animation>
+      ))}
+    </div>
+  )
+}
+
+export default ServiceCards

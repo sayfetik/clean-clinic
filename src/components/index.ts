@@ -34,3 +34,4 @@ export { default as ContactContent } from './Admin UI/ContactContent/ContactCont
 export { default as EnrollForm } from './EnrollForm/EnrollForm'
 export { default as Problems } from './Problems/Problems'
 export { default as DripSlider } from './DripSlider/DripSlider'
+export { default as ServiceCards } from './ServiceCards/ServiceCards'

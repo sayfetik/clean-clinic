@@ -14,6 +14,7 @@ export const getMassageRoute = () => `/massage`
 export const getHomeVisitRoute = () => `/homevisit`
 export const getSolariumRoute = () => `/solarium`
 export const getPlasmoliftingRoute = () => `/plasmolifting`
+export const getAnalyzesgRoute = () => `/analyzes`
 export const getContactsRoute = () => `/contacts`
 export const getPolicyRoute = () => `/privacyPolicy`
 export const getLicenseRoute = () => `/license`
