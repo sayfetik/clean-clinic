@@ -1,0 +1,16 @@
+@use '../../../styles/_vars' as *;
+@use '../../../styles/_mixins' as *;
+
+.tabContent {
+  @include tabContent;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.deleteButton {
+  @include deleteButton;
+}

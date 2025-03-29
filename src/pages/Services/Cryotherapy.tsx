@@ -30,7 +30,7 @@ const Cryotherapy = () => {
                   <div>
                     <h3 className={css.aboutTitle}>{data.indicationsTitle}</h3>
                     <ul className={css.bulletList}>
-                      {data.indicationsText.map((bullet, index) => (
+                      {data.indications.map((bullet, index) => (
                         <li key={index}>{bullet}</li>
                       ))}
                     </ul>
@@ -39,7 +39,7 @@ const Cryotherapy = () => {
                   <div>
                     <h3 className={css.aboutTitle}>{data.contraindicationsTitle}</h3>
                     <ul className={css.bulletList}>
-                      {data.contraindicationsText.map((bullet, index) => (
+                      {data.contraindications.map((bullet, index) => (
                         <li key={index}>{bullet}</li>
                       ))}
                     </ul>

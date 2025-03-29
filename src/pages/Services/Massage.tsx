@@ -28,7 +28,7 @@ const Massage = () => {
                 <div>
                   <h3 className={css.aboutTitle}>{data.aboutTitle}</h3>
                   <ul className={css.bulletList}>
-                    {data.aboutText.map((bullet, index) => (
+                    {data.about.map((bullet, index) => (
                       <li key={index}>{bullet}</li>
                     ))}
                   </ul>
@@ -36,7 +36,7 @@ const Massage = () => {
                 <div>
                   <h3 className={css.aboutTitle}>{data.advantagesTitle}</h3>
                   <ul className={css.bulletList}>
-                    {data.advantagesText.map((bullet, index) => (
+                    {data.advantages.map((bullet, index) => (
                       <li key={index}>{bullet}</li>
                     ))}
                   </ul>

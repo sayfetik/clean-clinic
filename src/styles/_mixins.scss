@@ -246,3 +246,32 @@ $breakpoints: (
 @mixin blueShadow {
   box-shadow: 0 3px 15px #cee0ff;
 }
+
+@mixin serviceCard {
+  display: flex;
+    gap: 20px;
+    background-color: $white;
+    border-radius: 15px;
+    border: 1px solid rgb(220, 220, 220);
+    padding: 15px 22px;
+}
+
+@mixin deleteButton {
+  width: fit-content !important;
+  height: 32px !important;
+  padding: 0 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 0.7px solid rgb(255, 0, 0) !important;
+  border-top: none !important;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  margin-right: 10px !important;
+}
+
+@mixin bulletItem {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}

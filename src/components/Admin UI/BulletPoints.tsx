@@ -1,7 +1,7 @@
-import { Textarea, Button } from '@mantine/core'
+import { Textarea, Button, TextInput } from '@mantine/core'
 import { IconPlus, IconX } from '@tabler/icons-react'
 import { useState, useRef } from 'react'
-import css from './index.module.scss'
+import css from './InfusionsContent/index.module.scss'
 
 const BulletPoints: React.FC<{ label: string; bullets: string[] }> = ({ label, bullets: initialBullets }) => {
   const [bullets, setBullets] = useState(initialBullets)
@@ -38,7 +38,7 @@ const BulletPoints: React.FC<{ label: string; bullets: string[] }> = ({ label, b
 
   return (
     <div className={css.bullets}>
-      <h4 className={css.bulletLabel}>{label}</h4>
+      {label !== '' && <TextInput value={label} />}
       {bullets.map((bullet, index) => (
         <div key={index} className={css.bulletItem}>
           <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.squareButton}>
@@ -51,6 +51,8 @@ const BulletPoints: React.FC<{ label: string; bullets: string[] }> = ({ label, b
             ref={(el) => {
               textareaRefs.current[index] = el
             }}
+            minRows={1}
+            autosize
           />
         </div>
       ))}

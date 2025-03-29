@@ -13,8 +13,8 @@ export const mantine = createTheme({
       defaultProps: {
         radius: 'md',
         autosize: true,
-        minRows: 1,
-        maxRows: 15,
+        minRows: 2,
+        maxRows: 25,
       },
       classNames: { label: 'label' },
       styles: {

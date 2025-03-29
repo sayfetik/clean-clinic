@@ -1,0 +1,31 @@
+@use '../../../styles/_vars' as *;
+@use '../../../styles/_mixins' as *;
+
+.tabContent {
+  @include tabContent;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.card {
+  @include serviceCard;
+}
+
+.bulletItem {
+  @include bulletItem;
+}
+
+.deleteButton {
+  @include deleteButton;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}

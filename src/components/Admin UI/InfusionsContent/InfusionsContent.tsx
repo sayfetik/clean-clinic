@@ -4,7 +4,7 @@ import { infusionCatalog, InfusionPage } from '../../../lib/data'
 import { InfusionType } from '../../../lib/types'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
-import BulletPoints from './BulletPoints'
+import BulletPoints from '../BulletPoints'
 import arrow from '/assets/arrow.png'
 import css from './index.module.scss'
 
@@ -51,14 +51,7 @@ const InfusionsContent = () => {
       <TextInput value={data.whatItIsTitle} />
       <Textarea value={data.whatItIsText} />
 
-      <div className='margin'/>
-
-      <TextInput value={data.advantagesTitle} />
-      {data.advantagesText.map((item, index)=>(
-        <TextInput value={item} key={index} />
-      ))}
-
-      <div className='margin'/>
+      <BulletPoints label={data.advantagesTitle} bullets={data.advantagesText} />
 
       {Object.keys(data.infusions).map((filterKey) => (
         <div>
