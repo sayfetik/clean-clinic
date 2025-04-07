@@ -61,3 +61,10 @@
   @include h4;
   width: 90px;
 }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: fit-content;
+}
