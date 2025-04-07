@@ -1,6 +1,5 @@
 import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
-import { IconAt } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useState, useMemo } from 'react'
 import { Helmet } from "react-helmet-async"
@@ -11,9 +10,7 @@ import { contacts, feedbackInputs } from '../../lib/data'
 import css from './index.module.scss'
 
 const Contacts = () => {
-  const icon = <IconAt size={16} />
   const [checked, setChecked] = useState(false)
-  const [alias, setAlias] = useState('')
 
   const [rating, setRating] = useState(0)
   const changeRating = (newRating: number) => {
@@ -103,7 +100,7 @@ const Contacts = () => {
             </div>
 
             <div className={css.row}>
-              <h5>Оцените *</h5>
+              <h4>Оцените *</h4>
               <StarRatings
                 rating={rating}
                 starRatedColor="#0171fc"
@@ -116,8 +113,8 @@ const Contacts = () => {
               />
             </div>
             
-            <div className={css.inputs}>
-              <div>
+            <div>
+              <div className={css.inputs}>
                 <TextInput
                   classNames={{ label: clsx(css.label) }}
                   className={css.input}
@@ -136,20 +133,6 @@ const Contacts = () => {
                   label={feedbackInputs[1].label}
                   placeholder={feedbackInputs[1].placeholder}
                 />
-              </div>
-
-              <div>
-                <TextInput
-                  radius="md"
-                  classNames={{ label: clsx(css.label) }}
-                  leftSectionPointerEvents="none"
-                  className={css.input}
-                  leftSection={icon}
-                  placeholder={feedbackInputs[3].placeholder}
-                  label={feedbackInputs[3].label}
-                  value={alias}
-                  onChange={(event) => setAlias(event.currentTarget.value)}
-                />
                 <TextInput
                   classNames={{ label: clsx(css.label) }}
                   className={css.input}
@@ -163,12 +146,13 @@ const Contacts = () => {
 
               <Textarea
                 classNames={{ label: clsx(css.label) }}
+                className={css.inputFeedback}
                 {...question.getInputProps()}
                 radius="md"
                 placeholder={feedbackInputs[4].placeholder}
                 label={feedbackInputs[4].label}
                 autosize
-                minRows={4}
+                minRows={5}
               />
             </div>
             <CheckPolicy {...{ checked, setChecked }} />

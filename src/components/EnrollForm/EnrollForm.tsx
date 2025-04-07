@@ -44,8 +44,7 @@ const EnrollForm = () => {
     <>
       <div className={css.root}>
         <div className={css.left}>
-          <h2 className="blue">{main.form.title}</h2>
-          <h3 className={css.text}>{main.form.text}</h3>
+          <h3 className="blue">{main.form.title}</h3>
         </div>
         <div className={css.right}>
           <div className={css.inputs}>

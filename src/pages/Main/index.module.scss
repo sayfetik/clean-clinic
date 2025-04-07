@@ -33,20 +33,27 @@
   }
 }
 
-.titleAdditional {
-  font-weight: 400;
-  color: $blue;
-  margin: 15px 0 40px 0;
+.subtitle {
+  margin: 10px 0 35px 0;
 
   @include breakpoint("medium") {
     margin-bottom: 20px;
   }
 }
 
+.titleAdditional {
+  font-weight:300;
+  color: $blue;
+  margin: 5px 0 0px 0;
+
+  @include breakpoint("medium") {
+    margin-bottom: 5px;
+  }
+}
+
 .text {
   text-align: left;
-  color: $black;
-  margin-bottom: 10px;
+  color: $black !important;
 
   @include breakpoint("large") {
     line-height: 22px;
@@ -78,9 +85,10 @@
   display: flex;
   align-items: stretch;
   gap: 25px;
-  margin-top: 10px;
+  margin-top: 20px;
 
   @include breakpoint("medium") {
+    margin-top: 15px;
     flex-direction: column;
     gap: 20px;
   }
@@ -108,6 +116,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .infusionsDescription {
@@ -115,4 +124,15 @@
   text-align: center;
   letter-spacing: 0.5px;
   line-height: 23px;
+}
+
+.services {
+  margin: 25px 0;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.faq {
+  margin: 50px 0 10px 0;
 }

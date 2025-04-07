@@ -55,18 +55,34 @@
 }
 
 .inputs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
+
+  @include breakpoint("medium") {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .label {
   margin-bottom: 7px;
 }
 
-.input {
+.input, .inputFeedback {
   width: 100%;
+  margin-bottom: 10px;
+
+  @include breakpoint("medium") {
+    margin-bottom: 0px;
+  }
+}
+
+.inputFeedback {
+  @include breakpoint("medium") {
+    margin-top: 10px;
+  }
 }
 
 .row {

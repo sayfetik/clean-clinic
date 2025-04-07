@@ -9,3 +9,4 @@ export type FormInputType = { label: string; placeholder: string }
 export type InfusionsType = { [key: string]: InfusionType[] }
 export type ChosenOption = { chosenId: number; setChosenId: React.Dispatch<React.SetStateAction<number>> }
 export type SpecialistType = { img: string; name: string; profession: string; experience: string }
+export type FAQItem = { question: string; answer: string | null }

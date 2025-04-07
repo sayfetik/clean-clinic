@@ -1,8 +1,16 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
 
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Центрирование содержимого
+  align-items: center;
+}
+
 .patientImage {
   @include shadow;
+  border-radius: 20px;
 
   @include breakpoint('medium') {
     display: none;
@@ -21,7 +29,6 @@
 .text {
   color: $grey;
   font-weight: 400;
-  line-height: 33px;
 
   @include breakpoint('large') {
     line-height: 25px;
@@ -37,7 +44,7 @@
 .aboutClinicContainer {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 25px;
 
   @include breakpoint('large') {
     gap: 30px;
@@ -62,36 +69,30 @@
   }
 }
 
-.math {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+.additionalText {
+  width: 60%;
+  font-size: 20px;
+  text-align: center;
   margin: 40px 0 30px 0;
 
-  @include breakpoint('medium') {
+  @media (width <= 1350px) {
+    margin: 20px 0 30px 0;
+    font-size: 18px;
+  }
+
+  @media (width <= 1200px) {
     margin: 10px 0 30px 0;
   }
 
-  @media (width <= 548px) {
-    flex-direction: column;
-    gap: 0;
+  @include breakpoint('large') {
+    width: 90%;
   }
-}
-
-.expression {
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  gap: 8px;
 }
 
 .advantages {
   position: relative;
-  display: flex;
-  align-items: stretch;
-  min-height: 100%;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
 
   @include breakpoint('large') {
@@ -104,23 +105,5 @@
 
   @media (width <= 650px) {
     flex-wrap: wrap;
-  }
-}
-
-.line {
-  position: absolute;
-  z-index: 0;
-  height: 30px;
-  left: 0;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: $white;
-  border: 1px solid $blue;
-  border-left: none;
-  border-right: none;
-
-  @include breakpoint('medium') {
-    display: none;
   }
 }
