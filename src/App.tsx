@@ -1,6 +1,8 @@
 import { MantineProvider } from '@mantine/core'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
-import { Header, Footer, CookieModal, Telegram, HeaderAdmin } from './components'
+import { useHotkeys } from '@mantine/hooks';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom'
+import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin } from './components'
 import ScrollResetProvider from './lib/ScrollResetProvider'
 import TextFormatProvider from './lib/TextFormatProvider'
 import * as routes from './lib/routes'
@@ -31,10 +33,32 @@ const theme = themes.mantine
 
 const Layout = () => {
   const location = useLocation()
+  const [modalOpened, setModalOpened] = useState(false);
+  const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
+
+  useHotkeys([
+    [
+      'ctrl+shift+a',
+      (e) => {
+        e.preventDefault?.();
+        setModalOpened(true);
+      },
+    ],
+  ]);
+
+  const handleSuccess = () => {
+    
+    setAuth(true);
+    setModalOpened(false);
+    navigate('/admin');
+  };
+
   return (
     <>
       {location.pathname !== routes.getAdminRoute() ? <Header /> : <HeaderAdmin />}
       <CookieModal />
+      <ModalAdmin opened={modalOpened} onClose={() => setModalOpened(false)} onSuccess={handleSuccess} />
       {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>
@@ -52,7 +76,7 @@ const Layout = () => {
           <Route path={routes.getLicenseRoute()} element={<License />} />
           <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />
           <Route path={routes.getDocumentsRoute()} element={<Documents />} />
-          <Route path={routes.getAdminRoute()} element={<Admin />} />
+          <Route path={routes.getAdminRoute()}  element={auth ? <Admin  /> : <Navigate to={routes.getMainRoute()} />} />
           <Route path={routes.getSuccessRoute()} element={<Success />} />
           <Route path={routes.getErrorRoute()} element={<Error />} />
         </Routes>

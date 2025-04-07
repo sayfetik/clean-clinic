@@ -100,11 +100,11 @@ $breakpoints: (
 }
 
 @mixin h3 {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 550;
 
   @include breakpoint("large") {
-    font-size: 19px;
+    font-size: 18px;
   }
 
   @include breakpoint("medium") {

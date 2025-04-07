@@ -44,34 +44,34 @@
   transform 0.4s ease,
   opacity 0.4s ease;
   cursor: pointer;
-  max-height: 430px;
+  max-height: 420px;
   
   @include breakpoint("large") {
-    max-height: 430px;
+    max-height: 420px;
   }
 
   @media (width <= 1482px) {
-    max-height: 380px;
+    max-height: 370px;
   }
 
   @media (width <= 1070px) {
-    max-height: 330px;
+    max-height: 320px;
   }
 
   @media (width <= 930px) {
-    max-height: 300px;
+    max-height: 290px;
   }
 
   @media (width <= 840px) {
-    max-height: 270px;
+    max-height: 260px;
   }
 
   @media (width <= 425px) {
-    max-height: 230px;
+    max-height: 220px;
   }
 
   @media (width <= 380px) {
-    max-height: 200px;
+    max-height: 190px;
   }
 }
 

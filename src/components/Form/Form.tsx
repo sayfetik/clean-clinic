@@ -46,7 +46,7 @@ const Form = () => {
     <div className={css.form}>
       <div>
         <h2 className={css.title}>Онлайн-запись</h2>
-        <p className={css.description}>Перезвоним и ответим на все вопросы</p>
+        <p className={css.description}>Запишись сегодня и уже завтра почувствуешь себя лучше!</p>
       </div>
       
       <div className={css.inputs}>

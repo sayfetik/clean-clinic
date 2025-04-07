@@ -4,8 +4,8 @@
 .root {
   background-color: $normalBlue;
   display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  gap: 40px;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 50px;
   margin: 50px 0;
   border-radius: 20px;
   padding: 30px 55px;
@@ -45,6 +45,21 @@
 
   @media (width <= 1111px) {
     gap: 5px;
+  }
+
+  h3 {
+    font-size: 25px;
+    font-weight: 550;
+    line-height: 35px;
+
+  @include breakpoint("large") {
+    font-size: 22px;
+  }
+
+  @include breakpoint("medium") {
+    font-size: 20px;
+    line-height: 25px;
+  }
   }
 }
 

@@ -20,6 +20,7 @@
     "@mantine/hooks": "^7.17.0",
     "@pbe/react-yandex-maps": "^1.2.5",
     "@react-spring/web": "^9.7.5",
+    "@splidejs/react-splide": "^0.7.12",
     "@tabler/icons-react": "^3.30.0",
     "@types/react-slick": "^0.23.13",
     "clsx": "^2.1.1",

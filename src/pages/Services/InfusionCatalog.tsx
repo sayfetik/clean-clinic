@@ -27,18 +27,22 @@ const InfusionCatalog = () => {
               <div className={css.aboutText}>
                 <div>
                   <h2 className={css.aboutTitle}>{data.whatItIsTitle}</h2>
-                  <p className="black">{data.whatItIsText}</p>
-                </div>
-                <div>
-                  <h3 className={css.aboutTitle}>{data.advantagesTitle}</h3>
-                  <ul className={css.bulletList}>
-                    {data.advantagesText.map((bullet, index) => (
-                      <li key={index}>{bullet}</li>
-                    ))}
-                  </ul>
+                  <p className={css.paragraph}>{data.whatItIsText1}</p>
+                  <p className={css.paragraph}>{data.whatItIsText2}</p>
                 </div>
               </div>
               <img className={css.image} src={data.img} />
+            </div>
+            <div>
+              <div className={css.advantages}>
+                <h2>{data.advantagesTitle}</h2>
+                <p className='black'>{data.advantagesText}</p>
+                <ul className={css.bulletList}>
+                  {data.advantages.map((bullet, index) => (
+                    <li key={index}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </FadeAnimation>
 
@@ -54,7 +58,7 @@ const InfusionCatalog = () => {
             <div className={css.howToChoose}>
               <h2 className={css.title}>{data.howToChooseCard.title}</h2>
               <div className={css.text}>
-                <h4 className={css.answer}>{data.howToChooseCard.additionalText}</h4>
+                <h3 className={css.answer}>{data.howToChooseCard.additionalText}</h3>
                 <p className="black">{data.howToChooseCard.text}</p>
               </div>
             </div>
