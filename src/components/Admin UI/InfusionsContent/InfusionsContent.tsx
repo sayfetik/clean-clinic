@@ -9,7 +9,7 @@ import arrow from '/assets/arrow.png'
 import css from './index.module.scss'
 
 const InfusionSection: React.FC<InfusionType> = (infusion) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const fileChange = () => {}
 
@@ -19,11 +19,11 @@ const InfusionSection: React.FC<InfusionType> = (infusion) => {
         <div className="row">
           <h4>{infusion.name}</h4>
         </div>
-        <img src={arrow} width={20} className={`${css.arrow} ${open ? css.open : ""}`}/>
+        <img src={arrow} width={20} className={`${css.arrow} ${open ? css.open : ''}`} />
       </div>
-      <div className={`${css.content} ${open ? css.show : ""}`}>
+      <div className={`${css.content} ${open ? css.show : ''}`}>
         <div className={css.upperSection}>
-          <MediaEditor initialSrc={infusion.img} onFileChange={fileChange}/>
+          <MediaEditor initialSrc={infusion.img} onFileChange={fileChange} />
           <div className={css.mainInfo}>
             <TextInput label="Название:" value={infusion.name} />
             <TextInput label="Стоимость:" value={infusion.cost} />
@@ -36,8 +36,8 @@ const InfusionSection: React.FC<InfusionType> = (infusion) => {
         <BulletPoints label="Противопоказания:" bullets={InfusionPage.contraindications} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const InfusionsContent = () => {
   const applyChanges = () => {}
@@ -46,17 +46,18 @@ const InfusionsContent = () => {
     <div className={css.tabContent}>
       <TextInput value={data.title} />
 
-      <div className='margin'/>
+      <div className="margin" />
 
       <TextInput value={data.whatItIsTitle} />
-      <Textarea value={data.whatItIsText} />
+      <Textarea value={data.whatItIsText1} />
+      <Textarea value={data.whatItIsText2} />
 
-      <BulletPoints label={data.advantagesTitle} bullets={data.advantagesText} />
+      <BulletPoints label={data.advantagesTitle} bullets={data.advantages} />
 
       {Object.keys(data.infusions).map((filterKey) => (
         <div>
-          <div className='row'>
-            <h3 className='blue'>Группа:</h3>
+          <div className="row">
+            <h3 className="blue">Группа:</h3>
             <TextInput value={filterKey} />
           </div>
           {data.infusions[filterKey].map((infusion) => (

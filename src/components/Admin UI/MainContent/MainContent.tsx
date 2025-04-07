@@ -56,13 +56,13 @@ const MainContent = () => {
       <div className="margin"></div>
 
       <TextInput value={main.form.title} />
-      <TextInput value={main.form.text} />
 
       <div className="margin"></div>
 
       <TextInput value={data.whyInfusions.title} />
       <TextInput value={data.whyInfusions.answer} />
-      <Textarea value={data.whyInfusions.text} />
+      <Textarea value={data.whyInfusions.text1} />
+      <Textarea value={data.whyInfusions.text2} />
 
       <div className="row">
         {data.whiteCards.map((card, index) => (
