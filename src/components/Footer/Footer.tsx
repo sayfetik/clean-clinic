@@ -8,51 +8,56 @@ import Form from '../Form/Form'
 import css from './index.module.scss'
 
 const Footer = () => {
-  const [isEnrollForm, setIsEnrollForm] = useState(false);
+  const [isEnrollForm, setIsEnrollForm] = useState(false)
 
   useEffect(() => {
     const updateSlidesToShow = () => {
       if (window.innerWidth <= 1024) {
-        setIsEnrollForm(true);
+        setIsEnrollForm(true)
       } else {
-        setIsEnrollForm(false);
+        setIsEnrollForm(false)
       }
-    };
+    }
 
-    updateSlidesToShow();
-    window.addEventListener('resize', updateSlidesToShow);
-    return () => window.removeEventListener('resize', updateSlidesToShow);
-  }, []);
+    updateSlidesToShow()
+    window.addEventListener('resize', updateSlidesToShow)
+    return () => window.removeEventListener('resize', updateSlidesToShow)
+  }, [])
 
   return (
     <div className={css.footer}>
-
       <UpListAnimation>
-      <div className={css.root}>
-        <div className={css.contacts}>
-          <div className={css.mainSection}>
-            <div>
-              <h2>Контакты</h2>
-              <h3 className={css.alias}>@cleanclinic</h3>
+        <div className={css.root}>
+          <div className={css.contacts}>
+            <div className={css.mainSection}>
+              <div>
+                <h2>Контакты</h2>
+                <h3 className={css.alias}>@clean_clinic_orb</h3>
+              </div>
+              {contacts.contactsInfo.map((section, index) => (
+                <ContactItem key={index} info={section} />
+              ))}
             </div>
-            {contacts.contactsInfo.map((section, index) => (
-              <ContactItem key={index} info={section} />
-            ))}
+            <SocialMediaIcons iconWidth={35} containerWidth="80%" />
           </div>
-          <SocialMediaIcons iconWidth={35} containerWidth="80%" />
-        </div>
 
-        <div className={css.maps}>
-          <YandexMap />
-        </div>
+          <div className={css.maps}>
+            <YandexMap />
+          </div>
 
-        {!isEnrollForm && <div className={css.form}>
-          <Form />
-        </div>}
-      </div>
+          {!isEnrollForm && (
+            <div className={css.form}>
+              <Form />
+            </div>
+          )}
+        </div>
       </UpListAnimation>
 
-      {isEnrollForm && <div className={css.page}><EnrollForm /></div>}
+      {isEnrollForm && (
+        <div className={css.page}>
+          <EnrollForm />
+        </div>
+      )}
 
       <div className={css.bottom}>
         <div className={css.menuSection}>
