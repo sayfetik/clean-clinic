@@ -2,7 +2,7 @@ import { MantineProvider } from '@mantine/core'
 import { useHotkeys } from '@mantine/hooks'
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom'
-import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin } from './components'
+import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin, WelcomeModal } from './components'
 import { useAuth } from './context/AuthContext'
 import { AuthProvider } from './context/AuthContext'
 import ScrollResetProvider from './lib/ScrollResetProvider'
@@ -51,6 +51,7 @@ const Layout = () => {
       {location.pathname !== routes.getAdminRoute() ? <Header /> : <HeaderAdmin />}
       <CookieModal />
       <ModalAdmin opened={modalOpened} onClose={() => setModalOpened(false)} onSuccess={handleSuccess} />
+      <WelcomeModal />
       {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>
