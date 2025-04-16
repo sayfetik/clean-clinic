@@ -7,14 +7,14 @@ const CookieModal = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisited')
-    if (!hasVisited) {
+    const isCookie = localStorage.getItem('isCookie')
+    if (!isCookie) {
       setIsVisible(true)
-      localStorage.setItem('hasVisited', 'true')
     }
   }, [])
 
   const closeModal = () => {
+    localStorage.setItem('isCookie', 'true')
     setIsVisible(false)
   }
 

@@ -1,0 +1,93 @@
+.text {
+  margin-top: 20px;
+}
+
+.floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 1000;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition:
+    width 0.5s ease,
+    box-shadow 0.5s ease;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    width: 330px;
+  }
+}
+
+.preview {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  z-index: 1001;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .fullscreenBtn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 14px;
+  }
+}
+
+.floating,
+.preview {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.5s,
+    box-shadow 0.5s;
+}
+
+.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.animating {
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.5s,
+    box-shadow 0.5s;
+}
+
+.toPreview {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.toFloating {
+  opacity: 0;
+  transform: scale(0.95);
+}
