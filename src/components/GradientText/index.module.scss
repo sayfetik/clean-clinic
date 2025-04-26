@@ -7,7 +7,7 @@
   @include page;
   padding-top: 160px;
   margin-bottom: 70px;
-  background: linear-gradient(to bottom, #ccdfff 0%, #fbfbfb 100%);
+  background: linear-gradient(to bottom, $blue 0%, #fbfbfb 100%);
 
   @include breakpoint("xlarge") {
     padding-top: 160px;

@@ -1,5 +1,6 @@
 // import infusionsImage from '/assets/infusions.svg'
 import { useEffect } from 'react'
+import { Suspense, lazy } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
 import UpList from '../../animations/UpList'
@@ -9,17 +10,18 @@ import {
   WhiteCard,
   InfusionInstructions,
   Infusions,
-  Feedback,
   AboutSection,
   EnrollForm,
   Problems,
-  ServicesSlider,
-  FAQ,
 } from '../../components'
 import { main } from '../../lib/data'
 import css from './index.module.scss'
 
 const Main = () => {
+  const FAQ = lazy(() => import('../../components/FAQ/FAQ'))
+  const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
+  const ServicesSlider = lazy(() => import('../../components/ServicesSlider/ServicesSlider'))
+
   useEffect(() => {
     // const main = получить с бека страницу
     // получить картинку infusionsImage
@@ -87,17 +89,23 @@ const Main = () => {
 
           <h2 className="blue">{main.serviceTitle}</h2>
           <div className={css.services}>
-            <ServicesSlider />
+            <Suspense fallback={<div>Загрузка...</div>}>
+              <ServicesSlider />
+            </Suspense>
           </div>
 
           <div className={css.faq}>
             <h2>{main.faqTitle}</h2>
-            <FAQ />
+            <Suspense fallback={<div>Загрузка...</div>}>
+              <FAQ />
+            </Suspense>
           </div>
         </div>
 
         <div className={css.water}>
-          <Feedback />
+          <Suspense fallback={null}>
+            <Feedback />
+          </Suspense>
         </div>
       </div>
     </>
