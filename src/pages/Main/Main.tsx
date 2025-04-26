@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
 import UpList from '../../animations/UpList'
+import forBanner from '/assets/forBanner.png'
 import {
   Button,
   WhiteCard,
@@ -12,7 +13,6 @@ import {
   AboutSection,
   EnrollForm,
   Problems,
-  DripSlider,
   ServicesSlider,
   FAQ,
 } from '../../components'
@@ -33,20 +33,16 @@ const Main = () => {
       </Helmet>
 
       <div className={css.mainPage}>
-        <div className={css.water}>
+        <div className={css.banner}>
           <div className={css.mainSlide}>
             <Animation>
-              <h1 className="blue">{main.title}</h1>
-              <div className={css.subtitle}>
-                {main.subtitle.map((item, index) => (
-                  <h3 key={index} className={css.titleAdditional}>
-                    {item}
-                  </h3>
-                ))}
-              </div>
-              <Button text='Записаться на прием' />
+              <h1 className={css.titleBlue}>Клиника</h1>
+              <h1 className={css.titleBlue}>инфузионной</h1>
+              <h1 className={css.titleBlue}>терапии</h1>
+              <h1 className={css.titleWhite}>«Clean Clinic»</h1>
+              <h2 className={css.subtitle}>в Оренбурге</h2>
             </Animation>
-            <DripSlider />
+            <img src={forBanner} alt="" className={css.bannerImage} />
           </div>
         </div>
 
@@ -89,7 +85,7 @@ const Main = () => {
             <Button text="Записаться к терапевту" />
           </div>
 
-          <h2 className='blue'>{main.serviceTitle}</h2>
+          <h2 className="blue">{main.serviceTitle}</h2>
           <div className={css.services}>
             <ServicesSlider />
           </div>
