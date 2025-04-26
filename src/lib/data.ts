@@ -14,7 +14,7 @@ export const mainImage = '/assets/mainInfusions.png'
 export const patientImage = '/assets/patient.png'
 
 export const main = {
-  title: 'Клиника инфузионно-капельной терапии Clean Clinic В Оренбурге',
+  title: 'Клиника инфузионной терапии',
   subtitle: [
     'Инфузионная терапия для здоровья и красоты.',
     'Детокс, капельницы красоты, восстановление после стресса или болезни. Выезд на дом.',
