@@ -6,7 +6,7 @@
   margin-top: 40px;
 
   @include breakpoint('large') {
-    margin-top: 0px;
+    margin-top: 0;
   }
 }
 
@@ -30,7 +30,7 @@
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, $defaultBackgroundColor 100%);
   }
 
-  background-image: url('/assets/banner.png');
+  background-image: url('/assets/banner.jpg');
 
   @include breakpoint('medium') {
     background-image: none;
@@ -93,7 +93,6 @@
   }
 }
 
-
 .subtitle {
   color: $blue;
   background-color: $white;
@@ -111,17 +110,17 @@
 .bannerImage {
   height: 100%;
   mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 
   @include breakpoint('medium') {
-    width: 50%;;
+    width: 50%;
   }
 }
 
 .titleAdditional {
   font-weight: 300;
   color: $blue;
-  margin: 5px 0 0px 0;
+  margin: 5px 0 0 0;
 
   @include breakpoint('medium') {
     margin-bottom: 5px;
