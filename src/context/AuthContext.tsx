@@ -4,18 +4,21 @@ type AuthContextType = {
   isAuthenticated: boolean
   login: () => void
   logout: () => void
+  loading: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const saved = localStorage.getItem('isAuthenticated')
     if (saved === 'true') {
       setIsAuthenticated(true)
     }
+    setLoading(false)
   }, [])
 
   const login = () => {
@@ -28,7 +31,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('isAuthenticated')
   }
 
-  return <AuthContext.Provider value={{ isAuthenticated, login, logout }}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, loading }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export const useAuth = () => {

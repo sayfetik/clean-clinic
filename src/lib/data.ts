@@ -10,7 +10,6 @@ export const mainInfusions = [
   'Капельница',
 ]
 
-export const mainImage = '/assets/mainInfusions.png'
 export const patientImage = '/assets/patient.png'
 
 export const main = {
@@ -1044,14 +1043,4 @@ export const InfusionPage = {
     'Склонность к отёкам',
     'Онкологические заболевания',
   ],
-}
-
-export const ErrorPage = {
-  title: 'Ошибка',
-  text: 'Что-то пошло не так...',
-}
-
-export const SuccessPage = {
-  title: 'Ваше обращение успешно создано!',
-  text: 'В ближайшее время с Вами свяжется наш специалист',
 }

@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation } from '../../animations'
+import { getPlasmo } from '../../api/PlasmoAPI'
 import { GradientText, Infusions } from '../../components'
-import { plasmolifting } from '../../lib/data'
+import { emptyPlasmolifting } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Plasmolifting = () => {
-  const data = plasmolifting
+  const [data, setData] = useState(emptyPlasmolifting)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getPlasmo()
+      setData(response)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

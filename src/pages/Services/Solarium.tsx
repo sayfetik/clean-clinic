@@ -1,11 +1,21 @@
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation } from '../../animations'
+import * as solarium from '../../api/SolariumAPI'
 import { GradientText, ServiceCards } from '../../components'
-import { solarium } from '../../lib/data'
+import { emptySolarium } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Solarium = () => {
-  const data = solarium
+  const [data, setData] = useState(emptySolarium)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await solarium.getSolarium()
+      setData(response)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation, Card } from '../../animations'
+import * as cryo from '../../api/CryotherapyAPI'
 import { GradientText, ServiceCards } from '../../components'
-import { cryotherapy } from '../../lib/data'
+import { emptyCryotherapy } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Cryotherapy = () => {
-  const data = cryotherapy
+  const [data, setData] = useState(emptyCryotherapy)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await cryo.getCryo()
+      setData(response)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

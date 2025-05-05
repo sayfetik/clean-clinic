@@ -30,10 +30,10 @@ const InfusionSection: React.FC<InfusionType> = (infusion) => {
             <Textarea label="Краткое описание:" value={InfusionPage.smallDescription} />
           </div>
         </div>
-        <BulletPoints label="Описание:" bullets={InfusionPage.description} />
+        {/* <BulletPoints label="Описание:" bullets={InfusionPage.description} />
         <BulletPoints label="Результаты:" bullets={InfusionPage.results} />
         <BulletPoints label="Показания:" bullets={InfusionPage.indications} />
-        <BulletPoints label="Противопоказания:" bullets={InfusionPage.contraindications} />
+        <BulletPoints label="Противопоказания:" bullets={InfusionPage.contraindications} /> */}
       </div>
     </div>
   )
@@ -52,10 +52,10 @@ const InfusionsContent = () => {
       <Textarea value={data.whatItIsText1} />
       <Textarea value={data.whatItIsText2} />
 
-      <BulletPoints label={data.advantagesTitle} bullets={data.advantages} />
+      {/* <BulletPoints label={data.advantagesTitle} bullets={data.advantages} /> */}
 
       {Object.keys(data.infusions).map((filterKey) => (
-        <div>
+        <div key={filterKey}>
           <div className="row">
             <h3 className="blue">Группа:</h3>
             <TextInput value={filterKey} />

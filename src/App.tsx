@@ -36,7 +36,7 @@ const theme = themes.mantine
 const Layout = () => {
   const location = useLocation()
   const [modalOpened, setModalOpened] = useState(false)
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, loading } = useAuth()
   const navigate = useNavigate()
 
   useHotkeys([['alt+w', () => setModalOpened(true)]])
@@ -45,6 +45,8 @@ const Layout = () => {
     setModalOpened(false)
     navigate('/admin')
   }
+
+  if (loading) {return null}
 
   return (
     <>

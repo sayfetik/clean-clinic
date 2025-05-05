@@ -1,86 +1,102 @@
 import { Textarea, Button, TextInput } from '@mantine/core'
 import { IconPlus } from '@tabler/icons-react'
-import { useState, useRef } from 'react'
-import { analyzes } from '../../../lib/data'
+import { useState, useRef, useEffect } from 'react'
+import * as analysesApi from '../../../api/AnalysesAPI'
+import { emptyAnalyzes } from '../../../lib/empty'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
 import BulletPoints from '../BulletPoints'
 import css from '../CryoContent/index.module.scss'
 
-type AnalyzesType = { id: number; name: string; bullets: string[]; cost: number; img: string }
+type ServiceType = { id: number; name: string; bullets: string[]; cost: number; img: string }
 
-const Items: React.FC<{ items: AnalyzesType[] }> = ({ items: initialBullets }) => {
-  const [items, setBullets] = useState(initialBullets)
+const Items: React.FC<{ items: ServiceType[]; onChange: (items: ServiceType[]) => void }> = ({
+  items: initialItems,
+  onChange,
+}) => {
+  const [items, setItems] = useState<ServiceType[]>(initialItems)
   const textareaRefs = useRef<(HTMLTextAreaElement | null)[]>([])
+
+  useEffect(() => {
+    onChange(items)
+  }, [items])
 
   const fileChange = () => {}
 
   const handleAdd = () => {
-    setBullets((prevBullets) => {
-      const newBullet: AnalyzesType = {
-        id: prevBullets.length > 0 ? prevBullets[prevBullets.length - 1].id + 1 : 1,
+    setItems((prev) => {
+      const newItem: ServiceType = {
+        id: prev.length > 0 ? prev[prev.length - 1].id + 1 : 1,
         name: '',
         cost: 0,
         bullets: [''],
         img: '',
       }
-      const newBullets = [...prevBullets, newBullet]
+      const newItems = [...prev, newItem]
       setTimeout(() => {
-        const lastIndex = newBullets.length - 1
+        const lastIndex = newItems.length - 1
         if (textareaRefs.current[lastIndex]) {
           textareaRefs.current[lastIndex]?.focus()
         }
       }, 0)
-      return newBullets
+      return newItems
     })
   }
 
   const handleRemove = (index: number) => {
-    setBullets(items.filter((_, i) => i !== index))
+    setItems(items.filter((_, i) => i !== index))
   }
 
   const handleChangeName = (index: number, value: string) => {
-    const newBullets = [...items]
-    newBullets[index].name = value
-    setBullets(newBullets)
+    const newItems = [...items]
+    newItems[index].name = value
+    setItems(newItems)
   }
 
   const handleChangeCost = (index: number, value: string) => {
-    const newBullets = [...items]
-    newBullets[index].cost = Number(value)
-    setBullets(newBullets)
+    const newItems = [...items]
+    newItems[index].cost = value === '' ? 0 : Number(value)
+    setItems(newItems)
   }
 
   return (
     <div>
       <div className={css.services}>
-      {items.map((item, index) => (
-        <div key={index} className={css.bulletItem}>
-          <div className={css.card}>
-            <div className={css.content}>
-            <MediaEditor initialSrc={item.img} onFileChange={fileChange} />
-              <TextInput
-                label="Название:"
-                autoFocus
-                value={item.name}
-                onChange={(event) => handleChangeName(index, event.currentTarget.value)}
-              />
-              <div>
-                <h4>Описание:</h4>
-                <BulletPoints label="" bullets={item.bullets} />
+        {items.map((item, index) => (
+          <div key={index} className={css.bulletItem}>
+            <div className={css.card}>
+              <div className={css.content}>
+                <MediaEditor initialSrc={item.img} onFileChange={fileChange} />
+                <TextInput
+                  label="Название:"
+                  autoFocus
+                  value={item.name}
+                  onChange={(event) => handleChangeName(index, event.currentTarget.value)}
+                />
+                <div>
+                  <h4>Описание:</h4>
+                  <BulletPoints
+                    label=""
+                    bullets={item.bullets}
+                    onChange={(bullets) => {
+                      const newItems = [...items]
+                      newItems[index].bullets = bullets
+                      setItems(newItems)
+                    }}
+                  />
+                </div>
+                <TextInput
+                  label="Стоимость:"
+                  value={item.cost}
+                  onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
+                />
               </div>
-              <TextInput
-                label="Стоимость:"
-                value={item.cost}
-                onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
-              />
             </div>
+            <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.deleteButton}>
+              Удалить
+            </Button>
           </div>
-          <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.deleteButton}>
-            Удалить
-          </Button>
-        </div>
-      ))}
+        ))}
       </div>
       <Button onClick={handleAdd} variant="light">
         <IconPlus size={16} />
@@ -90,7 +106,16 @@ const Items: React.FC<{ items: AnalyzesType[] }> = ({ items: initialBullets }) =
 }
 
 const PlasmoliftingContent = () => {
-  let data = analyzes
+  const [data, setData] = useState(emptyAnalyzes)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await analysesApi.getAnalyses()
+      setData(response)
+    }
+    fetchData()
+  }, [])
+
   const fileChange = () => {}
   const applyChanges = () => {}
 
@@ -108,10 +133,10 @@ const PlasmoliftingContent = () => {
 
       <TextInput value={data.procedureTitle} />
       <Textarea value={data.procedureText} />
-      <div className='margin' />
+      <div className="margin" />
 
       <TextInput value={data.servicesTitle} />
-      <Items items={data.services} />
+      <Items items={data.services} onChange={(services) => setData((prev) => ({ ...prev, services }))} />
 
       <ApplyButton onClick={applyChanges} />
     </div>
