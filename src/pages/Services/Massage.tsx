@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation } from '../../animations'
+import * as massageApi from '../../api/MassageAPI'
 import { GradientText, ServiceCards } from '../../components'
-import { massage } from '../../lib/data'
+import { emptyMassage } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Massage = () => {
-  const data = massage
+  const [data, setData] = useState(emptyMassage)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await massageApi.getMassage()
+      setData(response)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

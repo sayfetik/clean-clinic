@@ -1,15 +1,27 @@
 import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
 import clsx from 'clsx'
-import { useState, useMemo } from 'react'
-import { Helmet } from "react-helmet-async"
+import { useState, useMemo, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import StarRatings from 'react-star-ratings'
 import { Animation, FadeAnimation } from '../../animations'
+import * as contactsApi from '../../api/ContactsAPI'
 import { ContactItem, SocialMediaIcons, CheckPolicy, Button } from '../../components'
-import { contacts, feedbackInputs } from '../../lib/data'
+import { feedbackInputs } from '../../lib/data'
+import { emptyContacts } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Contacts = () => {
+  const [contacts, setContacts] = useState(emptyContacts)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await contactsApi.getContacts()
+      setContacts(data)
+    }
+    fetchData()
+  }, [])
+
   const [checked, setChecked] = useState(false)
 
   const [rating, setRating] = useState(0)
@@ -56,19 +68,12 @@ const Contacts = () => {
     validate: (value) => (value.trim().length < 2 && value.trim().length !== 0 ? 'Слишком короткое значение' : null),
   })
 
-  const nameValue = name.getValue();
-  const surnameValue = surname.getValue();
+  const nameValue = name.getValue()
+  const surnameValue = surname.getValue()
 
   const disabled = useMemo(() => {
-    return (
-      rating === 0 ||
-      !checked ||
-      !!name.error ||
-      !!surname.error ||
-      !nameValue.trim() ||
-      !surnameValue.trim()
-    );
-  }, [rating, checked, name.error, surname.error, nameValue, surnameValue]);
+    return rating === 0 || !checked || !!name.error || !!surname.error || !nameValue.trim() || !surnameValue.trim()
+  }, [rating, checked, name.error, surname.error, nameValue, surnameValue])
 
   return (
     <>
@@ -87,7 +92,7 @@ const Contacts = () => {
               {contacts.contactsInfo.map((section, index) => (
                 <ContactItem key={index} info={section} />
               ))}
-              <SocialMediaIcons iconWidth={35} containerWidth="100%"/>
+              <SocialMediaIcons iconWidth={35} containerWidth="100%" />
             </div>
           </div>
         </FadeAnimation>
@@ -112,7 +117,7 @@ const Contacts = () => {
                 starSpacing="3px"
               />
             </div>
-            
+
             <div>
               <div className={css.inputs}>
                 <TextInput
@@ -157,7 +162,7 @@ const Contacts = () => {
             </div>
             <CheckPolicy {...{ checked, setChecked }} />
             <div className={css.margin}></div>
-            <Button size='small' text='Отправить' isDisabled={disabled} />
+            <Button size="small" text="Отправить" isDisabled={disabled} />
           </div>
         </Animation>
       </div>

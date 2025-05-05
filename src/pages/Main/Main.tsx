@@ -1,10 +1,11 @@
 // import infusionsImage from '/assets/infusions.svg'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Suspense, lazy } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
 import UpList from '../../animations/UpList'
 import forBanner from '/assets/forBanner.png'
+import * as mainPageApi from '../../api/MainAPI'
 import {
   Button,
   WhiteCard,
@@ -14,7 +15,7 @@ import {
   EnrollForm,
   Problems,
 } from '../../components'
-import { main } from '../../lib/data'
+import { emptyMainPage } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Main = () => {
@@ -22,10 +23,18 @@ const Main = () => {
   const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
   const ServicesSlider = lazy(() => import('../../components/ServicesSlider/ServicesSlider'))
 
+  const [main, setMain] = useState(emptyMainPage)
+
   useEffect(() => {
-    // const main = получить с бека страницу
-    // получить картинку infusionsImage
+    const fetchMainPage = async () => {
+      const data = await mainPageApi.getMainPage()
+      setMain(data)
+      // console.log(main);
+    }
+
+    fetchMainPage()
   }, [])
+
   return (
     <>
       <Helmet>
@@ -49,7 +58,7 @@ const Main = () => {
         </div>
 
         <div className={css.page}>
-          <AboutSection />
+          <AboutSection weWork={main.weWork} additionalText={main.additionalText} advantages={main.advantages} />
 
           <UpAnimation>
             <EnrollForm />

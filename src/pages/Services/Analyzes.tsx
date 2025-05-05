@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation } from '../../animations'
+import * as analysesApi from '../../api/AnalysesAPI'
 import { GradientText, ServiceCards } from '../../components'
-import { analyzes } from '../../lib/data'
+import { emptyAnalyzes } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Analyzes = () => {
-  const data = analyzes
+  const [data, setData] = useState(emptyAnalyzes)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await analysesApi.getAnalyses()
+      setData(response)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

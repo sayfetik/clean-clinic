@@ -1,10 +1,24 @@
 import patientImage from '/assets/patient.png'
 import { Advantage } from '../../components'
-import { main } from '../../lib/data'
 import css from './index.module.scss'
 import { FadeAnimation } from '../../animations'
 
-const AboutSection = () => (
+type weWorkType = {
+  title: string
+  text: string
+  numSpecialists: number
+  numPatients: number
+}
+
+type AdvantagesType = { title: string; text: string }[]
+
+type AboutSectionProps = {
+  weWork: weWorkType
+  additionalText: string
+  advantages: AdvantagesType
+}
+
+const AboutSection: React.FC<AboutSectionProps> = ({ weWork, additionalText, advantages }) => (
   <div className={css.root}>
     <div className={css.aboutClinicContainer}>
       <FadeAnimation>
@@ -13,16 +27,16 @@ const AboutSection = () => (
       <div className={css.textAboutClinic}>
         <FadeAnimation>
           <h3 className={css.cleanClinic}>Clean Clinic</h3>
-          <h2 className={css.weWork}>{main.weWork.title}</h2>
-          <p className={css.text}>{main.weWork.text}</p>
+          <h2 className={css.weWork}>{weWork.title}</h2>
+          <p className={css.text}>{weWork.text}</p>
         </FadeAnimation>
       </div>
     </div>
 
-    <h3 className={css.additionalText}>{main.additionalText}</h3>
+    <h3 className={css.additionalText}>{additionalText}</h3>
 
     <div className={css.advantages}>
-      {main.advantages.map((advantage, index) => (
+      {advantages.map((advantage, index) => (
         <Advantage key={index} {...advantage} />
       ))}
     </div>

@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation } from '../../animations'
+import * as homeVisitApi from '../../api/HomeVisitAPI'
 import { GradientText, ServiceCards } from '../../components'
-import { homeVisit } from '../../lib/data'
+import { emptyHomeVisit } from '../../lib/empty'
 import css from './index.module.scss'
 
 const HomeVisit = () => {
-  const data = homeVisit
+  const [data, setData] = useState(emptyHomeVisit)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await homeVisitApi.getHomeVisitPage()
+      setData(response)
+    }
+    fetchData()
+  }, [])
 
   return (
     <>

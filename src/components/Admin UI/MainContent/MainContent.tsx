@@ -1,12 +1,23 @@
 import { Textarea, TextInput, MultiSelect } from '@mantine/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ApplyButton, MediaEditor } from '../../'
-import { main, mainImage, mainInfusions, patientImage } from '../../../lib/data'
+import * as mainPageApi from '../../../api/MainAPI'
+import { mainInfusions, patientImage } from '../../../lib/data'
+import { emptyMainPage } from '../../../lib/empty'
 import css from './index.module.scss'
 
 const MainContent = () => {
-  let data = main
-  // TO-DO: функция отправления data на бек (json)
+  const [data, setData] = useState(emptyMainPage);
+  
+    useEffect(() => {
+      const fetchMainPage = async () => {
+        const main = await mainPageApi.getMainPage();
+        setData(main);
+        // console.log(main);
+      }
+  
+      fetchMainPage();
+    }, [])
 
   const fileChange = () => {}
 
@@ -14,17 +25,19 @@ const MainContent = () => {
 
   const [infusions, setInfusions] = useState<string[]>([])
 
+  function getInfusionPlaceholder(count: number): string {
+    if (count === 0) {return ''}
+    const lastDigit = count % 10
+    const lastTwoDigits = count % 100
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {return `Выберите ${count} капельниц`}
+    if (lastDigit === 1) {return `Выберите ${count} капельницу`}
+    if (lastDigit >= 2 && lastDigit <= 4) {return `Выберите ${count} капельницы`}
+    return `Выберите ${count} капельниц`
+  }
+
   return (
     <div className={css.tabContent}>
-      <div className="row">
-        <MediaEditor initialSrc={mainImage} onFileChange={fileChange} />
-        <MediaEditor initialSrc={patientImage} onFileChange={fileChange} />
-      </div>
-      <TextInput value={data.title} />
-      <TextInput value={data.subtitle} />
-
-      <div className="margin"></div>
-
+      <MediaEditor initialSrc={patientImage} onFileChange={fileChange} />
       <TextInput value={data.weWork.title} />
       <TextInput value={data.weWork.text} />
       <div className="row">
@@ -55,7 +68,7 @@ const MainContent = () => {
 
       <div className="margin"></div>
 
-      <TextInput value={main.form.title} />
+      <TextInput value={data.form.title} />
 
       <div className="margin"></div>
 
@@ -75,11 +88,11 @@ const MainContent = () => {
 
       <div className="margin"></div>
 
-      <TextInput value={main.problemTitle} />
+      <TextInput value={data.problemTitle} />
       <div className="row">
-        <MediaEditor initialSrc={main.problemImage} onFileChange={fileChange} />
+        <MediaEditor initialSrc={data.problemImage} onFileChange={fileChange} />
         <div className={css.problems}>
-          {main.problems.map((problem, index) => (
+          {data.problems.map((problem, index) => (
             <div key={index}>
               <TextInput value={problem.title} />
               <Textarea className={css.fullWidth} defaultValue={problem.text} />
@@ -112,7 +125,7 @@ const MainContent = () => {
       <MultiSelect
         value={infusions}
         onChange={setInfusions}
-        placeholder="Выберите 6 капельниц"
+        placeholder={getInfusionPlaceholder(6 - infusions.length)}
         data={mainInfusions}
         searchable
         clearable

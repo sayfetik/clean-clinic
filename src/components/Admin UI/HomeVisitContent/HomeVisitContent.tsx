@@ -1,7 +1,8 @@
 import { Textarea, Button, TextInput } from '@mantine/core'
 import { IconPlus } from '@tabler/icons-react'
-import { useState, useRef } from 'react'
-import { homeVisit } from '../../../lib/data'
+import { useState, useRef, useEffect } from 'react'
+import * as homeVisitApi from '../../../api/HomeVisitAPI'
+import { emptyHomeVisit } from '../../../lib/empty'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
 import css from './index.module.scss'
@@ -84,7 +85,16 @@ const Items: React.FC<{ items: CryoType[] }> = ({ items: initialBullets }) => {
 }
 
 const HomeVisitContent = () => {
-  let data = homeVisit
+  const [data, setData] = useState(emptyHomeVisit)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await homeVisitApi.getHomeVisitPage()
+      setData(response)
+    }
+    fetchData()
+  }, [])
+
   const fileChange = () => {}
   const applyChanges = () => {}
 
@@ -97,11 +107,10 @@ const HomeVisitContent = () => {
           <Textarea value={data.paragraph1} />
           <Textarea value={data.paragraph2} />
           <Textarea value={data.paragraph3} />
-          
         </div>
         <MediaEditor initialSrc={data.img} onFileChange={fileChange} />
       </div>
-      <div className='margin' />
+      <div className="margin" />
 
       <TextInput value={data.servicesTitle} />
       <Items items={data.services} />

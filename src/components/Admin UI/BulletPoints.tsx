@@ -3,7 +3,10 @@ import { IconPlus, IconX } from '@tabler/icons-react'
 import { useState, useRef } from 'react'
 import css from './InfusionsContent/index.module.scss'
 
-const BulletPoints: React.FC<{ label: string; bullets: string[] }> = ({ label, bullets: initialBullets }) => {
+const BulletPoints: React.FC<{ label: string; bullets: string[]; onChange: (arr: string[]) => void }> = ({
+  label,
+  bullets: initialBullets,
+}) => {
   const [bullets, setBullets] = useState(initialBullets)
   const textareaRefs = useRef<(HTMLTextAreaElement | null)[]>([])
 
