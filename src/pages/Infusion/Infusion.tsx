@@ -1,11 +1,13 @@
 // import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { Helmet } from "react-helmet-async"
+import { Helmet } from 'react-helmet-async'
 import { UpAnimation } from '../../animations'
+import * as mainPageApi from '../../api/MainAPI'
 import { Button, InfusionInstructions } from '../../components'
-import { InfusionPage /*main*/ } from '../../lib/data'
+import { InfusionPage } from '../../lib/data'
 // import { InfusionRouteParamsType } from '../../lib/routes'
 import clock from '/assets/clock.png'
+import { emptyInfusionInstructions } from '../../lib/empty'
 import css from './index.module.scss'
 
 const Infusion = () => {
@@ -13,6 +15,7 @@ const Infusion = () => {
   // const infusion = main.infusions.infusions[Number(infusionId) - 1]
 
   const [width, setWidth] = useState(20)
+  const [infusionInstructions, setInfusionInstructions] = useState(emptyInfusionInstructions)
 
   useEffect(() => {
     const updateSlidesToShow = () => {
@@ -31,12 +34,17 @@ const Infusion = () => {
   }, [])
 
   useEffect(() => {
-    document.title = infusion.name;
-  }, []);
+    document.title = infusion.name
+    const fetchInstructions = async () => {
+      const data = await mainPageApi.getInfusionInstructions()
+      setInfusionInstructions(data)
+    }
+    fetchInstructions()
+  }, [])
 
   const infusion = InfusionPage
   if (!infusion) {
-    document.title = "Капельница не найдена";
+    document.title = 'Капельница не найдена'
     return <div>Инфузия не найдена</div>
   }
 
@@ -108,7 +116,7 @@ const Infusion = () => {
           </div>
         </div>
         <div className={css.infusionInstructions}>
-          <InfusionInstructions />
+          <InfusionInstructions {...infusionInstructions} />
         </div>
       </div>
     </>

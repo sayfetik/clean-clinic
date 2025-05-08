@@ -4,7 +4,7 @@ import { infusionCatalog, InfusionPage } from '../../../lib/data'
 import { InfusionType } from '../../../lib/types'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
-import BulletPoints from '../BulletPoints'
+// import BulletPoints from '../BulletPoints'
 import arrow from '/assets/arrow.png'
 import css from './index.module.scss'
 

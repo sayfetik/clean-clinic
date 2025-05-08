@@ -13,6 +13,10 @@ export const getMainPage = async () => {
   }
 }
 
+export const getInfusionInstructions = async () => {
+  return await get(`${section}/GetStepTypes`)
+}
+
 export const updateMainPage = async (body: any) => {
   const formData = new FormData()
   formData.append('Id', body.id ?? 0)
@@ -58,7 +62,9 @@ export const updateMainPage = async (body: any) => {
     method: 'PUT',
     body: formData,
   })
-  if (!res.ok) { throw new Error('Ошибка обновления главной страницы') }
+  if (!res.ok) {
+    throw new Error('Ошибка обновления главной страницы')
+  }
   return await res.json()
 }
 
@@ -80,7 +86,9 @@ export const createService = async (body: { id: string; name: string; img: strin
       method: 'PUT',
       body: formData,
     })
-    if (!res.ok) {throw new Error('Ошибка обновления Услуги')}
+    if (!res.ok) {
+      throw new Error('Ошибка обновления Услуги')
+    }
     return await res.json()
   }
   return await put(`${section}/CreateService`, body)
@@ -97,7 +105,9 @@ export const updateWhiteCard = async (body: { id: string; title: string; text: s
       method: 'PUT',
       body: formData,
     })
-    if (!res.ok) {throw new Error('Ошибка обновления WhiteCard')}
+    if (!res.ok) {
+      throw new Error('Ошибка обновления WhiteCard')
+    }
     return await res.json()
   }
 }

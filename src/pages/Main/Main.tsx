@@ -1,11 +1,8 @@
-// import infusionsImage from '/assets/infusions.svg'
-import { useEffect, useState } from 'react'
 import { Suspense, lazy } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
 import UpList from '../../animations/UpList'
 import forBanner from '/assets/forBanner.png'
-import * as mainPageApi from '../../api/MainAPI'
 import {
   Button,
   WhiteCard,
@@ -15,24 +12,13 @@ import {
   EnrollForm,
   Problems,
 } from '../../components'
-import { emptyMainPage } from '../../lib/empty'
+import { MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Main = () => {
+const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
   const FAQ = lazy(() => import('../../components/FAQ/FAQ'))
   const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
   const ServicesSlider = lazy(() => import('../../components/ServicesSlider/ServicesSlider'))
-
-  const [main, setMain] = useState(emptyMainPage)
-
-  useEffect(() => {
-    const fetchMainPage = async () => {
-      const data = await mainPageApi.getMainPage()
-      setMain(data)
-    }
-
-    fetchMainPage()
-  }, [])
 
   return (
     <>
@@ -60,7 +46,7 @@ const Main = () => {
           <AboutSection weWork={main.weWork} additionalText={main.additionalText} advantages={main.advantages} />
 
           <UpAnimation>
-            <EnrollForm title={main.form.title}/>
+            <EnrollForm title={main.form.title} />
           </UpAnimation>
 
           <div className={css.whyInfusions}>
@@ -79,11 +65,11 @@ const Main = () => {
             </div>
           </div>
 
-          <Problems problemImage={main.problemImage} problems={main. problems} problemTitle={main.problemTitle}/>
+          <Problems problemImage={main.problemImage} problems={main.problems} problemTitle={main.problemTitle} />
 
           <FadeAnimation>
             <div className={css.instructions}>
-              <InfusionInstructions {...main.infusionInstructions}/>
+              <InfusionInstructions {...main.infusionInstructions} />
               <Button />
             </div>
           </FadeAnimation>
@@ -98,21 +84,21 @@ const Main = () => {
           <h2 className="blue">{main.services.tittle}</h2>
           <div className={css.services}>
             <Suspense fallback={<div>Загрузка...</div>}>
-              <ServicesSlider services={main.services.services || []}/>
+              <ServicesSlider services={main.services.services || []} />
             </Suspense>
           </div>
 
           <div className={css.faq}>
             <h2>{main.faq.faqTitle}</h2>
             <Suspense fallback={<div>Загрузка...</div>}>
-              <FAQ faqs={main.faq.faqs}/>
+              <FAQ faqs={main.faq.faqs} />
             </Suspense>
           </div>
         </div>
 
         <div className={css.water}>
           <Suspense fallback={null}>
-            <Feedback feedback={main.feedback}/>
+            <Feedback feedback={main.feedback} />
           </Suspense>
         </div>
       </div>

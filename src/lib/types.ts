@@ -17,6 +17,11 @@ export type InfusionsType = { [key: string]: InfusionType[] }
 export type ChosenOption = { chosenId: number; setChosenId: React.Dispatch<React.SetStateAction<number>> }
 export type SpecialistType = { id: number; img: string | File; name: string; profession: string; experience: string }
 export type FAQItem = { question: string; answer: string | null }
+export type InfusionInstructionsType = {
+  title: string
+  answer: string
+  steps: { number: string; title: string; text: string }[]
+}
 
 export type MainPageType = {
   title: string
@@ -40,11 +45,7 @@ export type MainPageType = {
   problemImage: string | File
   problemTitle: string
   problems: { title: string; text: string }[]
-  infusionInstructions: {
-    title: string
-    answer: string
-    steps: { number: string; title: string; text: string }[]
-  }
+  infusionInstructions: InfusionInstructionsType
   infusions: {
     title: string
     text: string

@@ -1,5 +1,10 @@
 import * as types from './types'
 
+export const emptyInfusionInstructions: types.InfusionInstructionsType = {
+  title: '',
+  answer: '',
+  steps: [],
+}
 export const emptyMainPage: types.MainPageType = {
   title: '',
   subtitle: [],
