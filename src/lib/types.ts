@@ -7,8 +7,8 @@ export type InfusionType = {
   img: string
 }
 export type CardType = { id: number; name: string; bullets?: string[]; cost: number; img: string }
-export type AdvantageType = { title: string; text: string }
-export type WhiteCardType = { img: string; title: string; text: string }
+export type AdvantageType = { id: number; title: string; text: string }
+export type WhiteCardType = { id: number; imagePath: string | File; title: string; text: string }
 export type StepType = { number: string; title: string; text: string }
 export type FeedbackType = { name: string; rate: number; text: string }
 export type ContactInfoType = { img: string; title: string; text: string; link: string }
@@ -28,7 +28,7 @@ export type MainPageType = {
     numPatients: number
   }
   additionalText: string
-  advantages: { title: string; text: string }[]
+  advantages: AdvantageType[]
   form: { title: string }
   whyInfusions: {
     title: string
@@ -36,8 +36,8 @@ export type MainPageType = {
     text1: string
     text2: string
   }
-  whiteCards: { id: number; img: string; title: string; text: string }[]
-  problemImage: string
+  whiteCards: WhiteCardType[]
+  problemImage: string | File
   problemTitle: string
   problems: { title: string; text: string }[]
   infusionInstructions: {
@@ -50,10 +50,16 @@ export type MainPageType = {
     text: string
     infusions: { id: number; name: string; description: string; cost: number; img: string }[]
   }
-  serviceTitle: string
-  services: { name: string; img: string }[]
-  faqTitle: string
-  faqs: { question: string; answer: string }[]
+  services: {
+    id: number
+    tittle: string
+    services: { id: number; name: string; img: string }[]
+  }
+  faq: {
+    id: number
+    faqTitle: string
+    faqs: { id: number; question: string; answer: string }[]
+  }
   feedback: { name: string; rate: number; text: string }[]
 }
 

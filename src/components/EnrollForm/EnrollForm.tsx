@@ -3,11 +3,11 @@ import { useField } from '@mantine/form'
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, CheckPolicy } from '../'
-import { formInputs, main } from '../../lib/data'
+import { formInputs } from '../../lib/data'
 import { getSuccessRoute } from '../../lib/routes'
 import css from './index.module.scss'
 
-const EnrollForm = () => {
+const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
   const navigate = useNavigate()
 
   const name = useField({
@@ -44,7 +44,7 @@ const EnrollForm = () => {
     <>
       <div className={css.root}>
         <div className={css.left}>
-          <h3 className="blue">{main.form.title}</h3>
+          <h3 className="blue">{title}</h3>
         </div>
         <div className={css.right}>
           <div className={css.inputs}>

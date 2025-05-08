@@ -1,13 +1,19 @@
-import { main } from '../../lib/data'
+import { StepType } from '../../lib/types'
 import Step from './Step/Step'
 import css from './index.module.scss'
 
-const InfusionInstructions = () => (
+type InfusionInstructionsProps = {
+  title: string
+  answer: string
+  steps: StepType[]
+}
+
+const InfusionInstructions: React.FC<InfusionInstructionsProps> = ({ title, answer, steps }) => (
   <div className={css.root}>
-    <h2>{main.infusionInstructions.title}</h2>
-    <h3 className={css.answer}>{main.infusionInstructions.answer}</h3>
+    <h2>{title}</h2>
+    <h3 className={css.answer}>{answer}</h3>
     <div className={css.row}>
-      {main.infusionInstructions.steps.map((step, index) => (
+      {steps.map((step, index) => (
         <Step key={index} {...step} />
       ))}
     </div>

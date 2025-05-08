@@ -16,5 +16,23 @@
 .problems {
   display: flex;
   flex-direction: column;
-  gap: 20px
+  gap: 20px;
+}
+
+.squareButton {
+  margin-top: 5px;
+  width: 100% !important;
+}
+
+.block {
+  border: 1px solid rgb(220, 220, 220);
+  background-color: $white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }

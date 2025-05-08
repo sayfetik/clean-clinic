@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { main } from '../../lib/data'
+import { FAQItem } from '../../lib/types'
 import css from './index.module.scss'
 
-
-const FAQ: React.FC = () => {
+const FAQ: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const contentRefs = useRef<Array<HTMLDivElement | null>>([])
 
@@ -21,7 +20,7 @@ const FAQ: React.FC = () => {
 
   return (
     <div className={css.faqContainer}>
-      {main.faqs.map((faq, index) => (
+      {faqs.map((faq, index) => (
         <div key={index} className={css.faqItem}>
           <div className={css.faqQuestion} onClick={() => toggle(index)}>
             <p className="black">{faq.question}</p>

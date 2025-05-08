@@ -13,12 +13,10 @@ const MediaEditor: React.FC<MediaEditorProps> = ({ initialSrc, onFileChange, siz
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    return () => {
-      if (media.src && media.src.startsWith('blob:')) {
-        URL.revokeObjectURL(media.src)
-      }
+    if (!media.file && initialSrc && initialSrc !== media.src) {
+      setMedia({ src: initialSrc, file: null })
     }
-  }, [media.src])
+  }, [initialSrc])
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]

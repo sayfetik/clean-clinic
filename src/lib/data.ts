@@ -12,7 +12,7 @@ export const mainInfusions = [
 
 export const patientImage = '/assets/patient.png'
 
-export const main = {
+export const mainDONE = {
   title: 'Клиника инфузионной терапии',
   subtitle: [
     'Инфузионная терапия для здоровья и красоты.',
@@ -24,8 +24,7 @@ export const main = {
     numSpecialists: 3832,
     numPatients: 38750,
   },
-  additionalText:
-    'Используем современные и проверенные методики инфузионной терапии для достижения максимального результата',
+  additionalText: 'Используем современные и проверенные методики инфузионной терапии для достижения максимального результата',
   advantages: [
     {
       title: 'Индивидуальный подход',
