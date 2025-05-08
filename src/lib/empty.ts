@@ -32,10 +32,16 @@ export const emptyMainPage: types.MainPageType = {
     text: '',
     infusions: [],
   },
-  serviceTitle: '',
-  services: [],
-  faqTitle: '',
-  faqs: [],
+  services: {
+    id: 0,
+    tittle: '',
+    services: [],
+  },
+  faq: {
+    id: 0,
+    faqTitle: '',
+    faqs: [],
+  },
   feedback: [],
 }
 

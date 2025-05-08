@@ -1,5 +1,31 @@
 const API_URL = import.meta.env.VITE_API_URL as string
 
+function prependImageUrl(obj: any): any {
+  const BASE_URL = 'http://localhost:9000/clinic-bucket/'
+  if (Array.isArray(obj)) {
+    return obj.map(prependImageUrl)
+  }
+  if (obj && typeof obj === 'object') {
+    const newObj: any = {}
+    for (const key in obj) {
+      if (
+        (key.toLowerCase().includes('img') || key.toLowerCase().includes('image')) &&
+        typeof obj[key] === 'string' &&
+        obj[key] &&
+        !obj[key].startsWith(BASE_URL)
+      ) {
+        newObj[key] = BASE_URL + obj[key]
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+        newObj[key] = prependImageUrl(obj[key])
+      } else {
+        newObj[key] = obj[key]
+      }
+    }
+    return newObj
+  }
+  return obj
+}
+
 export async function get<T = any>(endpoint: string, params?: Record<string, any>): Promise<T> {
   let url = `${API_URL}/${endpoint}`
   if (params) {
@@ -16,7 +42,8 @@ export async function get<T = any>(endpoint: string, params?: Record<string, any
   if (!response.ok) {
     throw new Error(`GET ${url} failed: ${response.status}`)
   }
-  return response.json()
+  const data = await response.json()
+  return prependImageUrl(data)
 }
 
 export async function post<T = any>(endpoint: string, body?: any): Promise<T> {

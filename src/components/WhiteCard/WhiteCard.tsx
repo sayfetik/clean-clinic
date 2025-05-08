@@ -1,9 +1,9 @@
 import { WhiteCardType } from '../../lib/types'
 import css from './index.module.scss'
 
-const WhiteCard: React.FC<WhiteCardType> = ({ img, title, text }) => (
+const WhiteCard: React.FC<WhiteCardType> = ({ imagePath, title, text }) => (
   <div className={css.card}>
-    <img className={css.image} src={img} />
+    <img className={css.image} src={imagePath} />
     <div className={css.rightSection}>
       <h3 className={css.title}>{title}</h3>
       <p className={css.text}>{text}</p>

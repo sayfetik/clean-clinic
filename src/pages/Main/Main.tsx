@@ -29,7 +29,6 @@ const Main = () => {
     const fetchMainPage = async () => {
       const data = await mainPageApi.getMainPage()
       setMain(data)
-      // console.log(main);
     }
 
     fetchMainPage()
@@ -61,7 +60,7 @@ const Main = () => {
           <AboutSection weWork={main.weWork} additionalText={main.additionalText} advantages={main.advantages} />
 
           <UpAnimation>
-            <EnrollForm />
+            <EnrollForm title={main.form.title}/>
           </UpAnimation>
 
           <div className={css.whyInfusions}>
@@ -80,11 +79,11 @@ const Main = () => {
             </div>
           </div>
 
-          <Problems />
+          <Problems problemImage={main.problemImage} problems={main. problems} problemTitle={main.problemTitle}/>
 
           <FadeAnimation>
             <div className={css.instructions}>
-              <InfusionInstructions />
+              <InfusionInstructions {...main.infusionInstructions}/>
               <Button />
             </div>
           </FadeAnimation>
@@ -96,24 +95,24 @@ const Main = () => {
             <Button text="Записаться к терапевту" />
           </div>
 
-          <h2 className="blue">{main.serviceTitle}</h2>
+          <h2 className="blue">{main.services.tittle}</h2>
           <div className={css.services}>
             <Suspense fallback={<div>Загрузка...</div>}>
-              <ServicesSlider />
+              <ServicesSlider services={main.services.services || []}/>
             </Suspense>
           </div>
 
           <div className={css.faq}>
-            <h2>{main.faqTitle}</h2>
+            <h2>{main.faq.faqTitle}</h2>
             <Suspense fallback={<div>Загрузка...</div>}>
-              <FAQ />
+              <FAQ faqs={main.faq.faqs}/>
             </Suspense>
           </div>
         </div>
 
         <div className={css.water}>
           <Suspense fallback={null}>
-            <Feedback />
+            <Feedback feedback={main.feedback}/>
           </Suspense>
         </div>
       </div>

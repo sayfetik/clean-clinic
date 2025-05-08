@@ -1,5 +1,6 @@
 import patientImage from '/assets/patient.png'
 import { Advantage } from '../../components'
+import { AdvantageType } from '../../lib/types'
 import css from './index.module.scss'
 import { FadeAnimation } from '../../animations'
 
@@ -10,12 +11,10 @@ type weWorkType = {
   numPatients: number
 }
 
-type AdvantagesType = { title: string; text: string }[]
-
 type AboutSectionProps = {
   weWork: weWorkType
   additionalText: string
-  advantages: AdvantagesType
+  advantages: AdvantageType[]
 }
 
 const AboutSection: React.FC<AboutSectionProps> = ({ weWork, additionalText, advantages }) => (

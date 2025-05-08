@@ -1,14 +1,19 @@
 import UpList from '../../animations/UpList'
-import { main } from '../../lib/data'
 import css from './index.module.scss'
 
 type ProblemType = { title: string; text: string }
 
-const Problems: React.FC<{ problems?: ProblemType[] }> = ({ problems = main.problems }) => (
+type ProblemsProps = {
+  problemTitle: string
+  problems: ProblemType[]
+  problemImage: string
+}
+
+const Problems: React.FC<ProblemsProps> = ({ problemTitle, problems, problemImage }) => (
   <div className={css.root}>
-    <h2 className={css.title}>{main.problemTitle}</h2>
+    <h2 className={css.title}>{problemTitle}</h2>
     <div className={css.content}>
-      <img src={main.problemImage} className={css.image} />
+      <img src={problemImage} className={css.image} />
       <div className={css.problems}>
         {problems.map((problem, index) => (
           <UpList key={index}>
