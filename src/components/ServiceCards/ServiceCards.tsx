@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Button } from '..'
 import Animation from '../../animations/Animation'
-import { AnalyzesServiceType } from '../../lib/types'
+import { CardType } from '../../lib/types'
 import css from '../Infusions/index.module.scss'
 
-const Card: React.FC<AnalyzesServiceType> = ({ name, bullets, cost, img }) => (
+const Card: React.FC<CardType> = ({ name, bullets, cost, img }) => (
   <div className={css.infusionRoot}>
     <img src={typeof img === 'string' ? img : URL.createObjectURL(img)} width={150} className={css.img} />
     <h3 className={css.name}>{name}</h3>
@@ -24,7 +24,7 @@ const Card: React.FC<AnalyzesServiceType> = ({ name, bullets, cost, img }) => (
   </div>
 )
 
-const ServiceCards: React.FC<{ items: AnalyzesServiceType[] }> = ({ items }) => {
+const ServiceCards: React.FC<{ items: CardType[] }> = ({ items }) => {
   const [animationKey, setAnimationKey] = useState(0)
   useEffect(() => {
     setAnimationKey((prevKey) => prevKey + 1)
