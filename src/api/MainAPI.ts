@@ -69,11 +69,11 @@ export const updateMainPage = async (body: any) => {
 }
 
 export const createFaq = async (body: { id: string; question: string; answer: string }) => {
-  return await put(`${section}/CreateFaq`, body)
+  return await post(`${section}/CreateFaq`, body)
 }
 
 export const createFeedBack = async (body: { name: string; rate: number; text: string }) => {
-  return await put(`${section}/CreateFeedBack`, body)
+  return await post(`${section}/CreateFeedBack`, body)
 }
 
 export const createService = async (body: { id: string; name: string; img: string | File }) => {
@@ -83,7 +83,7 @@ export const createService = async (body: { id: string; name: string; img: strin
     formData.append('name', body.name)
     formData.append('img', body.img)
     const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/CreateService`, {
-      method: 'PUT',
+      method: 'POST',
       body: formData,
     })
     if (!res.ok) {
