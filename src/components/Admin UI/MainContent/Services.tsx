@@ -1,12 +1,15 @@
 import { TextInput, Button, ActionIcon } from '@mantine/core'
 import { IconPlus, IconX } from '@tabler/icons-react'
+import * as mainPageApi from '../../../api/MainAPI'
 import MediaEditor from '../../MediaEditor/MediaEditor'
+import UpdateButton from '../UpdateButton'
 import css from './index.module.scss'
 
 type ServiceType = {
   id: number
   name: string
   img: string | File
+  isNew?: boolean
 }
 
 type ServicesProps = {
@@ -17,7 +20,7 @@ type ServicesProps = {
 
 const Services: React.FC<ServicesProps> = ({ services, onChange, onImageChange }) => {
   const handleAddService = () => {
-    onChange([...services, { id: Date.now(), name: '', img: '' }])
+    onChange([...services, { id: Date.now(), name: '', img: '', isNew: true }])
   }
 
   const handleNameChange = (index: number, value: string) => {
@@ -27,6 +30,19 @@ const Services: React.FC<ServicesProps> = ({ services, onChange, onImageChange }
 
   const handleRemoveService = (index: number) => {
     const updated = services.filter((_, i) => i !== index)
+    onChange(updated)
+  }
+
+  const handleCreateService = async (index: number) => {
+    const service = services[index]
+    await mainPageApi.createService({
+      id: String(services.length+1),
+      name: service.name,
+      img: service.img,
+    })
+    const updated = services.map((item, i) =>
+      i === index ? { ...item, isNew: false } : item
+    )
     onChange(updated)
   }
 
@@ -50,6 +66,13 @@ const Services: React.FC<ServicesProps> = ({ services, onChange, onImageChange }
             >
               <IconX size={18} />
             </ActionIcon>
+            {card.isNew && (
+              <div style={{ marginTop: 8 }}>
+                <UpdateButton
+                  onClick={() => handleCreateService(index)}
+                />
+              </div>
+            )}
           </div>
         ))}
       </div>

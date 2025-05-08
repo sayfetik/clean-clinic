@@ -1,5 +1,4 @@
-import { Textarea, TextInput, MultiSelect, Button } from '@mantine/core'
-import { IconPlus } from '@tabler/icons-react'
+import { Textarea, TextInput, MultiSelect } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { ApplyButton, MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
@@ -8,6 +7,8 @@ import { mainInfusions } from '../../../lib/data'
 import { emptyMainPage } from '../../../lib/empty'
 import { MainPageType } from '../../../lib/types'
 import UpdateButton from '../UpdateButton'
+import Faqs from './Faqs'
+import Feedbacks from './Feedbacks'
 import Services from './Services'
 import css from './index.module.scss'
 
@@ -71,19 +72,6 @@ const MainContent = () => {
     })
   }
 
-  // const handleServiceImageChange = (index: number, file: File) => {
-  //   setData((prev) => {
-  //     const newArr = prev.services.services.map((item: any, i: number) => (i === index ? { ...item, img: file } : item))
-  //     return {
-  //       ...prev,
-  //       services: {
-  //         ...prev.services,
-  //         services: newArr,
-  //       },
-  //     }
-  //   })
-  // }
-
   const handleInfusionsChange = (value: string[]) => {
     setInfusions(value)
     setData((prev) => ({
@@ -131,23 +119,6 @@ const MainContent = () => {
         },
       }
     })
-  }
-
-  const handleAddFaq = () => {
-    setData((prev) => ({
-      ...prev,
-      faq: {
-        ...prev.faq,
-        faqs: [...prev.faq.faqs, { id: Date.now(), question: '', answer: '' }],
-      },
-    }))
-  }
-
-  const handleAddFeedback = () => {
-    setData((prev) => ({
-      ...prev,
-      feedback: [...prev.feedback, { id: Date.now(), name: '', rate: 0, text: '' }],
-    }))
   }
 
   const sendToBack = async () => {
@@ -213,7 +184,7 @@ const MainContent = () => {
 
       <div className="row">
         {data.whiteCards.map((card, index) => (
-          <div key={index}>
+          <div key={index} className={css.blockWithoutBorder}>
             <MediaEditor
               initialSrc={typeof card.imagePath === 'string' ? card.imagePath : ''}
               onFileChange={(file) => handleWhiteCardImageChange(index, file)}
@@ -304,44 +275,35 @@ const MainContent = () => {
       <Services services={data.services.services} onChange={handleServicesChange} onImageChange={handleServiceImage} />
 
       <TextInput value={data.faq.faqTitle} onChange={handleChange('faqTitle')} />
-      <div className="row">
-        {data.faq.faqs.map((card, index) => (
-          <div key={index}>
-            <TextInput value={card.question} onChange={handleArrayChange('faqs', index, 'question')} />
-            <Textarea
-              className={css.fullWidth}
-              minRows={1}
-              maxRows={15}
-              value={card.answer}
-              onChange={handleArrayChange('faqs', index, 'answer')}
-            />
-          </div>
-        ))}
-      </div>
-      <Button onClick={handleAddFaq} variant="light" className={css.squareButton}>
-        <IconPlus size={16} />
-      </Button>
+      <Faqs
+        faqs={data.faq.faqs}
+        onChange={(faqs) =>
+          setData((prev) => ({
+            ...prev,
+            faq: {
+              ...prev.faq,
+              faqs: faqs.map((faq) => ({
+                ...faq,
+                id: Number(faq.id),
+              })),
+            },
+          }))
+        }
+      />
 
       <h4 className={css.text}>Отзывы</h4>
-      <div className="row">
-        {data.feedback.map((card, index) => (
-          <div key={index}>
-            <TextInput value={card.name} onChange={handleArrayChange('feedback', index, 'name')} />
-            <div className={css.margin}></div>
-            <TextInput value={card.rate} onChange={handleArrayChange('feedback', index, 'rate')} />
-            <Textarea
-              className={css.fullWidth}
-              minRows={1}
-              maxRows={15}
-              value={card.text}
-              onChange={handleArrayChange('feedback', index, 'text')}
-            />
-          </div>
-        ))}
-      </div>
-      <Button onClick={handleAddFeedback} variant="light" className={css.squareButton}>
-        <IconPlus size={16} />
-      </Button>
+      <Feedbacks
+        feedbacks={data.feedback}
+        onChange={feedbacks =>
+          setData(prev => ({
+            ...prev,
+            feedback: feedbacks.map(feedback => ({
+              ...feedback,
+              rate: typeof feedback.rate === 'string' ? parseFloat(feedback.rate) : feedback.rate,
+            })),
+          }))
+        }
+      />
 
       <ApplyButton onClick={sendToBack} />
     </div>
