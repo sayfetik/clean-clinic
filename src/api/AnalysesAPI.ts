@@ -1,5 +1,5 @@
 import { AnalyzesServiceType } from '../lib/types'
-import { get, post, del } from './methods'
+import { get, post, del, prependImageUrl } from './methods'
 
 const section = import.meta.env.VITE_ANALYSES as string
 
@@ -31,7 +31,8 @@ export const createAnalyseService = async (item: AnalyzesServiceType) => {
   if (!res.ok) {
     throw new Error('Ошибка обновления Услуги')
   }
-  return await res.json()
+  const data = await res.json()
+  return prependImageUrl(data)
 }
 
 export const editAnalyseService = async (body: AnalyzesServiceType) => {

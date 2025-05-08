@@ -1,6 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL as string
 
-function prependImageUrl(obj: any): any {
+export function prependImageUrl(obj: any): any {
   const BASE_URL = 'http://localhost:9000/clinic-bucket/'
   if (Array.isArray(obj)) {
     return obj.map(prependImageUrl)

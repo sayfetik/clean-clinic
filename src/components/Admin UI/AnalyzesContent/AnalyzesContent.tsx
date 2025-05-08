@@ -134,7 +134,13 @@ const AnalyzesContent = () => {
               <div className={css.card}>
                 <div className={css.content}>
                   <MediaEditor
-                    initialSrc={typeof item.img === 'string' ? item.img : ''}
+                    initialSrc={
+                      typeof item.img === 'string'
+                        ? item.img
+                        : item.img instanceof File
+                          ? URL.createObjectURL(item.img)
+                          : ''
+                    }
                     onFileChange={(file) => handleServiceImage(index, file)}
                   />
                   <TextInput
