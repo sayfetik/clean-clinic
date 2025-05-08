@@ -91,7 +91,6 @@ export const createService = async (body: { id: string; name: string; img: strin
     }
     return await res.json()
   }
-  return await put(`${section}/CreateService`, body)
 }
 
 export const updateWhiteCard = async (body: { id: string; title: string; text: string; imagePath?: string | File }) => {

@@ -23,6 +23,15 @@ export type InfusionInstructionsType = {
   steps: { number: string; title: string; text: string }[]
 }
 
+export type AnalyzesServiceType = {
+  id: number
+  name: string
+  bullets: string[]
+  cost: number
+  img: string | File
+  isNew?: boolean
+}
+
 export type MainPageType = {
   title: string
   subtitle: string[]
@@ -155,20 +164,14 @@ export type PlasmoliftingType = {
 
 export type AnalyzesType = {
   title: string
-  img: string
+  img: string | File
   paragraph1: string
   paragraph2: string
   paragraph3: string
   procedureTitle: string
   procedureText: string
   servicesTitle: string
-  services: {
-    id: number
-    name: string
-    bullets: string[]
-    cost: number
-    img: string
-  }[]
+  services: AnalyzesServiceType[]
 }
 
 export type SolariumType = {
