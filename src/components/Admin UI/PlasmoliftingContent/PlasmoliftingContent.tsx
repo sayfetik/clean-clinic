@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { plasmolifting } from '../../../lib/data'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
-import BulletPoints from '../BulletPoints'
+// import BulletPoints from '../BulletPoints'
 import css from '../CryoContent/index.module.scss'
 
 type PlasmoliftingType = { id: number; name: string; description: string; cost: number; img: string }
@@ -113,10 +113,10 @@ const PlasmoliftingContent = () => {
       </div>
 
       <div className="row">
-        <BulletPoints label="Показания:" bullets={data.indications} />
-        <BulletPoints label="Противопоказания:" bullets={data.contraindications} />
+        {/* <BulletPoints label="Показания:" bullets={data.indications} />
+        <BulletPoints label="Противопоказания:" bullets={data.contraindications} /> */}
       </div>
-      <div className='margin' />
+      <div className="margin" />
 
       <TextInput value={data.servicesTitle} />
       <Items items={data.services} />

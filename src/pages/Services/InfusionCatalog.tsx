@@ -5,7 +5,13 @@ import { Filters, GradientText, Infusions, Problems } from '../../components'
 import { infusionCatalog } from '../../lib/data'
 import css from './index.module.scss'
 
-const InfusionCatalog = () => {
+type InfusionCatalogProps = {
+  problemImage: string | File
+  problemTitle: string
+  problems: { title: string; text: string }[]
+}
+
+const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problemTitle, problems }) => {
   const [chosenId, setChosenId] = useState(0)
   const data = infusionCatalog
   const filterKeys = Object.keys(data.infusions)
@@ -36,7 +42,7 @@ const InfusionCatalog = () => {
             <div>
               <div className={css.advantages}>
                 <h2>{data.advantagesTitle}</h2>
-                <p className='black'>{data.advantagesText}</p>
+                <p className="black">{data.advantagesText}</p>
                 <ul className={css.bulletList}>
                   {data.advantages.map((bullet, index) => (
                     <li key={index}>{bullet}</li>
@@ -46,7 +52,7 @@ const InfusionCatalog = () => {
             </div>
           </FadeAnimation>
 
-          <Problems />
+          <Problems problemImage={problemImage} problemTitle={problemTitle} problems={problems} />
 
           <h2 className={css.center}>{data.servicesTitle}</h2>
           <div className={css.filters}>

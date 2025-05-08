@@ -1,9 +1,10 @@
 import { Textarea, TextInput, MultiSelect, Button } from '@mantine/core'
 import { IconPlus } from '@tabler/icons-react'
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ApplyButton, MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
-import { mainInfusions, patientImage } from '../../../lib/data'
+import { mainInfusions } from '../../../lib/data'
+// import { patientImage } from '../../../lib/data'
 import { emptyMainPage } from '../../../lib/empty'
 import { MainPageType } from '../../../lib/types'
 import UpdateButton from '../UpdateButton'
@@ -64,26 +65,24 @@ const MainContent = () => {
   }
 
   const handleWhiteCardImageChange = (index: number, file: File) => {
-    setData(prev => {
-      const newWhiteCards = prev.whiteCards.map((card, i) =>
-        i === index ? { ...card, imagePath: file } : card
-      )
+    setData((prev) => {
+      const newWhiteCards = prev.whiteCards.map((card, i) => (i === index ? { ...card, imagePath: file } : card))
       return { ...prev, whiteCards: newWhiteCards }
     })
   }
 
-  const handleServiceImageChange = (index: number, file: File) => {
-    setData((prev) => {
-      const newArr = prev.services.services.map((item: any, i: number) => (i === index ? { ...item, img: file } : item))
-      return {
-        ...prev,
-        services: {
-          ...prev.services,
-          services: newArr,
-        },
-      }
-    })
-  }
+  // const handleServiceImageChange = (index: number, file: File) => {
+  //   setData((prev) => {
+  //     const newArr = prev.services.services.map((item: any, i: number) => (i === index ? { ...item, img: file } : item))
+  //     return {
+  //       ...prev,
+  //       services: {
+  //         ...prev.services,
+  //         services: newArr,
+  //       },
+  //     }
+  //   })
+  // }
 
   const handleInfusionsChange = (value: string[]) => {
     setInfusions(value)
@@ -112,20 +111,18 @@ const MainContent = () => {
   }
 
   const handleServicesChange = (newServices: any[]) => {
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
       services: {
         ...prev.services,
-        services: newServices
-      }
+        services: newServices,
+      },
     }))
   }
 
   const handleServiceImage = (index: number, file: File) => {
-    setData(prev => {
-      const newArr = prev.services.services.map((item: any, i: number) =>
-        i === index ? { ...item, img: file } : item
-      )
+    setData((prev) => {
+      const newArr = prev.services.services.map((item: any, i: number) => (i === index ? { ...item, img: file } : item))
       return {
         ...prev,
         services: {
@@ -135,27 +132,21 @@ const MainContent = () => {
       }
     })
   }
-  
+
   const handleAddFaq = () => {
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
       faq: {
         ...prev.faq,
-        faqs: [
-          ...prev.faq.faqs,
-          { id: Date.now(), question: '', answer: '' }
-        ]
-      }
+        faqs: [...prev.faq.faqs, { id: Date.now(), question: '', answer: '' }],
+      },
     }))
   }
-  
+
   const handleAddFeedback = () => {
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
-      feedback: [
-        ...prev.feedback,
-        { id: Date.now(), name: '', rate: 0, text: '' }
-      ]
+      feedback: [...prev.feedback, { id: Date.now(), name: '', rate: 0, text: '' }],
     }))
   }
 
@@ -249,10 +240,13 @@ const MainContent = () => {
 
       <div className="margin"></div>
 
-{/* ДОДЕЕЕЕЕEEEEEEEEEEEEEEEEEEEEEEEEEЕЕЛАТЬ */}
+      {/* ДОДЕЕЕЕЕEEEEEEEEEEEEEEEEEEEEEEEEEЕЕЛАТЬ */}
       <TextInput value={data.problemTitle} onChange={handleChange('problemTitle')} />
       <div className="row">
-        <MediaEditor initialSrc={typeof data.problemImage === 'string' ? data.problemImage : ''} onFileChange={handleProblemImageChange} />
+        <MediaEditor
+          initialSrc={typeof data.problemImage === 'string' ? data.problemImage : ''}
+          onFileChange={handleProblemImageChange}
+        />
         <div className={css.problems}>
           {data.problems.map((problem, index) => (
             <div key={index}>
@@ -307,11 +301,7 @@ const MainContent = () => {
       />
 
       <TextInput value={data.services.tittle} onChange={handleChange('serviceTitle')} />
-      <Services
-        services={data.services.services}
-        onChange={handleServicesChange}
-        onImageChange={handleServiceImage}
-      />
+      <Services services={data.services.services} onChange={handleServicesChange} onImageChange={handleServiceImage} />
 
       <TextInput value={data.faq.faqTitle} onChange={handleChange('faqTitle')} />
       <div className="row">

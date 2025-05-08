@@ -6,14 +6,17 @@ type ProblemType = { title: string; text: string }
 type ProblemsProps = {
   problemTitle: string
   problems: ProblemType[]
-  problemImage: string
+  problemImage: string | File
 }
 
 const Problems: React.FC<ProblemsProps> = ({ problemTitle, problems, problemImage }) => (
   <div className={css.root}>
     <h2 className={css.title}>{problemTitle}</h2>
     <div className={css.content}>
-      <img src={problemImage} className={css.image} />
+      <img
+        src={typeof problemImage === 'string' ? problemImage : URL.createObjectURL(problemImage)}
+        className={css.image}
+      />
       <div className={css.problems}>
         {problems.map((problem, index) => (
           <UpList key={index}>

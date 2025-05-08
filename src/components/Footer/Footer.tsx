@@ -7,7 +7,7 @@ import * as routes from '../../lib/routes'
 import Form from '../Form/Form'
 import css from './index.module.scss'
 
-const Footer = () => {
+const Footer: React.FC<{ title: string }> = ({ title }) => {
   const [isEnrollForm, setIsEnrollForm] = useState(false)
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Footer = () => {
 
       {isEnrollForm && (
         <div className={css.page}>
-          <EnrollForm />
+          <EnrollForm title={title} />
         </div>
       )}
 

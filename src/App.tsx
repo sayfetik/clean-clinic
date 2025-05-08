@@ -1,7 +1,8 @@
 import { MantineProvider } from '@mantine/core'
 import { useHotkeys } from '@mantine/hooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom'
+import * as mainPageApi from './api/MainAPI'
 import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin, VideoWidget } from './components'
 import { useAuth } from './context/AuthContext'
 import { AuthProvider } from './context/AuthContext'
@@ -30,6 +31,8 @@ import {
 import '@mantine/core/styles.css'
 import './styles/global.scss'
 import * as themes from './styles/themes'
+// eslint-disable-next-line import/order
+import { emptyMainPage } from './lib/empty'
 
 const theme = themes.mantine
 
@@ -38,6 +41,7 @@ const Layout = () => {
   const [modalOpened, setModalOpened] = useState(false)
   const { isAuthenticated, loading } = useAuth()
   const navigate = useNavigate()
+  const [main, setMain] = useState(emptyMainPage)
 
   useHotkeys([['alt+w', () => setModalOpened(true)]])
 
@@ -46,7 +50,18 @@ const Layout = () => {
     navigate('/admin')
   }
 
-  if (loading) {return null}
+  useEffect(() => {
+    const fetchMainPage = async () => {
+      const data = await mainPageApi.getMainPage()
+      setMain(data)
+    }
+
+    fetchMainPage()
+  }, [])
+
+  if (loading) {
+    return null
+  }
 
   return (
     <>
@@ -57,10 +72,19 @@ const Layout = () => {
       {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>
-          <Route path={routes.getMainRoute()} element={<Main />} />
+          <Route path={routes.getMainRoute()} element={<Main main={main} />} />
           <Route path={routes.getAboutRoute()} element={<About />} />
           <Route path={routes.getContactsRoute()} element={<Contacts />} />
-          <Route path={routes.getInfusionCatalogRoute()} element={<InfusionCatalog />} />
+          <Route
+            path={routes.getInfusionCatalogRoute()}
+            element={
+              <InfusionCatalog
+                problemImage={main.problemImage}
+                problemTitle={main.problemTitle}
+                problems={main.problems}
+              />
+            }
+          />
           <Route path={routes.getMassageRoute()} element={<Massage />} />
           <Route path={routes.getSolariumRoute()} element={<Solarium />} />
           <Route path={routes.getHomeVisitRoute()} element={<HomeVisit />} />
@@ -81,7 +105,7 @@ const Layout = () => {
       </ScrollResetProvider>
       {location.pathname !== routes.getSuccessRoute() &&
         location.pathname !== routes.getErrorRoute() &&
-        location.pathname !== routes.getAdminRoute() && <Footer />}
+        location.pathname !== routes.getAdminRoute() && <Footer title={main.form.title} />}
     </>
   )
 }

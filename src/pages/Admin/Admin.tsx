@@ -1,12 +1,12 @@
 import { Tabs } from '@mantine/core'
 import { Helmet } from 'react-helmet-async'
 import {
-  AboutContent,
+  // AboutContent,
   AnalyzesContent,
   ContactContent,
   CryoContent,
   ErrorContent,
-  ExcursionContent,
+  // ExcursionContent,
   GradientText,
   HomeVisitContent,
   InfusionsContent,
