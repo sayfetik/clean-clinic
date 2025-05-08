@@ -1,36 +1,35 @@
 import { Textarea, Button, TextInput } from '@mantine/core'
 import { IconPlus, IconX } from '@tabler/icons-react'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import css from './InfusionsContent/index.module.scss'
 
 const BulletPoints: React.FC<{ label: string; bullets: string[]; onChange: (arr: string[]) => void }> = ({
   label,
-  bullets: initialBullets,
+  bullets,
+  onChange,
 }) => {
-  const [bullets, setBullets] = useState(initialBullets)
   const textareaRefs = useRef<(HTMLTextAreaElement | null)[]>([])
 
   const handleAdd = () => {
-    setBullets((prevBullets) => {
-      const newBullets = [...prevBullets, '']
-      setTimeout(() => {
-        const lastIndex = newBullets.length - 1
-        if (textareaRefs.current[lastIndex]) {
-          textareaRefs.current[lastIndex]?.focus()
-        }
-      }, 0)
-      return newBullets
-    })
+    const newBullets = [...bullets, '']
+    onChange(newBullets)
+    setTimeout(() => {
+      const lastIndex = newBullets.length - 1
+      if (textareaRefs.current[lastIndex]) {
+        textareaRefs.current[lastIndex]?.focus()
+      }
+    }, 0)
   }
 
   const handleRemove = (index: number) => {
-    setBullets(bullets.filter((_, i) => i !== index))
+    const newBullets = bullets.filter((_, i) => i !== index)
+    onChange(newBullets)
   }
 
   const handleChange = (index: number, value: string) => {
     const newBullets = [...bullets]
     newBullets[index] = value
-    setBullets(newBullets)
+    onChange(newBullets)
   }
 
   const handleBlur = (index: number) => {
@@ -41,7 +40,7 @@ const BulletPoints: React.FC<{ label: string; bullets: string[]; onChange: (arr:
 
   return (
     <div className={css.bullets}>
-      {label !== '' && <TextInput value={label} />}
+      {label !== '' && <TextInput value={label} readOnly />}
       {bullets.map((bullet, index) => (
         <div key={index} className={css.bulletItem}>
           <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.squareButton}>

@@ -23,7 +23,7 @@ const UpdateButton: React.FC<UpdateButtonProps> = ({ onClick }) => {
   }
 
   let color = 'blue'
-  let variant = 'light'
+  let variant = 'filled'
   let icon = <IconCheck size={18} />
   if (status === 'success') {
     variant = 'filled'

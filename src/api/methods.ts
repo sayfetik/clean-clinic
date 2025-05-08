@@ -77,3 +77,21 @@ export async function put<T = any>(endpoint: string, body?: any): Promise<T> {
   }
   return response.json()
 }
+
+export async function del(endpoint: string, id?: string | number) {
+  let url = `${API_URL}/${endpoint}`
+  if (id !== undefined) {
+    url += `/${id}`
+  }
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      accept: '*/*',
+      'content-type': 'application/json; charset=utf-8',
+    },
+  })
+  if (!response.ok) {
+    throw new Error(`DELETE ${url} failed: ${response.status}`)
+  }
+  return
+}
