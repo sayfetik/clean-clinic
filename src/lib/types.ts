@@ -40,6 +40,14 @@ export type CryoServiceType = {
   isNew?: boolean
 }
 
+export type HomeVisitServiceType = {
+  id: number
+  name: string
+  cost: number
+  img: string | File
+  isNew?: boolean
+}
+
 export type MainPageType = {
   title: string
   subtitle: string[]
@@ -207,17 +215,13 @@ export type SuccessPageType = {
 }
 
 export type HomeVisitType = {
+  id(id: any): string | Blob
   title: string
-  img: string
+  img: string | File
   whatItIsTitle: string
   paragraph1: string
   paragraph2: string
   paragraph3: string
   servicesTitle: string
-  services: {
-    id: number
-    name: string
-    cost: number
-    img: string
-  }[]
+  services: HomeVisitServiceType[]
 }
