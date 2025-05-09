@@ -154,6 +154,7 @@ export const emptySuccessPage: types.SuccessPageType = {
 }
 
 export const emptyHomeVisit: types.HomeVisitType = {
+  id: 0,
   title: '',
   img: '',
   whatItIsTitle: '',

@@ -52,7 +52,10 @@ const Massage = () => {
                   </ul>
                 </div>
               </div>
-              <img className={css.image} src={data.img} />
+              <img
+                className={css.image}
+                src={typeof data.img === 'string' ? data.img : URL.createObjectURL(data.img)}
+              />
             </div>
           </FadeAnimation>
 
