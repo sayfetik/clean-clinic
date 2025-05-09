@@ -32,6 +32,14 @@ export type AnalyzesServiceType = {
   isNew?: boolean
 }
 
+export type CryoServiceType = {
+  id: number
+  name: string
+  cost: number
+  img: string | File
+  isNew?: boolean
+}
+
 export type MainPageType = {
   title: string
   subtitle: string[]
@@ -106,7 +114,7 @@ export type ContactsType = {
 export type CryotherapyType = {
   id: number
   title: string
-  img: string
+  img: string | File
   whatItIsTitle: string
   whatItIsText: string
   indicationsTitle: string
@@ -116,12 +124,7 @@ export type CryotherapyType = {
   procedureTitle: string
   procedureText: string
   servicesTitle: string
-  services: {
-    id: number
-    name: string
-    cost: number
-    img: string
-  }[]
+  services: CryoServiceType[]
 }
 
 export type MassageType = {

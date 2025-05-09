@@ -30,5 +30,8 @@ export const mantine = createTheme({
         root: { zIndex: 100000 },
       },
     },
+    Button: {
+      defaultProps: { color: '#0171fc' },
+    },
   },
 })
