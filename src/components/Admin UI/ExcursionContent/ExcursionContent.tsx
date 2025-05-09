@@ -1,39 +1,47 @@
 import { useEffect, useState } from 'react'
-import { MediaEditor, ApplyButton } from '../../'
+import * as excursionApi from '../../../api/ExcursionAPI'
+import MediaEditor from '../../MediaEditor/MediaEditor'
+import ApplyButton from '../ApplyButton'
 import css from './index.module.scss'
 
 const ExcursionContent = () => {
-  const [excurions, setExcursion] = useState<string>('')
+  const [excursion, setExcursion] = useState<{ id?: number; file: string | File }>({ file: '' })
+  const [changedFile, setChangedFile] = useState<File | null>(null)
 
   useEffect(() => {
-    fetch('https://api.example.com/media')
-      .then((response) => response.json())
-      .then((data) => {
-        setExcursion(data.mediaUrl)
-      })
-      .catch((error) => console.error('Ошибка загрузки:', error))
+    const fetchData = async () => {
+      const response = await excursionApi.getExcursion()
+      setExcursion({ id: response.id, file: response.file }) // предполагается, что сервер возвращает {id, file}
+    }
+    fetchData()
   }, [])
 
   const handleFileChange = (file: File) => {
-    const formData = new FormData()
-    formData.append('file', file)
-
-    fetch('https://api.example.com/upload', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setExcursion(data.newMediaUrl) // Обновляем URL после загрузки
-      })
-      .catch((error) => console.error('Ошибка загрузки файла:', error))
+    setExcursion((prev) => ({ ...prev, file }))
+    setChangedFile(file)
   }
 
-  const sendToBackExcursion = () => {}
+  const sendToBackExcursion = async () => {
+    if (excursion.id && changedFile) {
+      await excursionApi.editExcursion(excursion.id, changedFile)
+    } else if (changedFile) {
+      await excursionApi.createExcursion(changedFile)
+    }
+    // Можно обновить состояние после успешной загрузки
+  }
 
   return (
     <div className={css.tabContent}>
-      <MediaEditor initialSrc={excurions} onFileChange={handleFileChange} />
+      <MediaEditor
+        initialSrc={
+          typeof excursion.file === 'string'
+            ? excursion.file
+            : excursion.file instanceof File
+              ? URL.createObjectURL(excursion.file)
+              : ''
+        }
+        onFileChange={handleFileChange}
+      />
       <ApplyButton onClick={sendToBackExcursion} />
     </div>
   )
