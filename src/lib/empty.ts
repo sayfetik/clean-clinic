@@ -105,6 +105,7 @@ export const emptyMassage: types.MassageType = {
 }
 
 export const emptyPlasmolifting: types.PlasmoliftingType = {
+  id: 0,
   title: '',
   img: '',
   whatItIsTitle: '',

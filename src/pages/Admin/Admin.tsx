@@ -29,7 +29,7 @@ const Admin = () => {
       <div className={css.page}>
         <GradientText text="Панель редактирования" />
         <div className={css.root}>
-          <Tabs defaultValue="plasmolifting">
+          <Tabs defaultValue="solarium">
             <Tabs.List>
               <Tabs.Tab value="main">Главная</Tabs.Tab>
               <Tabs.Tab value="infusions">Капельницы</Tabs.Tab>

@@ -191,6 +191,14 @@ export type AnalyzesType = {
   services: AnalyzesServiceType[]
 }
 
+export type SolariumServiceType = {
+  id: number
+  name: string
+  cost: number
+  img: string | File
+  isNew?: boolean
+}
+
 export type SolariumType = {
   id: number
   title: string
@@ -200,12 +208,7 @@ export type SolariumType = {
   paragraphTitle: string
   paragraph: string[]
   servicesTitle: string
-  services: {
-    id: number
-    name: string
-    cost: number
-    img: string | File
-  }[]
+  services: SolariumServiceType[]
 }
 
 export type ErrorPageType = {
