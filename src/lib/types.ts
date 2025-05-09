@@ -135,9 +135,18 @@ export type CryotherapyType = {
   services: CryoServiceType[]
 }
 
+export type MassageServiceType = {
+  id: number
+  name: string
+  cost: number
+  bullets: string[]
+  img: string | File
+  isNew?: boolean
+}
+
 export type MassageType = {
   title: string
-  img: string
+  img: string | File
   whatItIsTitle: string
   whatItIsText: string
   aboutTitle: string
@@ -145,13 +154,7 @@ export type MassageType = {
   advantagesTitle: string
   advantages: string[]
   servicesTitle: string
-  services: {
-    id: number
-    name: string
-    cost: number
-    bullets: string[]
-    img: string
-  }[]
+  services: MassageServiceType[]
 }
 
 export type PlasmoliftingType = {

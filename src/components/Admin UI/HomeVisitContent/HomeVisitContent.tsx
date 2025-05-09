@@ -5,6 +5,7 @@ import { emptyHomeVisit } from '../../../lib/empty'
 import { HomeVisitServiceType } from '../../../lib/types'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
+import UpdateButton from '../UpdateButton'
 import css from './index.module.scss'
 
 const HomeVisitContent = () => {
@@ -164,9 +165,7 @@ const HomeVisitContent = () => {
                     value={item.cost}
                     onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
                   />
-                  <Button onClick={() => handleSave(index)} variant="light" mt={8}>
-                    Сохранить
-                  </Button>
+                  <UpdateButton onClick={() => handleSave(index)} />
                 </div>
               </div>
               <Button variant="subtle" color="red" onClick={() => handleDelete(item.id)} className={css.deleteButton}>
