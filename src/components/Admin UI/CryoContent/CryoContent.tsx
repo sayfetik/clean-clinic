@@ -1,189 +1,175 @@
 import { Textarea, Button, TextInput } from '@mantine/core'
-import { IconPlus } from '@tabler/icons-react'
-import { useState, useRef, useEffect } from 'react'
-import * as cryo from '../../../api/CryotherapyAPI'
+import { useState, useEffect } from 'react'
+import * as cryoApi from '../../../api/CryotherapyAPI'
 import { emptyCryotherapy } from '../../../lib/empty'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
 import BulletPoints from '../BulletPoints'
+import UpdateButton from '../UpdateButton'
 import css from './index.module.scss'
 
-type CryoType = { id: number; name: string; cost: number; img: File | null | string }
-
-const Items: React.FC<{
-  items: CryoType[]
-  onChange: (items: CryoType[]) => void
-}> = ({ items, onChange }) => {
-  const textareaRefs = useRef<(HTMLTextAreaElement | null)[]>([])
-
-  const handleAdd = () => {
-    const newBullet: CryoType = {
-      id: items.length > 0 ? items[items.length - 1].id + 1 : 1,
-      name: '',
-      cost: 0,
-      img: null,
-    }
-    const newBullets = [...items, newBullet]
-    onChange(newBullets)
-    setTimeout(() => {
-      const lastIndex = newBullets.length - 1
-      if (textareaRefs.current[lastIndex]) {
-        textareaRefs.current[lastIndex]?.focus()
-      }
-    }, 0)
-  }
-
-  const handleRemove = (index: number) => {
-    onChange(items.filter((_, i) => i !== index))
-  }
-
-  const handleChangeName = (index: number, value: string) => {
-    const newBullets = [...items]
-    newBullets[index].name = value
-    onChange(newBullets)
-  }
-
-  const handleChangeCost = (index: number, value: string) => {
-    const newBullets = [...items]
-    newBullets[index].cost = Number(value)
-    onChange(newBullets)
-  }
-
-  const handleChangeImg = (index: number, file: File) => {
-    const newBullets = [...items]
-    newBullets[index].img = file
-    onChange(newBullets)
-  }
-
-  return (
-    <div>
-      <div className={css.services}>
-        {items.map((item, index) => (
-          <div key={index} className={css.bulletItem}>
-            <div className={css.card}>
-              <div className={css.content}>
-                <MediaEditor
-                  initialSrc={typeof item.img === 'string' ? item.img : ''}
-                  onFileChange={(file) => handleChangeImg(index, file)}
-                />
-                <TextInput
-                  label="Название:"
-                  autoFocus
-                  value={item.name}
-                  onChange={(event) => handleChangeName(index, event.currentTarget.value)}
-                />
-                <TextInput
-                  label="Стоимость:"
-                  value={item.cost}
-                  onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
-                />
-              </div>
-            </div>
-            <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.deleteButton}>
-              Удалить
-            </Button>
-          </div>
-        ))}
-      </div>
-      <Button onClick={handleAdd} variant="light">
-        <IconPlus size={16} />
-      </Button>
-    </div>
-  )
+type CryoServiceType = {
+  id: number
+  name: string
+  cost: number
+  img: string | File
+  isNew?: boolean
 }
 
 const CryoContent = () => {
   const [data, setData] = useState(emptyCryotherapy)
-  const [imgFile, setImgFile] = useState<File | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await cryo.getCryo()
+      const response = await cryoApi.getCryo()
       setData(response)
     }
     fetchData()
   }, [])
 
-  // Обработчики для изменения текста
-  const handleChange = (field: keyof typeof data) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setData((prev) => ({ ...prev, [field]: e.target.value }))
+  const handleFileChange = (file: File) => {
+    setData((prev) => ({ ...prev, img: file }))
   }
 
-  const handleImgChange = (file: File) => {
-    setImgFile(file)
-  }
-
-  const handleIndicationsChange = (arr: string[]) => {
-    setData((prev) => ({ ...prev, indications: arr }))
-  }
-
-  const handleContraindicationsChange = (arr: string[]) => {
-    setData((prev) => ({ ...prev, contraindications: arr }))
-  }
-
-  const handleServicesChange = (items: CryoType[]) => {
+  const handleAdd = () => {
     setData((prev) => ({
       ...prev,
-      services: items.map((item) => ({
-        ...item,
-        img: typeof item.img === 'string' ? item.img : '',
-      })),
+      services: [...prev.services, { id: Date.now(), name: '', cost: 0, img: '', isNew: true }],
     }))
   }
 
-  const applyChanges = async () => {
-    const formData = new FormData()
-    formData.append('Id', String(data.id ?? 0))
-    formData.append('Title', data.title)
-    formData.append('WhatItIsTitle', data.whatItIsTitle)
-    formData.append('WhatItIsText', data.whatItIsText)
-    formData.append('IndicationsTitle', data.indicationsTitle)
-    data.indications.forEach((i) => formData.append('Indications', i))
-    formData.append('ContraindicationsTitle', data.contraindicationsTitle)
-    data.contraindications.forEach((i) => formData.append('Contraindications', i))
-    formData.append('ProcedureTitle', data.procedureTitle)
-    formData.append('ProcedureText', data.procedureText)
-    formData.append('ServicesTitle', data.servicesTitle)
-    if (imgFile) {
-      formData.append('Img', imgFile)
-    }
-    data.services.forEach((s, idx) => {
-      formData.append(`Services[${idx}].id`, String(s.id))
-      formData.append(`Services[${idx}].name`, s.name)
-      formData.append(`Services[${idx}].cost`, String(s.cost))
-      formData.append(`Services[${idx}].img`, s.img)
-    })
+  const handleChangeName = (index: number, value: string) => {
+    setData((prev) => ({
+      ...prev,
+      services: prev.services.map((item, i) => (i === index ? { ...item, name: value } : item)),
+    }))
+  }
 
-    await cryo.updateCryotherapy(formData)
+  const handleChangeCost = (index: number, value: string) => {
+    if (!/^\d*$/.test(value)) {
+      return
+    }
+    setData((prev) => ({
+      ...prev,
+      services: prev.services.map((item, i) =>
+        i === index ? { ...item, cost: value === '' ? 0 : Number(value) } : item
+      ),
+    }))
+  }
+
+  const handleServiceImage = (index: number, file: File) => {
+    setData((prev) => ({
+      ...prev,
+      services: prev.services.map((item, i) => (i === index ? { ...item, img: file } : item)),
+    }))
+  }
+
+  const handleSave = async (index: number) => {
+    const item = data.services[index]
+    let response: CryoServiceType
+    if (!item.id || item.id < 0 || item.isNew) {
+      response = await cryoApi.createCryotherapyService(item)
+      setData((prev) => ({
+        ...prev,
+        services: prev.services.map((s, i) => (i === index ? { ...s, id: response.id, isNew: false } : s)),
+      }))
+    } else {
+      // Здесь должен быть editCryotherapyService если он есть
+    }
+  }
+
+  const handleDelete = async (id: number) => {
+    setData((prev) => ({
+      ...prev,
+      services: prev.services.filter((s) => s.id !== id),
+    }))
+    // Здесь должен быть deleteCryotherapyService
+  }
+
+  const applyChanges = async () => {
+    await cryoApi.editCryotherapy(data)
   }
 
   return (
     <div className={css.tabContent}>
       <div className="row">
         <div className={css.content}>
-          <TextInput value={data.title} onChange={handleChange('title')} />
-          <TextInput value={data.whatItIsTitle} onChange={handleChange('whatItIsTitle')} />
-          <Textarea value={data.whatItIsText} onChange={handleChange('whatItIsText')} />
+          <TextInput value={data.title} onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))} />
+          <TextInput
+            value={data.whatItIsTitle}
+            onChange={(e) => setData((prev) => ({ ...prev, whatItIsTitle: e.target.value }))}
+          />
+          <Textarea
+            value={data.whatItIsText}
+            onChange={(e) => setData((prev) => ({ ...prev, whatItIsText: e.target.value }))}
+          />
         </div>
-        <MediaEditor initialSrc={data.img} onFileChange={handleImgChange} />
+        <MediaEditor initialSrc={typeof data.img === 'string' ? data.img : ''} onFileChange={handleFileChange} />
       </div>
-
       <div className="row">
-        <BulletPoints label="Показания:" bullets={data.indications} onChange={handleIndicationsChange} />
+        <BulletPoints
+          label="Показания:"
+          bullets={data.indications}
+          onChange={(arr) => setData((prev) => ({ ...prev, indications: arr }))}
+        />
         <BulletPoints
           label="Противопоказания:"
           bullets={data.contraindications}
-          onChange={handleContraindicationsChange}
+          onChange={(arr) => setData((prev) => ({ ...prev, contraindications: arr }))}
         />
       </div>
-
-      <TextInput value={data.procedureTitle} onChange={handleChange('procedureTitle')} />
-      <Textarea value={data.procedureText} onChange={handleChange('procedureText')} />
+      <TextInput
+        value={data.procedureTitle}
+        onChange={(e) => setData((prev) => ({ ...prev, procedureTitle: e.target.value }))}
+      />
+      <Textarea
+        value={data.procedureText}
+        onChange={(e) => setData((prev) => ({ ...prev, procedureText: e.target.value }))}
+      />
       <div className="margin" />
-
-      <TextInput value={data.servicesTitle} onChange={handleChange('servicesTitle')} />
-      <Items items={data.services} onChange={handleServicesChange} />
-
+      <TextInput
+        value={data.servicesTitle}
+        onChange={(e) => setData((prev) => ({ ...prev, servicesTitle: e.target.value }))}
+      />
+      <div>
+        <div className={css.services}>
+          {data.services.map((item, index) => (
+            <div key={item.id ?? index} className={css.bulletItem}>
+              <div className={css.card}>
+                <div className={css.content}>
+                  <MediaEditor
+                    initialSrc={
+                      typeof item.img === 'string'
+                        ? item.img
+                        : item.img instanceof File
+                          ? URL.createObjectURL(item.img)
+                          : ''
+                    }
+                    onFileChange={(file) => handleServiceImage(index, file)}
+                  />
+                  <TextInput
+                    label="Название:"
+                    value={item.name}
+                    onChange={(event) => handleChangeName(index, event.currentTarget.value)}
+                  />
+                  <TextInput
+                    label="Стоимость:"
+                    value={item.cost}
+                    onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
+                  />
+                  <UpdateButton onClick={() => handleSave(index)} />
+                </div>
+              </div>
+              <Button variant="subtle" color="red" onClick={() => handleDelete(item.id)} className={css.deleteButton}>
+                Удалить
+              </Button>
+            </div>
+          ))}
+        </div>
+        <Button onClick={handleAdd} variant="outline">
+          Добавить услугу
+        </Button>
+      </div>
       <ApplyButton onClick={applyChanges} />
     </div>
   )
