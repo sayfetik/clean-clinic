@@ -9,23 +9,27 @@ import css from './index.module.scss'
 
 const length = 15
 
-const Infusion: React.FC<{infusion: InfusionType, imgWidth: number}> = ({ infusion: {id, name, description, isDescription = true, cost, img}, imgWidth }) => (
+const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({
+  infusion: { id, name, description, isDescription = true, cost, img },
+  imgWidth,
+}) => (
   <div className={css.infusionRoot}>
-    <img src={img} width={imgWidth} className={css.img}/>
-    {isDescription ?
-    <Link to={getInfusionRoute({ infusionId: String(id) })}>
+    <img src={typeof img === 'string' ? img : URL.createObjectURL(img)} width={imgWidth} className={css.img} />
+    {isDescription ? (
+      <Link to={getInfusionRoute({ infusionId: String(id) })}>
+        <h3 className={css.name}>{name}</h3>
+      </Link>
+    ) : (
       <h3 className={css.name}>{name}</h3>
-    </Link>
-    :
-    <h3 className={css.name}>{name}</h3>
-    }
+    )}
     <p className={css.description}>{description}</p>
 
-    {isDescription &&
+    {isDescription && (
       <Link to={getInfusionRoute({ infusionId: String(id) })} className={css.about}>
         <h4>Подробнее</h4>
         <img src={linkIcon} width={length} height={length} />
-      </Link>}
+      </Link>
+    )}
 
     <div className={css.costAndButton}>
       <h3 className={css.cost}>{cost} руб.</h3>
@@ -34,7 +38,7 @@ const Infusion: React.FC<{infusion: InfusionType, imgWidth: number}> = ({ infusi
   </div>
 )
 
-const Infusions: React.FC<{ items: InfusionType[], imgWidth?: number }> = ({ items, imgWidth = 85 }) => {
+const Infusions: React.FC<{ items: InfusionType[]; imgWidth?: number }> = ({ items, imgWidth = 85 }) => {
   const [animationKey, setAnimationKey] = useState(0)
   useEffect(() => {
     setAnimationKey((prevKey) => prevKey + 1)
@@ -54,7 +58,7 @@ const Infusions: React.FC<{ items: InfusionType[], imgWidth?: number }> = ({ ite
           threshold={0}
           delay={70 * index}
         >
-          <Infusion key={index} infusion={item} imgWidth={imgWidth}/>
+          <Infusion key={index} infusion={item} imgWidth={imgWidth} />
         </Animation>
       ))}
     </div>

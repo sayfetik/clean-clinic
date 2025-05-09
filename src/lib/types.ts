@@ -4,7 +4,8 @@ export type InfusionType = {
   isDescription?: boolean
   description: string
   cost: number
-  img: string
+  img: string | File
+  isNew?: boolean
 }
 export type CardType = { id: number; name: string; bullets?: string[]; cost: number; img: string | File }
 export type AdvantageType = { id: number; title: string; text: string }
@@ -158,8 +159,9 @@ export type MassageType = {
 }
 
 export type PlasmoliftingType = {
+  id: number
   title: string
-  img: string
+  img: string | File
   whatItIsTitle: string
   whatItIsText: string
   indicationsTitle: string
@@ -172,7 +174,8 @@ export type PlasmoliftingType = {
     name: string
     description: string
     cost: number
-    img: string
+    img: string | File
+    isNew?: boolean
   }[]
 }
 
@@ -191,7 +194,7 @@ export type AnalyzesType = {
 export type SolariumType = {
   id: number
   title: string
-  img: string
+  img: string | File
   whatItIsTitle: string
   whatItIsText: string
   paragraphTitle: string
@@ -201,7 +204,7 @@ export type SolariumType = {
     id: number
     name: string
     cost: number
-    img: string
+    img: string | File
   }[]
 }
 
