@@ -6,7 +6,7 @@ import {
   ContactContent,
   CryoContent,
   ErrorContent,
-  // ExcursionContent,
+  ExcursionContent,
   GradientText,
   HomeVisitContent,
   InfusionsContent,
@@ -46,9 +46,9 @@ const Admin = () => {
               <Tabs.Tab value="success">Страница о записи</Tabs.Tab>
             </Tabs.List>
 
-            {/* <Tabs.Panel value="excursion"> */}
-            {/* <ExcursionContent /> */}
-            {/* </Tabs.Panel> */}
+            <Tabs.Panel value="excursion">
+              <ExcursionContent />
+            </Tabs.Panel>
             <Tabs.Panel value="main">
               <MainContent />
             </Tabs.Panel>
