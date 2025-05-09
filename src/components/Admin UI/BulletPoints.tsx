@@ -43,7 +43,7 @@ const BulletPoints: React.FC<{ label: string; bullets: string[]; onChange: (arr:
       {label !== '' && <TextInput value={label} readOnly />}
       {bullets.map((bullet, index) => (
         <div key={index} className={css.bulletItem}>
-          <Button variant="subtle" color="red" onClick={() => handleRemove(index)} className={css.squareButton}>
+          <Button variant="outline" color="red" onClick={() => handleRemove(index)} className={css.squareButton}>
             <IconX size={16} />
           </Button>
           <Textarea
@@ -58,7 +58,7 @@ const BulletPoints: React.FC<{ label: string; bullets: string[]; onChange: (arr:
           />
         </div>
       ))}
-      <Button onClick={handleAdd} variant="light">
+      <Button onClick={handleAdd} variant="outline">
         <IconPlus size={16} />
       </Button>
     </div>
