@@ -218,7 +218,7 @@ export type SuccessPageType = {
 }
 
 export type HomeVisitType = {
-  id(id: any): string | Blob
+  id: number
   title: string
   img: string | File
   whatItIsTitle: string
