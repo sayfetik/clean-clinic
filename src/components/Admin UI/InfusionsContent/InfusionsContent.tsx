@@ -23,7 +23,10 @@ const InfusionSection: React.FC<InfusionType> = (infusion) => {
       </div>
       <div className={`${css.content} ${open ? css.show : ''}`}>
         <div className={css.upperSection}>
-          <MediaEditor initialSrc={infusion.img} onFileChange={fileChange} />
+          <MediaEditor
+            initialSrc={typeof infusion.img === 'string' ? infusion.img : URL.createObjectURL(infusion.img)}
+            onFileChange={fileChange}
+          />
           <div className={css.mainInfo}>
             <TextInput label="Название:" value={infusion.name} />
             <TextInput label="Стоимость:" value={infusion.cost} />
