@@ -1,24 +1,32 @@
 export type InfusionType = {
-  id: number
+  id: string
   name: string
-  isDescription?: boolean
-  description: string
   cost: number
   img: string | File
+  duration?: string
+  description: string[]
+  results?: string[]
+  indications?: string[]
+  contraindications?: string[]
   isNew?: boolean
+}
+export type InfusionCategoryType = {
+  category: string
+  infusions: InfusionType[]
 }
 export type CardType = { id: number; name: string; bullets?: string[]; cost: number; img: string | File }
 export type AdvantageType = { id: number; title: string; text: string }
 export type WhiteCardType = { id: number; imagePath: string | File; title: string; text: string }
 export type StepType = { number: string; title: string; text: string }
-export type FeedbackType = { name: string; rate: number; text: string }
+export type FeedbackType = { id: number; name: string; rate: number; text: string }
 export type ContactInfoType = { img: string; title: string; text: string; link: string }
 export type FormInputType = { label: string; placeholder: string }
 export type InfusionsType = { [key: string]: InfusionType[] }
 export type ChosenOption = { chosenId: number; setChosenId: React.Dispatch<React.SetStateAction<number>> }
-export type SpecialistType = { id: number; img: string | File; name: string; profession: string; experience: string }
+export type SpecialistType = { id: number; image: string | File; name: string; profession: string; experience: string, isNew?: boolean }
 export type FAQItem = { question: string; answer: string | null }
 export type InfusionInstructionsType = {
+  id: number
   title: string
   answer: string
   steps: { number: string; title: string; text: string }[]
@@ -50,18 +58,22 @@ export type HomeVisitServiceType = {
 }
 
 export type MainPageType = {
+  id: number
   title: string
   subtitle: string[]
   weWork: {
+    id: number
     title: string
+    img: string | File
     text: string
     numSpecialists: number
     numPatients: number
   }
   additionalText: string
   advantages: AdvantageType[]
-  form: { title: string }
+  form: { id: number; title: string }
   whyInfusions: {
+    id: number
     title: string
     answer: string
     text1: string
@@ -70,7 +82,7 @@ export type MainPageType = {
   whiteCards: WhiteCardType[]
   problemImage: string | File
   problemTitle: string
-  problems: { title: string; text: string }[]
+  problems: { id: number; title: string; text: string }[]
   infusionInstructions: InfusionInstructionsType
   infusions: {
     title: string
@@ -87,7 +99,7 @@ export type MainPageType = {
     faqTitle: string
     faqs: { id: number; question: string; answer: string }[]
   }
-  feedback: { name: string; rate: number; text: string }[]
+  feedback: FeedbackType[]
 }
 
 export type AboutPageType = {
@@ -158,6 +170,15 @@ export type MassageType = {
   services: MassageServiceType[]
 }
 
+export type PlasmoliftingServiceType = {
+    id: number
+    name: string
+    description: string
+    cost: number
+    img: string | File
+    isNew?: boolean
+  }
+
 export type PlasmoliftingType = {
   id: number
   title: string
@@ -169,17 +190,11 @@ export type PlasmoliftingType = {
   contraindicationsTitle: string
   contraindications: string[]
   servicesTitle: string
-  services: {
-    id: number
-    name: string
-    description: string
-    cost: number
-    img: string | File
-    isNew?: boolean
-  }[]
+  services: PlasmoliftingServiceType[]
 }
 
 export type AnalyzesType = {
+  id: number
   title: string
   img: string | File
   paragraph1: string
@@ -233,4 +248,24 @@ export type HomeVisitType = {
   paragraph3: string
   servicesTitle: string
   services: HomeVisitServiceType[]
+}
+
+export type InfusionCatalogType = {
+  id?: string
+  title: string
+  img: string | File
+  infusionsByCategory: InfusionCategoryType[]
+  whatItIsTitle: string
+  whatItIsText1: string
+  whatItIsText2: string
+  servicesTitle: string
+  advantagesTitle: string
+  advantages: string[]
+  advantagesText: string
+  howToChooseCard: {
+    id?: number
+    title: string
+    additionalText: string
+    text: string
+  }
 }

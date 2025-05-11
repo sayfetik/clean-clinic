@@ -1,12 +1,12 @@
 import { Tabs } from '@mantine/core'
 import { Helmet } from 'react-helmet-async'
 import {
-  // AboutContent,
+  AboutContent,
   AnalyzesContent,
   ContactContent,
   CryoContent,
   ErrorContent,
-  ExcursionContent,
+  // ExcursionContent,
   GradientText,
   HomeVisitContent,
   InfusionsContent,
@@ -29,7 +29,7 @@ const Admin = () => {
       <div className={css.page}>
         <GradientText text="Панель редактирования" />
         <div className={css.root}>
-          <Tabs defaultValue="solarium">
+          <Tabs defaultValue="main">
             <Tabs.List>
               <Tabs.Tab value="main">Главная</Tabs.Tab>
               <Tabs.Tab value="infusions">Капельницы</Tabs.Tab>
@@ -46,9 +46,9 @@ const Admin = () => {
               <Tabs.Tab value="success">Страница о записи</Tabs.Tab>
             </Tabs.List>
 
-            <Tabs.Panel value="excursion">
+            {/* <Tabs.Panel value="excursion">
               <ExcursionContent />
-            </Tabs.Panel>
+            </Tabs.Panel> */}
             <Tabs.Panel value="main">
               <MainContent />
             </Tabs.Panel>
@@ -73,9 +73,9 @@ const Admin = () => {
             <Tabs.Panel value="homeVisit">
               <HomeVisitContent />
             </Tabs.Panel>
-            {/* <Tabs.Panel value="about">
+            <Tabs.Panel value="about">
               <AboutContent />
-            </Tabs.Panel> */}
+            </Tabs.Panel>
             <Tabs.Panel value="contacts">
               <ContactContent />
             </Tabs.Panel>
