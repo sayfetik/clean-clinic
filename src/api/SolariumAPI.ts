@@ -37,8 +37,13 @@ export const updateSolariumService = async (formData: FormData) => {
 }
 
 export const deleteSolariumService = async (id: number) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/DeleteSolariumService/${id}`, {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/DeleteSolariumService`, {
     method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+    },
+    body: JSON.stringify(id),
   })
   if (!res.ok) {
     throw new Error('Ошибка при удалении услуги солярия')

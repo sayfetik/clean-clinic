@@ -1,4 +1,5 @@
 export type InfusionType = {
+  id: any | string
   infusionId: string
   ivsInfo: {
     id: string

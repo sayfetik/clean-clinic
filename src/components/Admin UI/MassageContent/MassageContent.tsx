@@ -103,20 +103,20 @@ const MassageContent = () => {
   }
 
   const applyChanges = async () => {
-    const formData = new FormData()
-    formData.append('title', data.title)
-    if (typeof data.img !== 'string' && data.img) {
-      formData.append('img', data.img)
-    }
-    formData.append('whatItIsTitle', data.whatItIsTitle)
-    formData.append('whatItIsText', data.whatItIsText)
-    formData.append('aboutTitle', data.aboutTitle)
-    data.about.forEach((a) => formData.append('about', a))
-    formData.append('advantagesTitle', data.advantagesTitle)
-    data.advantages.forEach((a) => formData.append('advantages', a))
-    formData.append('servicesTitle', data.servicesTitle)
-    await massageApi.updateMassageCatalog(formData)
+  const formData = new FormData()
+  formData.append('Title', data.title)
+  if (typeof data.img !== 'string' && data.img) {
+    formData.append('Img', data.img)
   }
+  formData.append('WhatItIsTitle', data.whatItIsTitle)
+  formData.append('WhatItIsText', data.whatItIsText)
+  formData.append('AboutTitle', data.aboutTitle)
+  data.about.forEach((a) => formData.append('About', a))
+  formData.append('AdvantagesTitle', data.advantagesTitle)
+  data.advantages.forEach((a) => formData.append('Advantages', a))
+  formData.append('ServicesTitle', data.servicesTitle)
+  await massageApi.updateMassageCatalog(formData)
+}
 
   return (
     <div className={css.tabContent}>

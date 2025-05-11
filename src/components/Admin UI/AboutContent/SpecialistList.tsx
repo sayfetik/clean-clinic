@@ -96,13 +96,16 @@ const SpecialistList: React.FC<Props> = ({ specialists, onChange }) => {
                 <TextInput
                   value={item.name}
                   onChange={(e) => handleChange(index, 'name', e.target.value)}
+                  placeholder='Фамилия Имя'
                 />
                 <TextInput
                   value={item.profession}
+                  placeholder='Специальность'
                   onChange={(e) => handleChange(index, 'profession', e.target.value)}
                 />
                 <TextInput
                   value={item.experience}
+                  placeholder='Опыт'
                   onChange={(e) => handleChange(index, 'experience', e.target.value)}
                 />
               </div>

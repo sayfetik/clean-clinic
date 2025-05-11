@@ -168,7 +168,15 @@ const MainContent = () => {
               ? URL.createObjectURL(data.weWork.img)
               : ''
         }
-        onFileChange={() => {}}
+        onFileChange={(file) =>
+          setData((prev) => ({
+            ...prev,
+            weWork: {
+              ...prev.weWork,
+              img: file,
+            },
+          }))
+        }
       />
       <TextInput value={data.weWork.title} onChange={handleChange('weWork.title')} />
       <Textarea value={data.weWork.text} onChange={handleChange('weWork.text')} />
@@ -270,7 +278,7 @@ const MainContent = () => {
         />
         <div className={css.problems}>
           {data.problems.map((problem, index) => (
-            <div key={index}>
+            <div key={index} className={css.block}>
               <TextInput value={problem.title} onChange={handleArrayChange('problems', index, 'title')} />
               <Textarea
                 className={css.fullWidth}
@@ -329,7 +337,7 @@ const MainContent = () => {
       <TextInput value={data.infusions.title} onChange={handleChange('infusions.title')} />
       <Textarea value={data.infusions.text} onChange={handleChange('infusions.text')} />
 
-      <MultiSelect
+      {/* <MultiSelect
         value={infusions}
         onChange={handleInfusionsChange}
         placeholder={getInfusionPlaceholder(6 - infusions.length)}
@@ -339,7 +347,7 @@ const MainContent = () => {
         nothingFoundMessage="Такой капельницы нет..."
         maxValues={6}
         hidePickedOptions
-      />
+      /> */}
 
       <TextInput value={data.services.tittle} onChange={handleChange('serviceTitle')} />
       <Services services={data.services.services} onChange={handleServicesChange} onImageChange={handleServiceImage} />
