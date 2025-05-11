@@ -140,7 +140,7 @@ const PlasmoliftingContent = () => {
       return
     }
     const formData = new FormData()
-    formData.append('Id', String(data.id ?? 0))
+    formData.append('Id', String(data.id ?? 3))
     formData.append('Title', data.title)
     if (typeof data.img !== 'string' && data.img) {
       formData.append('Img', data.img)
@@ -188,6 +188,7 @@ const PlasmoliftingContent = () => {
       <div>
         <div className={css.services}>
           {data.services.map((item, index) => (
+            <div>
             <div key={item.id ?? index} className={css.bulletItem}>
               <div className={css.card}>
                 <div className={css.content}>
@@ -219,12 +220,14 @@ const PlasmoliftingContent = () => {
                   <UpdateButton onClick={() => handleSave(index)} />
                 </div>
               </div>
+            </div>
               <Button variant="subtle" color="red" onClick={() => handleDelete(item.id)} className={css.deleteButton}>
                 Удалить
               </Button>
-            </div>
+              </div>
           ))}
         </div>
+        <div className='margin' />
         <Button onClick={handleAdd} variant="outline">
           Добавить услугу
         </Button>

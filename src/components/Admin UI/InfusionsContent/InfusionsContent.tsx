@@ -104,7 +104,7 @@ const InfusionsContent = () => {
     }
     const infusion = item.infusions[index]
     let response: InfusionType
-    if (!infusion.infusionId || infusion.ivsInfo.isNew) {
+    if (infusion.ivsInfo.isNew) {
       response = await infusionsApi.createInfusion({
         name: infusion.ivsInfo.name,
         price: Number(infusion.ivsInfo.price),
@@ -126,21 +126,22 @@ const InfusionsContent = () => {
                   i === index
                     ? {
                         ...inf,
-                        infusionId: response.infusionId,
+                        infusionId: response.id,
                         ivsInfo: { ...inf.ivsInfo, isNew: false },
                       }
                     : inf
                 ),
               }
             : cat
-        ),
+        )
+        
       }))
     } else {
       response = await infusionsApi.updateInfusion({
         id: infusion.infusionId,
         name: infusion.ivsInfo.name,
         price: Number(infusion.ivsInfo.price),
-        imagePath: infusion.ivsInfo.imagePath as File,
+        imagePath: infusion.ivsInfo.imagePath,
         duration: infusion.ivsInfo.duration || '',
         description: infusion.ivsInfo.description || [],
         results: infusion.ivsInfo.results || [],
@@ -205,6 +206,7 @@ const InfusionsContent = () => {
               infusions: [
                 ...cat.infusions,
                 {
+                  id: '',
                   infusionId: '',
                   ivsInfo: {
                     id: '',

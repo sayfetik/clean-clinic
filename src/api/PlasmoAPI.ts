@@ -20,14 +20,14 @@ export const createPlasmoLiftingService = async (item: PlasmoliftingServiceType)
   formData.append('Description', item.description)
   formData.append('Cost', String(item.cost))
   if (item.img instanceof File) {
-    formData.append('Image', item.img)
+    formData.append('Img', item.img)
   }
   const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/CreatePlasmoLiftingService`, {
     method: 'POST',
     body: formData,
   })
   if (!res.ok) {
-    throw new Error('Ошибка при создании услуги HomeVisit')
+    throw new Error('Ошибка при создании услуги PlasmoLifting')
   }
   return await res.json()
 }
@@ -64,7 +64,7 @@ export const deletePlasmoService = async (id: number) => {
 }
 
 export const updatePlasmoCatalog = async (formData: FormData) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditPlasmoliftingCatalog/`, {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditPlasmoliftingCatalog`, {
     method: 'PUT',
     body: formData,
   })
