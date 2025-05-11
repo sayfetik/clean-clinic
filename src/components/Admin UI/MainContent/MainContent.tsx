@@ -2,7 +2,7 @@ import { Textarea, TextInput, MultiSelect } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
-import { mainInfusions } from '../../../lib/data'
+// import { mainInfusions } from '../../../lib/data'
 // import { patientImage } from '../../../lib/data'
 import { emptyMainPage } from '../../../lib/empty'
 import { MainPageType } from '../../../lib/types'
@@ -14,6 +14,8 @@ import css from './index.module.scss'
 
 const MainContent = () => {
   const [data, setData] = useState(emptyMainPage)
+  const [allInfusions, setAllInfusions] = useState<string[]>([])
+  let allInfusionsDict: Record<string, string> = {}
   const [infusions, setInfusions] = useState<string[]>([])
 
   useEffect(() => {
@@ -21,7 +23,15 @@ const MainContent = () => {
       const main = await mainPageApi.getMainPage()
       setData(main)
     }
+
+    const fetchInfusions = async () => {
+      const res = await mainPageApi.getAllInfusions()
+      setAllInfusions(res.names)
+      allInfusionsDict = res.dict
+    }
+
     fetchMainPage()
+    fetchInfusions()
   }, [])
 
   const handleChange = (path: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -323,7 +333,7 @@ const MainContent = () => {
         value={infusions}
         onChange={handleInfusionsChange}
         placeholder={getInfusionPlaceholder(6 - infusions.length)}
-        data={mainInfusions}
+        data={allInfusions}
         searchable
         clearable
         nothingFoundMessage="Такой капельницы нет..."
