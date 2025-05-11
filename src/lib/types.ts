@@ -1,14 +1,17 @@
 export type InfusionType = {
-  id: string
-  name: string
-  cost: number
-  img: string | File
-  duration?: string
-  description: string[]
-  results?: string[]
-  indications?: string[]
-  contraindications?: string[]
-  isNew?: boolean
+  infusionId: string
+  ivsInfo: {
+    id: string
+    name: string
+    price: number
+    imagePath: string | File
+    duration: string
+    description: string[]
+    results: string[]
+    indications: string[]
+    contraindications: string[]
+    isNew?: boolean
+  }
 }
 export type InfusionCategoryType = {
   category: string
@@ -23,7 +26,14 @@ export type ContactInfoType = { img: string; title: string; text: string; link: 
 export type FormInputType = { label: string; placeholder: string }
 export type InfusionsType = { [key: string]: InfusionType[] }
 export type ChosenOption = { chosenId: number; setChosenId: React.Dispatch<React.SetStateAction<number>> }
-export type SpecialistType = { id: number; image: string | File; name: string; profession: string; experience: string, isNew?: boolean }
+export type SpecialistType = {
+  id: number
+  image: string | File
+  name: string
+  profession: string
+  experience: string
+  isNew?: boolean
+}
 export type FAQItem = { question: string; answer: string | null }
 export type InfusionInstructionsType = {
   id: number
@@ -171,13 +181,13 @@ export type MassageType = {
 }
 
 export type PlasmoliftingServiceType = {
-    id: number
-    name: string
-    description: string
-    cost: number
-    img: string | File
-    isNew?: boolean
-  }
+  id: number
+  name: string
+  description: string
+  cost: number
+  img: string | File
+  isNew?: boolean
+}
 
 export type PlasmoliftingType = {
   id: number
@@ -251,7 +261,7 @@ export type HomeVisitType = {
 }
 
 export type InfusionCatalogType = {
-  id?: string
+  id: string | number
   title: string
   img: string | File
   infusionsByCategory: InfusionCategoryType[]
@@ -263,7 +273,7 @@ export type InfusionCatalogType = {
   advantages: string[]
   advantagesText: string
   howToChooseCard: {
-    id?: number
+    id: number
     title: string
     additionalText: string
     text: string

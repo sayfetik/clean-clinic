@@ -178,3 +178,20 @@ export const updateWhyInfusions = async (body: {
   }
   return await res.json()
 }
+
+export const getAllInfusions = async (): Promise<{ dict: Record<string, string>; names: string[] }> => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/GetAllTreatments`, {
+    method: 'GET',
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка при получении всех инфузий')
+  }
+  const data = await res.json()
+  const dict: Record<string, string> = {}
+  const names: string[] = []
+  data.forEach((item: { name: string; id: string }) => {
+    dict[item.name] = item.id
+    names.push(item.name)
+  })
+  return { dict, names }
+}

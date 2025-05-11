@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation, Card } from '../../animations'
+import * as infusionsApi from '../../api/InfusionsAPI'
 import { Filters, GradientText, Infusions, Problems } from '../../components'
-import { infusionCatalog } from '../../lib/data'
+import { emptyInfusionCatalog } from '../../lib/empty'
+import { InfusionCatalogType } from '../../lib/types'
 import css from './index.module.scss'
 
 type InfusionCatalogProps = {
@@ -13,7 +15,11 @@ type InfusionCatalogProps = {
 
 const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problemTitle, problems }) => {
   const [chosenId, setChosenId] = useState(0)
-  const data = infusionCatalog
+  const [data, setData] = useState<InfusionCatalogType>(emptyInfusionCatalog)
+
+  useEffect(() => {
+    infusionsApi.getInfusionCatalog().then(setData)
+  }, [])
   const filterKeys = Object.keys(data.infusions)
   const filterKey = filterKeys[chosenId] || filterKeys[0]
 
@@ -37,7 +43,7 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
                   <p className={css.paragraph}>{data.whatItIsText2}</p>
                 </div>
               </div>
-              <img className={css.image} src={data.img} />
+              <img className={css.image} src={typeof data.img === 'string' ? data.img : URL.createObjectURL(data.img)} />
             </div>
             <div>
               <div className={css.advantages}>
