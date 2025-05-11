@@ -1,3 +1,4 @@
+import { MainPageType } from '../lib/types'
 import { get, post, put } from './methods'
 
 const section = import.meta.env.VITE_MAIN as string
@@ -17,42 +18,14 @@ export const getInfusionInstructions = async () => {
   return await get(`${section}/GetStepTypes`)
 }
 
-export const updateMainPage = async (body: any) => {
+export const updateMainPage = async (body: MainPageType) => {
   const formData = new FormData()
-  formData.append('Id', body.id ?? 0)
+  formData.append('Id', body.id.toString())
   formData.append('Title', body.title ?? '')
-
-  // Subtitle как массив
   if (Array.isArray(body.subtitle)) {
     body.subtitle.forEach((item: string) => formData.append('Subtitle', item ?? ''))
   }
-
-  // WeWork
-  formData.append('WeWork.Title', body.weWork?.title ?? '')
-  formData.append('WeWork.Text', body.weWork?.text ?? '')
-  formData.append('WeWork.NumSpecialists', body.weWork?.numSpecialists ?? 0)
-  formData.append('WeWork.NumPatients', body.weWork?.numPatients ?? 0)
-
-  // Advantages как массив объектов
-  if (Array.isArray(body.advantages)) {
-    body.advantages.forEach((item: any, i: number) => {
-      formData.append(`Advantages[${i}].Title`, item.title ?? '')
-      formData.append(`Advantages[${i}].Text`, item.text ?? '')
-    })
-  }
-
-  // Form
-  formData.append('Form.Id', body.form?.id ?? '')
-  formData.append('Form.Title', body.form?.title ?? '')
-  formData.append('Form.Text', body.form?.text ?? '')
-
-  // WhyInfusions
-  formData.append('WhyInfusions.Title', body.whyInfusions?.title ?? '')
-  formData.append('WhyInfusions.Answer', body.whyInfusions?.answer ?? '')
-  formData.append('WhyInfusions.Text1', body.whyInfusions?.text1 ?? '')
-  formData.append('WhyInfusions.Text2', body.whyInfusions?.text2 ?? '')
-
-  // ProblemImage
+  formData.append('AdditionalText', body.additionalText ?? '')
   if (body.problemImage instanceof File) {
     formData.append('ProblemImage', body.problemImage)
   }
@@ -99,7 +72,7 @@ export const updateWhiteCard = async (body: { id: string; title: string; text: s
     formData.append('Id', body.id)
     formData.append('Title', body.title)
     formData.append('Text', body.text)
-    formData.append('Image', body.imagePath)
+    formData.append('ImagePath', body.imagePath)
     const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/UpdateWhiteCard`, {
       method: 'PUT',
       body: formData,
@@ -113,4 +86,95 @@ export const updateWhiteCard = async (body: { id: string; title: string; text: s
 
 export const updateAdvantageType = async (body: { id: string; title: string; text: string }) => {
   return await put(`${section}/UpdateAdvantageType`, body)
+}
+
+export const updateProblem = async (body: { id: number; title: string; text: string }) => {
+  return await put(`${section}/UpdateProblem`, body)
+}
+
+export const updateInfusionInstructions = async (body: { id: number; title: string; answer: string }) => {
+  return await put(`${section}/UpdateInfusionInstructions`, body)
+}
+
+export const updateFaq = async (body: { id: number; question: string; answer: string }) => {
+  return await put(`${section}/UpdateFaq`, body)
+}
+
+export const updateService = async (body: { Id: number; Name: string; Img: string | File }) => {
+  const formData = new FormData()
+  formData.append('Id', String(body.Id))
+  formData.append('Name', body.Name)
+  if (body.Img instanceof File) {
+    formData.append('Img', body.Img)
+  } else {
+    formData.append('Img', '')
+  }
+  return await fetch(`${import.meta.env.VITE_API_URL}/${section}/UpdateServices`, {
+    method: 'PUT',
+    body: formData,
+  })
+}
+
+export const updateFeedback = async (body: { Id: number; Name: string; Rate: number; Text: string }) => {
+  const formData = new FormData()
+  formData.append('Id', String(body.Id))
+  formData.append('Name', body.Name)
+  formData.append('Rate', String(body.Rate))
+  formData.append('Text', body.Text)
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/UpdateFeedback`, {
+    method: 'PUT',
+    body: formData,
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка обновления отзыва')
+  }
+  return await res.json()
+}
+
+export const updateWeWork = async (body: {
+  id: number
+  img: string | File
+  title: string
+  text: string
+  numSpecialists: number
+  numPatients: number
+}) => {
+  const formData = new FormData()
+  formData.append('id', String(body.id))
+  formData.append('title', body.title)
+  formData.append('text', body.text)
+  formData.append('numSpecialists', String(body.numSpecialists))
+  formData.append('numPatients', String(body.numPatients))
+  if (body.img instanceof File) {
+    formData.append('img', body.img)
+  }
+  return await fetch(`${import.meta.env.VITE_API_URL}/${section}/UpdateWeWork`, {
+    method: 'PUT',
+    body: formData,
+  })
+}
+
+export const updateForm = async (body: { formId: number; title: string }) => {
+  return await put(`${section}/UpdateForm`, body)
+}
+
+export const updateWhyInfusions = async (body: {
+  id: number
+  title: string
+  answer: string
+  text1: string
+  text2: string
+}) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/UpdateWhyInfusions`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      Accept: '*/*',
+    },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка обновления WhyInfusions')
+  }
+  return await res.json()
 }

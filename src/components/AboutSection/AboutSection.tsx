@@ -1,12 +1,12 @@
-import patientImage from '/assets/patient.png'
+import { FadeAnimation } from '../../animations'
 import { Advantage } from '../../components'
 import { AdvantageType } from '../../lib/types'
 import css from './index.module.scss'
-import { FadeAnimation } from '../../animations'
 
 type weWorkType = {
   title: string
   text: string
+  img: string | File
   numSpecialists: number
   numPatients: number
 }
@@ -21,7 +21,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ weWork, additionalText, adv
   <div className={css.root}>
     <div className={css.aboutClinicContainer}>
       <FadeAnimation>
-        <img src={patientImage} className={css.patientImage} width="95%" />
+        <img
+          src={typeof weWork.img === 'string' ? weWork.img : URL.createObjectURL(weWork.img)}
+          className={css.patientImage}
+          width="95%"
+        />
       </FadeAnimation>
       <div className={css.textAboutClinic}>
         <FadeAnimation>

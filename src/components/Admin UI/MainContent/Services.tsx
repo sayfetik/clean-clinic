@@ -1,5 +1,5 @@
 import { TextInput, Button, ActionIcon } from '@mantine/core'
-import { IconPlus, IconX } from '@tabler/icons-react'
+import { IconPlus } from '@tabler/icons-react'
 import * as mainPageApi from '../../../api/MainAPI'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import UpdateButton from '../UpdateButton'
@@ -33,17 +33,23 @@ const Services: React.FC<ServicesProps> = ({ services, onChange, onImageChange }
     onChange(updated)
   }
 
-  const handleCreateService = async (index: number) => {
+  const handleServiceSave = async (index: number) => {
     const service = services[index]
-    await mainPageApi.createService({
-      id: String(services.length+1),
-      name: service.name,
-      img: service.img,
-    })
-    const updated = services.map((item, i) =>
-      i === index ? { ...item, isNew: false } : item
-    )
-    onChange(updated)
+    if (service.isNew) {
+      const response = await mainPageApi.createService({
+        id: String(services.length),
+        name: service.name,
+        img: service.img,
+      })
+      const updated = services.map((item, i) => (i === index ? { ...item, id: response.id, isNew: false } : item))
+      onChange(updated)
+    } else {
+      await mainPageApi.updateService({
+        Id: service.id,
+        Name: service.name,
+        Img: service.img,
+      })
+    }
   }
 
   return (
@@ -64,15 +70,11 @@ const Services: React.FC<ServicesProps> = ({ services, onChange, onImageChange }
               aria-label="Удалить услугу"
               className={css.squareButton}
             >
-              <IconX size={18} />
+              Удалить
             </ActionIcon>
-            {card.isNew && (
-              <div style={{ marginTop: 8 }}>
-                <UpdateButton
-                  onClick={() => handleCreateService(index)}
-                />
-              </div>
-            )}
+            <div style={{ marginTop: 8 }}>
+              <UpdateButton onClick={() => handleServiceSave(index)} />
+            </div>
           </div>
         ))}
       </div>

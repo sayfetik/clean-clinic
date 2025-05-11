@@ -100,7 +100,7 @@ const SolariumContent = () => {
       if (item.img instanceof File) {
         formData.append('Img', item.img)
       }
-      response = await solariumApi.updateSolariumService(item.id, formData)
+      await solariumApi.updateSolariumService(formData)
       setData((prev) =>
         prev
           ? {
@@ -146,8 +146,7 @@ const SolariumContent = () => {
     formData.append('ParagraphTitle', data.paragraphTitle)
     data.paragraph.forEach((p) => formData.append('Paragraph', p))
     formData.append('ServicesTitle', data.servicesTitle)
-    formData.append('Services', data.services.map((s) => JSON.stringify(s)).join(','))
-    await solariumApi.updateSolarium(data.id, formData)
+    await solariumApi.updateSolarium(formData)
   }
 
   return (

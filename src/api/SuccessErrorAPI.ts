@@ -1,7 +1,11 @@
-import { post } from './methods'
 const API_URL = import.meta.env.VITE_API
 
-export const createSuccessPage = async () => post('CreateSuccessPage', {})
+export const createSuccessPage = async () => {
+  const res = await fetch(`${API_URL}/CreateSuccessPage`, {
+    method: 'POST',
+  })
+  return await res.json()
+}
 
 export const getSuccessPage = async () => {
   try {
@@ -20,7 +24,12 @@ export const getSuccessPage = async () => {
   }
 }
 
-export const createErrorPage = async () => post('CreateErrorPage', {})
+export const createErrorPage = async () => {
+  const res = await fetch(`${API_URL}/CreateErrorPage`, {
+    method: 'POST',
+  })
+  return await res.json()
+}
 
 export const getErrorPage = async () => {
   try {

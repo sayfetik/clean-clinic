@@ -1,6 +1,6 @@
 import { Textarea, TextInput, MultiSelect } from '@mantine/core'
 import { useEffect, useState } from 'react'
-import { ApplyButton, MediaEditor } from '../../'
+import { MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
 import { mainInfusions } from '../../../lib/data'
 // import { patientImage } from '../../../lib/data'
@@ -57,12 +57,7 @@ const MainContent = () => {
     }
 
   const handleProblemImageChange = (file: File) => {
-    const reader = new FileReader()
-    reader.onload = () => {
-      const result = reader.result as string
-      setData((prev) => ({ ...prev, problemImage: result }))
-    }
-    reader.readAsDataURL(file)
+    setData((prev) => ({ ...prev, problemImage: file }))
   }
 
   const handleWhiteCardImageChange = (index: number, file: File) => {
@@ -121,13 +116,50 @@ const MainContent = () => {
     })
   }
 
+  const handleWeWorkSave = async () => {
+    await mainPageApi.updateWeWork({
+      id: data.weWork.id,
+      img: data.weWork.img,
+      title: data.weWork.title,
+      text: data.weWork.text,
+      numSpecialists: data.weWork.numSpecialists,
+      numPatients: data.weWork.numPatients,
+    })
+  }
+
+  const handleFormSave = async () => {
+    await mainPageApi.updateForm({
+      formId: data.form.id,
+      title: data.form.title,
+    })
+  }
+
+  const handleWhyInfusionsSave = async () => {
+    await mainPageApi.updateWhyInfusions({
+      id: data.whyInfusions.id,
+      title: data.whyInfusions.title,
+      answer: data.whyInfusions.answer,
+      text1: data.whyInfusions.text1,
+      text2: data.whyInfusions.text2,
+    })
+  }
+
   const sendToBack = async () => {
     await mainPageApi.updateMainPage(data)
   }
 
   return (
     <div className={css.tabContent}>
-      {/* <MediaEditor initialSrc={patientImage} onFileChange={()=>{}} /> */}
+      <MediaEditor
+        initialSrc={
+          typeof data.weWork.img === 'string'
+            ? data.weWork.img
+            : data.weWork.img instanceof File
+              ? URL.createObjectURL(data.weWork.img)
+              : ''
+        }
+        onFileChange={() => {}}
+      />
       <TextInput value={data.weWork.title} onChange={handleChange('weWork.title')} />
       <Textarea value={data.weWork.text} onChange={handleChange('weWork.text')} />
       <div className="row">
@@ -146,6 +178,7 @@ const MainContent = () => {
           rightSectionWidth={180}
         />
       </div>
+      <UpdateButton onClick={handleWeWorkSave} />
 
       <div className="margin"></div>
 
@@ -174,6 +207,7 @@ const MainContent = () => {
       <div className="margin"></div>
 
       <TextInput value={data.form.title} onChange={handleChange('form.title')} />
+      <UpdateButton onClick={handleFormSave} />
 
       <div className="margin"></div>
 
@@ -181,6 +215,7 @@ const MainContent = () => {
       <TextInput value={data.whyInfusions.answer} onChange={handleChange('whyInfusions.answer')} />
       <Textarea value={data.whyInfusions.text1} onChange={handleChange('whyInfusions.text1')} />
       <Textarea value={data.whyInfusions.text2} onChange={handleChange('whyInfusions.text2')} />
+      <UpdateButton onClick={handleWhyInfusionsSave} />
 
       <div className="row">
         {data.whiteCards.map((card, index) => (
@@ -211,11 +246,16 @@ const MainContent = () => {
 
       <div className="margin"></div>
 
-      {/* ДОДЕЕЕЕЕEEEEEEEEEEEEEEEEEEEEEEEEEЕЕЛАТЬ */}
       <TextInput value={data.problemTitle} onChange={handleChange('problemTitle')} />
       <div className="row">
         <MediaEditor
-          initialSrc={typeof data.problemImage === 'string' ? data.problemImage : ''}
+          initialSrc={
+            typeof data.problemImage === 'string'
+              ? data.problemImage
+              : data.problemImage instanceof File
+                ? URL.createObjectURL(data.problemImage)
+                : ''
+          }
           onFileChange={handleProblemImageChange}
         />
         <div className={css.problems}>
@@ -227,18 +267,38 @@ const MainContent = () => {
                 value={problem.text}
                 onChange={handleArrayChange('problems', index, 'text')}
               />
+              <UpdateButton
+                onClick={() =>
+                  mainPageApi.updateProblem({
+                    id: problem.id,
+                    title: problem.title,
+                    text: problem.text,
+                  })
+                }
+              />
             </div>
           ))}
         </div>
       </div>
 
+      <UpdateButton onClick={sendToBack} />
+
       <div className="margin"></div>
 
       <TextInput value={data.infusionInstructions.title} onChange={handleChange('infusionInstructions.title')} />
       <TextInput value={data.infusionInstructions.answer} onChange={handleChange('infusionInstructions.answer')} />
+      <UpdateButton
+        onClick={() =>
+          mainPageApi.updateInfusionInstructions({
+            id: data.infusionInstructions.id,
+            title: data.infusionInstructions.title,
+            answer: data.infusionInstructions.answer,
+          })
+        }
+      />
       <div className="row">
         {data.infusionInstructions.steps.map((card, index) => (
-          <div key={index}>
+          <div key={index} className={css.block}>
             <TextInput value={card.title} onChange={handleArrayChange('infusionInstructions.steps', index, 'title')} />
             <Textarea
               className={css.fullWidth}
@@ -294,18 +354,17 @@ const MainContent = () => {
       <h4 className={css.text}>Отзывы</h4>
       <Feedbacks
         feedbacks={data.feedback}
-        onChange={feedbacks =>
-          setData(prev => ({
+        onChange={(feedbacks) =>
+          setData((prev) => ({
             ...prev,
-            feedback: feedbacks.map(feedback => ({
+            feedback: feedbacks.map((feedback) => ({
               ...feedback,
+              id: feedback.id || 0,
               rate: typeof feedback.rate === 'string' ? parseFloat(feedback.rate) : feedback.rate,
             })),
           }))
         }
       />
-
-      <ApplyButton onClick={sendToBack} />
     </div>
   )
 }

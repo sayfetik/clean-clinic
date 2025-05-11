@@ -57,3 +57,34 @@ export const editAnalyseService = async (body: AnalyzesServiceType) => {
 export const deleteAnalyseService = async (id: number) => {
   return await del(`${section}/DeleteAnalyseService`, id)
 }
+
+export const updateAnalysePage = async (body: {
+  id: number
+  title: string
+  img: File | string
+  paragraph1: string
+  paragraph2: string
+  paragraph3: string
+  procedureTitle: string
+  procedureText: string
+  servicesTitle: string
+}) => {
+  const formData = new FormData()
+  formData.append('Id', String(body.id))
+  formData.append('Title', body.title)
+  formData.append('Img', typeof body.img === 'string' ? '' : (body.img as File))
+  formData.append('Paragraph1', body.paragraph1)
+  formData.append('Paragraph2', body.paragraph2)
+  formData.append('Paragraph3', body.paragraph3)
+  formData.append('ProcedureTitle', body.procedureTitle)
+  formData.append('ProcedureText', body.procedureText)
+  formData.append('ServicesTitle', body.servicesTitle)
+
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/UpdateAnalysePage`, {
+    method: 'PUT',
+    body: formData,
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка обновления страницы анализов')
+  }
+}

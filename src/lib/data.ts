@@ -24,7 +24,8 @@ export const mainDONE = {
     numSpecialists: 3832,
     numPatients: 38750,
   },
-  additionalText: 'Используем современные и проверенные методики инфузионной терапии для достижения максимального результата',
+  additionalText:
+    'Используем современные и проверенные методики инфузионной терапии для достижения максимального результата',
   advantages: [
     {
       title: 'Индивидуальный подход',
@@ -58,7 +59,7 @@ export const mainDONE = {
     {
       id: 2,
       img: '/assets/heart.png',
-      title: 'Мнгновенные результаты',
+      title: 'Мгновенные результаты',
       text: '70% наших пациентов отмечают улучшение самочувствия и энергии после 1 капельницы',
     },
     {
@@ -228,7 +229,7 @@ export const mainDONE = {
   ],
 }
 
-export const infusionCatalog: {
+export const infusionCatalogDone: {
   title: string
   img: string
   infusions: Record<string, types.InfusionType[]>
@@ -868,7 +869,7 @@ export const solarium = {
   ],
 }
 
-export const homeVisit = {
+export const homeVisitDone = {
   title: 'Выезд на дом',
   img: '/assets/homeVisitCard.jpeg',
   whatItIsTitle: 'Турбо солярий с Colatten лампами',
