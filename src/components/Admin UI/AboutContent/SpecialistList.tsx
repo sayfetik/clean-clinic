@@ -1,120 +1,127 @@
 import { TextInput, Button } from '@mantine/core'
-import React, { useState, useRef } from 'react'
+import * as aboutPageApi from '../../../api/AboutAPI'
 import { SpecialistType } from '../../../lib/types'
 import MediaEditor from '../../MediaEditor/MediaEditor'
-import Specialist from './Specialist'
+import UpdateButton from '../UpdateButton'
 import css from './index.module.scss'
+
+const emptySpecialist: SpecialistType = {
+  id: 0,
+  name: '',
+  profession: '',
+  experience: '',
+  image: '',
+  isNew: true,
+}
 
 type Props = {
   specialists: SpecialistType[]
-  onSpecialistChange: (index: number, updated: SpecialistType) => void
-  onAddSpecialist: (newSpecialist: { Name: string; Profession: string; Experience: string; file: File }) => void
+  onChange: (specialists: SpecialistType[]) => void
 }
 
-const SpecialistList: React.FC<Props> = ({ specialists, onSpecialistChange, onAddSpecialist }) => {
-  const [isAdding, setIsAdding] = useState(false)
-  const [newSpecialist, setNewSpecialist] = useState<{
-    name: string
-    profession: string
-    experience: string
-    file: File | null
-  }>({
-    name: '',
-    profession: '',
-    experience: '',
-    file: null,
-  })
-  const [error, setError] = useState('')
-  const nameRef = useRef<HTMLInputElement | null>(null)
+const SpecialistList: React.FC<Props> = ({ specialists, onChange }) => {
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof typeof newSpecialist) => {
-    setNewSpecialist((prev) => ({
-      ...prev,
-      [field]: e.target.value,
-    }))
+  const handleAdd = () => {
+    onChange([...specialists, { ...emptySpecialist, id: Date.now() }])
   }
 
-  const handleFileChange = (file: File) => {
-    setNewSpecialist((prev) => ({
-      ...prev,
-      file,
-    }))
+  const handleChange = (index: number, field: keyof SpecialistType, value: string) => {
+    onChange(
+      specialists.map((item, i) => (i === index ? { ...item, [field]: value } : item))
+    )
   }
 
-  const handleBlur = () => {
-    if (!newSpecialist.name && !newSpecialist.profession && !newSpecialist.experience) {
-      setIsAdding(false)
+  const handleImageChange = (index: number, file: File) => {
+    onChange(
+      specialists.map((item, i) => (i === index ? { ...item, image: file } : item))
+    )
+  }
+
+  const handleSave = async (index: number) => {
+    const item = specialists[index]
+    let response: SpecialistType
+    if (!item.id || item.id < 0 || item.isNew) {
+      response = await aboutPageApi.createSpecialist({
+        Name: item.name,
+        Profession: item.profession,
+        Experience: item.experience,
+        file: item.image as File,
+      })
+      onChange(
+        specialists.map((s, i) =>
+          i === index ? { ...s, id: response.id, isNew: false } : s
+        )
+      )
+    } else {
+      response = await aboutPageApi.updateSpecialist({
+        Id: item.id,
+        Name: item.name,
+        Profession: item.profession,
+        Experience: item.experience,
+        file: item.image instanceof File ? item.image : '',
+      })
+      onChange(
+        specialists.map((s, i) =>
+          i === index ? { ...s, ...response, isNew: false } : s
+        )
+      )
     }
   }
 
-  const handleAddClick = () => {
-    setIsAdding(true)
-    setTimeout(() => {
-      nameRef.current?.focus()
-    }, 0)
-  }
-
-  const addSpecialist = async () => {
-    setError('')
-    if (
-      !newSpecialist.name.trim() ||
-      !newSpecialist.profession.trim() ||
-      !newSpecialist.experience.trim() ||
-      !newSpecialist.file
-    ) {
-      setError('Заполните все поля и выберите фото')
-      return
+  const handleDelete = async (id: number) => {
+    onChange(specialists.filter((s) => s.id !== id))
+    if (id && id > 0) {
+      await aboutPageApi.deleteSpecialist(id)
     }
-    await onAddSpecialist({
-      Name: newSpecialist.name,
-      Profession: newSpecialist.profession,
-      Experience: newSpecialist.experience,
-      file: newSpecialist.file,
-    })
-    setNewSpecialist({ name: '', profession: '', experience: '', file: null })
-    setIsAdding(false)
   }
 
   return (
     <div>
       <div className={css.specialists}>
-        {specialists.map((specialist, index) => (
-          <div key={index} className={css.specialistItem}>
-            <Specialist specialist={specialist} onChange={(updated) => onSpecialistChange(index, updated)} />
+        {specialists.map((item, index) => (
+          <div key={item.id ?? index} className={css.specialistItem}>
+            <div className={css.specialist}>
+              <MediaEditor
+                initialSrc={
+                  typeof item.image === 'string'
+                    ? item.image
+                    : item.image instanceof File
+                    ? URL.createObjectURL(item.image)
+                    : ''
+                }
+                onFileChange={(file) => handleImageChange(index, file)}
+                size={125}
+              />
+              <div className={css.specText}>
+                <TextInput
+                  value={item.name}
+                  onChange={(e) => handleChange(index, 'name', e.target.value)}
+                />
+                <TextInput
+                  value={item.profession}
+                  onChange={(e) => handleChange(index, 'profession', e.target.value)}
+                />
+                <TextInput
+                  value={item.experience}
+                  onChange={(e) => handleChange(index, 'experience', e.target.value)}
+                />
+              </div>
+            </div>
+                <UpdateButton onClick={() => handleSave(index)} />
+                <Button
+                  variant="light"
+                  color="red"
+                  onClick={() => handleDelete(item.id)}
+                  className={css.deleteButton}
+                >
+                  Удалить
+                </Button>
           </div>
         ))}
       </div>
-
-      <div className={css.addSpecialist}>
-        {isAdding ? (
-          <div className={css.form} onBlur={handleBlur}>
-            <TextInput
-              ref={nameRef}
-              label="Имя"
-              value={newSpecialist.name}
-              onChange={(e) => handleInputChange(e, 'name')}
-            />
-            <TextInput
-              label="Профессия"
-              value={newSpecialist.profession}
-              onChange={(e) => handleInputChange(e, 'profession')}
-            />
-            <TextInput
-              label="Опыт"
-              value={newSpecialist.experience}
-              onChange={(e) => handleInputChange(e, 'experience')}
-            />
-            {/* Используем MediaEditor для выбора файла */}
-            <div style={{ margin: '10px 0' }}>
-              <MediaEditor initialSrc="" onFileChange={handleFileChange} size={80} />
-            </div>
-            {error && <div style={{ color: 'red', marginBottom: 8 }}>{error}</div>}
-            <Button onClick={addSpecialist}>Добавить</Button>
-          </div>
-        ) : (
-          <Button onClick={handleAddClick}>+ Добавить специалиста</Button>
-        )}
-      </div>
+      <Button onClick={handleAdd} variant="outline">
+        Добавить специалиста
+      </Button>
     </div>
   )
 }

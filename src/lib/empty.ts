@@ -1,23 +1,28 @@
 import * as types from './types'
 
 export const emptyInfusionInstructions: types.InfusionInstructionsType = {
+  id: 0,
   title: '',
   answer: '',
   steps: [],
 }
 export const emptyMainPage: types.MainPageType = {
+  id: 0,
   title: '',
   subtitle: [],
   weWork: {
+    id: 0,
     title: '',
+    img: '',
     text: '',
     numSpecialists: 0,
     numPatients: 0,
   },
   additionalText: '',
   advantages: [],
-  form: { title: '' },
+  form: { id: 0, title: '' },
   whyInfusions: {
+    id: 0,
     title: '',
     answer: '',
     text1: '',
@@ -28,6 +33,7 @@ export const emptyMainPage: types.MainPageType = {
   problemTitle: '',
   problems: [],
   infusionInstructions: {
+    id: 0,
     title: '',
     answer: '',
     steps: [],
@@ -119,6 +125,7 @@ export const emptyPlasmolifting: types.PlasmoliftingType = {
 }
 
 export const emptyAnalyzes: types.AnalyzesType = {
+  id: 0,
   title: '',
   img: '',
   paragraph1: '',
@@ -164,4 +171,24 @@ export const emptyHomeVisit: types.HomeVisitType = {
   paragraph3: '',
   servicesTitle: '',
   services: [],
+}
+
+export const emptyInfusionCatalog: types.InfusionCatalogType = {
+  id: '',
+  title: '',
+  img: '',
+  infusionsByCategory: [],
+  whatItIsTitle: '',
+  whatItIsText1: '',
+  whatItIsText2: '',
+  servicesTitle: '',
+  advantagesTitle: '',
+  advantages: [],
+  advantagesText: '',
+  howToChooseCard: {
+    id: 0,
+    title: '',
+    additionalText: '',
+    text: '',
+  },
 }
