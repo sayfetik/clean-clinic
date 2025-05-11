@@ -82,7 +82,7 @@ const MassageContent = () => {
       if (item.img instanceof File) {
         formData.append('Img', item.img)
       }
-      await massageApi.updateMassageService(item.id, formData)
+      await massageApi.updateMassageService(formData)
       setData((prev) => ({
         ...prev,
         services: prev.services.map((s, i) => (i === index ? { ...s, ...response, isNew: false } : s)),

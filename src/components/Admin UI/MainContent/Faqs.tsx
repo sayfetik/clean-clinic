@@ -1,11 +1,11 @@
 import { TextInput, Button, ActionIcon, Textarea } from '@mantine/core'
-import { IconPlus, IconX } from '@tabler/icons-react'
+import { IconPlus } from '@tabler/icons-react'
 import * as mainPageApi from '../../../api/MainAPI'
 import UpdateButton from '../UpdateButton'
 import css from './index.module.scss'
 
 type FaqType = {
-  id: number | string
+  id: number
   question: string
   answer: string
   isNew?: boolean
@@ -31,15 +31,23 @@ const Faqs: React.FC<FaqsProps> = ({ faqs, onChange }) => {
     onChange(updated)
   }
 
-  const handleCreateFaq = async (index: number) => {
+  const handleFaqSave = async (index: number) => {
     const faq = faqs[index]
-    await mainPageApi.createFaq({
-      id: String(faqs.length),
-      question: faq.question,
-      answer: faq.answer,
-    })
-    const updated = faqs.map((item, i) => (i === index ? { ...item, isNew: false } : item))
-    onChange(updated)
+    if (faq.isNew) {
+      await mainPageApi.createFaq({
+        id: String(faqs.length),
+        question: faq.question,
+        answer: faq.answer,
+      })
+      const updated = faqs.map((item, i) => (i === index ? { ...item, isNew: false } : item))
+      onChange(updated)
+    } else {
+      await mainPageApi.updateFaq({
+        id: faq.id,
+        question: faq.question,
+        answer: faq.answer,
+      })
+    }
   }
 
   return (
@@ -68,13 +76,11 @@ const Faqs: React.FC<FaqsProps> = ({ faqs, onChange }) => {
               aria-label="Удалить вопрос"
               className={css.squareButton}
             >
-              <IconX size={18} />
+              Удалить
             </ActionIcon>
-            {card.isNew && (
-              <div style={{ marginTop: 8 }}>
-                <UpdateButton onClick={() => handleCreateFaq(index)} />
-              </div>
-            )}
+            <div style={{ marginTop: 8 }}>
+              <UpdateButton onClick={() => handleFaqSave(index)} />
+            </div>
           </div>
         ))}
       </div>

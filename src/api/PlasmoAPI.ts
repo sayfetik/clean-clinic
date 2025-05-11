@@ -1,3 +1,4 @@
+import { PlasmoliftingServiceType } from '../lib/types'
 import { get, post } from './methods'
 
 const section = import.meta.env.VITE_PLASMO as string
@@ -13,6 +14,24 @@ export const getPlasmo = async () => {
   }
 }
 
+export const createPlasmoLiftingService = async (item: PlasmoliftingServiceType) => {
+  const formData = new FormData()
+  formData.append('Name', item.name)
+  formData.append('Description', item.description)
+  formData.append('Cost', String(item.cost))
+  if (item.img instanceof File) {
+    formData.append('Image', item.img)
+  }
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/CreatePlasmoLiftingService`, {
+    method: 'POST',
+    body: formData,
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка при создании услуги HomeVisit')
+  }
+  return await res.json()
+}
+
 export const updatePlasmo = async (formData: FormData) => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/Plasmo/EditPlasmoLifting`, {
     method: 'PUT',
@@ -25,14 +44,14 @@ export const updatePlasmo = async (formData: FormData) => {
 }
 
 export const updatePlasmoService = async (id: number, formData: FormData) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/service/${id}`, {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditPlasmoliftingService/${id}`, {
     method: 'PUT',
     body: formData,
   })
   if (!res.ok) {
     throw new Error('Ошибка при обновлении услуги Plasmolifting')
   }
-  return await res.json()
+  return
 }
 
 export const deletePlasmoService = async (id: number) => {
@@ -44,8 +63,8 @@ export const deletePlasmoService = async (id: number) => {
   }
 }
 
-export const updatePlasmoCatalog = async (id: number, formData: FormData) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditPlasmoliftingCatalog/${id}`, {
+export const updatePlasmoCatalog = async (formData: FormData) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditPlasmoliftingCatalog/`, {
     method: 'PUT',
     body: formData,
   })

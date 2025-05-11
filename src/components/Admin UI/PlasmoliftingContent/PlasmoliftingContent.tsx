@@ -93,7 +93,7 @@ const PlasmoliftingContent = () => {
     const item = data.services[index]
     let response: typeof item
     if (!item.id || item.id < 0 || item.isNew) {
-      // Здесь должен быть createPlasmoService
+      response = await plasmoApi.createPlasmoLiftingService(item)
       setData((prev) =>
         prev
           ? {
@@ -111,7 +111,7 @@ const PlasmoliftingContent = () => {
       if (item.img instanceof File) {
         formData.append('NewImage', item.img)
       }
-      response = await plasmoApi.updatePlasmoService(item.id, formData)
+      await plasmoApi.updatePlasmoService(item.id, formData)
       setData((prev) =>
         prev
           ? {
@@ -152,7 +152,7 @@ const PlasmoliftingContent = () => {
     formData.append('ContraindicationsTitle', data.contraindicationsTitle)
     data.contraindications.forEach((i) => formData.append('Contraindications', i))
     formData.append('ServicesTitle', data.servicesTitle)
-    await plasmoApi.updatePlasmoCatalog(data.id, formData)
+    await plasmoApi.updatePlasmoCatalog(formData)
   }
 
   return (

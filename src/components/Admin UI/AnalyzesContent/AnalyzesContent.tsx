@@ -90,7 +90,19 @@ const AnalyzesContent = () => {
     }
   }
 
-  const applyChanges = () => {}
+  const applyChanges = async () => {
+    await analysesApi.updateAnalysePage({
+      id: data.id,
+      title: data.title,
+      img: data.img,
+      paragraph1: data.paragraph1,
+      paragraph2: data.paragraph2,
+      paragraph3: data.paragraph3,
+      procedureTitle: data.procedureTitle,
+      procedureText: data.procedureText,
+      servicesTitle: data.servicesTitle,
+    })
+  }
 
   return (
     <div className={css.tabContent}>

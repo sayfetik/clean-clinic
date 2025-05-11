@@ -14,8 +14,8 @@ export const getSolarium = async () => {
   }
 }
 
-export const updateSolarium = async (id: number, formData: FormData) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditSolarium${id}`, {
+export const updateSolarium = async (formData: FormData) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditSolarium`, {
     method: 'PUT',
     body: formData,
   })
@@ -25,15 +25,15 @@ export const updateSolarium = async (id: number, formData: FormData) => {
   return await res.json()
 }
 
-export const updateSolariumService = async (id: number, formData: FormData) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditSolariumService${id}`, {
+export const updateSolariumService = async (formData: FormData) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditSolariumService`, {
     method: 'PUT',
     body: formData,
   })
   if (!res.ok) {
     throw new Error('Ошибка при обновлении услуги солярия')
   }
-  return await res.json()
+  return
 }
 
 export const deleteSolariumService = async (id: number) => {
@@ -49,9 +49,7 @@ export const createSolariumService = async (item: SolariumServiceType) => {
   const formData = new FormData()
   formData.append('Name', item.name)
   formData.append('Cost', String(item.cost))
-  if (item.img instanceof File) {
-    formData.append('Img', item.img)
-  }
+  formData.append('Img', typeof item.img === 'string' ? '' : (item.img as File))
   const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/CreateSolariumService`, {
     method: 'POST',
     body: formData,
