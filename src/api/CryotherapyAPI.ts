@@ -75,3 +75,32 @@ export const createCryotherapyService = async (item: CryoServiceType) => {
   }
   return await res.json()
 }
+
+export const deleteCryotherapyService = async (id: number) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/DeleteCryotherapyService`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка при удалении услуги HomeVisit')
+  }
+}
+
+export const editCryotherapyService = async (item: CryoServiceType) => {
+  const formData = new FormData()
+  formData.append('Id', String(item.id))
+  formData.append('Name', item.name)
+  formData.append('Cost', String(item.cost))
+  formData.append('Img', typeof item.img === 'string' ? '' : (item.img as File))
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditCryotherapyService`, {
+    method: 'PUT',
+    body: formData,
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка при обновлении услуги криотерапии')
+  }
+  return await res.json()
+}
