@@ -74,16 +74,16 @@ const CryoContent = () => {
         services: prev.services.map((s, i) => (i === index ? { ...s, id: response.id, isNew: false } : s)),
       }))
     } else {
-      // Здесь должен быть editCryotherapyService если он есть
+      response = await cryoApi.editCryotherapyService(item)
     }
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (item: CryoServiceType) => {
     setData((prev) => ({
       ...prev,
-      services: prev.services.filter((s) => s.id !== id),
+      services: prev.services.filter((s) => s.id !== item.id),
     }))
-    // Здесь должен быть deleteCryotherapyService
+    if (!item.isNew) {await cryoApi.deleteCryotherapyService(item.id)}
   }
 
   const applyChanges = async () => {
@@ -160,7 +160,7 @@ const CryoContent = () => {
                   <UpdateButton onClick={() => handleSave(index)} />
                 </div>
               </div>
-              <Button variant="subtle" color="red" onClick={() => handleDelete(item.id)} className={css.deleteButton}>
+              <Button variant="subtle" color="red" onClick={() => handleDelete(item)} className={css.deleteButton}>
                 Удалить
               </Button>
             </div>

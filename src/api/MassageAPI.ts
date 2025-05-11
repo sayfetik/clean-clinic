@@ -16,7 +16,7 @@ export const getMassage = async () => {
 
 export const updateMassageCatalog = async (formData: FormData) => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditMassageCatalog`, {
-    method: 'PATCH',
+    method: 'PUT',
     body: formData,
   })
   if (!res.ok) {
@@ -25,9 +25,9 @@ export const updateMassageCatalog = async (formData: FormData) => {
   return
 }
 
-export const updateMassageService = async (id: number, formData: FormData) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/services/${id}`, {
-    method: 'PATCH',
+export const updateMassageService = async (formData: FormData) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditMassageService`, {
+    method: 'PUT',
     body: formData,
   })
   if (!res.ok) {
