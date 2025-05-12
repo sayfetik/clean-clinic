@@ -34,6 +34,7 @@ export { default as ContactContent } from './Admin UI/ContactContent/ContactCont
 export { default as AnalyzesContent } from './Admin UI/AnalyzesContent/AnalyzesContent'
 export { default as PlasmoliftingContent } from './Admin UI/PlasmoliftingContent/PlasmoliftingContent'
 export { default as CryoContent } from './Admin UI/CryoContent/CryoContent'
+export { default as FooterContent } from './Admin UI/FooterContent/FooterContent'
 export { default as HomeVisitContent } from './Admin UI/HomeVisitContent/HomeVisitContent'
 export { default as MassageContent } from './Admin UI/MassageContent/MassageContent'
 export { default as SolariumContent } from './Admin UI/SolariumContent/SolariumContent'

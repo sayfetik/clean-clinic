@@ -15,6 +15,7 @@ import {
   PlasmoliftingContent,
   SolariumContent,
   SuccessContent,
+  FooterContent,
 } from '../../components'
 import css from './index.module.scss'
 
@@ -44,6 +45,7 @@ const Admin = () => {
               <Tabs.Tab value="excursion">Видео-экскурсия</Tabs.Tab>
               <Tabs.Tab value="error">Страница об ошибке</Tabs.Tab>
               <Tabs.Tab value="success">Страница о записи</Tabs.Tab>
+              <Tabs.Tab value="footer">Футер</Tabs.Tab>
             </Tabs.List>
 
             {/* <Tabs.Panel value="excursion">
@@ -84,6 +86,9 @@ const Admin = () => {
             </Tabs.Panel>
             <Tabs.Panel value="success">
               <SuccessContent />
+            </Tabs.Panel>
+            <Tabs.Panel value="footer">
+              <FooterContent />
             </Tabs.Panel>
           </Tabs>
         </div>
