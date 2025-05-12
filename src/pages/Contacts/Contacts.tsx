@@ -1,27 +1,16 @@
 import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
 import clsx from 'clsx'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import StarRatings from 'react-star-ratings'
 import { Animation, FadeAnimation } from '../../animations'
-import * as contactsApi from '../../api/ContactsAPI'
 import { ContactItem, SocialMediaIcons, CheckPolicy, Button } from '../../components'
 import { feedbackInputs } from '../../lib/data'
-import { emptyContacts } from '../../lib/empty'
+import { ContactsType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Contacts = () => {
-  const [contacts, setContacts] = useState(emptyContacts)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await contactsApi.getContacts()
-      setContacts(data)
-    }
-    fetchData()
-  }, [])
-
+const Contacts: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
   const [checked, setChecked] = useState(false)
 
   const [rating, setRating] = useState(0)
@@ -90,9 +79,9 @@ const Contacts = () => {
             <p>{contacts.text}</p>
             <div className={css.contactsInfo}>
               {contacts.contactsInfo.map((section, index) => (
-                <ContactItem key={index} info={section} />
+                <ContactItem key={index} info={section} contacts={contacts} />
               ))}
-              <SocialMediaIcons iconWidth={35} containerWidth="100%" />
+              <SocialMediaIcons iconWidth={35} containerWidth="100%" contacts={contacts} />
             </div>
           </div>
         </FadeAnimation>

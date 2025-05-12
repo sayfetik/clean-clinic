@@ -2,6 +2,8 @@ import { MantineProvider } from '@mantine/core'
 import { useHotkeys } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom'
+import * as contactsApi from './api/ContactsAPI'
+import * as infusionsApi from './api/InfusionsAPI'
 import * as mainPageApi from './api/MainAPI'
 import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin, VideoWidget } from './components'
 import { useAuth } from './context/AuthContext'
@@ -32,7 +34,7 @@ import '@mantine/core/styles.css'
 import './styles/global.scss'
 import * as themes from './styles/themes'
 // eslint-disable-next-line import/order
-import { emptyMainPage } from './lib/empty'
+import { emptyContacts, emptyInfusionCatalog, emptyMainPage } from './lib/empty'
 
 const theme = themes.mantine
 
@@ -42,6 +44,8 @@ const Layout = () => {
   const { isAuthenticated, loading } = useAuth()
   const navigate = useNavigate()
   const [main, setMain] = useState(emptyMainPage)
+  const [infusionCatalog, setInfusionCatalog] = useState(emptyInfusionCatalog)
+  const [contacts, setContacts] = useState(emptyContacts)
 
   useHotkeys([['alt+w', () => setModalOpened(true)]])
 
@@ -51,12 +55,9 @@ const Layout = () => {
   }
 
   useEffect(() => {
-    const fetchMainPage = async () => {
-      const data = await mainPageApi.getMainPage()
-      setMain(data)
-    }
-
-    fetchMainPage()
+    mainPageApi.getMainPage().then(setMain)
+    infusionsApi.getInfusionCatalog().then(setInfusionCatalog)
+    contactsApi.getContacts().then(setContacts)
   }, [])
 
   if (loading) {
@@ -65,7 +66,7 @@ const Layout = () => {
 
   return (
     <>
-      {location.pathname !== routes.getAdminRoute() ? <Header /> : <HeaderAdmin />}
+      {location.pathname !== routes.getAdminRoute() ? <Header contacts={contacts} /> : <HeaderAdmin />}
       <CookieModal />
       <ModalAdmin opened={modalOpened} onClose={() => setModalOpened(false)} onSuccess={handleSuccess} />
       <VideoWidget />
@@ -73,8 +74,8 @@ const Layout = () => {
       <ScrollResetProvider>
         <Routes>
           <Route path={routes.getMainRoute()} element={<Main main={main} />} />
-          <Route path={routes.getAboutRoute()} element={<About />} />
-          <Route path={routes.getContactsRoute()} element={<Contacts />} />
+          <Route path={routes.getAboutRoute()} element={<About main={main} setMain={setMain} />} />
+          <Route path={routes.getContactsRoute()} element={<Contacts contacts={contacts} />} />
           <Route
             path={routes.getInfusionCatalogRoute()}
             element={
@@ -82,6 +83,7 @@ const Layout = () => {
                 problemImage={main.problemImage}
                 problemTitle={main.problemTitle}
                 problems={main.problems}
+                data={infusionCatalog}
               />
             }
           />
@@ -97,7 +99,18 @@ const Layout = () => {
           <Route path={routes.getDocumentsRoute()} element={<Documents />} />
           <Route
             path={routes.getAdminRoute()}
-            element={isAuthenticated ? <Admin /> : <Navigate to={routes.getMainRoute()} />}
+            element={
+              isAuthenticated ? (
+                <Admin
+                  main={main}
+                  setMain={setMain}
+                  infusionCatalog={infusionCatalog}
+                  setInfusionCatalog={setInfusionCatalog}
+                />
+              ) : (
+                <Navigate to={routes.getMainRoute()} />
+              )
+            }
           />
           <Route path={routes.getSuccessRoute()} element={<Success />} />
           <Route path={routes.getErrorRoute()} element={<Error />} />
@@ -105,7 +118,7 @@ const Layout = () => {
       </ScrollResetProvider>
       {location.pathname !== routes.getSuccessRoute() &&
         location.pathname !== routes.getErrorRoute() &&
-        location.pathname !== routes.getAdminRoute() && <Footer title={main.form.title} />}
+        location.pathname !== routes.getAdminRoute() && <Footer title={main.form.title} contacts={contacts} />}
     </>
   )
 }

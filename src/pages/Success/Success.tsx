@@ -11,7 +11,7 @@ const Success = () => {
   const [data, setData] = useState({ title: '', text: '' })
 
   useEffect(() => {
-    api.getSuccessPage().then((res) => setData(res))
+    api.getSuccessPage().then(setData)
   }, [])
 
   return (

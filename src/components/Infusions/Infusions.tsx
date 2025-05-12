@@ -9,10 +9,47 @@ import css from './index.module.scss'
 
 const length = 15
 
+function normalizeInfusion(infusion: any) {
+  // Если это вложенный формат
+  if ('ivsInfo' in infusion) {
+    return {
+      id: infusion.infusionId || infusion.id || infusion.ivsInfo.id,
+      name: infusion.ivsInfo.name,
+      price: infusion.ivsInfo.price,
+      imagePath: infusion.ivsInfo.imagePath,
+      duration: infusion.ivsInfo.duration,
+      description: infusion.ivsInfo.description,
+      results: infusion.ivsInfo.results,
+      indications: infusion.ivsInfo.indications,
+      contraindications: infusion.ivsInfo.contraindications || infusion.ivsInfo.contradictions,
+    }
+  }
+  // Плоский формат
+  return {
+    id: infusion.id,
+    name: infusion.name,
+    price: infusion.price,
+    imagePath: infusion.imagePath,
+    duration: infusion.duration,
+    description: infusion.description,
+    results: infusion.results,
+    indications: infusion.indications,
+    contraindications: infusion.contraindications || infusion.contradictions,
+  }
+}
+
 const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({
-  infusion: { id, name, description, isDescription = true, cost, img },
+  infusion,
   imgWidth,
-}) => (
+}) => {
+  const data = normalizeInfusion(infusion)
+  const id = data.id
+  const name = data.name
+  const description = Array.isArray(data.description) ? data.description.join(', ') : data.description
+  const cost = data.price
+  const img = data.imagePath
+  const isDescription = true
+  return (
   <div className={css.infusionRoot}>
     <img src={typeof img === 'string' ? img : URL.createObjectURL(img)} width={imgWidth} className={css.img} />
     {isDescription ? (
@@ -35,8 +72,8 @@ const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({
       <h3 className={css.cost}>{cost} руб.</h3>
       <Button size="small" />
     </div>
-  </div>
-)
+  </div>)
+}
 
 const Infusions: React.FC<{ items: InfusionType[]; imgWidth?: number }> = ({ items, imgWidth = 85 }) => {
   const [animationKey, setAnimationKey] = useState(0)

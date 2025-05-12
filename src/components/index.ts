@@ -40,7 +40,6 @@ export { default as MassageContent } from './Admin UI/MassageContent/MassageCont
 export { default as SolariumContent } from './Admin UI/SolariumContent/SolariumContent'
 export { default as EnrollForm } from './EnrollForm/EnrollForm'
 export { default as Problems } from './Problems/Problems'
-export { default as DripSlider } from './DripSlider/DripSlider'
 export { default as ServiceCards } from './ServiceCards/ServiceCards'
 export { default as ServicesSlider } from './ServicesSlider/ServicesSlider'
 export { default as FAQ } from './FAQ/FAQ'

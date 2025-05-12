@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation, Card } from '../../animations'
-import * as infusionsApi from '../../api/InfusionsAPI'
 import { Filters, GradientText, Infusions, Problems } from '../../components'
-import { emptyInfusionCatalog } from '../../lib/empty'
 import { InfusionCatalogType } from '../../lib/types'
 import css from './index.module.scss'
 
@@ -11,16 +9,12 @@ type InfusionCatalogProps = {
   problemImage: string | File
   problemTitle: string
   problems: { title: string; text: string }[]
+  data: InfusionCatalogType
 }
 
-const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problemTitle, problems }) => {
+const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problemTitle, problems, data }) => {
   const [chosenId, setChosenId] = useState(0)
-  const [data, setData] = useState<InfusionCatalogType>(emptyInfusionCatalog)
-
-  useEffect(() => {
-    infusionsApi.getInfusionCatalog().then(setData)
-  }, [])
-  const filterKeys = Object.keys(data.infusions)
+  const filterKeys = Object.keys(data.infusionsByCategory)
   const filterKey = filterKeys[chosenId] || filterKeys[0]
 
   return (
@@ -43,7 +37,10 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
                   <p className={css.paragraph}>{data.whatItIsText2}</p>
                 </div>
               </div>
-              <img className={css.image} src={typeof data.img === 'string' ? data.img : URL.createObjectURL(data.img)} />
+              <img
+                className={css.image}
+                src={typeof data.img === 'string' ? data.img : URL.createObjectURL(data.img)}
+              />
             </div>
             <div>
               <div className={css.advantages}>
@@ -64,7 +61,7 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
           <div className={css.filters}>
             <Filters filters={filterKeys} chosenOption={{ chosenId, setChosenId }} />
           </div>
-          <Infusions items={data.infusions[filterKey] || []} />
+          <Infusions items={data.infusionsByCategory[filterKey] || []} />
 
           <Card>
             <div className={css.howToChoose}>
