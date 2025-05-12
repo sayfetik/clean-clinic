@@ -158,7 +158,7 @@ const PlasmoliftingContent = () => {
   return (
     <div className={css.tabContent}>
       <div className="row">
-        <div className={css.content}>
+        <div className={css.tabContent}>
           <TextInput
             value={data.title}
             onChange={(e) => setData((prev) => (prev ? { ...prev, title: e.target.value } : prev))}
