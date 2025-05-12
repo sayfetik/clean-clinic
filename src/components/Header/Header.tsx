@@ -77,7 +77,7 @@ const Header: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
         </Link>
       </div>
       <div className={css.socIcons}>
-        <SocialMediaIcons />
+        <SocialMediaIcons contacts={contacts}/>
       </div>
     </div>
   )

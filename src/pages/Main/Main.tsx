@@ -12,10 +12,11 @@ import {
   EnrollForm,
   Problems,
 } from '../../components'
+import { emptyCategoryType } from '../../lib/empty'
 import { MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
+const Main: React.FC<{ main: MainPageType }> = ({ main,  }) => {
   const FAQ = lazy(() => import('../../components/FAQ/FAQ'))
   const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
   const ServicesSlider = lazy(() => import('../../components/ServicesSlider/ServicesSlider'))
@@ -77,7 +78,7 @@ const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
           <div className={css.infusions}>
             <h2>{main.infusions.title}</h2>
             <p className={css.infusionsDescription}>{main.infusions.text}</p>
-            <Infusions items={main.infusions.infusions} />
+            <Infusions items={emptyCategoryType} category='main'/>
             <Button text="Записаться к терапевту" />
           </div>
 

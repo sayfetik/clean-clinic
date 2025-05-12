@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation, Card } from '../../animations'
 import { Filters, GradientText, Infusions, Problems } from '../../components'
@@ -14,8 +14,13 @@ type InfusionCatalogProps = {
 
 const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problemTitle, problems, data }) => {
   const [chosenId, setChosenId] = useState(0)
-  const filterKeys = Object.keys(data.infusionsByCategory)
-  const filterKey = filterKeys[chosenId] || filterKeys[0]
+  const filterKeys = useMemo(()=>{
+    let keys: string[] = [];
+    for (let i = 0; i < data.infusionsByCategory.length; i++) {
+      keys.push(data.infusionsByCategory[i].category)
+    }
+    return keys
+  }, [data])
 
   return (
     <>
@@ -61,7 +66,7 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
           <div className={css.filters}>
             <Filters filters={filterKeys} chosenOption={{ chosenId, setChosenId }} />
           </div>
-          <Infusions items={data.infusionsByCategory[filterKey] || []} />
+          <Infusions items={data.infusionsByCategory} category={filterKeys[chosenId]}/>
 
           <Card>
             <div className={css.howToChoose}>

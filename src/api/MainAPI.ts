@@ -1,4 +1,4 @@
-import { MainPageType } from '../lib/types'
+import { InfusionType, MainPageType } from '../lib/types'
 import { get, post, put } from './methods'
 
 const section = import.meta.env.VITE_MAIN as string
@@ -179,7 +179,7 @@ export const updateWhyInfusions = async (body: {
   return await res.json()
 }
 
-export const getAllInfusions = async (): Promise<{ dict: Record<string, string>; names: string[] }> => {
+export const getAllInfusions = async (): Promise<{data: InfusionType[], dict: Record<string, string>; names: string[] }> => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/GetAllTreatments`, {
     method: 'GET',
   })
@@ -193,5 +193,5 @@ export const getAllInfusions = async (): Promise<{ dict: Record<string, string>;
     dict[item.name] = item.id
     names.push(item.name)
   })
-  return { dict, names }
+  return { data, dict, names }
 }
