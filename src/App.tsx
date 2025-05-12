@@ -73,7 +73,7 @@ const Layout = () => {
       {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>
-          <Route path={routes.getMainRoute()} element={<Main main={main} />} />
+          <Route path={routes.getMainRoute()} element={<Main main={main}/>} />
           <Route path={routes.getAboutRoute()} element={<About main={main} setMain={setMain} />} />
           <Route path={routes.getContactsRoute()} element={<Contacts contacts={contacts} />} />
           <Route

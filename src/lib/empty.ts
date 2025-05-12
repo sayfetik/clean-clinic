@@ -110,6 +110,9 @@ export const emptyMassage: types.MassageType = {
   services: [],
 }
 
+export const emptyCategoryType: types.InfusionCategoryType[] = [{
+  category: '', infusions: []
+}]
 export const emptyPlasmolifting: types.PlasmoliftingType = {
   id: 0,
   title: '',

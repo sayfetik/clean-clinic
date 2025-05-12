@@ -1,7 +1,6 @@
 import { Textarea, TextInput, Button } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as infusionsApi from '../../../api/InfusionsAPI'
-import { emptyInfusionCatalog } from '../../../lib/empty'
 import { InfusionCatalogType, InfusionType } from '../../../lib/types'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
@@ -82,13 +81,12 @@ const InfusionSection = ({
   )
 }
 
-const InfusionsContent = () => {
-  const [data, setData] = useState<InfusionCatalogType>(emptyInfusionCatalog)
+type InfusionsContentProps = {
+  data: InfusionCatalogType
+  setData: React.Dispatch<React.SetStateAction<InfusionCatalogType>>
+}
 
-  useEffect(() => {
-    infusionsApi.getInfusionCatalog().then(setData)
-  }, [])
-
+const InfusionsContent: React.FC<InfusionsContentProps> = ({data, setData}) => {
   if (!data) {
     return null
   }
