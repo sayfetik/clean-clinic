@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import linkIcon from '/assets/link.png'
 import Animation from '../../animations/Animation'
-import * as mainPageApi from '../../api/MainAPI'
 import { Button } from '../../components'
 import { getInfusionRoute } from '../../lib/routes'
-import { InfusionCategoryType, InfusionType } from '../../lib/types'
+import { PlasmoliftingServiceType } from '../../lib/types'
 import css from './index.module.scss'
 
 const length = 15
@@ -37,7 +36,7 @@ function normalizeInfusion(infusion: any) {
   }
 }
 
-const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({ infusion, imgWidth }) => {
+const Infusion: React.FC<{ infusion: PlasmoliftingServiceType; imgWidth: number }> = ({ infusion, imgWidth }) => {
   const data = normalizeInfusion(infusion)
   const id = data.id
   const name = data.name
@@ -72,40 +71,18 @@ const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({ infu
   )
 }
 
-const Infusions: React.FC<{ items: InfusionCategoryType[]; imgWidth?: number; category: string }> = ({
+const PlasmoLiftings: React.FC<{ items: PlasmoliftingServiceType[]; imgWidth?: number }> = ({
   items,
   imgWidth = 85,
-  category,
 }) => {
   const [animationKey, setAnimationKey] = useState(0)
   useEffect(() => {
     setAnimationKey((prevKey) => prevKey + 1)
   }, [items])
 
-  const [infusions, setInfusions] = useState<InfusionType[]>([])
-
-  useEffect(() => {
-    const filterInfusions = async () => {
-      if (category === 'Все') {
-        const res = await mainPageApi.getAllInfusions()
-        setInfusions(res.data)
-      } else if (category === 'main') {
-        category = 'main' // СДЕЛАТЬ ПОЛУЧЕНИЯ ГЛАВНЫХ КАПЕЛЬНИЦ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      } else {
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].category === category) {
-            setInfusions(items[i].infusions)
-          }
-        }
-      }
-    }
-
-    filterInfusions()
-  }, [category])
-
   return (
     <div className={css.root}>
-      {infusions.map((item, index) => (
+      {items.map((item, index) => (
         <Animation
           key={`${animationKey}-${index}`}
           distance={50}
@@ -124,4 +101,4 @@ const Infusions: React.FC<{ items: InfusionCategoryType[]; imgWidth?: number; ca
   )
 }
 
-export default Infusions
+export default PlasmoLiftings

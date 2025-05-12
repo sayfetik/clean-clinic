@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation } from '../../animations'
 import { getPlasmo } from '../../api/PlasmoAPI'
-import { GradientText, Infusions } from '../../components'
+import { GradientText, Plasmoliftings } from '../../components'
 import { emptyPlasmolifting } from '../../lib/empty'
 import css from './index.module.scss'
 
@@ -67,7 +67,7 @@ const Plasmolifting = () => {
           <h2 className={css.center}>{data.servicesTitle}</h2>
           <div className={css.margin}></div>
 
-          <Infusions items={data.services || []} imgWidth={150} />
+          <Plasmoliftings items={data.services || []} imgWidth={150} />
         </div>
       </>
     </>
