@@ -3,6 +3,7 @@
 
 .tabContent {
   @include tabContent;
+  margin-top: 10px !important;
 }
 
 .services {
