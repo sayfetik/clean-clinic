@@ -2,7 +2,6 @@ import { Textarea, TextInput, MultiSelect } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
-// import { mainInfusions } from '../../../lib/data'
 import { MainPageType } from '../../../lib/types'
 import UpdateButton from '../UpdateButton'
 import Faqs from './Faqs'
@@ -339,7 +338,7 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
       <TextInput value={data.infusions.title} onChange={handleChange('infusions.title')} />
       <Textarea value={data.infusions.text} onChange={handleChange('infusions.text')} />
 
-      {/* <MultiSelect
+      <MultiSelect
         value={infusions}
         onChange={handleInfusionsChange}
         placeholder={getInfusionPlaceholder(6 - infusions.length)}
@@ -349,7 +348,7 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
         nothingFoundMessage="Такой капельницы нет..."
         maxValues={6}
         hidePickedOptions
-      /> */}
+      />
 
       <TextInput value={data.services.tittle} onChange={handleChange('serviceTitle')} />
       <Services services={data.services.services} onChange={handleServicesChange} onImageChange={handleServiceImage} />
