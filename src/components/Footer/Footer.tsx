@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { UpListAnimation } from '../../animations'
+import { getFooter } from '../../api/FooterAPI'
 import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm } from '../../components'
-import { footer, contacts } from '../../lib/data'
+import { contacts } from '../../lib/data'
+import { emptyFooter } from '../../lib/empty'
 import * as routes from '../../lib/routes'
 import Form from '../Form/Form'
 import css from './index.module.scss'
 
 const Footer: React.FC<{ title: string }> = ({ title }) => {
   const [isEnrollForm, setIsEnrollForm] = useState(false)
+  const [footer, setFooter] = useState<any>(emptyFooter)
 
   useEffect(() => {
+    getFooter().then(setFooter)
     const updateSlidesToShow = () => {
       if (window.innerWidth <= 1024) {
         setIsEnrollForm(true)

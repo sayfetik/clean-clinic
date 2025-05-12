@@ -192,3 +192,13 @@ export const emptyInfusionCatalog: types.InfusionCatalogType = {
     text: '',
   },
 }
+
+export const emptyFooter = {
+  promotionsAndOffersTitle: '',
+  promotionsAndOffersText: '',
+  ooo: '',
+  licenseNo: '',
+  inn: '',
+  bottomSection: '',
+  telegramChanellLink: '',
+}
