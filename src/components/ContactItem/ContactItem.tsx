@@ -1,4 +1,4 @@
-import { contacts } from '../../lib/data'
+import { ContactsType } from '../../lib/types'
 import css from './index.module.scss'
 
 type ContactInfoType = {
@@ -8,21 +8,21 @@ type ContactInfoType = {
 }
 
 const linkLabels = {
-  'Телефон': 'phone',
-  'Адрес': 'location',
-  'Почта': 'email'
+  Телефон: 'phone',
+  Адрес: 'location',
+  Почта: 'email',
 } as const
 
-const ContactItem: React.FC<{ info: ContactInfoType }> = ({ info }) => {
+const ContactItem: React.FC<{ info: ContactInfoType; contacts: ContactsType }> = ({ info, contacts }) => {
   const iconSize = 40
 
   const contactKey = linkLabels[info.title as keyof typeof linkLabels] ?? null
-  const link = contactKey ? contacts.socialMediaLinks[contactKey] ?? '#' : '#'
+  const link = contactKey ? (contacts.socialMediaLinks[contactKey] ?? '#') : '#'
 
   const isExternal = contactKey === 'location'
 
   return (
-    <a href={link} className={css.item} target={isExternal ? "_blank" : "_self"} rel="noopener noreferrer">
+    <a href={link} className={css.item} target={isExternal ? '_blank' : '_self'} rel="noopener noreferrer">
       <img src={info.img} width={iconSize - 5} height={iconSize} alt={info.title} />
       <div className={css.info}>
         <h3 className={css.title}>{info.title}</h3>

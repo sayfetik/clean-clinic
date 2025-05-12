@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
 // import { mainInfusions } from '../../../lib/data'
-// import { patientImage } from '../../../lib/data'
-import { emptyMainPage } from '../../../lib/empty'
 import { MainPageType } from '../../../lib/types'
 import UpdateButton from '../UpdateButton'
 import Faqs from './Faqs'
@@ -12,8 +10,12 @@ import Feedbacks from './Feedbacks'
 import Services from './Services'
 import css from './index.module.scss'
 
-const MainContent = () => {
-  const [data, setData] = useState(emptyMainPage)
+type MainContentProps = {
+  data: MainPageType
+  setData: React.Dispatch<React.SetStateAction<MainPageType>>
+}
+
+const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
   const [allInfusions, setAllInfusions] = useState<string[]>([])
   let allInfusionsDict: Record<string, string> = {}
   const [infusions, setInfusions] = useState<string[]>([])

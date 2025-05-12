@@ -5,12 +5,17 @@ import * as aboutPageApi from '../../api/AboutAPI'
 import * as mainPageApi from '../../api/MainAPI'
 import { GradientText, AboutSection, Specialist, Slider, Video, Document } from '../../components'
 import { galleryImages, license } from '../../lib/data'
-import { emptyMainPage, emptyAbout } from '../../lib/empty'
+import { emptyAbout } from '../../lib/empty'
+import { MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
-const About = () => {
+type AboutProps = {
+  main: MainPageType
+  setMain: React.Dispatch<React.SetStateAction<MainPageType>>
+}
+
+const About: React.FC<AboutProps> = ({ main, setMain }) => {
   const [about, setAbout] = useState(emptyAbout)
-  const [main, setMain] = useState(emptyMainPage)
 
   useEffect(() => {
     const fetchData = async () => {

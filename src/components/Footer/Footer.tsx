@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import { UpListAnimation } from '../../animations'
 import { getFooter } from '../../api/FooterAPI'
 import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm } from '../../components'
-import { contacts } from '../../lib/data'
 import { emptyFooter } from '../../lib/empty'
 import * as routes from '../../lib/routes'
+import { ContactsType } from '../../lib/types'
 import Form from '../Form/Form'
 import css from './index.module.scss'
 
-const Footer: React.FC<{ title: string }> = ({ title }) => {
+const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, contacts }) => {
   const [isEnrollForm, setIsEnrollForm] = useState(false)
   const [footer, setFooter] = useState<any>(emptyFooter)
 
@@ -39,10 +39,10 @@ const Footer: React.FC<{ title: string }> = ({ title }) => {
                 <h3 className={css.alias}>@clean_clinic_orb</h3>
               </div>
               {contacts.contactsInfo.map((section, index) => (
-                <ContactItem key={index} info={section} />
+                <ContactItem key={index} info={section} contacts={contacts} />
               ))}
             </div>
-            <SocialMediaIcons iconWidth={35} containerWidth="80%" />
+            <SocialMediaIcons iconWidth={35} containerWidth="80%" contacts={contacts} />
           </div>
 
           <div className={css.maps}>

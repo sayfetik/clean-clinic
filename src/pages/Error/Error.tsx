@@ -11,7 +11,7 @@ const Error = () => {
   const [data, setData] = useState({ title: '', text: '' })
 
   useEffect(() => {
-    api.getErrorPage().then((res) => setData(res))
+    api.getErrorPage().then(setData)
   }, [])
 
   return (

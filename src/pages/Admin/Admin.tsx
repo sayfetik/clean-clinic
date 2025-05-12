@@ -17,9 +17,17 @@ import {
   SuccessContent,
   FooterContent,
 } from '../../components'
+import { InfusionCatalogType, MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Admin = () => {
+type AdminProps = {
+  infusionCatalog: InfusionCatalogType
+  setInfusionCatalog: React.Dispatch<React.SetStateAction<InfusionCatalogType>>
+  main: MainPageType
+  setMain: React.Dispatch<React.SetStateAction<MainPageType>>
+}
+
+const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main, setMain }) => {
   return (
     <>
       <Helmet>
@@ -52,10 +60,10 @@ const Admin = () => {
               <ExcursionContent />
             </Tabs.Panel> */}
             <Tabs.Panel value="main">
-              <MainContent />
+              <MainContent data={main} setData={setMain} />
             </Tabs.Panel>
             <Tabs.Panel value="infusions">
-              <InfusionsContent />
+              <InfusionsContent data={infusionCatalog} setData={setInfusionCatalog} />
             </Tabs.Panel>
             <Tabs.Panel value="cryo">
               <CryoContent />
