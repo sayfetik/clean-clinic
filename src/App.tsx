@@ -69,7 +69,7 @@ const Layout = () => {
       {location.pathname !== routes.getAdminRoute() ? <Header contacts={contacts} /> : <HeaderAdmin />}
       <CookieModal />
       <ModalAdmin opened={modalOpened} onClose={() => setModalOpened(false)} onSuccess={handleSuccess} />
-      <VideoWidget />
+      <VideoWidget isAuthenticated={isAuthenticated}/>
       {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>

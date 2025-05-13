@@ -5,7 +5,7 @@ import css from './index.module.scss'
 
 const VIDEO_SRC = '/assets/excursion.mov'
 
-const VideoWidget = () => {
+const VideoWidget: React.FC<{isAuthenticated: boolean}> = ({isAuthenticated}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [stage, setStage] = useState<'floating' | 'preview' | 'modal'>('floating')
   const [animating, setAnimating] = useState(false)
@@ -13,10 +13,9 @@ const VideoWidget = () => {
   const [currentTime, setCurrentTime] = useState(0)
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisited')
-    if (!hasVisited) {
+    const closedVideo = localStorage.getItem('closedVideo')
+    if (!closedVideo && !isAuthenticated) {
       setIsOpen(true)
-      localStorage.setItem('hasVisited', 'true')
     }
   }, [])
 
@@ -89,7 +88,10 @@ const VideoWidget = () => {
       {/* Этап 3: Модальное окно */}
       <Modal
         opened={stage === 'modal'}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setIsOpen(false)
+          localStorage.setItem('closedVideo', 'true')
+        }}
         centered
         title="Добро пожаловать в Clean Clinic!"
         size="80%"

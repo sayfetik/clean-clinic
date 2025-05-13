@@ -3,13 +3,13 @@ import { useField } from '@mantine/form'
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, CheckPolicy } from '../'
+import { callbackRequest } from '../../api/MainAPI'
 import { formInputs } from '../../lib/data'
-import { getSuccessRoute } from '../../lib/routes'
+import { getErrorRoute, getSuccessRoute } from '../../lib/routes'
 import css from './index.module.scss'
 
 const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
   const navigate = useNavigate()
-
   const name = useField({
     initialValue: '',
     validate: (value) => {
@@ -40,6 +40,22 @@ const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
     return !checked || !!name.error || !!phone.error || !name.getValue().trim() || !phone.getValue().trim()
   }, [checked, name.error, phone.error, name.getValue(), phone.getValue()])
 
+  const resetFields = () => {
+    name.setValue('')
+    phone.setValue('+7')
+    setChecked(false)
+  }
+
+  const handleClick = async () => {
+    const result = await callbackRequest(name.getValue(), phone.getValue(), '')
+    if (result) {
+      navigate(getSuccessRoute())
+      resetFields()
+    } else {
+      navigate(getErrorRoute())
+    }
+  }
+
   return (
     <>
       <div className={css.root}>
@@ -66,7 +82,7 @@ const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
             />
           </div>
           <CheckPolicy {...{ checked, setChecked }} />
-          <Button size="small" isDisabled={disabled} onClick={() => navigate(getSuccessRoute())} />
+          <Button size="small" isDisabled={disabled} onClick={handleClick} />
         </div>
       </div>
     </>

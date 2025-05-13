@@ -8,7 +8,7 @@ import human from '/assets/human.svg'
 import css from './index.module.scss'
 import './styles.css'
 
-const FeedbackCard: React.FC<FeedbackType> = ({ name, rate, text }) => (
+const FeedbackCard: React.FC<FeedbackType> = React.memo(({ name, rate, text }) => (
   <div className={css.feedbackCard}>
     <div className={css.row}>
       <img src={human} width="50" />
@@ -19,9 +19,9 @@ const FeedbackCard: React.FC<FeedbackType> = ({ name, rate, text }) => (
     </div>
     <p className={css.text}>{text}</p>
   </div>
-)
+))
 
-const Feedback: React.FC<{ feedback: FeedbackType[] }> = ({ feedback }) => {
+const Feedback: React.FC<{ feedback: FeedbackType[] }> = React.memo(({ feedback }) => {
   const [slidesToShow, setSlidesToShow] = useState(3)
 
   useEffect(() => {
@@ -66,6 +66,6 @@ const Feedback: React.FC<{ feedback: FeedbackType[] }> = ({ feedback }) => {
       </Slider>
     </div>
   )
-}
+})
 
 export default Feedback

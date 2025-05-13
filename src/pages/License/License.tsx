@@ -1,17 +1,18 @@
-import { Helmet } from "react-helmet-async"
+import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { GradientText, Document } from '../../components'
 import { license } from '../../lib/data'
 import css from './index.module.scss'
 
-const License = () => (
+const License = React.memo(() => (
   <>
-      <Helmet>
-        <title>Лицензия</title>
-        <meta name="description" content="Лицензия Clean Clinic" />
-        <meta name="keywords" content="Лицензия, документы, Clean Clinic" />
-      </Helmet>
-      
-      <>
+    <Helmet>
+      <title>Лицензия</title>
+      <meta name="description" content="Лицензия Clean Clinic" />
+      <meta name="keywords" content="Лицензия, документы, Clean Clinic" />
+    </Helmet>
+
+    <>
       <GradientText text="Лицензия" />
       <div className={css.root}>
         {license.map((license, index) => (
@@ -20,6 +21,6 @@ const License = () => (
       </div>
     </>
   </>
-)
+))
 
 export default License

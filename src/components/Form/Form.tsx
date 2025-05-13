@@ -1,12 +1,13 @@
 import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
 import { useState, useMemo } from 'react'
+import React from 'react'
 import { formInputs } from '../../lib/data'
 import Button from '../Button/Button'
 import CheckPolicy from '../CheckPolicy/CheckPolicy'
 import css from './index.module.scss'
 
-const Form = () => {
+const Form = React.memo(() => {
   const name = useField({
     initialValue: '',
     validate: (value) => {
@@ -48,7 +49,7 @@ const Form = () => {
         <h2 className={css.title}>Онлайн-запись</h2>
         <p className={css.description}>Запишись сегодня и уже завтра почувствуешь себя лучше!</p>
       </div>
-      
+
       <div className={css.inputs}>
         <TextInput
           className={css.input}
@@ -81,6 +82,6 @@ const Form = () => {
       <Button size="small" isDisabled={disabled} />
     </div>
   )
-}
+})
 
 export default Form

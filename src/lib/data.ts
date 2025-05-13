@@ -970,42 +970,42 @@ export const galleryImages: string[] = [
 
 export const license: string[] = ['/assets/license1.png', '/assets/license2.png']
 
-export const contacts = {
-  title: 'Контакты',
-  text: 'Свяжитесь любым удобным способом',
-  feedbackFormTitle: 'Оставьте отзыв',
-  feedbackFormText: 'Помогите нам стать лучше!',
-  workHours: 'пн-пт 8-20 сб, вс 9-15',
-  smallAddress: 'г. Оренбург, ул. Ульянова, д. 69',
-  contactsInfo: [
-    {
-      img: '/assets/addressIcon.png',
-      title: 'Адрес',
-      text: 'г. Оренбург, ул. Ульянова, д. 69, 1 этаж',
-    },
-    { img: '/assets/phoneIcon.png', title: 'Телефон', text: '8 995 275-75-75' },
-    { img: '/assets/emailIcon.png', title: 'Почта', text: 'mail@cleanoren.ru' },
-  ],
-  socialMediaLinks: {
-    telegram: 'https://t.me/+XhpoFM-voaA4Y2Yy',
-    email: 'mailto:welcome@clean-clinic.ru',
-    vkontakte: 'https://vk.com/franchiseclean_clinic',
-    whatsup: 'https://api.whatsapp.com/send/?phone=79777865133&text&type=phone_number&app_absent=0',
-    phone: 'tel:+79952757575',
-    location:
-      'https://yandex.ru/maps/org/klin_klinik/136753931896/?ll=55.136984%2C51.778158&mode=search&sll=55.136984%2C51.778158&sspn=0.022058%2C0.009916&text=clean%20clinic%20оренбург&z=16',
-  },
-}
+// export const contacts = {
+//   title: 'Контакты',
+//   text: 'Свяжитесь любым удобным способом',
+//   feedbackFormTitle: 'Оставьте отзыв',
+//   feedbackFormText: 'Помогите нам стать лучше!',
+//   workHours: 'пн-пт 8-20 сб, вс 9-15',
+//   smallAddress: 'г. Оренбург, ул. Ульянова, д. 69',
+//   contactsInfo: [
+//     {
+//       img: '/assets/addressIcon.png',
+//       title: 'Адрес',
+//       text: 'г. Оренбург, ул. Ульянова, д. 69, 1 этаж',
+//     },
+//     { img: '/assets/phoneIcon.png', title: 'Телефон', text: '8 995 275-75-75' },
+//     { img: '/assets/emailIcon.png', title: 'Почта', text: 'mail@cleanoren.ru' },
+//   ],
+//   socialMediaLinks: {
+//     telegram: 'https://t.me/+XhpoFM-voaA4Y2Yy',
+//     email: 'mailto:welcome@clean-clinic.ru',
+//     vkontakte: 'https://vk.com/franchiseclean_clinic',
+//     whatsup: 'https://api.whatsapp.com/send/?phone=79777865133&text&type=phone_number&app_absent=0',
+//     phone: 'tel:+79952757575',
+//     location:
+//       'https://yandex.ru/maps/org/klin_klinik/136753931896/?ll=55.136984%2C51.778158&mode=search&sll=55.136984%2C51.778158&sspn=0.022058%2C0.009916&text=clean%20clinic%20оренбург&z=16',
+//   },
+// }
 
-export const footer = {
-  promotionsAndOffersTitle: 'Акции и предложения',
-  promotionsAndOffersText: 'Узнавайте первыми в нашем телеграм-канале',
-  ooo: 'ООО "Гармония"',
-  licenseNo: 'Л041-01022-56/01056435;',
-  inn: 'ИНН/КПП - 5610249037/561001001',
-  bootomSection: '© 2011-2025 • Капельницы в Оренбурге, инфузионная терапия',
-  telegramChanellLink: '',
-}
+// export const footer = {
+//   promotionsAndOffersTitle: 'Акции и предложения',
+//   promotionsAndOffersText: 'Узнавайте первыми в нашем телеграм-канале',
+//   ooo: 'ООО "Гармония"',
+//   licenseNo: 'Л041-01022-56/01056435;',
+//   inn: 'ИНН/КПП - 5610249037/561001001',
+//   bootomSection: '© 2011-2025 • Капельницы в Оренбурге, инфузионная терапия',
+//   telegramChanellLink: '',
+// }
 
 export const formInputs: types.FormInputType[] = [
   { label: 'Имя *', placeholder: 'Введите имя' },
@@ -1044,3 +1044,4 @@ export const InfusionPage = {
     'Онкологические заболевания',
   ],
 }
+

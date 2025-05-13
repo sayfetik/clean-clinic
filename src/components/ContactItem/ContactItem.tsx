@@ -13,6 +13,12 @@ const linkLabels = {
   Почта: 'email',
 } as const
 
+const icons = {
+    'Адрес': '/assets/addressIcon.png',
+    'Телефон': '/assets/phoneIcon.png',
+   'Почта': '/assets/emailIcon.png'
+}
+
 const ContactItem: React.FC<{ info: ContactInfoType; contacts: ContactsType }> = ({ info, contacts }) => {
   const iconSize = 40
 
@@ -23,7 +29,7 @@ const ContactItem: React.FC<{ info: ContactInfoType; contacts: ContactsType }> =
 
   return (
     <a href={link} className={css.item} target={isExternal ? '_blank' : '_self'} rel="noopener noreferrer">
-      <img src={info.img} width={iconSize - 5} height={iconSize} alt={info.title} />
+      <img src={icons[info.title as keyof typeof icons]} width={iconSize - 5} height={iconSize} alt={info.title} />
       <div className={css.info}>
         <h3 className={css.title}>{info.title}</h3>
         <p className={css.text}>{info.text}</p>

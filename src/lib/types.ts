@@ -1,18 +1,21 @@
+export type InfusionInfoType = {
+  id: string
+  name: string
+  price: number
+  imagePath: string | File
+  duration: string
+  description: string[]
+  results: string[]
+  indications: string[]
+  contradictions: string[]
+  isNew?: boolean
+  ivsCategories: string
+}
+
 export type InfusionType = {
   id: any | string
   infusionId: string
-  ivsInfo: {
-    id: string
-    name: string
-    price: number
-    imagePath: string | File
-    duration: string
-    description: string[]
-    results: string[]
-    indications: string[]
-    contraindications: string[]
-    isNew?: boolean
-  }
+  ivsInfo: InfusionInfoType
 }
 export type InfusionCategoryType = {
   category: string

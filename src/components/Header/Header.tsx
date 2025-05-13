@@ -10,7 +10,7 @@ const Logo = () => {
   const getLogoSrc = () =>
     window.matchMedia('(max-width: 455px)').matches
       ? '/assets/smallLogo.png'
-      : 'https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png'
+      : '/assets/logo.png'
 
   const [logoSrc, setLogoSrc] = useState(getLogoSrc())
 
@@ -18,7 +18,7 @@ const Logo = () => {
     const mediaQuery = window.matchMedia('(max-width: 455px)')
 
     const updateLogo = (e: { matches: any }) =>
-      setLogoSrc(e.matches ? '/assets/smallLogo.png' : 'https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png')
+      setLogoSrc(e.matches ? '/assets/smallLogo.png' : '/assets/logo.png')
 
     mediaQuery.addEventListener('change', updateLogo)
     return () => mediaQuery.removeEventListener('change', updateLogo)

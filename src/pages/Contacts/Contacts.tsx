@@ -1,16 +1,19 @@
 import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
+import { showNotification } from '@mantine/notifications'
 import clsx from 'clsx'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import StarRatings from 'react-star-ratings'
 import { Animation, FadeAnimation } from '../../animations'
+import * as mainPageApi from '../../api/MainAPI'
 import { ContactItem, SocialMediaIcons, CheckPolicy, Button } from '../../components'
 import { feedbackInputs } from '../../lib/data'
 import { ContactsType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Contacts: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
+const Contacts: React.FC<{ contacts: ContactsType }> = React.memo(({ contacts }) => {
   const [checked, setChecked] = useState(false)
 
   const [rating, setRating] = useState(0)
@@ -63,6 +66,26 @@ const Contacts: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
   const disabled = useMemo(() => {
     return rating === 0 || !checked || !!name.error || !!surname.error || !nameValue.trim() || !surnameValue.trim()
   }, [rating, checked, name.error, surname.error, nameValue, surnameValue])
+
+  const handleSendFeedback = useCallback (async () => {
+    await mainPageApi.createFeedBack({
+      name: `${name.getValue()} ${surname.getValue()}`.trim(),
+      rate: rating,
+      text: question.getValue(),
+    })
+    name.setValue('')
+    surname.setValue('')
+    phone.setValue('+7')
+    question.setValue('')
+    setRating(0)
+    setChecked(false)
+    // Уведомление
+    showNotification({
+      title: 'Спасибо!',
+      message: 'Ваш отзыв отправлен.',
+      color: 'blue',
+    })
+  }, [name, surname, rating, question])
 
   return (
     <>
@@ -151,12 +174,12 @@ const Contacts: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
             </div>
             <CheckPolicy {...{ checked, setChecked }} />
             <div className={css.margin}></div>
-            <Button size="small" text="Отправить" isDisabled={disabled} />
+            <Button size="small" text="Отправить" isDisabled={disabled} onClick={handleSendFeedback}/>
           </div>
         </Animation>
       </div>
     </>
   )
-}
+})
 
 export default Contacts

@@ -1,5 +1,5 @@
 import { Textarea, TextInput, MultiSelect } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MediaEditor } from '../../'
 import * as mainPageApi from '../../../api/MainAPI'
 import { MainPageType } from '../../../lib/types'
@@ -16,26 +16,21 @@ type MainContentProps = {
 
 const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
   const [allInfusions, setAllInfusions] = useState<string[]>([])
-  let allInfusionsDict: Record<string, string> = {}
-  const [infusions, setInfusions] = useState<string[]>([])
+  const [allInfusionsDict, setAllInfusionsDict] = useState<Record<string, string>>({})
+  const [mainInfusions, setMainInfusions] = useState<string[]>([])
 
   useEffect(() => {
-    const fetchMainPage = async () => {
-      const main = await mainPageApi.getMainPage()
-      setData(main)
-    }
+  const fetchInfusions = async () => {
+    const res = await mainPageApi.getAllInfusions()
+    setAllInfusions(res.names)
+    setAllInfusionsDict(res.dict)
+    const mainInfusionsRes = await mainPageApi.getMainInfusions()
+    setMainInfusions(mainInfusionsRes.map((item: any) => item.name))
+  }
+  fetchInfusions()
+}, [])
 
-    const fetchInfusions = async () => {
-      const res = await mainPageApi.getAllInfusions()
-      setAllInfusions(res.names)
-      allInfusionsDict = res.dict
-    }
-
-    fetchMainPage()
-    fetchInfusions()
-  }, [])
-
-  const handleChange = (path: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = useCallback((path: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setData((prev) => {
       const keys = path.split('.')
       const newData = { ...prev }
@@ -47,9 +42,9 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
       obj[keys[keys.length - 1]] = e.target.value
       return newData
     })
-  }
+  }, [setData])
 
-  const handleArrayChange =
+  const handleArrayChange = useCallback(
     (arrKey: keyof MainPageType | string, index: number, field: string) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setData((prev) => {
@@ -65,46 +60,33 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
         )
         return newData
       })
-    }
+    }, [setData])
 
-  const handleProblemImageChange = (file: File) => {
+  const handleProblemImageChange = useCallback((file: File) => {
     setData((prev) => ({ ...prev, problemImage: file }))
-  }
+  }, [setData])
 
-  const handleWhiteCardImageChange = (index: number, file: File) => {
+  const handleWhiteCardImageChange = useCallback((index: number, file: File) => {
     setData((prev) => {
       const newWhiteCards = prev.whiteCards.map((card, i) => (i === index ? { ...card, imagePath: file } : card))
       return { ...prev, whiteCards: newWhiteCards }
     })
-  }
+  }, [setData])
 
-  const handleInfusionsChange = (value: string[]) => {
-    setInfusions(value)
+  const handleInfusionsChange = useCallback((value: string[]) => {
+    setMainInfusions(value)
     setData((prev) => ({
       ...prev,
       infusions: { ...prev.infusions, selected: value },
     }))
+  }, [setMainInfusions, setData])
+  
+  const handleUpdateMainInfusions = async () => {
+    const ids = mainInfusions.map((name) => allInfusionsDict[name]).filter(Boolean)
+    await mainPageApi.updateMainInfusions(ids)
   }
 
-  function getInfusionPlaceholder(count: number): string {
-    if (count === 0) {
-      return ''
-    }
-    const lastDigit = count % 10
-    const lastTwoDigits = count % 100
-    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-      return `Выберите ${count} капельниц`
-    }
-    if (lastDigit === 1) {
-      return `Выберите ${count} капельницу`
-    }
-    if (lastDigit >= 2 && lastDigit <= 4) {
-      return `Выберите ${count} капельницы`
-    }
-    return `Выберите ${count} капельниц`
-  }
-
-  const handleServicesChange = (newServices: any[]) => {
+  const handleServicesChange = useCallback((newServices: any[]) => {
     setData((prev) => ({
       ...prev,
       services: {
@@ -112,9 +94,9 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
         services: newServices,
       },
     }))
-  }
+  }, [setData])
 
-  const handleServiceImage = (index: number, file: File) => {
+  const handleServiceImage = useCallback((index: number, file: File) => {
     setData((prev) => {
       const newArr = prev.services.services.map((item: any, i: number) => (i === index ? { ...item, img: file } : item))
       return {
@@ -125,7 +107,7 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
         },
       }
     })
-  }
+  }, [setData])
 
   const handleWeWorkSave = async () => {
     await mainPageApi.updateWeWork({
@@ -158,6 +140,30 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
   const sendToBack = async () => {
     await mainPageApi.updateMainPage(data)
   }
+
+  const onFeedbacksChange = useCallback((feedbacks: any[]) => {
+    setData((prev) => ({
+            ...prev,
+            feedback: feedbacks.map((feedback) => ({
+              ...feedback,
+              id: feedback.id || 0,
+              rate: typeof feedback.rate === 'string' ? parseFloat(feedback.rate) : feedback.rate,
+            })),
+          }))
+  }, [setData])
+
+  const onFaqsChange = useCallback((faqs: any[]) => {
+          setData((prev) => ({
+            ...prev,
+            faq: {
+              ...prev.faq,
+              faqs: faqs.map((faq) => ({
+                ...faq,
+                id: Number(faq.id),
+              })),
+            },
+          }))
+  }, [setData])
 
   return (
     <div className={css.tabContent}>
@@ -335,54 +341,31 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
         <p>{'(информацию о капельницах вы можете изменить во вкладке "Капельницы")'}</p>
       </div>
 
-      <TextInput value={data.infusions.title} onChange={handleChange('infusions.title')} />
-      <Textarea value={data.infusions.text} onChange={handleChange('infusions.text')} />
-
       <MultiSelect
-        value={infusions}
+        value={mainInfusions}
         onChange={handleInfusionsChange}
-        placeholder={getInfusionPlaceholder(6 - infusions.length)}
         data={allInfusions}
         searchable
         clearable
-        nothingFoundMessage="Такой капельницы нет..."
-        maxValues={6}
+        nothingFoundMessage="Больше капельниц нет"
         hidePickedOptions
       />
+      <UpdateButton onClick={handleUpdateMainInfusions} />
 
+      <div className='margin' />
       <TextInput value={data.services.tittle} onChange={handleChange('serviceTitle')} />
       <Services services={data.services.services} onChange={handleServicesChange} onImageChange={handleServiceImage} />
 
       <TextInput value={data.faq.faqTitle} onChange={handleChange('faqTitle')} />
       <Faqs
         faqs={data.faq.faqs}
-        onChange={(faqs) =>
-          setData((prev) => ({
-            ...prev,
-            faq: {
-              ...prev.faq,
-              faqs: faqs.map((faq) => ({
-                ...faq,
-                id: Number(faq.id),
-              })),
-            },
-          }))
-        }
+        onChange={onFaqsChange}
       />
 
       <h4 className={css.text}>Отзывы</h4>
       <Feedbacks
         feedbacks={data.feedback}
-        onChange={(feedbacks) =>
-          setData((prev) => ({
-            ...prev,
-            feedback: feedbacks.map((feedback) => ({
-              ...feedback,
-              id: feedback.id || 0,
-              rate: typeof feedback.rate === 'string' ? parseFloat(feedback.rate) : feedback.rate,
-            })),
-          }))
-        }
+        onChange={onFeedbacksChange}
       />
     </div>
   )

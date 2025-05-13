@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UpListAnimation } from '../../animations'
 import { getFooter } from '../../api/FooterAPI'
 import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm } from '../../components'
@@ -12,6 +12,7 @@ import css from './index.module.scss'
 const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, contacts }) => {
   const [isEnrollForm, setIsEnrollForm] = useState(false)
   const [footer, setFooter] = useState<any>(emptyFooter)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getFooter().then(setFooter)
@@ -88,7 +89,7 @@ const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, co
             <h3 className={css.subscribeTitle}>{footer.promotionsAndOffersTitle}</h3>
             <p className={css.subscribeText}>{footer.promotionsAndOffersText}</p>
           </div>
-          <Button size="small" text="Подписаться" /* onClick={ функция подписки на рассылку} */ />
+          <Button size="small" text="Подписаться" onClick={()=>{navigate(contacts.socialMediaLinks.telegram)}} />
         </div>
 
         <div className={css.companyInfo}>

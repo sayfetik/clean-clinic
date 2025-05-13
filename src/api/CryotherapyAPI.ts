@@ -41,14 +41,6 @@ export const editCryotherapy = async (data: CryotherapyType) => {
   if (typeof data.img !== 'string' && data.img) {
     formData.append('Img', data.img)
   }
-  data.services.forEach((s, idx) => {
-    formData.append(`Services[${idx}].id`, String(s.id))
-    formData.append(`Services[${idx}].name`, s.name)
-    formData.append(`Services[${idx}].cost`, String(s.cost))
-    if (typeof s.img !== 'string' && s.img) {
-      formData.append(`Services[${idx}].img`, s.img)
-    }
-  })
   const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/EditCryotherapy`, {
     method: 'PUT',
     body: formData,

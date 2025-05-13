@@ -20,6 +20,10 @@ export const getFooter = async () => {
 export const seedFooter = async () => {
   const res = await fetch(`${API_URL}/SeedFooter`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+    },
     body: JSON.stringify({}),
   })
   if (!res.ok) {

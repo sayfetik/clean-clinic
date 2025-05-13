@@ -8,19 +8,23 @@
   width: fit-content;
 }
 
+.name {
+  font-weight: 500 !important;
+}
+
 .photo {
-  width: 95px;
+  width: 130px;
   border-radius: 20px;
 
-  @include breakpoint("xlarge") {
+  @include breakpoint('xlarge') {
     width: 98px;
   }
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     width: 90px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 80px;
   }
 }

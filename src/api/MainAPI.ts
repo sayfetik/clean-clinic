@@ -1,7 +1,10 @@
+import { emptyInfusionInstructions } from '../lib/empty'
 import { InfusionType, MainPageType } from '../lib/types'
 import { get, post, put } from './methods'
 
 const section = import.meta.env.VITE_MAIN as string
+
+export let infusionInstructions = emptyInfusionInstructions
 
 export const createMainPage = async () => post(`${section}/CreateMain`, {})
 
@@ -10,7 +13,9 @@ export const getMainPage = async () => {
     return await get(`${section}/GetMainPage`)
   } catch (e) {
     await createMainPage()
-    return await get(`${section}/GetMainPage`)
+    const res = await get(`${section}/GetMainPage`)
+    infusionInstructions = res.infusionInstructions
+    return res
   }
 }
 
@@ -179,14 +184,18 @@ export const updateWhyInfusions = async (body: {
   return await res.json()
 }
 
-export const getAllInfusions = async (): Promise<{data: InfusionType[], dict: Record<string, string>; names: string[] }> => {
+export const getAllInfusions = async (): Promise<{
+  data: InfusionType[]
+  dict: Record<string, string>
+  names: string[]
+}> => {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/GetAllTreatments`, {
     method: 'GET',
   })
   if (!res.ok) {
     throw new Error('Ошибка при получении всех инфузий')
   }
-  const data = await res.json()
+  const data = await get('GetAllTreatments')
   const dict: Record<string, string> = {}
   const names: string[] = []
   data.forEach((item: { name: string; id: string }) => {
@@ -194,4 +203,43 @@ export const getAllInfusions = async (): Promise<{data: InfusionType[], dict: Re
     names.push(item.name)
   })
   return { data, dict, names }
+}
+
+// const seedMainInfusions = async (): Promise<any> => {
+//   const response = await fetch(`${import.meta.env.VITE_API_URL}/SeedMainInfusions`, {
+//     method: 'POST',
+//     headers: { accept: '*/*' },
+//     body: JSON.stringify({}),
+//   })
+
+//   return await response.json()
+// }
+
+let mainInfusionId = 1
+
+export const getMainInfusions = async (): Promise<any[]> => {
+  return await get(`GetMainInfusions`)
+}
+
+export const updateMainInfusions = async (mainInfusions: string[]): Promise<any> => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/UpdateMainInfusions`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: mainInfusionId, mainInfusions }),
+  })
+
+  return await response.json()
+}
+
+export const callbackRequest = async (name: string, phone: string, comment: string): Promise<any> => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/CallbackRequest`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, phone, comment }),
+  })
+  return response.status === 200 || response.status === 204
 }
