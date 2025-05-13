@@ -1,18 +1,19 @@
-// import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { useParams } from 'react-router-dom'
 import { UpAnimation } from '../../animations'
+import * as infusionApi from '../../api/InfusionsAPI'
 import * as mainPageApi from '../../api/MainAPI'
 import { Button, InfusionInstructions } from '../../components'
-import { InfusionPage } from '../../lib/data'
-// import { InfusionRouteParamsType } from '../../lib/routes'
 import clock from '/assets/clock.png'
-import { emptyInfusionInstructions } from '../../lib/empty'
+import { emptyInfusionInfo, emptyInfusionInstructions } from '../../lib/empty'
+import { InfusionRouteParamsType } from '../../lib/routes'
+import { InfusionInfoType } from '../../lib/types'
 import css from './index.module.scss'
 
 const Infusion = () => {
-  // const { infusionId } = useParams() as InfusionRouteParamsType
-  // const infusion = main.infusions.infusions[Number(infusionId) - 1]
+  const { infusionId } = useParams() as InfusionRouteParamsType
+  const [infusion, setInfusion] = useState<InfusionInfoType>(emptyInfusionInfo)
 
   const [width, setWidth] = useState(20)
   const [infusionInstructions, setInfusionInstructions] = useState(emptyInfusionInstructions)
@@ -35,14 +36,10 @@ const Infusion = () => {
 
   useEffect(() => {
     document.title = infusion.name
-    const fetchInstructions = async () => {
-      const data = await mainPageApi.getInfusionInstructions()
-      setInfusionInstructions(data)
-    }
-    fetchInstructions()
-  }, [])
+    setInfusionInstructions(mainPageApi.infusionInstructions)
+    infusionApi.getInfusionById(infusionId).then(setInfusion)
+  }, [infusionId])
 
-  const infusion = InfusionPage
   if (!infusion) {
     document.title = 'Капельница не найдена'
     return <div>Инфузия не найдена</div>
@@ -59,19 +56,19 @@ const Infusion = () => {
         <div className={css.upperSection}>
           <UpAnimation>
             <div className={css.upperSectionContent}>
-              <img src={infusion.img} className={css.image} />
+              <img src={typeof infusion.imagePath === 'string' ? infusion.imagePath : URL.createObjectURL(infusion.imagePath)} className={css.image} />
               <div className={css.upperSectionText}>
-                <h1 className={css.name}>{infusion.name}</h1>
+                <h2 className={css.name}>{infusion.name}</h2>
 
                 <div className={css.upperInfo}>
-                  <h3 className={css.cost}>{infusion.cost} руб.</h3>
+                  <h3 className={css.cost}>{infusion.price} руб.</h3>
                   <div className={css.durationSection}>
                     <img src={clock} width={width} />
                     {infusion.duration}
                   </div>
                 </div>
 
-                <Button />
+                <Button size='small'/>
               </div>
             </div>
           </UpAnimation>
@@ -108,7 +105,7 @@ const Infusion = () => {
             <div className={css.list}>
               <h3>Противопоказания</h3>
               <ul className={css.redArrowList}>
-                {infusion.contraindications.map((item, index) => (
+                {infusion.contradictions.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>

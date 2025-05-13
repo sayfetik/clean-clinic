@@ -1,15 +1,16 @@
+@use 'sass:map';
 @use './_vars' as *;
 @use '../../node_modules/include-media/dist/_include-media';
 
 $breakpoints: (
-  "small": 450px,
-  "medium": 768px,
-  "large": 1024px,
-  "xlarge": 1280px
-);
+  'small': 450px,
+  'medium': 770px,
+  'large': 1024px,
+  'xlarge': 1280px,
+) !default;
 
 @mixin breakpoint($size) {
-  $width: map-get($breakpoints, $size);
+  $width: map.get($breakpoints, $size);
   @if $width {
     @media (max-width: $width) {
       @content;
@@ -22,11 +23,11 @@ $breakpoints: (
 .element {
   background-color: blue;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     background-color: red;
   }
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     background-color: green;
   }
 }
@@ -50,12 +51,12 @@ $breakpoints: (
 @mixin page {
   padding: 0 170px;
   background-color: $defaultBackgroundColor;
-  
-  @include breakpoint("xlarge") {
+
+  @include breakpoint('xlarge') {
     padding: 0 90px;
   }
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     padding: 0 60px;
   }
 
@@ -63,7 +64,7 @@ $breakpoints: (
     padding: 0 40px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: 0 30px;
   }
 }
@@ -103,11 +104,11 @@ $breakpoints: (
   font-size: 20px;
   font-weight: 550;
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     font-size: 18px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     font-size: 14px;
   }
 }
@@ -132,11 +133,11 @@ $breakpoints: (
   font-size: 15px;
   font-weight: 500;
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     font-size: 14px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     font-size: 13px;
   }
 }
@@ -182,7 +183,7 @@ $breakpoints: (
   color: $blue;
   margin: 5px 0 15px 0;
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     margin: 3px 0 15px 0;
   }
 }
@@ -198,12 +199,12 @@ $breakpoints: (
   color: $blue;
   margin: 50px 0 25px 0;
 
-  @include breakpoint("large") {
+  @include breakpoint('large') {
     margin-top: 35px;
     margin-bottom: 20px;
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     margin-top: 25px;
     margin-bottom: 15px;
   }
@@ -253,11 +254,11 @@ $breakpoints: (
 
 @mixin serviceCard {
   display: flex;
-    gap: 20px;
-    background-color: $white;
-    border-radius: 15px;
-    border: 1px solid rgb(220, 220, 220);
-    padding: 15px 22px;
+  gap: 20px;
+  background-color: $white;
+  border-radius: 15px;
+  border: 1px solid rgb(220, 220, 220);
+  padding: 15px 22px;
 }
 
 @mixin deleteButton {

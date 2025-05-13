@@ -1,3 +1,4 @@
+import React from 'react'
 import { StepType } from '../../lib/types'
 import Step from './Step/Step'
 import css from './index.module.scss'
@@ -8,7 +9,7 @@ type InfusionInstructionsProps = {
   steps: StepType[]
 }
 
-const InfusionInstructions: React.FC<InfusionInstructionsProps> = ({ title, answer, steps }) => (
+const InfusionInstructions: React.FC<InfusionInstructionsProps> = React.memo(({ title, answer, steps }) => (
   <div className={css.root}>
     <h2>{title}</h2>
     <h3 className={css.answer}>{answer}</h3>
@@ -18,6 +19,6 @@ const InfusionInstructions: React.FC<InfusionInstructionsProps> = ({ title, answ
       ))}
     </div>
   </div>
-)
+))
 
 export default InfusionInstructions

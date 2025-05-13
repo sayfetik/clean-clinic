@@ -205,3 +205,17 @@ export const emptyFooter = {
   bottomSection: '',
   telegramChanellLink: '',
 }
+
+export const emptyInfusionInfo: types.InfusionInfoType = {
+  id: '0',
+  name: '',
+  price: 0,
+  imagePath: '',
+  duration: '',
+  description: [],
+  results: [],
+  indications: [],
+  contradictions: [],
+  isNew: true,
+  ivsCategories: ''
+}

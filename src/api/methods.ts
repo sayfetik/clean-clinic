@@ -15,7 +15,7 @@ export function prependImageUrl(obj: any): any {
     for (const key in obj) {
       const value = obj[key];
       if (
-        (key.toLowerCase().includes('img') || key.toLowerCase().includes('image')) &&
+        (key.toLowerCase().includes('img') || key.toLowerCase().includes('image') || key.toLowerCase().includes('imagePath')) &&
         typeof value === 'string' &&
         value &&
         !value.startsWith(BASE_URL)

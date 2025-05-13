@@ -1,3 +1,4 @@
+import React from 'react';
 import UpList from '../../animations/UpList'
 import css from './index.module.scss'
 
@@ -9,7 +10,7 @@ type ProblemsProps = {
   problemImage: string | File
 }
 
-const Problems: React.FC<ProblemsProps> = ({ problemTitle, problems, problemImage }) => (
+const Problems: React.FC<ProblemsProps> = React.memo(({ problemTitle, problems, problemImage }) => (
   <div className={css.root}>
     <h2 className={css.title}>{problemTitle}</h2>
     <div className={css.content}>
@@ -29,6 +30,6 @@ const Problems: React.FC<ProblemsProps> = ({ problemTitle, problems, problemImag
       </div>
     </div>
   </div>
-)
+))
 
 export default Problems

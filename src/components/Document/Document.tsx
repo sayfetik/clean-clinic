@@ -1,5 +1,6 @@
 import { Modal } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import React from 'react'
 import css from './index.module.scss'
 
 type LicenseViewerProps = {
@@ -8,7 +9,7 @@ type LicenseViewerProps = {
   size?: string
 }
 
-const Document: React.FC<LicenseViewerProps> = ({ image, altText = 'Лицензия', size = 'big' }) => {
+const Document: React.FC<LicenseViewerProps> = React.memo(({ image, altText = 'Лицензия', size = 'big' }) => {
   const [opened, { open, close }] = useDisclosure(false)
 
   return (
@@ -19,6 +20,6 @@ const Document: React.FC<LicenseViewerProps> = ({ image, altText = 'Лиценз
       </Modal>
     </div>
   )
-}
+})
 
 export default Document

@@ -57,6 +57,11 @@ const InfusionSection = ({
               value={ivsInfo.duration || ''}
               onChange={(e) => onChange('duration', e.currentTarget.value)}
             />
+            <TextInput
+              label="Категория:"
+              value={ivsInfo.ivsCategories || ''}
+              onChange={(e) => onChange('ivsCategories', e.currentTarget.value)}
+            />
           </div>
         </div>
         <h4>Описание</h4>
@@ -68,8 +73,8 @@ const InfusionSection = ({
         <h4>Противопоказания</h4>
         <BulletPoints
           label=""
-          bullets={ivsInfo.contraindications || []}
-          onChange={(arr) => onChange('contraindications', arr)}
+          bullets={ivsInfo.contradictions || []}
+          onChange={(arr) => onChange('contradictions', arr)}
         />
         <div className="margin" />
         <UpdateButton onClick={async () => onSave()} />
@@ -111,8 +116,8 @@ const InfusionsContent: React.FC<InfusionsContentProps> = ({data, setData}) => {
         description: infusion.ivsInfo.description || [],
         results: infusion.ivsInfo.results || [],
         indications: infusion.ivsInfo.indications || [],
-        contradictions: infusion.ivsInfo.contraindications || [],
-        category: category,
+        contradictions: infusion.ivsInfo.contradictions || [],
+        category: infusion.ivsInfo.ivsCategories || '',
       })
       setData((prev) => ({
         ...prev,
@@ -135,7 +140,7 @@ const InfusionsContent: React.FC<InfusionsContentProps> = ({data, setData}) => {
         
       }))
     } else {
-      response = await infusionsApi.updateInfusion({
+      await infusionsApi.updateInfusion({
         id: infusion.infusionId,
         name: infusion.ivsInfo.name,
         price: Number(infusion.ivsInfo.price),
@@ -144,26 +149,8 @@ const InfusionsContent: React.FC<InfusionsContentProps> = ({data, setData}) => {
         description: infusion.ivsInfo.description || [],
         results: infusion.ivsInfo.results || [],
         indications: infusion.ivsInfo.indications || [],
-        contradictions: infusion.ivsInfo.contraindications || [],
+        contradictions: infusion.ivsInfo.contradictions || [],
       })
-      setData((prev) => ({
-        ...prev,
-        infusionsByCategory: prev.infusionsByCategory.map((cat) =>
-          cat.category === category
-            ? {
-                ...cat,
-                infusions: cat.infusions.map((inf, i) =>
-                  i === index
-                    ? {
-                        ...inf,
-                        ivsInfo: { ...response.ivsInfo, isNew: false },
-                      }
-                    : inf
-                ),
-              }
-            : cat
-        ),
-      }))
     }
   }
 
@@ -215,8 +202,9 @@ const InfusionsContent: React.FC<InfusionsContentProps> = ({data, setData}) => {
                     description: [],
                     results: [],
                     indications: [],
-                    contraindications: [],
+                    contradictions: [],
                     isNew: true,
+                    ivsCategories: ''
                   },
                 },
               ],
@@ -272,8 +260,7 @@ const InfusionsContent: React.FC<InfusionsContentProps> = ({data, setData}) => {
         data.infusionsByCategory.map((item) => (
           <div key={item.category}>
             <div className="row">
-              <h3 className="blue">Группа:</h3>
-              <TextInput value={item.category} readOnly />
+              <h3 className="blue">Группа: {item.category}</h3>
             </div>
             {item.infusions.map((infusion: InfusionType, i: number) => (
               <InfusionSection

@@ -6,8 +6,6 @@ import forBanner from '/assets/forBanner.png'
 import {
   Button,
   WhiteCard,
-  InfusionInstructions,
-  Infusions,
   AboutSection,
   EnrollForm,
   Problems,
@@ -16,7 +14,9 @@ import { emptyCategoryType } from '../../lib/empty'
 import { MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Main: React.FC<{ main: MainPageType }> = ({ main,  }) => {
+const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
+  const InfusionInstructions = lazy(() => import('../../components/InfusionInstructions/InfusionInstructions'))
+  const Infusions = lazy(() => import('../../components/Infusions/Infusions'))
   const FAQ = lazy(() => import('../../components/FAQ/FAQ'))
   const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
   const ServicesSlider = lazy(() => import('../../components/ServicesSlider/ServicesSlider'))
@@ -70,15 +70,15 @@ const Main: React.FC<{ main: MainPageType }> = ({ main,  }) => {
 
           <FadeAnimation>
             <div className={css.instructions}>
-              <InfusionInstructions {...main.infusionInstructions} />
+              <Suspense fallback={<div>Загрузка...</div>}><InfusionInstructions {...main.infusionInstructions} /></Suspense>
               <Button />
             </div>
           </FadeAnimation>
 
           <div className={css.infusions}>
             <h2>{main.infusions.title}</h2>
-            <p className={css.infusionsDescription}>{main.infusions.text}</p>
-            <Infusions items={emptyCategoryType} category='main'/>
+            <p className={css.infusionsDescription}>Все препараты, входящие в состав капельниц, имеют регистрационные удостоверения и разрешены к использованию на территории РФ. Перед назначением курса капельниц, мы подготавливаем индивидуальную программу на основе результатов ваших анализов.</p>
+            <Suspense fallback={<div>Загрузка...</div>}><Infusions items={emptyCategoryType} category='main'/></Suspense>
             <Button text="Записаться к терапевту" />
           </div>
 

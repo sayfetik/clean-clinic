@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import linkIcon from '/assets/link.png'
 import Animation from '../../animations/Animation'
@@ -14,8 +15,8 @@ function normalizeInfusion(infusion: any) {
     return {
       id: infusion.infusionId || infusion.id || infusion.ivsInfo.id,
       name: infusion.ivsInfo.name,
-      price: infusion.ivsInfo.price,
-      imagePath: infusion.ivsInfo.imagePath,
+      price: infusion.ivsInfo.cost,
+      img: infusion.ivsInfo.img,
       duration: infusion.ivsInfo.duration,
       description: infusion.ivsInfo.description,
       results: infusion.ivsInfo.results,
@@ -26,8 +27,8 @@ function normalizeInfusion(infusion: any) {
   return {
     id: infusion.id,
     name: infusion.name,
-    price: infusion.price,
-    imagePath: infusion.imagePath,
+    price: infusion.cost,
+    img: infusion.img,
     duration: infusion.duration,
     description: infusion.description,
     results: infusion.results,
@@ -36,17 +37,26 @@ function normalizeInfusion(infusion: any) {
   }
 }
 
-const Infusion: React.FC<{ infusion: PlasmoliftingServiceType; imgWidth: number }> = ({ infusion, imgWidth }) => {
+
+const Infusion: React.FC<{ infusion: PlasmoliftingServiceType; imgWidth: number }> = React.memo(({ infusion, imgWidth }) => {
   const data = normalizeInfusion(infusion)
   const id = data.id
   const name = data.name
-  const description = Array.isArray(data.description) ? data.description.join(', ') : data.description
+  const description = Array.isArray(data.description) ? data.description[0] : data.description
   const cost = data.price
-  const img = data.imagePath
+  const img = data.img
   const isDescription = true
+
+  let imgSrc = ''
+  if (typeof img === 'string') {
+    imgSrc = img
+  } else if (img instanceof File || img instanceof Blob) {
+    imgSrc = URL.createObjectURL(img)
+  }
+
   return (
     <div className={css.infusionRoot}>
-      <img src={typeof img === 'string' ? img : URL.createObjectURL(img)} width={imgWidth} className={css.img} />
+      <img src={imgSrc} width={imgWidth} className={css.img} />
       {isDescription ? (
         <Link to={getInfusionRoute({ infusionId: String(id) })}>
           <h3 className={css.name}>{name}</h3>
@@ -69,9 +79,9 @@ const Infusion: React.FC<{ infusion: PlasmoliftingServiceType; imgWidth: number 
       </div>
     </div>
   )
-}
+})
 
-const PlasmoLiftings: React.FC<{ items: PlasmoliftingServiceType[]; imgWidth?: number }> = ({
+const PlasmoLiftings: React.FC<{ items: PlasmoliftingServiceType[]; imgWidth?: number }> = React.memo(({
   items,
   imgWidth = 85,
 }) => {
@@ -99,6 +109,6 @@ const PlasmoLiftings: React.FC<{ items: PlasmoliftingServiceType[]; imgWidth?: n
       ))}
     </div>
   )
-}
+})
 
 export default PlasmoLiftings

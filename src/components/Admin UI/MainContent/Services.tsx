@@ -58,7 +58,7 @@ const Services: React.FC<ServicesProps> = ({ services, onChange, onImageChange }
         {services.map((card, index) => (
           <div key={card.id ?? index} className={css.block}>
             <MediaEditor
-              initialSrc={typeof card.img === 'string' ? card.img : ''}
+              initialSrc={typeof card.img === 'string' ? card.img : URL.createObjectURL(card.img)}
               onFileChange={(file) => onImageChange(index, file)}
             />
             <TextInput value={card.name} onChange={(e) => handleNameChange(index, e.target.value)} />

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { FAQItem } from '../../lib/types'
 import css from './index.module.scss'
 
-const FAQ: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
+const FAQ: React.FC<{ faqs: FAQItem[] }> = React.memo(({ faqs }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const contentRefs = useRef<Array<HTMLDivElement | null>>([])
 
@@ -54,6 +54,6 @@ const FAQ: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
       ))}
     </div>
   )
-}
+})
 
 export default FAQ

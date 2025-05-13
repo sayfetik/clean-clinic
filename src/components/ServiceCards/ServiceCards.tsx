@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
+import React from 'react'
 import { Button } from '..'
 import Animation from '../../animations/Animation'
 import { CardType } from '../../lib/types'
 import css from '../Infusions/index.module.scss'
 
-const Card: React.FC<CardType> = ({ name, bullets, cost, img }) => (
+const Card: React.FC<CardType> = React.memo(({ name, bullets, cost, img }) => (
   <div className={css.infusionRoot}>
     <img src={typeof img === 'string' ? img : URL.createObjectURL(img)} width={150} className={css.img} />
     <h3 className={css.name}>{name}</h3>
@@ -22,9 +23,9 @@ const Card: React.FC<CardType> = ({ name, bullets, cost, img }) => (
       <Button size="small" />
     </div>
   </div>
-)
+))
 
-const ServiceCards: React.FC<{ items: CardType[] }> = ({ items }) => {
+const ServiceCards: React.FC<{ items: CardType[] }> = React.memo(({ items }) => {
   const [animationKey, setAnimationKey] = useState(0)
   useEffect(() => {
     setAnimationKey((prevKey) => prevKey + 1)
@@ -49,6 +50,6 @@ const ServiceCards: React.FC<{ items: CardType[] }> = ({ items }) => {
       ))}
     </div>
   )
-}
+})
 
 export default ServiceCards

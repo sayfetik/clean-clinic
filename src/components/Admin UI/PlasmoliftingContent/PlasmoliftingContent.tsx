@@ -188,46 +188,46 @@ const PlasmoliftingContent = () => {
       <div>
         <div className={css.services}>
           {data.services.map((item, index) => (
-            <div>
-            <div key={item.id ?? index} className={css.bulletItem}>
-              <div className={css.card}>
-                <div className={css.content}>
-                  <MediaEditor
-                    initialSrc={
-                      typeof item.img === 'string'
-                        ? item.img
-                        : item.img instanceof File
-                          ? URL.createObjectURL(item.img)
-                          : ''
-                    }
-                    onFileChange={(file) => handleServiceImage(index, file)}
-                  />
-                  <TextInput
-                    label="Название:"
-                    value={item.name}
-                    onChange={(event) => handleChangeName(index, event.currentTarget.value)}
-                  />
-                  <Textarea
-                    label="Описание"
-                    value={item.description}
-                    onChange={(event) => handleChangeDesc(index, event.currentTarget.value)}
-                  />
-                  <TextInput
-                    label="Стоимость:"
-                    value={item.cost}
-                    onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
-                  />
-                  <UpdateButton onClick={() => handleSave(index)} />
+            <div key={item.id ?? index}>
+              <div className={css.bulletItem}>
+                <div className={css.card}>
+                  <div className={css.content}>
+                    <MediaEditor
+                      initialSrc={
+                        typeof item.img === 'string'
+                          ? item.img
+                          : item.img instanceof File
+                            ? URL.createObjectURL(item.img)
+                            : ''
+                      }
+                      onFileChange={(file) => handleServiceImage(index, file)}
+                    />
+                    <TextInput
+                      label="Название:"
+                      value={item.name}
+                      onChange={(event) => handleChangeName(index, event.currentTarget.value)}
+                    />
+                    <Textarea
+                      label="Описание"
+                      value={item.description}
+                      onChange={(event) => handleChangeDesc(index, event.currentTarget.value)}
+                    />
+                    <TextInput
+                      label="Стоимость:"
+                      value={item.cost}
+                      onChange={(event) => handleChangeCost(index, event.currentTarget.value)}
+                    />
+                    <UpdateButton onClick={() => handleSave(index)} />
+                  </div>
                 </div>
               </div>
-            </div>
               <Button variant="subtle" color="red" onClick={() => handleDelete(item.id)} className={css.deleteButton}>
                 Удалить
               </Button>
-              </div>
+            </div>
           ))}
         </div>
-        <div className='margin' />
+        <div className="margin" />
         <Button onClick={handleAdd} variant="outline">
           Добавить услугу
         </Button>

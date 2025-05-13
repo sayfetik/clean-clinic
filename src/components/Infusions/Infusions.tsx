@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import linkIcon from '/assets/link.png'
 import Animation from '../../animations/Animation'
@@ -37,11 +38,11 @@ function normalizeInfusion(infusion: any) {
   }
 }
 
-const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({ infusion, imgWidth }) => {
+const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = React.memo(({ infusion, imgWidth }) => {
   const data = normalizeInfusion(infusion)
   const id = data.id
   const name = data.name
-  const description = Array.isArray(data.description) ? data.description.join(', ') : data.description
+  const description = Array.isArray(data.description) ? data.description[0] : data.description
   const cost = data.price
   const img = data.imagePath
   const isDescription = true
@@ -70,9 +71,9 @@ const Infusion: React.FC<{ infusion: InfusionType; imgWidth: number }> = ({ infu
       </div>
     </div>
   )
-}
+})
 
-const Infusions: React.FC<{ items: InfusionCategoryType[]; imgWidth?: number; category: string }> = ({
+const Infusions: React.FC<{ items: InfusionCategoryType[]; imgWidth?: number; category: string }> = React.memo(({
   items,
   imgWidth = 85,
   category,
@@ -86,11 +87,11 @@ const Infusions: React.FC<{ items: InfusionCategoryType[]; imgWidth?: number; ca
 
   useEffect(() => {
     const filterInfusions = async () => {
-      if (category === 'Все') {
+      if (category === 'Все капельницы') {
         const res = await mainPageApi.getAllInfusions()
         setInfusions(res.data)
       } else if (category === 'main') {
-        category = 'main' // СДЕЛАТЬ ПОЛУЧЕНИЯ ГЛАВНЫХ КАПЕЛЬНИЦ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        await mainPageApi.getMainInfusions().then(setInfusions)
       } else {
         for (let i = 0; i < items.length; i++) {
           if (items[i].category === category) {
@@ -122,6 +123,6 @@ const Infusions: React.FC<{ items: InfusionCategoryType[]; imgWidth?: number; ca
       ))}
     </div>
   )
-}
+})
 
 export default Infusions
