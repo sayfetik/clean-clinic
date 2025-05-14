@@ -90,7 +90,6 @@ const ContactContent: React.FC = () => {
       <TextInput value={contacts.text} onChange={handleChange('text')} />
       <TextInput value={contacts.feedbackFormTitle} onChange={handleChange('feedbackFormTitle')} />
       <TextInput value={contacts.feedbackFormText} onChange={handleChange('feedbackFormText')} />
-      <TextInput value={contacts.feedbackFormText} onChange={handleChange('smallAddress')} />
       {contacts.contactsInfo.map((item, index) => (
         <div key={index} className={css.contactsInfo}>
           <h4>{item.title}</h4>
@@ -101,13 +100,15 @@ const ContactContent: React.FC = () => {
           />
         </div>
       ))}
+      <h4>Короткий адрес для хедера</h4>
+      <TextInput value={contacts.smallAddress} onChange={handleChange('smallAddress')} />
 
       <h4>Рабочие часы</h4>
       <TextInput value={contacts.workHours} onChange={handleChange('workHours')} />
 
       <div className="margin" />
 
-      <h4>Соц сети</h4>
+      <h3>Соц сети</h3>
       <TextInput
         label="Телеграм"
         value={contacts.socialMediaLinks['telegram']}

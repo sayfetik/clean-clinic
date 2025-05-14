@@ -15,6 +15,7 @@ const Analyzes = () => {
       setData(response)
     }
     fetchData()
+    document.title = 'Анализы | Услуги'
   }, [])
 
   return (

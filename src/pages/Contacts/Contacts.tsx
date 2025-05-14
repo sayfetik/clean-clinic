@@ -2,13 +2,13 @@ import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
 import { showNotification } from '@mantine/notifications'
 import clsx from 'clsx'
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import StarRatings from 'react-star-ratings'
 import { Animation, FadeAnimation } from '../../animations'
 import * as mainPageApi from '../../api/MainAPI'
-import { ContactItem, SocialMediaIcons, CheckPolicy, Button } from '../../components'
+import { ContactItem, CheckPolicy, Button } from '../../components'
 import { feedbackInputs } from '../../lib/data'
 import { ContactsType } from '../../lib/types'
 import css from './index.module.scss'
@@ -61,13 +61,12 @@ const Contacts: React.FC<{ contacts: ContactsType }> = React.memo(({ contacts })
   })
 
   const nameValue = name.getValue()
-  const surnameValue = surname.getValue()
 
   const disabled = useMemo(() => {
-    return rating === 0 || !checked || !!name.error || !!surname.error || !nameValue.trim() || !surnameValue.trim()
-  }, [rating, checked, name.error, surname.error, nameValue, surnameValue])
+    return rating === 0 || !checked || !!name.error || !nameValue.trim()
+  }, [rating, checked, name.error, nameValue])
 
-  const handleSendFeedback = useCallback (async () => {
+  const handleSendFeedback = useCallback(async () => {
     await mainPageApi.createFeedBack({
       name: `${name.getValue()} ${surname.getValue()}`.trim(),
       rate: rating,
@@ -79,13 +78,16 @@ const Contacts: React.FC<{ contacts: ContactsType }> = React.memo(({ contacts })
     question.setValue('')
     setRating(0)
     setChecked(false)
-    // Уведомление
     showNotification({
-      title: 'Спасибо!',
-      message: 'Ваш отзыв отправлен.',
+      title: 'Спасибо за отзыв!',
+      message: 'Ваш отзыв отправлен',
       color: 'blue',
     })
   }, [name, surname, rating, question])
+
+  useEffect(() => {
+    document.title = 'Контакты'
+  }, [])
 
   return (
     <>
@@ -104,7 +106,7 @@ const Contacts: React.FC<{ contacts: ContactsType }> = React.memo(({ contacts })
               {contacts.contactsInfo.map((section, index) => (
                 <ContactItem key={index} info={section} contacts={contacts} />
               ))}
-              <SocialMediaIcons iconWidth={35} containerWidth="100%" contacts={contacts} />
+              {/* <SocialMediaIcons iconWidth={35} containerWidth="30%" contacts={contacts} /> */}
             </div>
           </div>
         </FadeAnimation>
@@ -174,7 +176,7 @@ const Contacts: React.FC<{ contacts: ContactsType }> = React.memo(({ contacts })
             </div>
             <CheckPolicy {...{ checked, setChecked }} />
             <div className={css.margin}></div>
-            <Button size="small" text="Отправить" isDisabled={disabled} onClick={handleSendFeedback}/>
+            <Button size="small" text="Отправить" isDisabled={disabled} onClick={handleSendFeedback} />
           </div>
         </Animation>
       </div>

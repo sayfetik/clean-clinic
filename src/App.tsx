@@ -1,5 +1,6 @@
 import { MantineProvider } from '@mantine/core'
 import { useHotkeys } from '@mantine/hooks'
+import { Notifications } from '@mantine/notifications'
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom'
 import * as contactsApi from './api/ContactsAPI'
@@ -47,7 +48,7 @@ const Layout = () => {
   const [infusionCatalog, setInfusionCatalog] = useState(emptyInfusionCatalog)
   const [contacts, setContacts] = useState(emptyContacts)
 
-  useHotkeys([['alt+w', () => setModalOpened(true)]])
+  useHotkeys([[import.meta.env.VITE_ADMIN_KEYBINDING, () => setModalOpened(true)]])
 
   const handleSuccess = () => {
     setModalOpened(false)
@@ -93,7 +94,7 @@ const Layout = () => {
           <Route path={routes.getPlasmoliftingRoute()} element={<Plasmolifting />} />
           <Route path={routes.getCryotherapyRoute()} element={<Cryotherapy />} />
           <Route path={routes.getAnalyzesgRoute()} element={<Analyzes />} />
-          <Route path={routes.getInfusionRoute(routes.infusionRouteParams)} element={<Infusion />} />
+          <Route path={routes.getInfusionRoute(routes.infusionRouteParams)} element={<Infusion infusionInstructions={main.infusionInstructions}/>} />
           <Route path={routes.getLicenseRoute()} element={<License />} />
           <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />
           <Route path={routes.getDocumentsRoute()} element={<Documents />} />
@@ -129,6 +130,7 @@ const App = () => {
       <TextFormatProvider>
         <BrowserRouter>
           <AuthProvider>
+            <Notifications position="top-right" limit={3}/>
             <Layout />
           </AuthProvider>
         </BrowserRouter>

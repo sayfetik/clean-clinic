@@ -45,16 +45,10 @@ const FooterContent = () => {
         onChange={(e) => handleChange('inn', e.currentTarget.value)}
         className={css.input}
       />
-      <Textarea
+      <TextInput
         label="Нижний блок"
         value={data.bottomSection}
         onChange={(e) => handleChange('bottomSection', e.currentTarget.value)}
-        className={css.input}
-      />
-      <TextInput
-        label="Ссылка на Telegram-канал"
-        value={data.telegramChanellLink}
-        onChange={(e) => handleChange('telegramChanellLink', e.currentTarget.value)}
         className={css.input}
       />
       <ApplyButton onClick={handleSave} />

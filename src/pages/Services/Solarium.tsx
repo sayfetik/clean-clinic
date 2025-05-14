@@ -15,6 +15,7 @@ const Solarium = () => {
       setData(response)
     }
     fetchData()
+    document.title = 'Солярий | Услуги'
   }, [])
 
   return (

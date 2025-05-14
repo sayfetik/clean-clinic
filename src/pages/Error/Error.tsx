@@ -12,6 +12,7 @@ const Error = () => {
 
   useEffect(() => {
     api.getErrorPage().then(setData)
+    document.title = 'Ошибка'
   }, [])
 
   return (

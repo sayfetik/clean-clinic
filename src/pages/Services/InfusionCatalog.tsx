@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FadeAnimation, Card } from '../../animations'
 import { Filters, GradientText } from '../../components'
@@ -16,13 +16,17 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
   const Problems = lazy(() => import('../../components/Problems/Problems'))
   const Infusions = lazy(() => import('../../components/Infusions/Infusions'))
   const [chosenId, setChosenId] = useState(0)
-  const filterKeys = useMemo(()=>{
-    let keys: string[] = ['Все капельницы'];
+  const filterKeys = useMemo(() => {
+    let keys: string[] = ['Все капельницы']
     for (let i = 0; i < data.infusionsByCategory.length; i++) {
       keys.push(data.infusionsByCategory[i].category)
     }
     return keys
   }, [data])
+
+  useEffect(() => {
+    document.title = 'Капельницы | Услуги'
+  }, [])
 
   return (
     <>
@@ -62,13 +66,17 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
             </div>
           </FadeAnimation>
 
-          <Suspense fallback={<div>Загрузка...</div>}><Problems problemImage={problemImage} problemTitle={problemTitle} problems={problems} /></Suspense>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <Problems problemImage={problemImage} problemTitle={problemTitle} problems={problems} />
+          </Suspense>
 
           <h2 className={css.center}>{data.servicesTitle}</h2>
           <div className={css.filters}>
             <Filters filters={filterKeys} chosenOption={{ chosenId, setChosenId }} />
           </div>
-          <Suspense fallback={<div>Загрузка...</div>}><Infusions items={data.infusionsByCategory} category={filterKeys[chosenId]}/></Suspense>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <Infusions items={data.infusionsByCategory} category={filterKeys[chosenId]} />
+          </Suspense>
 
           <Card>
             <div className={css.howToChoose}>

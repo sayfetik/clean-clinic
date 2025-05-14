@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { UpListAnimation } from '../../animations'
 import { getFooter } from '../../api/FooterAPI'
-import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm } from '../../components'
+import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm, Form } from '../../components'
 import { emptyFooter } from '../../lib/empty'
 import * as routes from '../../lib/routes'
 import { ContactsType } from '../../lib/types'
-import Form from '../Form/Form'
 import css from './index.module.scss'
 
-const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, contacts }) => {
+const Footer: React.FC<{ title: string; contacts: ContactsType }> = React.memo(({ title, contacts }) => {
   const [isEnrollForm, setIsEnrollForm] = useState(false)
   const [footer, setFooter] = useState<any>(emptyFooter)
-  const navigate = useNavigate()
 
   useEffect(() => {
     getFooter().then(setFooter)
@@ -43,7 +42,7 @@ const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, co
                 <ContactItem key={index} info={section} contacts={contacts} />
               ))}
             </div>
-            <SocialMediaIcons iconWidth={35} containerWidth="80%" contacts={contacts} />
+            <SocialMediaIcons iconWidth={35} containerWidth="100px" contacts={contacts} />
           </div>
 
           <div className={css.maps}>
@@ -89,7 +88,7 @@ const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, co
             <h3 className={css.subscribeTitle}>{footer.promotionsAndOffersTitle}</h3>
             <p className={css.subscribeText}>{footer.promotionsAndOffersText}</p>
           </div>
-          <Button size="small" text="Подписаться" onClick={()=>{navigate(contacts.socialMediaLinks.telegram)}} />
+          <Button size="small" text="Подписаться" onClick={() => window.open(contacts.socialMediaLinks.telegram, '_blank')} />
         </div>
 
         <div className={css.companyInfo}>
@@ -124,6 +123,6 @@ const Footer: React.FC<{ title: string; contacts: ContactsType }> = ({ title, co
       </div>
     </div>
   )
-}
+})
 
 export default Footer

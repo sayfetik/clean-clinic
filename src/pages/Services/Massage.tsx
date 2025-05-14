@@ -15,6 +15,7 @@ const Massage = () => {
       setData(response)
     }
     fetchData()
+    document.title = 'Массаж | Услуги'
   }, [])
 
   return (

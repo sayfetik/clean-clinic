@@ -8,14 +8,14 @@ import './styles.css'
 
 type ServiceType = { name: string; img: string }
 
-const ServiceCard: React.FC<ServiceType> = ({ name, img }) => (
+const ServiceCard: React.FC<ServiceType> = React.memo(({ name, img }) => (
   <div className={css.serviceCard}>
     <img className={css.img} src={img} alt="" />
     <h3 className={css.name}>{name}</h3>
   </div>
-)
+))
 
-const ServicesSlider: React.FC<{ services: ServiceType[] }> = ({ services }) => {
+const ServicesSlider: React.FC<{ services: ServiceType[] }> = React.memo(({ services }) => {
   const [slidesToShow, setSlidesToShow] = useState(3)
 
   useEffect(() => {
@@ -58,6 +58,6 @@ const ServicesSlider: React.FC<{ services: ServiceType[] }> = ({ services }) => 
       </Slider>
     </div>
   )
-}
+})
 
 export default ServicesSlider

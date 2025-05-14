@@ -1,15 +1,9 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Animation, Card, FadeAnimation, UpAnimation } from '../../animations'
 import UpList from '../../animations/UpList'
 import forBanner from '/assets/forBanner.png'
-import {
-  Button,
-  WhiteCard,
-  AboutSection,
-  EnrollForm,
-  Problems,
-} from '../../components'
+import { Button, WhiteCard, AboutSection, EnrollForm, Problems, ServicesSlider } from '../../components'
 import { emptyCategoryType } from '../../lib/empty'
 import { MainPageType } from '../../lib/types'
 import css from './index.module.scss'
@@ -19,7 +13,10 @@ const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
   const Infusions = lazy(() => import('../../components/Infusions/Infusions'))
   const FAQ = lazy(() => import('../../components/FAQ/FAQ'))
   const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
-  const ServicesSlider = lazy(() => import('../../components/ServicesSlider/ServicesSlider'))
+  
+  useEffect(() => {
+    document.title = 'Clean Clinic'
+  }, [])
 
   return (
     <>
@@ -70,23 +67,29 @@ const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
 
           <FadeAnimation>
             <div className={css.instructions}>
-              <Suspense fallback={<div>Загрузка...</div>}><InfusionInstructions {...main.infusionInstructions} /></Suspense>
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <InfusionInstructions {...main.infusionInstructions} />
+              </Suspense>
               <Button />
             </div>
           </FadeAnimation>
 
           <div className={css.infusions}>
             <h2>{main.infusions.title}</h2>
-            <p className={css.infusionsDescription}>Все препараты, входящие в состав капельниц, имеют регистрационные удостоверения и разрешены к использованию на территории РФ. Перед назначением курса капельниц, мы подготавливаем индивидуальную программу на основе результатов ваших анализов.</p>
-            <Suspense fallback={<div>Загрузка...</div>}><Infusions items={emptyCategoryType} category='main'/></Suspense>
+            <p className={css.infusionsDescription}>
+              Все препараты, входящие в состав капельниц, имеют регистрационные удостоверения и разрешены к
+              использованию на территории РФ. Перед назначением курса капельниц, мы подготавливаем индивидуальную
+              программу на основе результатов ваших анализов.
+            </p>
+            <Suspense fallback={<div>Загрузка...</div>}>
+              <Infusions items={emptyCategoryType} category="main" />
+            </Suspense>
             <Button text="Записаться к терапевту" />
           </div>
 
           <h2 className="blue">{main.services.tittle}</h2>
           <div className={css.services}>
-            <Suspense fallback={<div>Загрузка...</div>}>
-              <ServicesSlider services={main.services.services || []} />
-            </Suspense>
+            <ServicesSlider services={main.services.services || []} />
           </div>
 
           <div className={css.faq}>

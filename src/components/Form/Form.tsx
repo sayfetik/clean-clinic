@@ -2,12 +2,16 @@ import { TextInput, Textarea } from '@mantine/core'
 import { useField } from '@mantine/form'
 import { useState, useMemo } from 'react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { callbackRequest } from '../../api/MainAPI'
 import { formInputs } from '../../lib/data'
+import { getErrorRoute, getSuccessRoute } from '../../lib/routes'
 import Button from '../Button/Button'
 import CheckPolicy from '../CheckPolicy/CheckPolicy'
 import css from './index.module.scss'
 
 const Form = React.memo(() => {
+  const navigate = useNavigate()
   const name = useField({
     initialValue: '',
     validate: (value) => {
@@ -36,6 +40,22 @@ const Form = React.memo(() => {
     initialValue: '',
     validate: (value) => (value.trim().length < 2 && value.trim().length !== 0 ? 'Слишком короткое значение' : null),
   })
+
+  const resetFields = () => {
+    name.setValue('')
+    phone.setValue('+7')
+    setChecked(false)
+  }
+
+  const handleClick = async () => {
+      const result = await callbackRequest(name.getValue(), phone.getValue(), '')
+      if (result) {
+        navigate(getSuccessRoute())
+        resetFields()
+      } else {
+        navigate(getErrorRoute())
+      }
+    }
 
   const [checked, setChecked] = useState(false)
 
@@ -79,7 +99,7 @@ const Form = React.memo(() => {
         />
       </div>
       <CheckPolicy {...{ checked, setChecked }} />
-      <Button size="small" isDisabled={disabled} />
+      <Button size="small" isDisabled={disabled} onClick={handleClick}/>
     </div>
   )
 })

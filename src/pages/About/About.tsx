@@ -25,6 +25,7 @@ const About: React.FC<AboutProps> = ({ main, setMain }) => {
       setMain(mainData)
     }
     fetchData()
+    document.title = 'О Clean Clinic'
   }, [])
 
   return (

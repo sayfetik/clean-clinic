@@ -12,6 +12,7 @@ const Success = () => {
 
   useEffect(() => {
     api.getSuccessPage().then(setData)
+    document.title = 'Запись успешно сделана!'
   }, [])
 
   return (
