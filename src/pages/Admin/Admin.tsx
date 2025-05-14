@@ -1,4 +1,5 @@
 import { Tabs } from '@mantine/core'
+import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import {
   AboutContent,
@@ -28,6 +29,9 @@ type AdminProps = {
 }
 
 const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main, setMain }) => {
+  useEffect(() => {
+    document.title = 'Панель редактирования'
+  }, [])
   return (
     <>
       <Helmet>

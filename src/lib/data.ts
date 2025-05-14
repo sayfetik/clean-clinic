@@ -1015,7 +1015,7 @@ export const formInputs: types.FormInputType[] = [
 
 export const feedbackInputs: types.FormInputType[] = [
   { label: 'Имя *', placeholder: 'Введите имя' },
-  { label: 'Фамилия *', placeholder: 'Введите фамилию' },
+  { label: 'Фамилия', placeholder: 'Введите фамилию' },
   { label: 'Телефон', placeholder: 'Введите телефон' },
   { label: 'Алиас', placeholder: 'Введите телеграм алиас' },
   { label: 'Отзыв', placeholder: 'Введите отзыв' },

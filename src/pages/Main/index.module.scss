@@ -39,7 +39,7 @@
 
   @include breakpoint('small') {
     background-image: none;
-    background-color: #0172fcd2;
+    background-color: $blue;
     margin-bottom: 30px;
   }
 }

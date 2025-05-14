@@ -3,23 +3,21 @@ import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import { UpAnimation } from '../../animations'
 import * as infusionApi from '../../api/InfusionsAPI'
-import * as mainPageApi from '../../api/MainAPI'
 import { Button, InfusionInstructions } from '../../components'
 import clock from '/assets/clock.png'
-import { emptyInfusionInfo, emptyInfusionInstructions } from '../../lib/empty'
+import { emptyInfusionInfo } from '../../lib/empty'
 import { InfusionRouteParamsType } from '../../lib/routes'
-import { InfusionInfoType } from '../../lib/types'
+import { InfusionInfoType, InfusionInstructionsType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Infusion = () => {
+const Infusion: React.FC<{infusionInstructions: InfusionInstructionsType}> = ({infusionInstructions}) => {
   const { infusionId } = useParams() as InfusionRouteParamsType
   const [infusion, setInfusion] = useState<InfusionInfoType>(emptyInfusionInfo)
 
   const [width, setWidth] = useState(20)
-  const [infusionInstructions, setInfusionInstructions] = useState(emptyInfusionInstructions)
 
   useEffect(() => {
-    const updateSlidesToShow = () => {
+    const updateSlidesToShow = async () => {
       if (window.innerWidth <= 768) {
         setWidth(18)
       } else if (window.innerWidth <= 450) {
@@ -35,9 +33,11 @@ const Infusion = () => {
   }, [])
 
   useEffect(() => {
-    document.title = infusion.name
-    setInfusionInstructions(mainPageApi.infusionInstructions)
-    infusionApi.getInfusionById(infusionId).then(setInfusion)
+    const fetchInfusion = async () => {
+      await infusionApi.getInfusionById(infusionId).then(setInfusion)
+      document.title = infusion.name
+    }
+    fetchInfusion()
   }, [infusionId])
 
   if (!infusion) {

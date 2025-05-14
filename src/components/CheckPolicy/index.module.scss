@@ -10,6 +10,10 @@
 .root {
   --checkbox-size-xxs: 14px;
 
+  @include breakpoint('medium') {
+    margin: 20px 0;
+  }
+
   &[data-size='xxs'] {
     .input {
       width: 13px;

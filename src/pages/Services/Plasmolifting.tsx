@@ -15,6 +15,7 @@ const Plasmolifting = () => {
       setData(response)
     }
     fetchData()
+    document.title = 'Плазмолифтинг | Услуги'
   }, [])
 
   return (

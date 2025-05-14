@@ -4,6 +4,7 @@ import * as plasmoApi from '../../../api/PlasmoAPI'
 import { PlasmoliftingType } from '../../../lib/types'
 import MediaEditor from '../../MediaEditor/MediaEditor'
 import ApplyButton from '../ApplyButton'
+import BulletPoints from '../BulletPoints'
 import UpdateButton from '../UpdateButton'
 import css from './index.module.scss'
 
@@ -179,7 +180,29 @@ const PlasmoliftingContent = () => {
           onFileChange={handleFileChange}
         />
       </div>
-      <div className="row">{/* Здесь можно добавить BulletPoints для показаний и противопоказаний, если нужно */}</div>
+
+      <div className="row">
+        <BulletPoints
+          label="Показания:"
+          bullets={data.indications}
+          onChange={(arr) =>
+            setData((prev) =>
+              prev ? { ...prev, indications: arr } : prev
+            )
+          }
+        />
+        <BulletPoints
+          label="Противопоказания:"
+          bullets={data.contraindications}
+          onChange={(arr) =>
+            setData((prev) =>
+              prev ? { ...prev, contraindications: arr } : prev
+            )
+          }
+        />
+      </div>
+      <ApplyButton onClick={applyChanges} />
+      
       <div className="margin" />
       <TextInput
         value={data.servicesTitle}
@@ -232,7 +255,6 @@ const PlasmoliftingContent = () => {
           Добавить услугу
         </Button>
       </div>
-      <ApplyButton onClick={applyChanges} />
     </div>
   )
 }

@@ -15,12 +15,13 @@ const HomeVisit = () => {
       setData(response)
     }
     fetchData()
+    document.title = 'Выезд на дом | Услуги'
   }, [])
 
   return (
     <>
       <Helmet>
-        <title>Анализы | Услуги</title>
+        <title>Выезд на дом | Услуги</title>
         <meta name="description" content="Анализы Clean Clinic" />
         <meta name="keywords" content="Анализы, здоровье, красота, Clean Clinic" />
       </Helmet>

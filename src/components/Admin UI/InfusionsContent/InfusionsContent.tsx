@@ -57,11 +57,11 @@ const InfusionSection = ({
               value={ivsInfo.duration || ''}
               onChange={(e) => onChange('duration', e.currentTarget.value)}
             />
-            <TextInput
+            {ivsInfo.isNew && <TextInput
               label="Категория:"
               value={ivsInfo.ivsCategories || ''}
               onChange={(e) => onChange('ivsCategories', e.currentTarget.value)}
-            />
+            />}
           </div>
         </div>
         <h4>Описание</h4>

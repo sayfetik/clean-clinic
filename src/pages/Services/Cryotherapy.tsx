@@ -15,6 +15,7 @@ const Cryotherapy = () => {
       setData(response)
     }
     fetchData()
+    document.title = 'Криотерапия | Услуги'
   }, [])
 
   return (
