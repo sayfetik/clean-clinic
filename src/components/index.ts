@@ -31,6 +31,7 @@ export { default as ExcursionContent } from './Admin UI/ExcursionContent/Excursi
 export { default as ErrorContent } from './Admin UI/ErrorContent/ErrorContent'
 export { default as SuccessContent } from './Admin UI/SuccessContent/SuccessContent'
 export { default as AboutContent } from './Admin UI/AboutContent/AboutContent'
+export { default as DocumentsContent } from './Admin UI/DocumentsContent/DocumentsContent'
 export { default as ContactContent } from './Admin UI/ContactContent/ContactContent'
 export { default as AnalyzesContent } from './Admin UI/AnalyzesContent/AnalyzesContent'
 export { default as PlasmoliftingContent } from './Admin UI/PlasmoliftingContent/PlasmoliftingContent'

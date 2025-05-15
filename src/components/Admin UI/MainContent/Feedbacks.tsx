@@ -1,4 +1,4 @@
-import { TextInput, Button, /*ActionIcon,*/ Textarea } from '@mantine/core'
+import { TextInput, Button, /*ActionIcon,*/ Textarea, ActionIcon } from '@mantine/core'
 import { IconPlus } from '@tabler/icons-react'
 import * as mainPageApi from '../../../api/MainAPI'
 import UpdateButton from '../UpdateButton'
@@ -48,10 +48,11 @@ const Feedbacks: React.FC<FeedbacksProps> = ({ feedbacks, onChange }) => {
     onChange(updated)
   }
 
-  // const handleRemoveFeedback = (index: number) => {
-  //   const updated = feedbacks.filter((_, i) => i !== index)
-  //   onChange(updated)
-  // }
+  const handleRemoveFeedback = async (index: number, id: number) => {
+    const updated = feedbacks.filter((_, i) => i !== index)
+    onChange(updated)
+    await mainPageApi.deleteFeedback(id)
+  }
 
   return (
     <>
@@ -81,16 +82,16 @@ const Feedbacks: React.FC<FeedbacksProps> = ({ feedbacks, onChange }) => {
               minRows={1}
               maxRows={15}
             />
-            {/* <ActionIcon
+            <ActionIcon
               color="red"
               variant="light"
-              onClick={() => handleRemoveFeedback(index)}
+              onClick={() => handleRemoveFeedback(index, feedbacks[index].id)}
               mt={8}
               aria-label="Удалить отзыв"
               className={css.squareButton}
             >
               Удалить
-            </ActionIcon> */}
+            </ActionIcon>
             <div style={{ marginTop: 8 }}>
               <UpdateButton onClick={() => handleFeedbackSave(index)} />
             </div>

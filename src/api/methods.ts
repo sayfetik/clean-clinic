@@ -34,7 +34,6 @@ export function prependImageUrl(obj: any): any {
   return obj;
 }
 
-
 export async function get<T = any>(endpoint: string, params?: Record<string, any>): Promise<T> {
   let url = `${API_URL}/${endpoint}`
   if (params) {

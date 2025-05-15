@@ -9,7 +9,7 @@ export const getHomeVisitPage = async () => {
   try {
     return await get(`${section}/GetHomeVisit`)
   } catch (e) {
-    await createHomeVisit()
+    // await createHomeVisit()
     return await get(`${section}/GetHomeVisit`)
   }
 }

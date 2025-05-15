@@ -9,7 +9,7 @@ export const getSolarium = async () => {
   try {
     return await get(`${section}/GetSolarium`)
   } catch (e) {
-    await createSolarium()
+    // await createSolarium()
     return await get(`${section}/GetSolarium`)
   }
 }

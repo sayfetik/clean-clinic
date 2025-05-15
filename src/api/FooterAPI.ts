@@ -8,7 +8,7 @@ export const getFooter = async () => {
     }
     return await res.json()
   } catch (e) {
-    await seedFooter()
+    // await seedFooter()
     const res = await fetch(`${API_URL}/GetFooter`)
     if (!res.ok) {
       throw new Error('Ошибка получения футера после seed')

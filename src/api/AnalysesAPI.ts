@@ -9,7 +9,7 @@ export const getAnalyses = async () => {
   try {
     return await get(`${section}/GetAnalysesCatalog`)
   } catch (e) {
-    await createAnalyses()
+    // await createAnalyses()
     return await get(`${section}/GetAnalysesCatalog`)
   }
 }

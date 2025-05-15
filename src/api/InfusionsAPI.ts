@@ -25,7 +25,7 @@ export const getInfusionCatalog = async () => {
   try {
     return await get(`${section}/GetInfusionCatalog`)
   } catch (error) {
-    await createInfusionCatalog()
+    // await createInfusionCatalog()
     return await  get(`${section}/GetInfusionCatalog`)
   }
 }

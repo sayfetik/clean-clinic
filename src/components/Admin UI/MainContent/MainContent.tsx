@@ -312,16 +312,7 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
 
       <TextInput value={data.infusionInstructions.title} onChange={handleChange('infusionInstructions.title')} />
       <TextInput value={data.infusionInstructions.answer} onChange={handleChange('infusionInstructions.answer')} />
-      <UpdateButton
-        onClick={() =>
-          mainPageApi.updateInfusionInstructions({
-            id: data.infusionInstructions.id,
-            title: data.infusionInstructions.title,
-            answer: data.infusionInstructions.answer,
-          })
-        }
-      />
-      {/* <div className="row">
+      <div className="row">
         {data.infusionInstructions.steps.map((card, index) => (
           <div key={index} className={css.block}>
             <TextInput value={card.title} onChange={handleArrayChange('infusionInstructions.steps', index, 'title')} />
@@ -334,7 +325,18 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
             />
           </div>
         ))}
-      </div> */}
+      </div>
+
+      <UpdateButton
+        onClick={() =>
+          mainPageApi.updateInfusionInstructions({
+            id: data.infusionInstructions.id,
+            title: data.infusionInstructions.title,
+            answer: data.infusionInstructions.answer,
+            steps: data.infusionInstructions.steps,
+          })
+        }
+      />
 
       <div>
         <h4 className={css.text}>Выберите капельницы, которые будут отображаться на главной странице:</h4>

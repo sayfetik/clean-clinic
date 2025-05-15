@@ -17,8 +17,9 @@ import {
   SolariumContent,
   SuccessContent,
   FooterContent,
+  DocumentsContent,
 } from '../../components'
-import { InfusionCatalogType, MainPageType } from '../../lib/types'
+import { DocumentType, InfusionCatalogType, MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
 type AdminProps = {
@@ -26,9 +27,11 @@ type AdminProps = {
   setInfusionCatalog: React.Dispatch<React.SetStateAction<InfusionCatalogType>>
   main: MainPageType
   setMain: React.Dispatch<React.SetStateAction<MainPageType>>
+  documents: DocumentType[]
+  setDocuments: React.Dispatch<React.SetStateAction<DocumentType[]>>
 }
 
-const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main, setMain }) => {
+const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main, setMain, documents, setDocuments }) => {
   useEffect(() => {
     document.title = 'Панель редактирования'
   }, [])
@@ -54,6 +57,7 @@ const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main
               <Tabs.Tab value="homeVisit">Выезд на дом</Tabs.Tab>
               <Tabs.Tab value="about">О клинике</Tabs.Tab>
               <Tabs.Tab value="contacts">Контакты</Tabs.Tab>
+              <Tabs.Tab value="documents">Документы</Tabs.Tab>
               {/* <Tabs.Tab value="excursion">Видео-экскурсия</Tabs.Tab> */}
               <Tabs.Tab value="error">Страница об ошибке</Tabs.Tab>
               <Tabs.Tab value="success">Страница о записи</Tabs.Tab>
@@ -92,6 +96,9 @@ const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main
             </Tabs.Panel>
             <Tabs.Panel value="contacts">
               <ContactContent />
+            </Tabs.Panel>
+            <Tabs.Panel value="documents">
+              <DocumentsContent documents={documents} setDocuments={setDocuments}/>
             </Tabs.Panel>
             <Tabs.Panel value="error">
               <ErrorContent />

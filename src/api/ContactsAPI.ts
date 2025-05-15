@@ -10,7 +10,7 @@ export const getContacts = async () => {
   try {
     return await get(`${section}/GetContacts`)
   } catch (e) {
-    await createContacts()
+    // await createContacts()
     return await get(`${section}/GetContacts`)
   }
 }

@@ -8,7 +8,7 @@ export const getAboutPage = async () => {
   try {
     return await get(`${section}/GetAbout`)
   } catch (e) {
-    await createAbout()
+    // await createAbout()
     return await get(`${section}/GetAbout`)
   }
 }
