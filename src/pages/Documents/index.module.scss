@@ -1,2 +1,7 @@
 @use '../../styles/_vars' as *;
 @use '../../styles/_mixins' as *;
+
+.root {
+  @include page;
+  margin-bottom: 50px;
+}

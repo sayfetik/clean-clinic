@@ -181,3 +181,13 @@
   color: $blue;
   margin-top: 5px;
 }
+
+.blue {
+  color: $blue;
+  cursor: pointer;
+}
+
+.none {
+  border: none;
+  background-color: transparent;
+}

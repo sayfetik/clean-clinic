@@ -2,16 +2,16 @@
 @use '../../styles/_mixins' as *;
 
 .root {
-  @include page;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   cursor: pointer;
 }
 
 .text {
   color: $black;
+  font-weight: 500;
   transition: color 0.3s ease-in-out;
 
   &:hover {

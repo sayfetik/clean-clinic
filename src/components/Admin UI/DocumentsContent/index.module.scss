@@ -8,25 +8,36 @@
 .document {
   display: flex;
   align-items: center;
-  gap: 5px;
   border: 1px solid rgb(220, 220, 220);
   background-color: $white;
   border-radius: 10px;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 .squareButton {
-  width: 32px !important;
-  height: 32px !important;
-  padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin-right: 10px;
+  margin-top: 5px;
 }
 
 .text {
   border: none;
   background-color: transparent;
   color: $black;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fileButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background-color: transparent;
 }

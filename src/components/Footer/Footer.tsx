@@ -6,10 +6,10 @@ import { getFooter } from '../../api/FooterAPI'
 import { SocialMediaIcons, YandexMap, NavLink, Button, ContactItem, EnrollForm, Form } from '../../components'
 import { emptyFooter } from '../../lib/empty'
 import * as routes from '../../lib/routes'
-import { ContactsType } from '../../lib/types'
+import { ContactsType, DocumentType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Footer: React.FC<{ title: string; contacts: ContactsType }> = React.memo(({ title, contacts }) => {
+const Footer: React.FC<{ title: string; contacts: ContactsType, license: DocumentType }> = React.memo(({ title, contacts, license }) => {
   const [isEnrollForm, setIsEnrollForm] = useState(false)
   const [footer, setFooter] = useState<any>(emptyFooter)
 
@@ -27,6 +27,19 @@ const Footer: React.FC<{ title: string; contacts: ContactsType }> = React.memo((
     window.addEventListener('resize', updateSlidesToShow)
     return () => window.removeEventListener('resize', updateSlidesToShow)
   }, [])
+
+  const handleOpen = (img: string | File) => {
+    if (!img) {
+      return
+    }
+    if (typeof img === 'string') {
+      window.open(img, '_blank')
+    } else if (img instanceof File) {
+      const url = URL.createObjectURL(img)
+      window.open(url, '_blank')
+      setTimeout(() => URL.revokeObjectURL(url), 10000)
+    }
+  }
 
   return (
     <div className={css.footer}>
@@ -99,14 +112,12 @@ const Footer: React.FC<{ title: string; contacts: ContactsType }> = React.memo((
           />
           <div>
             <p>{footer.ooo}</p>
-            <Link to={routes.getLicenseRoute()}>
               <p>{footer.inn}</p>
-            </Link>
             <p>
-              Лицензия:{' '}
-              <Link to="/license" target="_blank">
+              Лицензия:
+              <button onClick={() => handleOpen(license.img)} className={css.none}><p className={css.blue}>
                 {footer.licenseNo}
-              </Link>
+              </p></button>
             </p>
           </div>
           <Link className={css.link} to="/privacyPolicy" target="_blank">

@@ -48,18 +48,11 @@
 }
 
 .license {
-  margin-bottom: 90px;
+  margin-bottom: 50px;
 }
 
-.licenseImages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  grid-auto-rows: auto;
-  gap: 20px;
-  width: fit-content;
-  justify-content: center; /* Центрируем, если элементов мало */
-  align-items: start; /* Выравнивание по верхнему краю */
-  max-width: 100%;
+.licenseTitle {
+  color: $blue;
 }
 
 .gallery {
