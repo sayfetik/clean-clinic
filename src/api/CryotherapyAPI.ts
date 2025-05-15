@@ -9,7 +9,7 @@ export const getCryo = async () => {
   try {
     return await get(`${section}/GetCryotherapy`)
   } catch (e) {
-    await createCryotherapy()
+    // await createCryotherapy()
     return await get(`${section}/GetCryotherapy`)
   }
 }

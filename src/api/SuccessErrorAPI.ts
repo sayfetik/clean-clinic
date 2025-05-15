@@ -15,7 +15,7 @@ export const getSuccessPage = async () => {
     }
     return await res.json()
   } catch (e) {
-    await createSuccessPage()
+    // await createSuccessPage()
     const res = await fetch(`${API_URL}/GetSuccessPage`)
     if (!res.ok) {
       throw new Error('Ошибка получения SuccessPage')
@@ -39,7 +39,7 @@ export const getErrorPage = async () => {
     }
     return await res.json()
   } catch (e) {
-    await createErrorPage()
+    // await createErrorPage()
     const res = await fetch(`${API_URL}/GetErrorPage`)
     if (!res.ok) {
       throw new Error('Ошибка получения ErrorPage')

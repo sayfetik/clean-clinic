@@ -1,0 +1,20 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.root {
+  @include page;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.text {
+  color: $black;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $blue;
+  }
+}

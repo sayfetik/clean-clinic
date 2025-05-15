@@ -9,7 +9,7 @@ export const getPlasmo = async () => {
   try {
     return await get(`${section}/GetPlasmoLifting`)
   } catch (e) {
-    await createPlasmo()
+    // await createPlasmo()
     return await get(`${section}/GetPlasmoLifting`)
   }
 }

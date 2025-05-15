@@ -1,5 +1,5 @@
 import { emptyInfusionInstructions } from '../lib/empty'
-import { InfusionType, MainPageType } from '../lib/types'
+import { InfusionType, MainPageType, StepType } from '../lib/types'
 import { get, post, put } from './methods'
 
 const section = import.meta.env.VITE_MAIN as string
@@ -12,7 +12,7 @@ export const getMainPage = async () => {
   try {
     return await get(`${section}/GetMainPage`)
   } catch (e) {
-    await createMainPage()
+    // await createMainPage()
     const res = await get(`${section}/GetMainPage`)
     infusionInstructions = res.infusionInstructions
     return res
@@ -97,7 +97,7 @@ export const updateProblem = async (body: { id: number; title: string; text: str
   return await put(`${section}/UpdateProblem`, body)
 }
 
-export const updateInfusionInstructions = async (body: { id: number; title: string; answer: string }) => {
+export const updateInfusionInstructions = async (body: { id: number; title: string; answer: string, steps: StepType[] }) => {
   return await put(`${section}/UpdateInfusionInstructions`, body)
 }
 
@@ -133,6 +133,16 @@ export const updateFeedback = async (body: { Id: number; Name: string; Rate: num
   if (!res.ok) {
     throw new Error('Ошибка обновления отзыва')
   }
+  return await res.json()
+}
+
+export const deleteFeedback = async (id: number) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${section}/DeleteFeedback`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id }),
+  })
+  if (!res.ok) {throw new Error('Ошибка удаления лицензии')}
   return await res.json()
 }
 

@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { GradientText } from '../../components'
-import fileGrey from '/assets/fileGrey.svg'
+import Doc from '../../components/Doc/Doc'
+import { DocumentType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Documents = () => {
+const Documents: React.FC<{ documents: DocumentType[] }> = ({ documents }) => {
   useEffect(() => {
     document.title = 'Документы | Clean Clinic'
   }, [])
@@ -17,13 +18,12 @@ const Documents = () => {
         <meta name="keywords" content="Документы Clean Clinic" />
       </Helmet>
 
-      <div>
+      <div className={css.root}>
         <GradientText text="Документы" />
-        <div className={css.root}>
-          {' '}
-          {/* при нажатии сделать чтобы скачивался файл */}
-          <img src={fileGrey} />
-          <p className={css.text}>Документ документ документ документ</p>
+        <div>
+          {documents.map((document, index) => (
+            <Doc key={index} title={document.title} img={document.img} />
+          ))}
         </div>
       </div>
     </>

@@ -4,7 +4,7 @@ import { FadeAnimation, UpAnimation, UpListAnimation } from '../../animations'
 import * as aboutPageApi from '../../api/AboutAPI'
 import * as mainPageApi from '../../api/MainAPI'
 import { GradientText, AboutSection, Specialist, Slider, Video, Document } from '../../components'
-import { galleryImages, license } from '../../lib/data'
+import { galleryImages } from '../../lib/data'
 import { emptyAbout } from '../../lib/empty'
 import { MainPageType } from '../../lib/types'
 import css from './index.module.scss'
@@ -12,9 +12,11 @@ import css from './index.module.scss'
 type AboutProps = {
   main: MainPageType
   setMain: React.Dispatch<React.SetStateAction<MainPageType>>
+  license1: string
+  license2: string
 }
 
-const About: React.FC<AboutProps> = ({ main, setMain }) => {
+const About: React.FC<AboutProps> = ({ main, setMain, license1, license2 }) => {
   const [about, setAbout] = useState(emptyAbout)
 
   useEffect(() => {
@@ -74,9 +76,8 @@ const About: React.FC<AboutProps> = ({ main, setMain }) => {
           <div className={css.license}>
             <h2 className={css.licenseTitle}>Лицензия</h2>
             <div className={css.licenseImages}>
-              {license.map((license, index) => (
-                <Document image={license} key={index} size="small" /> /*ПОЛУЧИТЬ С БЕКА*/
-              ))}
+              <Document image={license1} size="small" />
+              <Document image={license2} size="small" />
             </div>
           </div>
         </div>

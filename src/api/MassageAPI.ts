@@ -9,7 +9,7 @@ export const getMassage = async () => {
   try {
     return await get(`${section}/GetMassage`)
   } catch (e) {
-    await createMassage()
+    // await createMassage()
     return await get(`${section}/GetMassage`)
   }
 }

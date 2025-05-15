@@ -21,6 +21,11 @@ export type InfusionCategoryType = {
   category: string
   infusions: InfusionType[]
 }
+export type DocumentType = {
+  id: number
+  title: string
+  img: string | File
+}
 export type CardType = { id: number; name: string; bullets?: string[]; cost: number; img: string | File }
 export type AdvantageType = { id: number; title: string; text: string }
 export type WhiteCardType = { id: number; imagePath: string | File; title: string; text: string }
