@@ -20,94 +20,116 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
   const [mainInfusions, setMainInfusions] = useState<string[]>([])
 
   useEffect(() => {
-  const fetchInfusions = async () => {
-    const res = await mainPageApi.getAllInfusions()
-    setAllInfusions(res.names)
-    setAllInfusionsDict(res.dict)
-    const mainInfusionsRes = await mainPageApi.getMainInfusions()
-    setMainInfusions(mainInfusionsRes.map((item: any) => item.name))
-  }
-  fetchInfusions()
-}, [])
+    const fetchInfusions = async () => {
+      const res = await mainPageApi.getAllInfusions()
+      setAllInfusions(res.names)
+      setAllInfusionsDict(res.dict)
+      const mainInfusionsRes = await mainPageApi.getMainInfusions()
+      setMainInfusions(mainInfusionsRes.map((item: any) => item.name))
+    }
+    fetchInfusions()
+  }, [])
 
-  const handleChange = useCallback((path: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setData((prev) => {
-      const keys = path.split('.')
-      const newData = { ...prev }
-      let obj: any = newData
-      for (let i = 0; i < keys.length - 1; i++) {
-        obj[keys[i]] = { ...obj[keys[i]] }
-        obj = obj[keys[i]]
-      }
-      obj[keys[keys.length - 1]] = e.target.value
-      return newData
-    })
-  }, [setData])
-
-  const handleArrayChange = useCallback(
-    (arrKey: keyof MainPageType | string, index: number, field: string) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = useCallback(
+    (path: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setData((prev) => {
-        const keys = arrKey.split('.')
+        const keys = path.split('.')
         const newData = { ...prev }
         let obj: any = newData
         for (let i = 0; i < keys.length - 1; i++) {
           obj[keys[i]] = { ...obj[keys[i]] }
           obj = obj[keys[i]]
         }
-        obj[keys[keys.length - 1]] = (obj[keys[keys.length - 1]] as any[]).map((item, i) =>
-          i === index ? { ...item, [field]: e.target.value } : item
-        )
+        obj[keys[keys.length - 1]] = e.target.value
         return newData
       })
-    }, [setData])
+    },
+    [setData]
+  )
 
-  const handleProblemImageChange = useCallback((file: File) => {
-    setData((prev) => ({ ...prev, problemImage: file }))
-  }, [setData])
+  const handleArrayChange = useCallback(
+    (arrKey: keyof MainPageType | string, index: number, field: string) =>
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setData((prev) => {
+          const keys = arrKey.split('.')
+          const newData = { ...prev }
+          let obj: any = newData
+          for (let i = 0; i < keys.length - 1; i++) {
+            obj[keys[i]] = { ...obj[keys[i]] }
+            obj = obj[keys[i]]
+          }
+          obj[keys[keys.length - 1]] = (obj[keys[keys.length - 1]] as any[]).map((item, i) =>
+            i === index ? { ...item, [field]: e.target.value } : item
+          )
+          return newData
+        })
+      },
+    [setData]
+  )
 
-  const handleWhiteCardImageChange = useCallback((index: number, file: File) => {
-    setData((prev) => {
-      const newWhiteCards = prev.whiteCards.map((card, i) => (i === index ? { ...card, imagePath: file } : card))
-      return { ...prev, whiteCards: newWhiteCards }
-    })
-  }, [setData])
+  const handleProblemImageChange = useCallback(
+    (file: File) => {
+      setData((prev) => ({ ...prev, problemImage: file }))
+    },
+    [setData]
+  )
 
-  const handleInfusionsChange = useCallback((value: string[]) => {
-    setMainInfusions(value)
-    setData((prev) => ({
-      ...prev,
-      infusions: { ...prev.infusions, selected: value },
-    }))
-  }, [setMainInfusions, setData])
-  
+  const handleWhiteCardImageChange = useCallback(
+    (index: number, file: File) => {
+      setData((prev) => {
+        const newWhiteCards = prev.whiteCards.map((card, i) => (i === index ? { ...card, imagePath: file } : card))
+        return { ...prev, whiteCards: newWhiteCards }
+      })
+    },
+    [setData]
+  )
+
+  const handleInfusionsChange = useCallback(
+    (value: string[]) => {
+      setMainInfusions(value)
+      setData((prev) => ({
+        ...prev,
+        infusions: { ...prev.infusions, selected: value },
+      }))
+    },
+    [setMainInfusions, setData]
+  )
+
   const handleUpdateMainInfusions = async () => {
     const ids = mainInfusions.map((name) => allInfusionsDict[name]).filter(Boolean)
     await mainPageApi.updateMainInfusions(ids)
   }
 
-  const handleServicesChange = useCallback((newServices: any[]) => {
-    setData((prev) => ({
-      ...prev,
-      services: {
-        ...prev.services,
-        services: newServices,
-      },
-    }))
-  }, [setData])
-
-  const handleServiceImage = useCallback((index: number, file: File) => {
-    setData((prev) => {
-      const newArr = prev.services.services.map((item: any, i: number) => (i === index ? { ...item, img: file } : item))
-      return {
+  const handleServicesChange = useCallback(
+    (newServices: any[]) => {
+      setData((prev) => ({
         ...prev,
         services: {
           ...prev.services,
-          services: newArr,
+          services: newServices,
         },
-      }
-    })
-  }, [setData])
+      }))
+    },
+    [setData]
+  )
+
+  const handleServiceImage = useCallback(
+    (index: number, file: File) => {
+      setData((prev) => {
+        const newArr = prev.services.services.map((item: any, i: number) =>
+          i === index ? { ...item, img: file } : item
+        )
+        return {
+          ...prev,
+          services: {
+            ...prev.services,
+            services: newArr,
+          },
+        }
+      })
+    },
+    [setData]
+  )
 
   const handleWeWorkSave = async () => {
     await mainPageApi.updateWeWork({
@@ -141,29 +163,35 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
     await mainPageApi.updateMainPage(data)
   }
 
-  const onFeedbacksChange = useCallback((feedbacks: any[]) => {
-    setData((prev) => ({
-            ...prev,
-            feedback: feedbacks.map((feedback) => ({
-              ...feedback,
-              id: feedback.id || 0,
-              rate: typeof feedback.rate === 'string' ? parseFloat(feedback.rate) : feedback.rate,
-            })),
-          }))
-  }, [setData])
+  const onFeedbacksChange = useCallback(
+    (feedbacks: any[]) => {
+      setData((prev) => ({
+        ...prev,
+        feedback: feedbacks.map((feedback) => ({
+          ...feedback,
+          id: feedback.id || 0,
+          rate: typeof feedback.rate === 'string' ? parseFloat(feedback.rate) : feedback.rate,
+        })),
+      }))
+    },
+    [setData]
+  )
 
-  const onFaqsChange = useCallback((faqs: any[]) => {
-          setData((prev) => ({
-            ...prev,
-            faq: {
-              ...prev.faq,
-              faqs: faqs.map((faq) => ({
-                ...faq,
-                id: Number(faq.id),
-              })),
-            },
-          }))
-  }, [setData])
+  const onFaqsChange = useCallback(
+    (faqs: any[]) => {
+      setData((prev) => ({
+        ...prev,
+        faq: {
+          ...prev.faq,
+          faqs: faqs.map((faq) => ({
+            ...faq,
+            id: Number(faq.id),
+          })),
+        },
+      }))
+    },
+    [setData]
+  )
 
   return (
     <div className={css.tabContent}>
@@ -313,18 +341,23 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
       <TextInput value={data.infusionInstructions.title} onChange={handleChange('infusionInstructions.title')} />
       <TextInput value={data.infusionInstructions.answer} onChange={handleChange('infusionInstructions.answer')} />
       <div className="row">
-        {data.infusionInstructions.steps.map((card, index) => (
-          <div key={index} className={css.block}>
-            <TextInput value={card.title} onChange={handleArrayChange('infusionInstructions.steps', index, 'title')} />
-            <Textarea
-              className={css.fullWidth}
-              minRows={1}
-              maxRows={15}
-              value={card.text}
-              onChange={handleArrayChange('infusionInstructions.steps', index, 'text')}
-            />
-          </div>
-        ))}
+        {[...data.infusionInstructions.steps]
+          .sort((a, b) => Number(a.number) - Number(b.number))
+          .map((card, index) => (
+            <div key={index} className={css.block}>
+              <TextInput
+                value={card.title}
+                onChange={handleArrayChange('infusionInstructions.steps', index, 'title')}
+              />
+              <Textarea
+                className={css.fullWidth}
+                minRows={1}
+                maxRows={15}
+                value={card.text}
+                onChange={handleArrayChange('infusionInstructions.steps', index, 'text')}
+              />
+            </div>
+          ))}
       </div>
 
       <UpdateButton
@@ -354,21 +387,15 @@ const MainContent: React.FC<MainContentProps> = ({ data, setData }) => {
       />
       <UpdateButton onClick={handleUpdateMainInfusions} />
 
-      <div className='margin' />
+      <div className="margin" />
       <TextInput value={data.services.tittle} onChange={handleChange('serviceTitle')} />
       <Services services={data.services.services} onChange={handleServicesChange} onImageChange={handleServiceImage} />
 
       <TextInput value={data.faq.faqTitle} onChange={handleChange('faqTitle')} />
-      <Faqs
-        faqs={data.faq.faqs}
-        onChange={onFaqsChange}
-      />
+      <Faqs faqs={data.faq.faqs} onChange={onFaqsChange} />
 
       <h4 className={css.text}>Отзывы</h4>
-      <Feedbacks
-        feedbacks={data.feedback}
-        onChange={onFeedbacksChange}
-      />
+      <Feedbacks feedbacks={data.feedback} onChange={onFeedbacksChange} />
     </div>
   )
 }

@@ -3,20 +3,20 @@ import { Helmet } from 'react-helmet-async'
 import { FadeAnimation, UpAnimation, UpListAnimation } from '../../animations'
 import * as aboutPageApi from '../../api/AboutAPI'
 import * as mainPageApi from '../../api/MainAPI'
-import { GradientText, AboutSection, Specialist, Slider, Video, Document } from '../../components'
+import { GradientText, AboutSection, Specialist, Slider, Video } from '../../components'
+import Doc from '../../components/Doc/Doc'
 import { galleryImages } from '../../lib/data'
 import { emptyAbout } from '../../lib/empty'
-import { MainPageType } from '../../lib/types'
+import { DocumentType, MainPageType } from '../../lib/types'
 import css from './index.module.scss'
 
 type AboutProps = {
   main: MainPageType
   setMain: React.Dispatch<React.SetStateAction<MainPageType>>
-  license1: string
-  license2: string
+  license: DocumentType
 }
 
-const About: React.FC<AboutProps> = ({ main, setMain, license1, license2 }) => {
+const About: React.FC<AboutProps> = ({ main, setMain, license }) => {
   const [about, setAbout] = useState(emptyAbout)
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const About: React.FC<AboutProps> = ({ main, setMain, license1, license2 }) => {
             <UpListAnimation>
               <div className={css.specialists}>
                 {about.specialists.map((specialist, index) => (
-                  <Specialist key={index} {...specialist} /> /* ФОТКИ ПОЛУЧИТЬ С БЕКА */
+                  <Specialist key={index} {...specialist} />
                 ))}
               </div>
             </UpListAnimation>
@@ -64,21 +64,18 @@ const About: React.FC<AboutProps> = ({ main, setMain, license1, license2 }) => {
           <FadeAnimation>
             <div className={css.excursion}>
               <h2 className={css.excursionTitle}>Видео-экскурсия</h2>
-              <Video videoSrc="/assets/excursion.mov" /> {/*ПОЛУЧИТЬ С БЕКА*/}
+              <Video videoSrc="/assets/excursion.mov" />
             </div>
           </FadeAnimation>
 
           <div className={css.gallery}>
             <h2 className={css.galleryTitle}>Галерея</h2>
-            <Slider images={galleryImages} /> {/*ПОЛУЧИТЬ С БЕКА*/}
+            <Slider images={galleryImages} />
           </div>
 
           <div className={css.license}>
             <h2 className={css.licenseTitle}>Лицензия</h2>
-            <div className={css.licenseImages}>
-              <Document image={license1} size="small" />
-              <Document image={license2} size="small" />
-            </div>
+            <Doc title={license.title} img={license.img} />
           </div>
         </div>
       </div>

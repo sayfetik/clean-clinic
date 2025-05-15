@@ -55,7 +55,11 @@ export const emptyMainPage: types.MainPageType = {
   },
   feedback: [],
 }
-
+export const emptyDocumentType: types.DocumentType = {
+  id: 0,
+  title: '',
+  img: ''
+}
 export const emptyAbout: types.AboutPageType = {
   title: '',
   text1: '',

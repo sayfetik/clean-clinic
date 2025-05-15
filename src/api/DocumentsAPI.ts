@@ -42,3 +42,20 @@ export const deleteDocument = async (licenseId: number) => {
   }
   return await res.json()
 }
+
+export const updateDocument = async (licenseId: number, title: string, file?: File | null) => {
+  const formData = new FormData()
+  formData.append('LicenseId', String(licenseId))
+  formData.append('Title', title)
+  if (file) {
+    formData.append('Image', file)
+  }
+  const res = await fetch(`${api}/${section}/EditLicense`, {
+    method: 'PUT',
+    body: formData,
+  })
+  if (!res.ok) {
+    throw new Error('Ошибка обновления лицензии')
+  }
+  return await res.json()
+}

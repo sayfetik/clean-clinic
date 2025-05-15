@@ -22,6 +22,7 @@ export type InfusionCategoryType = {
   infusions: InfusionType[]
 }
 export type DocumentType = {
+  [x: string]: any
   id: number
   title: string
   img: string | File

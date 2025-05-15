@@ -19,7 +19,6 @@ import {
   Infusion,
   InfusionCatalog,
   Contacts,
-  License,
   PrivacyPolicy,
   Documents,
   Admin,
@@ -36,7 +35,7 @@ import '@mantine/core/styles.css'
 import './styles/global.scss'
 import * as themes from './styles/themes'
 // eslint-disable-next-line import/order
-import { emptyContacts, emptyInfusionCatalog, emptyMainPage } from './lib/empty'
+import { emptyContacts, emptyDocumentType, emptyInfusionCatalog, emptyMainPage } from './lib/empty'
 // eslint-disable-next-line import/order
 import { DocumentType } from './lib/types'
 
@@ -51,6 +50,7 @@ const Layout = () => {
   const [infusionCatalog, setInfusionCatalog] = useState(emptyInfusionCatalog)
   const [contacts, setContacts] = useState(emptyContacts)
   const [documents, setDocuments] = useState<DocumentType[]>([])
+  const [license, setLicense] = useState<DocumentType>(emptyDocumentType)
 
   useHotkeys([[import.meta.env.VITE_ADMIN_KEYBINDING, () => setModalOpened(true)]])
 
@@ -63,20 +63,18 @@ const Layout = () => {
     mainPageApi.getMainPage().then(setMain)
     infusionsApi.getInfusionCatalog().then(setInfusionCatalog)
     contactsApi.getContacts().then(setContacts)
-    documentsApi.getDocuments().then(setDocuments)
+    documentsApi.getDocuments().then((docs) => {
+    setDocuments(docs)
+    const license1 = docs.find(
+      (doc) => typeof doc.title === 'string' && doc.title.toLowerCase().includes('лицензия')
+    )
+    if (license1) {setLicense(license1)}
+  })
   }, [])
 
   if (loading) {
     return null
   }
-
-  function findLicenses(documents: DocumentType[]) {
-    const license1 = documents.find((doc) => doc.title.toLowerCase().includes('license1'))?.img
-    const license2 = documents.find((doc) => doc.title.toLowerCase().includes('license2'))?.img
-    return { license1, license2 }
-  }
-
-  const { license1, license2 } = findLicenses(documents)
 
   return (
     <>
@@ -88,7 +86,7 @@ const Layout = () => {
       <ScrollResetProvider>
         <Routes>
           <Route path={routes.getMainRoute()} element={<Main main={main} />} />
-          <Route path={routes.getAboutRoute()} element={<About main={main} setMain={setMain} license1={license1} license2={license2}/>} />
+          <Route path={routes.getAboutRoute()} element={<About main={main} setMain={setMain} license={license || emptyDocumentType} />} />
           <Route path={routes.getContactsRoute()} element={<Contacts contacts={contacts} />} />
           <Route
             path={routes.getInfusionCatalogRoute()}
@@ -111,9 +109,8 @@ const Layout = () => {
             path={routes.getInfusionRoute(routes.infusionRouteParams)}
             element={<Infusion infusionInstructions={main.infusionInstructions} />}
           />
-          <Route path={routes.getLicenseRoute()} element={<License license1={license1} license2={license2}/>} />
           <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />
-          <Route path={routes.getDocumentsRoute()} element={<Documents documents={documents} />} />
+          <Route path={routes.getDocumentsRoute()} element={<Documents documents={documents} license={license || emptyDocumentType}/>} />
           <Route
             path={routes.getAdminRoute()}
             element={
@@ -137,7 +134,7 @@ const Layout = () => {
       </ScrollResetProvider>
       {location.pathname !== routes.getSuccessRoute() &&
         location.pathname !== routes.getErrorRoute() &&
-        location.pathname !== routes.getAdminRoute() && <Footer title={main.form.title} contacts={contacts} />}
+        location.pathname !== routes.getAdminRoute() && <Footer title={main.form.title} contacts={contacts} license={license || emptyDocumentType}/>}
     </>
   )
 }
