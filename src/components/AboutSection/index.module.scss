@@ -106,4 +106,8 @@
   @media (width <= 650px) {
     flex-wrap: wrap;
   }
+
+  @include breakpoint('small') {
+    grid-template-columns: 1fr;
+  }
 }

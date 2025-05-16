@@ -120,6 +120,10 @@
 
 .socIcons {
   width: fit-content;
+
+  @media (width <= 472px) {
+    display: none;
+  }
 }
 
 .hoverEffect {
