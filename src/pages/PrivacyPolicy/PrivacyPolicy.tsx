@@ -7,7 +7,7 @@ const PrivacyPolicy = React.memo(() => {
   useEffect(() => {
     document.title = 'Политика конфиденциальности'
   }, [])
-  
+
   return (
     <>
       <Helmet>
@@ -36,8 +36,8 @@ const PrivacyPolicy = React.memo(() => {
           <p>
             1.2. Настоящая политика Оператора в отношении обработки персональных данных (далее – Политика) применяется
             ко всей информации, которую Оператор может получить о посетителях веб-сайта{' '}
-            <a href="https://clean-clinic.ru" target="_blank" rel="noopener noreferrer">
-              https://clean-clinic.ru
+            <a href="https://cleanoren.ru" target="_blank" rel="noopener noreferrer">
+              https://cleanoren.ru/
             </a>
             .
           </p>
@@ -57,8 +57,8 @@ const PrivacyPolicy = React.memo(() => {
           <p>
             2.3. Веб-сайт – совокупность графических и информационных материалов, а также программ для ЭВМ и баз данных,
             обеспечивающих их доступность в сети интернет по сетевому адресу{' '}
-            <a href="https://clean-clinic.ru" target="_blank" rel="noopener noreferrer">
-              https://clean-clinic.ru
+            <a href="https://cleanoren.ru" target="_blank" rel="noopener noreferrer">
+              https://cleanoren.ru
             </a>
             .
           </p>
@@ -92,8 +92,8 @@ const PrivacyPolicy = React.memo(() => {
           <p>
             2.8. Персональные данные – любая информация, относящаяся прямо или косвенно к определенному или
             определяемому Пользователю веб-сайта{' '}
-            <a href="https://clean-clinic.ru" target="_blank" rel="noopener noreferrer">
-              https://clean-clinic.ru
+            <a href="https://cleanoren.ru" target="_blank" rel="noopener noreferrer">
+              https://cleanoren.ru
             </a>
             .
           </p>
@@ -108,8 +108,8 @@ const PrivacyPolicy = React.memo(() => {
 
           <p>
             2.10. Пользователь — любой посетитель веб-сайта{' '}
-            <a href="https://clean-clinic.ru" target="_blank" rel="noopener noreferrer">
-              https://clean-clinic.ru
+            <a href="https://cleanoren.ru" target="_blank" rel="noopener noreferrer">
+              https://cleanoren.ru
             </a>
             .
           </p>
@@ -307,8 +307,8 @@ const PrivacyPolicy = React.memo(() => {
           <p>– заключение, исполнение и прекращение гражданско-правовых договоров;</p>
           <p>
             – предоставление доступа Пользователю к сервисам, информации и/или материалам, содержащимся на веб-сайте{' '}
-            <a href="https://clean-clinic.ru" target="_blank" rel="noopener noreferrer">
-              https://clean-clinic.ru
+            <a href="https://cleanoren.ru" target="_blank" rel="noopener noreferrer">
+              https://cleanoren.ru
             </a>
             .
           </p>
@@ -316,8 +316,8 @@ const PrivacyPolicy = React.memo(() => {
             7.2. Также Оператор имеет право направлять Пользователю уведомления о новых продуктах и услугах, специальных
             предложениях и различных событиях. Пользователь всегда может отказаться от получения информационных
             сообщений, направив Оператору письмо на адрес электронной почты{' '}
-            <a href="mailto:info@clean-clinic.ru">info@clean-clinic.ru</a> с пометкой «Отказ от уведомлений о новых
-            продуктах и услугах и специальных предложениях».
+            <a href="mailto:mail@cleanoren.ru">mail@cleanoren.ru</a> с пометкой «Отказ от уведомлений о новых продуктах
+            и услугах и специальных предложениях».
           </p>
           <p>
             7.3. Обезличенные данные Пользователей, собираемые с помощью сервисов интернет-статистики, служат для сбора
@@ -336,8 +336,8 @@ const PrivacyPolicy = React.memo(() => {
           <p>
             8.2. Оператор обрабатывает персональные данные Пользователя только в случае их заполнения и/или отправки
             Пользователем самостоятельно через специальные формы, расположенные на веб-сайте{' '}
-            <a href="https://clean-clinic.ru" target="_blank" rel="noopener noreferrer">
-              https://clean-clinic.ru
+            <a href="https://cleanoren.ru" target="_blank" rel="noopener noreferrer">
+              https://cleanoren.ru
             </a>{' '}
             или направленные Оператору посредством электронной почты. Заполняя соответствующие формы и/или отправляя
             свои персональные данные Оператору, Пользователь выражает свое согласие с данной Политикой.
@@ -405,15 +405,14 @@ const PrivacyPolicy = React.memo(() => {
           <p>
             10.3. В случае выявления неточностей в персональных данных, Пользователь может актуализировать их
             самостоятельно, путем направления Оператору уведомления на адрес электронной почты Оператора{' '}
-            <a href="mailto:info@clean-clinic.ru">info@clean-clinic.ru</a> с пометкой «Актуализация персональных
-            данных».
+            <a href="mailto:mail@cleanoren.ru">mail@cleanoren.ru</a> с пометкой «Актуализация персональных данных».
           </p>
           <p>
             10.4. Срок обработки персональных данных определяется достижением целей, для которых были собраны
             персональные данные, если иной срок не предусмотрен договором или действующим законодательством.
             Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив
             Оператору уведомление посредством электронной почты на электронный адрес Оператора{' '}
-            <a href="mailto:info@clean-clinic.ru">info@clean-clinic.ru</a> с пометкой «Отзыв согласия на обработку
+            <a href="mailto:mail@cleanoren.ru">mail@cleanoren.ru</a> с пометкой «Отзыв согласия на обработку
             персональных данных».
           </p>
           <p>
@@ -477,7 +476,7 @@ const PrivacyPolicy = React.memo(() => {
           <p>
             14.1. Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его
             персональных данных, обратившись к Оператору с помощью электронной почты{' '}
-            <a href="mailto:info@clean-clinic.ru">info@clean-clinic.ru</a>.
+            <a href="mailto:mail@cleanoren.ru">mail@cleanoren.ru</a>.
           </p>
           <p>
             14.2. В данном документе будут отражены любые изменения политики обработки персональных данных Оператором.
