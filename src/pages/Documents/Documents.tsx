@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
-import {  GradientText } from '../../components'
+import { GradientText } from '../../components'
 import Doc from '../../components/Doc/Doc'
 import { DocumentType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Documents: React.FC<{ documents: DocumentType[], license: DocumentType }> = ({ documents, license }) => {
+const Documents: React.FC<{ documents: DocumentType[]; license: DocumentType; privacyPolicy: DocumentType }> = ({
+  documents,
+  license,
+  privacyPolicy,
+}) => {
   useEffect(() => {
     document.title = 'Документы | Clean Clinic'
   }, [])
@@ -18,14 +22,18 @@ const Documents: React.FC<{ documents: DocumentType[], license: DocumentType }> 
         <meta name="keywords" content="Документы Clean Clinic" />
       </Helmet>
 
-      <div >
+      <div>
         <GradientText text="Документы" />
         <div className={css.root}>
-            <Doc title={license.title} img={license.img} />
-          {documents.map((document, index) => (
-            document.title !== 'Лицензия' &&
-            <Doc key={index} title={document.title} img={document.img} />
-          ))}
+          {license && <Doc title={license.title} img={license.img} />}
+          {privacyPolicy && <Doc title={privacyPolicy.title} img={privacyPolicy.img} />}
+          {documents.map(
+            (document, index) =>
+              document.title !== 'Лицензия' &&
+              document.title !== 'Политика конфиденциальности' && (
+                <Doc key={index} title={document.title} img={document.img} />
+              )
+          )}
         </div>
       </div>
     </>

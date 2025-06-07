@@ -51,6 +51,7 @@ const Layout = () => {
   const [contacts, setContacts] = useState(emptyContacts)
   const [documents, setDocuments] = useState<DocumentType[]>([])
   const [license, setLicense] = useState<DocumentType>(emptyDocumentType)
+  const [privacyPolicy, setPrivacyPolicy] = useState<DocumentType>(emptyDocumentType)
 
   useHotkeys([[import.meta.env.VITE_ADMIN_KEYBINDING, () => setModalOpened(true)]])
 
@@ -64,12 +65,18 @@ const Layout = () => {
     infusionsApi.getInfusionCatalog().then(setInfusionCatalog)
     contactsApi.getContacts().then(setContacts)
     documentsApi.getDocuments().then((docs) => {
-    setDocuments(docs)
-    const license1 = docs.find(
-      (doc) => typeof doc.title === 'string' && doc.title.toLowerCase().includes('лицензия')
-    )
-    if (license1) {setLicense(license1)}
-  })
+      setDocuments(docs)
+      const license1 = docs.find((doc) => typeof doc.title === 'string' && doc.title.toLowerCase().includes('лицензия'))
+      if (license1) {
+        setLicense(license1)
+      }
+      const privacyPolicy1 = docs.find(
+        (doc) => typeof doc.title === 'string' && doc.title.toLowerCase().includes('политика конфиденциальности')
+      )
+      if (privacyPolicy1) {
+        setPrivacyPolicy(privacyPolicy1)
+      }
+    })
   }, [])
 
   if (loading) {
@@ -79,14 +86,17 @@ const Layout = () => {
   return (
     <>
       {location.pathname !== routes.getAdminRoute() ? <Header contacts={contacts} /> : <HeaderAdmin />}
-      <CookieModal />
+      <CookieModal privacyPolicy={privacyPolicy || emptyDocumentType} />
       <ModalAdmin opened={modalOpened} onClose={() => setModalOpened(false)} onSuccess={handleSuccess} />
       <VideoWidget isAuthenticated={isAuthenticated} />
       {location.pathname !== routes.getAdminRoute() && <Telegram />}
       <ScrollResetProvider>
         <Routes>
           <Route path={routes.getMainRoute()} element={<Main main={main} />} />
-          <Route path={routes.getAboutRoute()} element={<About main={main} setMain={setMain} license={license || emptyDocumentType} />} />
+          <Route
+            path={routes.getAboutRoute()}
+            element={<About main={main} setMain={setMain} license={license || emptyDocumentType} />}
+          />
           <Route path={routes.getContactsRoute()} element={<Contacts contacts={contacts} />} />
           <Route
             path={routes.getInfusionCatalogRoute()}
@@ -110,7 +120,16 @@ const Layout = () => {
             element={<Infusion infusionInstructions={main.infusionInstructions} />}
           />
           <Route path={routes.getPolicyRoute()} element={<PrivacyPolicy />} />
-          <Route path={routes.getDocumentsRoute()} element={<Documents documents={documents} license={license || emptyDocumentType}/>} />
+          <Route
+            path={routes.getDocumentsRoute()}
+            element={
+              <Documents
+                documents={documents}
+                license={license || emptyDocumentType}
+                privacyPolicy={privacyPolicy || emptyDocumentType}
+              />
+            }
+          />
           <Route
             path={routes.getAdminRoute()}
             element={
@@ -134,7 +153,14 @@ const Layout = () => {
       </ScrollResetProvider>
       {location.pathname !== routes.getSuccessRoute() &&
         location.pathname !== routes.getErrorRoute() &&
-        location.pathname !== routes.getAdminRoute() && <Footer title={main.form.title} contacts={contacts} license={license || emptyDocumentType}/>}
+        location.pathname !== routes.getAdminRoute() && (
+          <Footer
+            title={main.form.title}
+            contacts={contacts}
+            license={license || emptyDocumentType}
+            privacyPolicy={privacyPolicy || emptyDocumentType}
+          />
+        )}
     </>
   )
 }

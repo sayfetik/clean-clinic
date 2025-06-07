@@ -102,17 +102,12 @@ const DocumentsContent: React.FC<DocumentsContentProps> = ({ documents, setDocum
                   setDocuments(updatedDocuments)
                 }}
               />
-              <Button
-                variant="outline"
-                style={{ width: '200px' }}
-                onClick={() => handleOpen(document.img)}
-              >
+              <Button variant="outline" style={{ width: '200px' }} onClick={() => handleOpen(document.img)}>
                 Посмотреть
               </Button>
-              
             </div>
             <div className={css.file}>
-              <div style={{ width: '60px'}}>
+              <div style={{ width: '60px' }}>
                 <UpdateButton onClick={() => handleUpdate(index)} />
               </div>
               <Button variant="light" color="red" onClick={() => handleDelete(index)} className={css.squareButton}>
@@ -130,18 +125,6 @@ const DocumentsContent: React.FC<DocumentsContentProps> = ({ documents, setDocum
       </div>
       {isAdding && newFile && (
         <div className={css.document}>
-          <Button
-            variant="outline"
-            color="red"
-            onClick={() => {
-              setIsAdding(false)
-              setNewFile(null)
-              setNewTitle('')
-            }}
-            className={css.squareButton}
-          >
-            <IconX size={16} />
-          </Button>
           <div className={css.text}>
             <TextInput
               value={newTitle}
@@ -152,10 +135,23 @@ const DocumentsContent: React.FC<DocumentsContentProps> = ({ documents, setDocum
               <img src={fileGrey} width={20} />
               {newTitle}
             </div>
-          </div>
-
-          <div style={{ width: '80px', marginLeft: '10px' }}>
-            <UpdateButton onClick={handleCreate} />
+            <div className={css.file}>
+              <div style={{ width: '60px' }}>
+                <UpdateButton onClick={handleCreate} />
+              </div>
+              <Button
+                variant="light"
+                color="red"
+                onClick={() => {
+                  setIsAdding(false)
+                  setNewFile(null)
+                  setNewTitle('')
+                }}
+                className={css.squareButton}
+              >
+                <IconX size={20} />
+              </Button>
+            </div>
           </div>
         </div>
       )}
