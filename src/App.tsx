@@ -8,11 +8,15 @@ import * as documentsApi from './api/DocumentsAPI'
 import * as infusionsApi from './api/InfusionsAPI'
 import * as mainPageApi from './api/MainAPI'
 import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin, VideoWidget } from './components'
-import { useAuth } from './context/AuthContext'
-import { AuthProvider } from './context/AuthContext'
+import { AnchorInterceptor } from './context/AnchorInterceptor'
+import { useAuth, AuthProvider } from './context/AuthContext'
+import YandexMetrikaTracker from './context/YandexMetrikaTracker'
+
 import ScrollResetProvider from './lib/ScrollResetProvider'
 import TextFormatProvider from './lib/TextFormatProvider'
+import { emptyContacts, emptyDocumentType, emptyInfusionCatalog, emptyMainPage } from './lib/empty'
 import * as routes from './lib/routes'
+import { DocumentType } from './lib/types'
 import {
   Main,
   About,
@@ -34,10 +38,6 @@ import {
 import '@mantine/core/styles.css'
 import './styles/global.scss'
 import * as themes from './styles/themes'
-// eslint-disable-next-line import/order
-import { emptyContacts, emptyDocumentType, emptyInfusionCatalog, emptyMainPage } from './lib/empty'
-// eslint-disable-next-line import/order
-import { DocumentType } from './lib/types'
 
 const theme = themes.mantine
 
@@ -170,6 +170,8 @@ const App = () => {
     <MantineProvider theme={theme}>
       <TextFormatProvider>
         <BrowserRouter>
+          <AnchorInterceptor />
+          <YandexMetrikaTracker />
           <AuthProvider>
             <Notifications position="top-right" limit={3} />
             <Layout />
