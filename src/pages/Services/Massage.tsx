@@ -22,8 +22,8 @@ const Massage = () => {
     <>
       <Helmet>
         <title>Массаж | Услуги</title>
-        <meta name="description" content="Массаж Clean Clinic" />
-        <meta name="keywords" content="Массаж, стройность, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Профессиональный массаж в клинике Clean Clinic, Оренбург. Стройность, здоровье, красота, индивидуальный подход." />
+        <meta name="keywords" content="Массаж Оренбург, Clean Clinic, стройность, здоровье, красота, лицензия, специалисты" />
       </Helmet>
 
       <>

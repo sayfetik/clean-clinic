@@ -22,8 +22,8 @@ const HomeVisit = () => {
     <>
       <Helmet>
         <title>Выезд на дом | Услуги</title>
-        <meta name="description" content="Анализы Clean Clinic" />
-        <meta name="keywords" content="Анализы, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Выезд врача и медсестры на дом в Оренбурге. Капельницы, анализы, процедуры — Clean Clinic." />
+        <meta name="keywords" content="выезд на дом Оренбург, Clean Clinic, капельницы на дому, анализы на дому, лицензия" />
       </Helmet>
 
       <>

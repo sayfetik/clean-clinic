@@ -2,6 +2,7 @@ import { MantineProvider } from '@mantine/core'
 import { useHotkeys } from '@mantine/hooks'
 import { Notifications } from '@mantine/notifications'
 import { useEffect, useState } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom'
 import * as contactsApi from './api/ContactsAPI'
 import * as documentsApi from './api/DocumentsAPI'
@@ -10,8 +11,8 @@ import * as mainPageApi from './api/MainAPI'
 import { Header, Footer, CookieModal, Telegram, HeaderAdmin, ModalAdmin, VideoWidget } from './components'
 import { AnchorInterceptor } from './context/AnchorInterceptor'
 import { useAuth, AuthProvider } from './context/AuthContext'
+import OrganizationJsonLd from './context/OrganizationJsonLd'
 import YandexMetrikaTracker from './context/YandexMetrikaTracker'
-
 import ScrollResetProvider from './lib/ScrollResetProvider'
 import TextFormatProvider from './lib/TextFormatProvider'
 import { emptyContacts, emptyDocumentType, emptyInfusionCatalog, emptyMainPage } from './lib/empty'
@@ -168,16 +169,19 @@ const Layout = () => {
 const App = () => {
   return (
     <MantineProvider theme={theme}>
-      <TextFormatProvider>
-        <BrowserRouter>
-          <AnchorInterceptor />
-          <YandexMetrikaTracker />
-          <AuthProvider>
-            <Notifications position="top-right" limit={3} />
-            <Layout />
-          </AuthProvider>
-        </BrowserRouter>
-      </TextFormatProvider>
+      <HelmetProvider>
+        <TextFormatProvider>
+          <BrowserRouter>
+            <AnchorInterceptor />
+            <YandexMetrikaTracker />
+            <AuthProvider>
+              <Notifications position="top-right" limit={3} />
+              <OrganizationJsonLd />
+              <Layout />
+            </AuthProvider>
+          </BrowserRouter>
+        </TextFormatProvider>
+      </HelmetProvider>
     </MantineProvider>
   )
 }

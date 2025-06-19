@@ -22,8 +22,16 @@ const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
     <>
       <Helmet>
         <title>Clean Clinic</title>
-        <meta name="description" content="Clean Clinic" />
-        <meta name="keywords" content="Капельницы, массаж, криотерапия, красота, здоровье, контакты" />
+        <meta name="description" content="Clean Clinic — современная клиника инфузионной терапии, массажа, криотерапии и анализов в Оренбурге. Запишитесь на капельницы и другие процедуры для здоровья и красоты." />
+        <meta name="keywords" content="Clean Clinic, клиника, Оренбург, капельницы, инфузионная терапия, массаж, криотерапия, анализы, здоровье, красота" />
+        <meta property="og:title" content="Clean Clinic — Клиника инфузионной терапии в Оренбурге" />
+        <meta property="og:description" content="Капельницы, массаж, криотерапия, анализы. Современная клиника в Оренбурге. Запишитесь онлайн!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cleanoren.ru/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Clean Clinic — Клиника инфузионной терапии в Оренбурге" />
+        <meta name="twitter:description" content="Капельницы, массаж, криотерапия, анализы. Современная клиника в Оренбурге." />
+        <meta name="twitter:image" content="https://cleanoren.ru/og-image.jpg" />
       </Helmet>
 
       <div className={css.mainPage}>

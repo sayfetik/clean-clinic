@@ -34,8 +34,8 @@ const About: React.FC<AboutProps> = ({ main, setMain, license }) => {
     <>
       <Helmet>
         <title>О Clean Clinic</title>
-        <meta name="description" content="О клинике" />
-        <meta name="keywords" content="О клинике, документы, специалисты, контакты" />
+        <meta name="description" content="Узнайте больше о клинике Clean Clinic в Оренбурге: опытные специалисты, современное оборудование, индивидуальный подход к каждому пациенту." />
+        <meta name="keywords" content="О клинике, Clean Clinic, Оренбург, специалисты, современное оборудование, здоровье" />
       </Helmet>
 
       <div>

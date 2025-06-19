@@ -22,8 +22,8 @@ const Analyzes = () => {
     <>
       <Helmet>
         <title>Анализы | Услуги</title>
-        <meta name="description" content="Анализы Clean Clinic" />
-        <meta name="keywords" content="Анализы, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Сдайте анализы в клинике Clean Clinic, Оренбург. Быстро, точно, современное оборудование, лицензии." />
+        <meta name="keywords" content="Анализы Оренбург, Clean Clinic, лаборатория, здоровье, лицензия" />
       </Helmet>
 
       <>

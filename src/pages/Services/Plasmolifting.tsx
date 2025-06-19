@@ -22,8 +22,8 @@ const Plasmolifting = () => {
     <>
       <Helmet>
         <title>Плазмолифтинг | Услуги</title>
-        <meta name="description" content="Плазмолифтинг Clean Clinic" />
-        <meta name="keywords" content="Плазмолифтинг, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Плазмолифтинг для омоложения и восстановления кожи в клинике Clean Clinic, Оренбург. Сертифицированные врачи, лицензии." />
+        <meta name="keywords" content="Плазмолифтинг Оренбург, Clean Clinic, омоложение, восстановление, лицензия, врачи" />
       </Helmet>
 
       <>

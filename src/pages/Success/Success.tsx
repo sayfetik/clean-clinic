@@ -20,7 +20,7 @@ const Success = () => {
       <Helmet>
         <title>Запись успешно сделана!</title>
         <meta name="description" content="Успешная запись Clean Clinic" />
-        <meta name="keywords" content="Запись, капельницы, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Ваша запись успешно принята! Clean Clinic — клиника инфузионной терапии в Оренбурге." />
       </Helmet>
       <div className={css.water}>
         <h1 className="blue">{data.title}</h1>

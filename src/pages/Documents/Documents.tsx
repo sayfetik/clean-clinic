@@ -18,8 +18,8 @@ const Documents: React.FC<{ documents: DocumentType[]; license: DocumentType; pr
     <>
       <Helmet>
         <title>Документы | Clean Clinic</title>
-        <meta name="description" content="Документы Clean Clinic" />
-        <meta name="keywords" content="Документы Clean Clinic" />
+        <meta name="description" content="Лицензии, сертификаты и другие документы Clean Clinic. Гарантия качества медицинских услуг в Оренбурге." />
+        <meta name="keywords" content="Документы, лицензии, сертификаты, Clean Clinic, Оренбург, качество" />
       </Helmet>
 
       <div>

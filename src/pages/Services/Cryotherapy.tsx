@@ -22,8 +22,8 @@ const Cryotherapy = () => {
     <>
       <Helmet>
         <title>Криотерапия | Услуги</title>
-        <meta name="description" content="Криотерапия Clean Clinic" />
-        <meta name="keywords" content="Криотерапия, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Криотерапия для здоровья и красоты в клинике Clean Clinic, Оренбург. Современное оборудование, опытные специалисты." />
+        <meta name="keywords" content="Криотерапия Оренбург, Clean Clinic, здоровье, красота, лицензия, специалисты" />
       </Helmet>
 
       <>

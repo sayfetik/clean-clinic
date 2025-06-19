@@ -32,8 +32,8 @@ const InfusionCatalog: React.FC<InfusionCatalogProps> = ({ problemImage, problem
     <>
       <Helmet>
         <title>Капельницы | Услуги</title>
-        <meta name="description" content="Капельницы Clean Clinic" />
-        <meta name="keywords" content="Капельницы, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Капельницы для восстановления и укрепления здоровья в клинике Clean Clinic, Оренбург. Индивидуальные программы, опытные врачи, лицензии." />
+        <meta name="keywords" content="Капельницы Оренбург, инфузионная терапия, Clean Clinic, восстановление, здоровье, врачи, лицензия" />
       </Helmet>
 
       <>

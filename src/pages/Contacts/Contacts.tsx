@@ -93,8 +93,8 @@ const Contacts: React.FC<{ contacts: ContactsType }> = React.memo(({ contacts })
     <>
       <Helmet>
         <title>Контакты</title>
-        <meta name="description" content="Контакты Clean Clinic" />
-        <meta name="keywords" content="Телефон, социальнаые сети, почта, контакты, Clean Clinic" />
+        <meta name="description" content="Узнайте больше о клинике Clean Clinic в Оренбурге: опытные специалисты, современное оборудование, индивидуальный подход к каждому пациенту." />
+        <meta name="keywords" content="О клинике, Clean Clinic, Оренбург, специалисты, современное оборудование, здоровье" />
       </Helmet>
 
       <div className={css.root}>
