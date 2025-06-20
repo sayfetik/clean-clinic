@@ -57,8 +57,10 @@ const OrderCallForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
   const handleClick = async () => {
     const result = await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
     if (result) {
+      resetFields()
       navigate(getSuccessRoute())
     } else {
+      resetFields()
       navigate(getErrorRoute())
     }
     onClose()
