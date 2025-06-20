@@ -58,7 +58,6 @@ const OrderCallForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
     const result = await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
     if (result) {
       navigate(getSuccessRoute())
-      resetFields()
     } else {
       navigate(getErrorRoute())
     }
@@ -115,7 +114,7 @@ const OrderCallForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
 
           <CheckPolicy {...{ checked, setChecked }} />
           <div className="margin"></div>
-          <Button size="small" isDisabled={disabled} onClick={() => handleClick} />
+          <Button size="small" isDisabled={disabled} onClick={handleClick} />
         </div>
       </div>
     </Modal>
