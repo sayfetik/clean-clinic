@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { callbackRequest } from '../../api/MainAPI'
 import { Button, CheckPolicy } from '../../components'
 import { formInputs } from '../../lib/data'
-import { getErrorRoute, getSuccessRoute } from '../../lib/routes'
+import { getSuccessRoute } from '../../lib/routes'
 import css from '../Button/index.module.scss'
 
 const OrderCallForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
@@ -55,14 +55,9 @@ const OrderCallForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
   const navigate = useNavigate()
 
   const handleClick = async () => {
-    const result = await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
-    if (result) {
-      resetFields()
-      navigate(getSuccessRoute())
-    } else {
-      resetFields()
-      navigate(getErrorRoute())
-    }
+    await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
+    resetFields()
+    navigate(getSuccessRoute())
     onClose()
   }
 

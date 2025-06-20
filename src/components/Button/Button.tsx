@@ -8,7 +8,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { callbackRequest } from '../../api/MainAPI'
 import { formInputs } from '../../lib/data'
-import { getErrorRoute, getSuccessRoute } from '../../lib/routes'
+import { getSuccessRoute } from '../../lib/routes'
 import CheckPolicy from '../CheckPolicy/CheckPolicy'
 import css from './index.module.scss'
 
@@ -69,13 +69,9 @@ const Button: React.FC<ButtonProps> = React.memo(
     const navigate = useNavigate()
 
     const handleClick = async () => {
-      const result = await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
-      if (result) {
-        navigate(getSuccessRoute())
-        resetFields()
-      } else {
-        navigate(getErrorRoute())
-      }
+      await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
+      navigate(getSuccessRoute())
+      resetFields()
       close()
     }
 

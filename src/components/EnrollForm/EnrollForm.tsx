@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, CheckPolicy } from '../'
 import { callbackRequest } from '../../api/MainAPI'
 import { formInputs } from '../../lib/data'
-import { getErrorRoute, getSuccessRoute } from '../../lib/routes'
+import { getSuccessRoute } from '../../lib/routes'
 import css from './index.module.scss'
 
 const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
@@ -47,13 +47,9 @@ const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
   }
 
   const handleClick = async () => {
-    const result = await callbackRequest(name.getValue(), phone.getValue(), '')
-    if (result) {
-      navigate(getSuccessRoute())
-      resetFields()
-    } else {
-      navigate(getErrorRoute())
-    }
+    await callbackRequest(name.getValue(), phone.getValue(), '')
+    navigate(getSuccessRoute())
+    resetFields()
   }
 
   return (

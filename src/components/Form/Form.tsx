@@ -48,14 +48,10 @@ const Form = React.memo(() => {
   }
 
   const handleClick = async () => {
-      const result = await callbackRequest(name.getValue(), phone.getValue(), '')
-      if (result) {
-        navigate(getSuccessRoute())
-        resetFields()
-      } else {
-        navigate(getErrorRoute())
-      }
-    }
+    await callbackRequest(name.getValue(), phone.getValue(), '')
+    navigate(getSuccessRoute())
+    resetFields()
+  }
 
   const [checked, setChecked] = useState(false)
 
@@ -99,7 +95,7 @@ const Form = React.memo(() => {
         />
       </div>
       <CheckPolicy {...{ checked, setChecked }} />
-      <Button size="small" isDisabled={disabled} onClick={handleClick}/>
+      <Button size="small" isDisabled={disabled} onClick={handleClick} />
     </div>
   )
 })
