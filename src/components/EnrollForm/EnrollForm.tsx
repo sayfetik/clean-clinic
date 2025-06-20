@@ -47,7 +47,7 @@ const EnrollForm: React.FC<{ title: string }> = ({ title }) => {
   }
 
   const handleClick = async () => {
-    await callbackRequest(name.getValue(), phone.getValue(), '')
+    callbackRequest(name.getValue(), phone.getValue(), '')
     navigate(getSuccessRoute())
     resetFields()
   }

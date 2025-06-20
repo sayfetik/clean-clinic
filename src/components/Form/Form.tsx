@@ -5,7 +5,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { callbackRequest } from '../../api/MainAPI'
 import { formInputs } from '../../lib/data'
-import { getErrorRoute, getSuccessRoute } from '../../lib/routes'
+import { getSuccessRoute } from '../../lib/routes'
 import Button from '../Button/Button'
 import CheckPolicy from '../CheckPolicy/CheckPolicy'
 import css from './index.module.scss'
@@ -48,7 +48,7 @@ const Form = React.memo(() => {
   }
 
   const handleClick = async () => {
-    await callbackRequest(name.getValue(), phone.getValue(), '')
+    callbackRequest(name.getValue(), phone.getValue(), '')
     navigate(getSuccessRoute())
     resetFields()
   }

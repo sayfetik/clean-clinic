@@ -69,7 +69,7 @@ const Button: React.FC<ButtonProps> = React.memo(
     const navigate = useNavigate()
 
     const handleClick = async () => {
-      await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
+      callbackRequest(name.getValue(), phone.getValue(), question.getValue())
       navigate(getSuccessRoute())
       resetFields()
       close()

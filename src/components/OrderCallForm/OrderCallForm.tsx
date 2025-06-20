@@ -55,7 +55,7 @@ const OrderCallForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
   const navigate = useNavigate()
 
   const handleClick = async () => {
-    await callbackRequest(name.getValue(), phone.getValue(), question.getValue())
+    callbackRequest(name.getValue(), phone.getValue(), question.getValue())
     resetFields()
     navigate(getSuccessRoute())
     onClose()
