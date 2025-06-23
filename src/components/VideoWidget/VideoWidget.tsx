@@ -76,8 +76,8 @@ const VideoWidget: React.FC<{ isAuthenticated: boolean }> = ({ isAuthenticated }
           }}
           style={{
             position: 'absolute',
-            top: 6,
-            left: 6,
+            top: 8,
+            right: 8,
             zIndex: 2,
             background: 'rgba(255,255,255,0.7)',
             border: 'none',
