@@ -32,7 +32,7 @@ const AboutSection: React.FC<AboutSectionProps> = React.memo(({ weWork, addition
       </FadeAnimation>
       <div className={css.textAboutClinic}>
         <FadeAnimation>
-          <h3 className={css.cleanClinic}>Clean Clinic</h3>
+          <h3 className={css.cleanClinic}>Клин Клиник</h3>
           <h2 className={css.weWork}>{weWork.title}</h2>
           <p className={css.text}>{weWork.text}</p>
         </FadeAnimation>

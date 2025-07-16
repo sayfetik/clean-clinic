@@ -22,8 +22,11 @@ const Solarium = () => {
     <>
       <Helmet>
         <title>Солярий | Услуги</title>
-        <meta name="description" content="Солярий в клинике Clean Clinic, Оренбург. Красивый и безопасный загар, современное оборудование." />
-        <meta name="keywords" content="солярий Оренбург, Clean Clinic, загар, красота, лицензия" />
+        <meta
+          name="description"
+          content="Солярий в клинике Клин Клиник, Оренбург. Красивый и безопасный загар, современное оборудование."
+        />
+        <meta name="keywords" content="солярий Оренбург, Клин Клиник, загар, красота, лицензия" />
       </Helmet>
 
       <>

@@ -138,7 +138,7 @@ const VideoWidget: React.FC<{ isAuthenticated: boolean }> = ({ isAuthenticated }
         opened={stage === 'modal'}
         onClose={handleClose}
         centered
-        title="Добро пожаловать в Clean Clinic!"
+        title="Добро пожаловать в Клин Клиник!"
         size="80%"
         radius="lg"
         styles={{

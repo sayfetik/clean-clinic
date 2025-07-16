@@ -10,7 +10,7 @@ import { InfusionRouteParamsType } from '../../lib/routes'
 import { InfusionInfoType, InfusionInstructionsType } from '../../lib/types'
 import css from './index.module.scss'
 
-const Infusion: React.FC<{infusionInstructions: InfusionInstructionsType}> = ({infusionInstructions}) => {
+const Infusion: React.FC<{ infusionInstructions: InfusionInstructionsType }> = ({ infusionInstructions }) => {
   const { infusionId } = useParams() as InfusionRouteParamsType
   const [infusion, setInfusion] = useState<InfusionInfoType>(emptyInfusionInfo)
 
@@ -48,15 +48,20 @@ const Infusion: React.FC<{infusionInstructions: InfusionInstructionsType}> = ({i
   return (
     <>
       <Helmet>
-        <meta name="description" content="Капельница Clean Clinic" />
-        <meta name="keywords" content="Капельница, красота, здоровье, Clean Clinic" />
+        <meta name="description" content="Капельница Клин Клиник" />
+        <meta name="keywords" content="Капельница, красота, здоровье, Клин Клиник" />
       </Helmet>
 
       <div>
         <div className={css.upperSection}>
           <UpAnimation>
             <div className={css.upperSectionContent}>
-              <img src={typeof infusion.imagePath === 'string' ? infusion.imagePath : URL.createObjectURL(infusion.imagePath)} className={css.image} />
+              <img
+                src={
+                  typeof infusion.imagePath === 'string' ? infusion.imagePath : URL.createObjectURL(infusion.imagePath)
+                }
+                className={css.image}
+              />
               <div className={css.upperSectionText}>
                 <h2 className={css.name}>{infusion.name}</h2>
 
@@ -68,7 +73,7 @@ const Infusion: React.FC<{infusionInstructions: InfusionInstructionsType}> = ({i
                   </div>
                 </div>
 
-                <Button size='small'/>
+                <Button size="small" />
               </div>
             </div>
           </UpAnimation>

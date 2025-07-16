@@ -7,7 +7,7 @@ const HeaderAdmin = () => {
 
   return (
     <div className={css.header}>
-      <img src="https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png" alt="Clean Clinic" className={css.logo} />
+      <img src="/assets/logo.png" alt="Клин Клиник" className={css.logo} />
       <div className={css.row}>
         <h4>Администратор</h4>
         <Button color="blue" onClick={logout} variant="outline">

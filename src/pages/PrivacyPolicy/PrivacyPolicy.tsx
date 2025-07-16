@@ -12,8 +12,11 @@ const PrivacyPolicy = React.memo(() => {
     <>
       <Helmet>
         <title>Политика конфиденциальности</title>
-        <meta name="description" content="Политика конфиденциальности сайта Clean Clinic. Узнайте, как мы защищаем ваши персональные данные." />
-        <meta name="keywords" content="Политика конфиденциальности, персональные данные, Clean Clinic, Оренбург" />
+        <meta
+          name="description"
+          content="Политика конфиденциальности сайта Клин Клиник. Узнайте, как мы защищаем ваши персональные данные."
+        />
+        <meta name="keywords" content="Политика конфиденциальности, персональные данные, Клин Клиник, Оренбург" />
       </Helmet>
 
       <div>

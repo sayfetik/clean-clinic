@@ -27,15 +27,21 @@ const About: React.FC<AboutProps> = ({ main, setMain, license }) => {
       setMain(mainData)
     }
     fetchData()
-    document.title = 'О Clean Clinic'
+    document.title = 'О Клин Клиник'
   }, [])
 
   return (
     <>
       <Helmet>
-        <title>О Clean Clinic</title>
-        <meta name="description" content="Узнайте больше о клинике Clean Clinic в Оренбурге: опытные специалисты, современное оборудование, индивидуальный подход к каждому пациенту." />
-        <meta name="keywords" content="О клинике, Clean Clinic, Оренбург, специалисты, современное оборудование, здоровье" />
+        <title>О Клин Клиник</title>
+        <meta
+          name="description"
+          content="Узнайте больше о клинике Клин Клиник в Оренбурге: опытные специалисты, современное оборудование, индивидуальный подход к каждому пациенту."
+        />
+        <meta
+          name="keywords"
+          content="О клинике, Клин Клиник, Оренбург, специалисты, современное оборудование, здоровье"
+        />
       </Helmet>
 
       <div>

@@ -5,7 +5,7 @@ const OrganizationJsonLd: React.FC = () => {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MedicalClinic',
-    name: 'Clean Clinic',
+    name: 'Клин Клиник',
     url: 'https://cleanoren.ru',
     logo: 'https://cleanoren.ru/assets/logo.png',
     address: {

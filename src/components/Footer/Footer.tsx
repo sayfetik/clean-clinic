@@ -109,11 +109,7 @@ const Footer: React.FC<{ title: string; contacts: ContactsType; license: Documen
           </div>
 
           <div className={css.companyInfo}>
-            <img
-              src="https://cleanoren.ru/wp-content/uploads/2024/02/logo1.png"
-              alt="Clean Clinic"
-              className={css.logo}
-            />
+            <img src="/assets/logo.png" alt="" className={css.logo} />
             <div>
               <p>{footer.ooo}</p>
               <p>{footer.inn}</p>

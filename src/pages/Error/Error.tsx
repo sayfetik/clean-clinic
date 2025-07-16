@@ -19,7 +19,10 @@ const Error = () => {
     <>
       <Helmet>
         <title>Ошибка</title>
-        <meta name="description" content="Страница не найдена или произошла ошибка. Попробуйте вернуться на главную страницу Clean Clinic." />
+        <meta
+          name="description"
+          content="Страница не найдена или произошла ошибка. Попробуйте вернуться на главную страницу Клин Клиник."
+        />
       </Helmet>
       <div className={css.water}>
         <h1 className="blue">{data.title}</h1>

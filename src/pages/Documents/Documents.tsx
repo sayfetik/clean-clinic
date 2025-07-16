@@ -11,15 +11,18 @@ const Documents: React.FC<{ documents: DocumentType[]; license: DocumentType; pr
   privacyPolicy,
 }) => {
   useEffect(() => {
-    document.title = 'Документы | Clean Clinic'
+    document.title = 'Документы | Клин Клиник'
   }, [])
 
   return (
     <>
       <Helmet>
-        <title>Документы | Clean Clinic</title>
-        <meta name="description" content="Лицензии, сертификаты и другие документы Clean Clinic. Гарантия качества медицинских услуг в Оренбурге." />
-        <meta name="keywords" content="Документы, лицензии, сертификаты, Clean Clinic, Оренбург, качество" />
+        <title>Документы | Клин Клиник</title>
+        <meta
+          name="description"
+          content="Лицензии, сертификаты и другие документы Клин Клиник. Гарантия качества медицинских услуг в Оренбурге."
+        />
+        <meta name="keywords" content="Документы, лицензии, сертификаты, Клин Клиник, Оренбург, качество" />
       </Helmet>
 
       <div>

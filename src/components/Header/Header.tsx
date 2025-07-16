@@ -21,7 +21,7 @@ const Logo = () => {
     return () => mediaQuery.removeEventListener('change', updateLogo)
   }, [])
 
-  return <img src={logoSrc} alt="Clean Clinic" className={css.logo} />
+  return <img src={logoSrc} alt="" className={css.logo} />
 }
 
 const Header: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {

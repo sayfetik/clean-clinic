@@ -13,24 +13,36 @@ const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
   const Infusions = lazy(() => import('../../components/Infusions/Infusions'))
   const FAQ = lazy(() => import('../../components/FAQ/FAQ'))
   const Feedback = lazy(() => import('../../components/Feedback/Feedback'))
-  
+
   useEffect(() => {
-    document.title = 'Clean Clinic'
+    document.title = 'Клин Клиник'
   }, [])
 
   return (
     <>
       <Helmet>
-        <title>Clean Clinic</title>
-        <meta name="description" content="Clean Clinic — современная клиника инфузионной терапии, массажа, криотерапии и анализов в Оренбурге. Запишитесь на капельницы и другие процедуры для здоровья и красоты." />
-        <meta name="keywords" content="Clean Clinic, клиника, Оренбург, капельницы, инфузионная терапия, массаж, криотерапия, анализы, здоровье, красота" />
-        <meta property="og:title" content="Clean Clinic — Клиника инфузионной терапии в Оренбурге" />
-        <meta property="og:description" content="Капельницы, массаж, криотерапия, анализы. Современная клиника в Оренбурге. Запишитесь онлайн!" />
+        <title>Клин Клиник</title>
+        <meta
+          name="description"
+          content="Клин Клиник — современная клиника инфузионной терапии, массажа, криотерапии и анализов в Оренбурге. Запишитесь на капельницы и другие процедуры для здоровья и красоты."
+        />
+        <meta
+          name="keywords"
+          content="Клин Клиник, клиника, Оренбург, капельницы, инфузионная терапия, массаж, криотерапия, анализы, здоровье, красота"
+        />
+        <meta property="og:title" content="Клин Клиник — Клиника инфузионной терапии в Оренбурге" />
+        <meta
+          property="og:description"
+          content="Капельницы, массаж, криотерапия, анализы. Современная клиника в Оренбурге. Запишитесь онлайн!"
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://cleanoren.ru/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Clean Clinic — Клиника инфузионной терапии в Оренбурге" />
-        <meta name="twitter:description" content="Капельницы, массаж, криотерапия, анализы. Современная клиника в Оренбурге." />
+        <meta name="twitter:title" content="Клин Клиник — Клиника инфузионной терапии в Оренбурге" />
+        <meta
+          name="twitter:description"
+          content="Капельницы, массаж, криотерапия, анализы. Современная клиника в Оренбурге."
+        />
         <meta name="twitter:image" content="https://cleanoren.ru/og-image.jpg" />
       </Helmet>
 
@@ -41,7 +53,7 @@ const Main: React.FC<{ main: MainPageType }> = ({ main }) => {
               <h1 className={css.titleBlue}>Клиника</h1>
               <h1 className={css.titleBlue}>инфузионной</h1>
               <h1 className={css.titleBlue}>терапии</h1>
-              <h1 className={css.titleWhite}>«Clean Clinic»</h1>
+              <h1 className={css.titleWhite}>«Клин Клиник»</h1>
               <h2 className={css.subtitle}>в Оренбурге</h2>
             </Animation>
             <img src={forBanner} alt="" className={css.bannerImage} />

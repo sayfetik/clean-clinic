@@ -44,8 +44,8 @@ const Admin: React.FC<AdminProps> = ({
     <>
       <Helmet>
         <title>Администратор</title>
-        <meta name="description" content="Капельницы Clean Clinic" />
-        <meta name="keywords" content="Капельницы, здоровье, красота, Clean Clinic" />
+        <meta name="description" content="Капельницы Клин Клиник" />
+        <meta name="keywords" content="Капельницы, здоровье, красота, Клин Клиник" />
       </Helmet>
       <div className={css.page}>
         <GradientText text="Панель редактирования" />
