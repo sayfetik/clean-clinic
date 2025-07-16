@@ -31,7 +31,6 @@ import {
   Error,
   Massage,
   Solarium,
-  HomeVisit,
   Plasmolifting,
   Cryotherapy,
   Analyzes,
@@ -112,7 +111,6 @@ const Layout = () => {
           />
           <Route path={routes.getMassageRoute()} element={<Massage />} />
           <Route path={routes.getSolariumRoute()} element={<Solarium />} />
-          <Route path={routes.getHomeVisitRoute()} element={<HomeVisit />} />
           <Route path={routes.getPlasmoliftingRoute()} element={<Plasmolifting />} />
           <Route path={routes.getCryotherapyRoute()} element={<Cryotherapy />} />
           <Route path={routes.getAnalyzesgRoute()} element={<Analyzes />} />

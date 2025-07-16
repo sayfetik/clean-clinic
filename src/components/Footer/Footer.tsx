@@ -90,7 +90,6 @@ const Footer: React.FC<{ title: string; contacts: ContactsType; license: Documen
                 <NavLink text="Плазмолифтинг" to={routes.getPlasmoliftingRoute()} />
                 <NavLink text="Анализы" to={routes.getAnalyzesgRoute()} />
                 <NavLink text="Солярий" to={routes.getSolariumRoute()} />
-                <NavLink text="Выезд на дом" to={routes.getHomeVisitRoute()} />
               </div>
               <NavLink text="О клинике" to={routes.getAboutRoute()} />
               <NavLink text="Контакты" to={routes.getContactsRoute()} />

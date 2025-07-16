@@ -8,17 +8,14 @@ import css from './index.module.scss'
 
 const Logo = () => {
   const getLogoSrc = () =>
-    window.matchMedia('(max-width: 455px)').matches
-      ? '/assets/smallLogo.png'
-      : '/assets/logo.png'
+    window.matchMedia('(max-width: 455px)').matches ? '/assets/smallLogo.png' : '/assets/logo.png'
 
   const [logoSrc, setLogoSrc] = useState(getLogoSrc())
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 455px)')
 
-    const updateLogo = (e: { matches: any }) =>
-      setLogoSrc(e.matches ? '/assets/smallLogo.png' : '/assets/logo.png')
+    const updateLogo = (e: { matches: any }) => setLogoSrc(e.matches ? '/assets/smallLogo.png' : '/assets/logo.png')
 
     mediaQuery.addEventListener('change', updateLogo)
     return () => mediaQuery.removeEventListener('change', updateLogo)
@@ -60,9 +57,6 @@ const Header: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
             <Menu.Item component="a" href={routes.getSolariumRoute()}>
               Солярий
             </Menu.Item>
-            <Menu.Item component="a" href={routes.getHomeVisitRoute()}>
-              Выезд на дом
-            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
 
@@ -77,7 +71,7 @@ const Header: React.FC<{ contacts: ContactsType }> = ({ contacts }) => {
         </Link>
       </div>
       <div className={css.socIcons}>
-        <SocialMediaIcons contacts={contacts}/>
+        <SocialMediaIcons contacts={contacts} />
       </div>
     </div>
   )

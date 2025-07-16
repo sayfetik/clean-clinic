@@ -7,9 +7,7 @@ import {
   ContactContent,
   CryoContent,
   ErrorContent,
-  // ExcursionContent,
   GradientText,
-  HomeVisitContent,
   InfusionsContent,
   MainContent,
   MassageContent,
@@ -31,7 +29,14 @@ type AdminProps = {
   setDocuments: React.Dispatch<React.SetStateAction<DocumentType[]>>
 }
 
-const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main, setMain, documents, setDocuments }) => {
+const Admin: React.FC<AdminProps> = ({
+  infusionCatalog,
+  setInfusionCatalog,
+  main,
+  setMain,
+  documents,
+  setDocuments,
+}) => {
   useEffect(() => {
     document.title = 'Панель редактирования'
   }, [])
@@ -88,9 +93,6 @@ const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main
             <Tabs.Panel value="analyzes">
               <AnalyzesContent />
             </Tabs.Panel>
-            <Tabs.Panel value="homeVisit">
-              <HomeVisitContent />
-            </Tabs.Panel>
             <Tabs.Panel value="about">
               <AboutContent />
             </Tabs.Panel>
@@ -98,7 +100,7 @@ const Admin: React.FC<AdminProps> = ({ infusionCatalog, setInfusionCatalog, main
               <ContactContent />
             </Tabs.Panel>
             <Tabs.Panel value="documents">
-              <DocumentsContent documents={documents} setDocuments={setDocuments}/>
+              <DocumentsContent documents={documents} setDocuments={setDocuments} />
             </Tabs.Panel>
             <Tabs.Panel value="error">
               <ErrorContent />

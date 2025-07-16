@@ -11,7 +11,6 @@ export const getInfusionRoute = ({ infusionId }: InfusionRouteParamsType) => `/i
 export const getInfusionCatalogRoute = () => `/infusions`
 export const getCryotherapyRoute = () => `/cryotherapy`
 export const getMassageRoute = () => `/massage`
-export const getHomeVisitRoute = () => `/homevisit`
 export const getSolariumRoute = () => `/solarium`
 export const getPlasmoliftingRoute = () => `/plasmolifting`
 export const getAnalyzesgRoute = () => `/analyzes`
@@ -22,7 +21,7 @@ export const getDocumentsRoute = () => `/documents`
 export const getAdminRoute = () => `/admin`
 export const getSuccessRoute = () => `/success`
 export const getErrorRoute = () => `/error`
-  
+
 export const openOnBlankPage = (link: string) => {
   window.open(link, '_blank')
 }
