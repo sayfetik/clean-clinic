@@ -16,7 +16,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('/assets/banner.jpg');
-  padding-top: 30px;
+  padding: 0 90px 0 170px;
 
   &:before,
   &:after {
@@ -32,15 +32,19 @@
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, $defaultBackgroundColor 100%);
   }
 
+  @include breakpoint('large') {
+    padding-top: 30px;
+  }
+
   @include breakpoint('medium') {
     padding-top: 20px;
     padding-bottom: 40px;
+    margin-bottom: 30px;
   }
 
   @include breakpoint('small') {
-    background-image: none;
-    background-color: $blue;
-    margin-bottom: 30px;
+    // background-image: none;
+    // background-color: $blue;
   }
 }
 
@@ -56,8 +60,10 @@
   height: 100vh;
 
   @include breakpoint('medium') {
-    padding-top: 30px;
+    padding-top: 90px;
+    padding-bottom: 40px;
     height: fit-content;
+    gap: 10px;
   }
 
   @media (width <= 400px) {
@@ -65,7 +71,8 @@
   }
 
   @include breakpoint('small') {
-    padding-top: 35px;
+    padding-top: 100px;
+    padding-bottom: 40px;
   }
 }
 
@@ -79,7 +86,7 @@
   }
 
   @include breakpoint('medium') {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   @include breakpoint('small') {
@@ -92,7 +99,7 @@
   color: $blue;
 
   @include breakpoint('small') {
-    color: $white;
+    // color: $white;
     margin-top: 0;
   }
 }
@@ -123,24 +130,25 @@
   }
 
   @include breakpoint('medium') {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-top: 10px;
     padding: 3px 10px;
     border-radius: 5px;
   }
 
   @include breakpoint('small') {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 7px;
   }
 }
 
 .bannerImage {
-  height: 100%;
+  // height: 75%;
+  width: 60%;
   mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 
-  @include breakpoint('medium') {
-    width: 50%;
+  @include breakpoint('large') {
+    width: 55%;
   }
 }
 
